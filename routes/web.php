@@ -54,6 +54,9 @@ Route::prefix('/admin')
         Route::get('/examinations', function () {
             return view('admin.examinations');
         })->name('admin.examinations');
+        Route::get('/monitoring', function () {
+            return view('admin.monitoring');
+        })->name('admin.monitoring');
         Route::get('/programs', function () {
             $campuses = \App\Models\Campus::all('id', 'name');
             return view('admin.programs', ['campuses' => $campuses]);
