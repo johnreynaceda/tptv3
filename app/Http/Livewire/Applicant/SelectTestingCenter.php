@@ -91,7 +91,10 @@ class SelectTestingCenter extends Component
                 'student_slot_id' => $studen_slot->id,
             ]);
 
-        $this->notification()->success($title = 'Success', $description = 'Successfully Saved Slot');
+        $this->notification()->success(
+            $title = 'Success',
+            $description = 'Successfully Saved Slot'
+        );
 
         return redirect()->route('applicant.home');
     }
