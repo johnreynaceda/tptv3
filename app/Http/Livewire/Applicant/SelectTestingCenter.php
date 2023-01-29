@@ -7,6 +7,7 @@ use App\Models\TestCenter;
 use App\Models\Slot;
 use App\Models\StudentSlot;
 use WireUi\Traits\Actions;
+use App\Models\{Examination, Result};
 
 class SelectTestingCenter extends Component
 {

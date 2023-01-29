@@ -104,7 +104,11 @@ Route::prefix('/applicant')
         );
 
         Route::get('/select-test-center', function () {
-            return view('applicant.select-test-center');
+            if (auth()->user()->application->student_slot_id != null) {
+                return redirect()->back();
+            } else {
+                return view('applicant.select-test-center');
+            }
         })->name('applicant.test-center');
     });
 
