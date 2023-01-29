@@ -53,7 +53,7 @@ class SelectTestingCenter extends Component
             $this->room_number = 1;
             $this->seat_number = 1;
         } else {
-            if ($total_slot->count() == 1) {
+            if ($total_slot->count() == 50) {
                 $this->dialog()->error(
                     $title = 'Slot is full',
                     $description = 'Please select another testing center'
@@ -91,7 +91,7 @@ class SelectTestingCenter extends Component
                 'student_slot_id' => $studen_slot->id,
             ]);
 
-        dd('done');
+        $this->notification()->success($title = 'Success', $description = 'Successfully Saved Slot');
 
         return redirect()->route('applicant.home');
     }
