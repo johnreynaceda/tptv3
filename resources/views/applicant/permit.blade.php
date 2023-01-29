@@ -19,6 +19,13 @@
   @livewireStyles
   @wireUiScripts
 
+  <style>
+    @media print {
+      .hidden-print {
+        display: none !important;
+      }
+    }
+  </style>
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
@@ -183,7 +190,10 @@
                         @endif
                       </dt>
                       <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {{ $program_choice->program->name }}
+                        <div class="flex space-x-1">
+                          <span>{{ $program_choice->program->name }} </span>
+                          <livewire:applicant.update-program-choice :priority="$program_choice->is_priority" />
+                        </div>
                       </dd>
                     </div>
                   @endforeach
@@ -199,7 +209,8 @@
                     {{ auth()->user()->application->student_slot->time }}
                   </h1>
                   <h1 class="text-gray-600 text-sm">Test Center:
-                    {{ auth()->user()->application->student_slot->slot->test_center->campus->name }}
+                    {{ auth()->user()->application->student_slot->slot->test_center->campus->name }} -
+                    {{ auth()->user()->application->student_slot->slot->test_center->slots->first()->building_name }}
                   </h1>
                   <h1 class="text-gray-600 text-sm">Room:
                     Room {{ auth()->user()->application->student_slot->room_number }}
@@ -219,6 +230,8 @@
   </div>
   <x-notifications z-index="z-50" />
   <x-dialog z-index="z-50" blur="md" align="center" />
+
+
   @livewireScripts
 </body>
 
