@@ -4,10 +4,9 @@
             title="Payment">
             <div class="mb-4">
                 <!-- This example requires Tailwind CSS v2.0+ -->
-                <div class="p-4 rounded-md bg-blue-50">
+                <!-- <div class="p-4 rounded-md bg-blue-50">
                     <div class="flex">
                         <div class="flex-shrink-0">
-                            <!-- Heroicon name: solid/information-circle -->
                             <svg class="w-5 h-5 text-blue-400"
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"
@@ -34,15 +33,15 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
             <form>
                 @csrf
                 <div class="space-y-3">
                     <div class="space-y-3">
-                        <x-input label="Reference Number"
-                            wire:model.defer="reference_number"
+                        <x-input label="Receipt Number"
+                            wire:model.defer="receipt_number"
                             hint="Reference number from your payment receipt" />
                         <x-input type="file"
                             wire:model="proofs"

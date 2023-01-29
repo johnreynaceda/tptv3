@@ -40,13 +40,15 @@
                     <x-input wire:model.defer="phone_number"
                         autocomplete="on"
                         label="Phone Number" />
-                    <x-input wire:model.defer="date_of_birth"
+                    <x-input wire:model="date_of_birth"
+                        max="{{\Carbon\Carbon::now()->subYears(16)->format('Y-m-d')}}"
                         type="date"
                         label="Date Of Birth" />
                     <x-input wire:model.defer="place_of_birth"
                         autocomplete="on"
                         label="Place Of Birth" />
                     <x-input wire:model.defer="age"
+                        disabled
                         autocomplete="on"
                         label="Age" />
                     <x-input wire:model.defer="tribe"
@@ -58,9 +60,9 @@
                     <x-input wire:model.defer="nationality"
                         autocomplete="on"
                         label="Nationality" />
-                    <x-input wire:model.defer="citizenship"
+                    <!-- <x-input wire:model.defer="citizenship"
                         autocomplete="on"
-                        label="Citizenship" />
+                        label="Citizenship" /> -->
                     <div id="imagepreview">
                         @if ($personal_information?->photo)
                             <img src="{{ Storage::url($personal_information->photo) }}"

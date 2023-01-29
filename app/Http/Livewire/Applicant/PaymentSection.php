@@ -10,9 +10,9 @@ use WireUi\Traits\Actions;
 class PaymentSection extends Component
 {
     use WithFileUploads, Actions;
-    public $reference_number,$proofs=[];
+    public $receipt_number,$proofs=[];
     protected $rules = [
-        'reference_number'=>'required',
+        'receipt_number'=>'required|unique:payments,reference_number',
         'proofs.*'=>'required|mimes:jpeg,png,pdf,jpg',
     ];
     public function render()
@@ -35,7 +35,7 @@ class PaymentSection extends Component
         $payment = Payment::create([
             'user_id'=>auth()->user()->id,
             'examination_id'=>$examination,
-            'reference_number'=>$this->reference_number,
+            'reference_number'=>$this->receipt_number,
             'paid_at'=>now(),
         ]);
 

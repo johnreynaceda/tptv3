@@ -59,7 +59,7 @@ class SelectTestingCenter extends Component
                     $description = 'Please select another testing center'
                 );
             } else {
-                if ($total_slot->first()->seat_number < 1) {
+                if ($total_slot->first()->seat_number < 50) {
                     $this->room_number = $total_slot->first()->room_number;
                     $this->seat_number = $total_slot->first()->seat_number + 1;
                 } else {
