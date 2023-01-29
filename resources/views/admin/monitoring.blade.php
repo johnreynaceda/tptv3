@@ -5,7 +5,8 @@
     </div>
     <div class="mx-auto space-x-2 max-w-7xl sm:px-6 md:px-8">
       <div class="mt-5">
-        sdsd
+        <livewire:admin.monitoring />
+
       </div>
     </div>
 
