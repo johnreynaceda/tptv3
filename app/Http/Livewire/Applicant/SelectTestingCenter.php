@@ -7,6 +7,7 @@ use App\Models\TestCenter;
 use App\Models\Slot;
 use App\Models\StudentSlot;
 use WireUi\Traits\Actions;
+use App\Models\{Examination, Result};
 
 class SelectTestingCenter extends Component
 {
@@ -91,7 +92,10 @@ class SelectTestingCenter extends Component
                 'student_slot_id' => $studen_slot->id,
             ]);
 
-        $this->notification()->success($title = 'Success', $description = 'Successfully Saved Slot');
+        $this->notification()->success(
+            $title = 'Success',
+            $description = 'Successfully Saved Slot'
+        );
 
         return redirect()->route('applicant.home');
     }

@@ -54,6 +54,9 @@ Route::prefix('/admin')
         Route::get('/examinations', function () {
             return view('admin.examinations');
         })->name('admin.examinations');
+        Route::get('/monitoring', function () {
+            return view('admin.monitoring');
+        })->name('admin.monitoring');
         Route::get('/programs', function () {
             $campuses = \App\Models\Campus::all('id', 'name');
             return view('admin.programs', ['campuses' => $campuses]);
@@ -104,7 +107,11 @@ Route::prefix('/applicant')
         );
 
         Route::get('/select-test-center', function () {
-            return view('applicant.select-test-center');
+            if (auth()->user()->application->student_slot_id != null) {
+                return redirect()->back();
+            } else {
+                return view('applicant.select-test-center');
+            }
         })->name('applicant.test-center');
     });
 
