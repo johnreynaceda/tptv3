@@ -10,9 +10,8 @@
                 @csrf
                 <div class="space-y-3">
                     <div class="space-y-3">
-                        <x-input label="Reference Number"
-                            wire:model.defer="receipt_number"
-                            hint="Reference number from your payment receipt" />
+                        <x-input label="Receipt Number"
+                            wire:model.defer="receipt_number"/>
                         <x-input type="file"
                             wire:model="proofs"
                             multiple
