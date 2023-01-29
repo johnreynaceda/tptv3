@@ -3,36 +3,7 @@
         <x-card shadow="shadow-none"
             title="Payment">
             <div class="mb-4">
-                <div class="p-4 rounded-md bg-blue-50">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <svg class="w-5 h-5 text-blue-400"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <div class="flex-1 ml-3 md:flex md:justify-between">
-                            <p class="text-sm text-blue-700"> Please pay <span class="font-semibold">&#8369; 275</span>
-                                .Please make sure that the
-                                reference number is clearly
-                                reflected in your proof of payment.</p>
-
-                            <p class="mt-3 text-sm md:mt-0 md:ml-6">
-                                <x-button
-                                    href="https://epaymentportal.landbank.com/pay1.php?code=S05EUEtVSGltb2t0emdaNmwyRFV5aG1pVVYzNHdTRXByL2ZoNHZjS1pZRT0="
-                                    target="_bank"
-                                    class="font-medium text-blue-700 whitespace-nowrap hover:text-blue-600">Pay Here
-                                    <span aria-hidden="true">&rarr;</span>
-                                </x-button>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              
 
             </div>
             <form>
@@ -40,7 +11,7 @@
                 <div class="space-y-3">
                     <div class="space-y-3">
                         <x-input label="Reference Number"
-                            wire:model.defer="reference_number"
+                            wire:model.defer="receipt_number"
                             hint="Reference number from your payment receipt" />
                         <x-input type="file"
                             wire:model="proofs"
