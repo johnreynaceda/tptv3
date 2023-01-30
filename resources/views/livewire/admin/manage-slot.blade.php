@@ -11,7 +11,7 @@
                 <x-input wire:model.debounce.500ms="search" placeholder="Search" />
               </div>
               <div>
-                <x-button label="Add New" icon="plus" wire:click="$set('manage_modal', true)" dark />
+                <x-button label="Add New" icon="plus" wire:click="openAddModal" dark />
               </div>
             </div>
             <table class="min-w-full divide-y divide-gray-300">
@@ -53,7 +53,7 @@
                       {{ $center->slots->first()->number_of_rooms }}</td>
                     <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                       <div class="flex justify-end items-center">
-                        <x-button sm flat icon="pencil-alt" positive label="Edit" />
+                        <x-button sm flat icon="pencil-alt" wire:click="openUpdateModal({{$center->slots->first()->id}})" positive label="Edit" />
                         <x-button sm flat icon="trash" negative label="Delete" />
                       </div>
                     </td>
@@ -99,7 +99,11 @@
       <x-slot name="footer">
         <div class="flex justify-end gap-x-4">
           <x-button flat label="Close" x-on:click="close" />
+          @if($is_edit == false)
           <x-button positive wire:click="addSlot" label="Save" />
+          @else
+          <x-button positive wire:click="editSlot" label="Update" />
+          @endif
         </div>
       </x-slot>
     </x-card>

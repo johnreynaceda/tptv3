@@ -38,7 +38,13 @@ class SelectTestingCenter extends Component
 
     public function updatedCenterId()
     {
-        $latest_room_number = StudentSlot::select('room_number')->latest()->first()->room_number;
+       
+        if(StudentSlot::count() == 0){
+            $latest_room_number = 1;
+        }else{
+            $latest_room_number = StudentSlot::select('room_number')->latest()->first()->room_number;
+        }
+
         $total_slot_per_room = StudentSlot::where('slot_id', '=', $this->center_id)
             ->where('time', $this->time)
             ->whereHas('slot', function ($query) {
