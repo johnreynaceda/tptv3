@@ -35,13 +35,16 @@ class Monitoring extends Component
                             $query->where('date_of_exam', $this->date);
                         });
                 })
+
                 ->get()
                 ->groupBy('room_number'),
             'test_centers' => TestCenter::whereHas('slots', function ($slot) {
                 $slot->when($this->date, function ($query) {
                     $query->where('date_of_exam', $this->date);
                 });
-            })->get(),
+            })
+                ->with(['campus', 'slots'])
+                ->get(),
             'dates' => Slot::get()
                 ->pluck('date_of_exam')
                 ->unique(),
