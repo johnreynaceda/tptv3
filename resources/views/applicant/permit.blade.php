@@ -106,7 +106,7 @@
           <div class="col-span-3">
             <div class="overflow-hidden ">
 
-              {{-- <div class=" sm:p-0">
+              <!-- {{-- <div class=" sm:p-0">
                 <dl class="space-y-2">
                   <div class=" grid grid-cols-3 gap-4 py-0.5 sm:px-6">
                     <dt class="text-sm font-medium text-gray-500">Full name</dt>
@@ -198,7 +198,7 @@
                     </div>
                   @endforeach
                 </dl>
-              </div> --}}
+              </div> --}} -->
 
               <div class="border-gray-200 px-6 ">
                 <dl class="">
@@ -245,6 +245,7 @@
                       <span class="flex-grow">{{ $personal_information->phone_number }}</span>
                     </dd>
                   </div>
+                  @if (auth()->user()->type_id == 1)
                   <div class=" grid grid-cols-3 gap-4 py-0.5">
                     <dt class="text-sm font-medium text-gray-500">School Graduated</dt>
                     <dd class=" flex text-sm text-gray-900 col-span-2 sm:mt-0">
@@ -257,6 +258,7 @@
                       <span class="flex-grow">{{ $school_information->track_and_strand_taken }}</span>
                     </dd>
                   </div>
+                  @endif
                   @foreach ($program_choices as $key => $program_choice)
                     <div class=" grid grid-cols-3 gap-4 py-0.5">
                       <dt class="text-sm font-medium text-gray-500">

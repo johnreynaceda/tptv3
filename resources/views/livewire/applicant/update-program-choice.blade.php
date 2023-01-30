@@ -1,6 +1,6 @@
 <div class="hidden-print">
   <span wire:click="$set('update_modal', true)"
-    class="text-xs italic text-green-600 cursor-pointer hover:text-green-700">(Change)</span>
+    class="text-xs italic text-green-600 cursor-pointer hover:text-green-700">(Update)</span>
 
 
   <x-modal.card max-width="3xl" title="{{ $priority == 1 ? 'First Priority Choice' : 'Second Priority Choice' }}"

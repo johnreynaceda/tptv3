@@ -22,11 +22,11 @@ class PersonalInfo extends Component
         'phone_number'=>'required',
         'date_of_birth'=>'required',
         'place_of_birth'=>'required',
-        'age'=>'required',
+        'age'=>'required|gte:16',
         'tribe'=>'required',
         'religion'=>'required',
         'nationality'=>'required',
-        'citizenship'=>'required',
+        'citizenship'=>'nullable',
         'photo'=>'required|image|mimes:png,jpg|max:100000',
         'sex'=>'required',
     ];
@@ -40,6 +40,12 @@ class PersonalInfo extends Component
     public function render()
     {
         return view('livewire.applicant.personal-info');
+    }
+
+    public function updatedDateOfBirth()
+    {
+        $birthday = new \Carbon\Carbon($this->date_of_birth);
+        $this->age = \Carbon\Carbon::now()->diffInYears($birthday);
     }
 
     public function create()
@@ -61,7 +67,7 @@ class PersonalInfo extends Component
             'tribe'=>$this->tribe,
             'religion'=>$this->religion,
             'nationality'=>$this->nationality,
-            'citizenship' => $this->citizenship,
+            'citizenship' => $this->nationality,
             'photo' => $this->photo->store('photos','public'),
             'sex' => $this->sex,
         ]);
@@ -92,11 +98,11 @@ class PersonalInfo extends Component
             'phone_number'=>'required',
             'date_of_birth'=>'required',
             'place_of_birth'=>'required',
-            'age'=>'required',
+            'age'=>'required|gte:16',
             'tribe'=>'required',
             'religion'=>'required',
             'nationality'=>'required',
-            'citizenship'=>'required',
+            'citizenship'=>'nullable',
             'photo'=> 'nullable',
             'sex'=>'required',
         ]);
@@ -115,7 +121,7 @@ class PersonalInfo extends Component
             'tribe'=>$this->tribe,
             'religion'=>$this->religion,
             'nationality'=>$this->nationality,
-            'citizenship' => $this->citizenship,
+            'citizenship' => $this->nationality,
             'photo' => $this->photo ? $this->photo->store('photos','public') : $personal_information->photo,
             'sex' => $this->sex,
         ]);
@@ -150,7 +156,7 @@ class PersonalInfo extends Component
             $this->tribe = $this->personal_information->tribe;
             $this->religion = $this->personal_information->religion;
             $this->nationality = $this->personal_information->nationality;
-            $this->citizenship = $this->personal_information->citizenship;
+            // $this->citizenship = $this->personal_information->nationality;
             $this->sex = $this->personal_information->sex;
         }
     }
