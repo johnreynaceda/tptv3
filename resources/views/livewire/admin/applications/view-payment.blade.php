@@ -58,4 +58,20 @@
             </x-card>
         @endif
     </div>
+
+    <x-modal.card align="center" title="Add Remarks" blur wire:model.defer="reject_modal">
+    <div class="">
+    <x-textarea wire:model="remarks" class="w-full focus:outline-none" label="Reason" placeholder="" />
+    </div>
+ 
+    <x-slot name="footer">
+        <div class="flex justify-between gap-x-4"> 
+            <div></div>
+            <div class="flex">
+                <x-button flat label="Cancel" x-on:click="close" />
+                <x-button primary label="Save" wire:click="rejectConfirm" />
+            </div>
+        </div>
+    </x-slot>
+</x-modal.card>
 </div>

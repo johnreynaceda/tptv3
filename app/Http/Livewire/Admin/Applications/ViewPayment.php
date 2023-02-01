@@ -11,6 +11,8 @@ class ViewPayment extends Component
     use Actions;
     public $payment;
     public $user_id;
+    public $reject_modal = false;
+    public $remarks;
     protected $listeners = [
        'loadUserPayment',
     ];
@@ -76,7 +78,7 @@ class ViewPayment extends Component
             'icon'        => 'question',
             'accept'      => [
                 'label'  => 'Yes, reject it',
-                'method' => 'rejectConfirm',
+                'method' => 'rejectRemarks',
             ],
             'reject' => [
                 'label'  => 'No, cancel',
@@ -84,11 +86,20 @@ class ViewPayment extends Component
         ]);
     }
 
+    public function rejectRemarks()
+    {
+        $this->reject_modal = true;
+    }
+
     public function rejectConfirm()
     {
+        $this->validate([
+            'remarks' => 'required',
+        ]);
         $user = User::where('id', $this->user_id)->first();
         $user->update([
             'step' => '100',
+            'remarks' => $this->remarks,
         ]);
         $this->notification([
             'title' => 'Success',
