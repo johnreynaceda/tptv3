@@ -17,6 +17,11 @@ class StudentSlot extends Model
 
     public function slot()
     {
-        return $this->belongsTo(Slot::class);
+        return $this->belongsTo(Slot::class, 'slot_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

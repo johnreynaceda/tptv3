@@ -14,6 +14,7 @@ class Monitoring extends Component
     public $date;
     public $test_center;
     public $time;
+    public $student_slot_modal = false;
     public function render()
     {
         return view('livewire.admin.monitoring', [
@@ -48,6 +49,7 @@ class Monitoring extends Component
             'dates' => Slot::get()
                 ->pluck('date_of_exam')
                 ->unique(),
+            'student_slot_details' => StudentSlot::get(),   
         ]);
     }
 }

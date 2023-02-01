@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasOne(Permit::class);
     }
 
+    public function student_slot()
+    {
+        return $this->hasOne(StudentSlot::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
