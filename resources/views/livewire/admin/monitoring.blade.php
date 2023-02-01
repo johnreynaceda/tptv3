@@ -6,7 +6,7 @@
           <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             <div class="bg-white p-2 px-4 flex items-center justify-between">
               <x-input wire:model.debounce.500ms="search" placeholder="Search" />
-              <x-button positive label="View All" wire:click="$set('student_slot_modal', true)" />
+              <x-button class="hidden" positive label="View All" wire:click="$set('student_slot_modal', true)" />
 
               <div class="flex space-x-1">
 
@@ -37,7 +37,7 @@
 
             <x-modal.card title="Student Slots" fullscreen blur wire:model.defer="student_slot_modal">
             <div class="flex ">
-            <table class="min-w-full divide-y divide-gray-300">
+            <!-- <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
@@ -75,9 +75,8 @@
                   </td>
                 @endforelse
 
-                <!-- More people... -->
               </tbody>
-            </table>
+            </table> -->
             </div>
         
             <x-slot name="footer">
