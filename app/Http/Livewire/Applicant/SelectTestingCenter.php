@@ -148,23 +148,10 @@ class SelectTestingCenter extends Component
                         $this->room_number = $total_slot_per_room->first()->room_number;
                         $this->seat_number =
                             $total_slot_per_room->first()->seat_number + 1;
-
-                        dd(
-                            'room number: ' .
-                                $this->room .
-                                'seat number: ' .
-                                $this->seat_number
-                        );
                     } else {
                         $this->room_number =
                             $total_slot_per_room->first()->room_number + 1;
                         $this->seat_number = 1;
-                        dd(
-                            'room number: ' .
-                                $this->room .
-                                'seat number: ' .
-                                $this->seat_number
-                        );
                     }
                 }
             }

@@ -57,12 +57,15 @@
                   @endforeach
 
                 </x-native-select>
-
+                @if($time != null && $date != null && $test_center != null)
+                <x-button dark label="Update" wire:click="updateSlots" />
+                @endif
               </div>
             <div class="flex ">
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ID</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date of Exam</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Test Center</th>
@@ -76,6 +79,9 @@
 
                 @forelse ($student_slot_details as $detail)
                   <tr>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      {{ $detail->id }}
+                    </td>
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                       {{ $detail->users->name }}
                     </td>
