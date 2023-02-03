@@ -99,6 +99,13 @@ class SelectTestingCenter extends Component
 
     public function saveSlot()
     {
+        
+
+        $this->validate([
+            'center_id' => 'required',
+            'time' => 'required',
+        ]);
+
         if (StudentSlot::count() == 0) {
             $latest_room_number = 1;
         } else {
@@ -156,11 +163,6 @@ class SelectTestingCenter extends Component
                 }
             }
         }
-
-        $this->validate([
-            'center_id' => 'required',
-            'time' => 'required',
-        ]);
 
         $studen_slot = StudentSlot::create([
             'user_id' => auth()->user()->id,
