@@ -49,7 +49,26 @@ class Monitoring extends Component
             'dates' => Slot::get()
                 ->pluck('date_of_exam')
                 ->unique(),
-            'student_slot_details' => StudentSlot::get(),   
+            'student_slot_details' => StudentSlot::when($this->time, function (
+                $query
+            ) {
+                $query->where('time', $this->time);
+            })
+                ->whereHas('slot', function ($slot) {
+                    $slot
+                        ->whereHas('test_center', function ($center) {
+                            $center->when($this->test_center, function (
+                                $query
+                            ) {
+                                $query->where('id', $this->test_center);
+                            });
+                        })
+                        ->when($this->date, function ($query) {
+                            $query->where('date_of_exam', $this->date);
+                        });
+                })
+
+                ->get(), 
         ]);
     }
 }
