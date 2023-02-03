@@ -66,9 +66,44 @@ class Monitoring extends Component
                         ->when($this->date, function ($query) {
                             $query->where('date_of_exam', $this->date);
                         });
-                })
-
-                ->get(), 
+                })->get(), 
         ]);
+    }
+
+    public function updateSlots()
+    {
+        $slots = StudentSlot::when($this->time, function (
+            $query
+        ) {
+            $query->where('time', $this->time);
+        })
+            ->whereHas('slot', function ($slot) {
+                $slot
+                    ->whereHas('test_center', function ($center) {
+                        $center->when($this->test_center, function (
+                            $query
+                        ) {
+                            $query->where('id', $this->test_center);
+                        });
+                    })
+                    ->when($this->date, function ($query) {
+                        $query->where('date_of_exam', $this->date);
+                    });
+            })->get();
+            $roomNumber = 1;
+            $seatNumber = 1;
+            foreach ($slots as $slot)
+            {
+            $slot->room_number = $roomNumber;
+            $slot->seat_number = $seatNumber;
+            $slot->save();
+            
+            $seatNumber++;
+            if ($seatNumber > 50)
+            {
+                $roomNumber++;
+                $seatNumber = 1;
+            }
+            }
     }
 }
