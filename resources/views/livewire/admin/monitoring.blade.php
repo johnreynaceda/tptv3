@@ -6,7 +6,7 @@
           <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             <div class="bg-white p-2 px-4 flex items-center justify-between">
               <x-input wire:model.debounce.500ms="search" placeholder="Search" />
-              <x-button class="hidden" positive label="View All" wire:click="$set('student_slot_modal', true)" />
+              <x-button class="" positive label="View All" wire:click="$set('student_slot_modal', true)" />
 
               <div class="flex space-x-1">
 
@@ -36,8 +36,31 @@
             </div>
 
             <x-modal.card title="Student Slots" fullscreen blur wire:model.defer="student_slot_modal">
+              <div class="flex gap-4 pb-4">
+              <x-native-select wire:model="time">
+                  <option>Select Time</option>
+                  <option value="AM 8:00 - 12:00">AM 8:00 - 12:00</option>
+                  <option value="PM 1:00 - 5:00">PM 1:00 - 5:00</option>
+                </x-native-select>                
+                <x-native-select wire:model="date">
+                  <option>Select Date of Exam</option>
+                  @foreach ($dates as $item)
+                    <option value="{{ $item }}">{{ $item }}</option>
+                  @endforeach
+                </x-native-select>
+                <x-native-select wire:model="test_center">
+                  <option>Select Testing Center</option>
+                  @foreach ($test_centers as $item)
+                    <option value="{{ $item->id }}">{{ $item->campus->name }} -
+                      {{ $item->slots->first()->building_name }}
+                    </option>
+                  @endforeach
+
+                </x-native-select>
+
+              </div>
             <div class="flex ">
-            <!-- <table class="min-w-full divide-y divide-gray-300">
+            <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
@@ -76,7 +99,7 @@
                 @endforelse
 
               </tbody>
-            </table> -->
+            </table>
             </div>
         
             <x-slot name="footer">
