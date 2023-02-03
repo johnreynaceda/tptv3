@@ -39,6 +39,8 @@
       </div>
     </div>
   </div>
+  room number:{{ $room_number }}
+  seat number: {{ $seat_number }}
   <div class="flex justify-end space-x-2 mt-3">
     @if ($room_number != null && $seat_number != null)
       <x-button positive label="Save Slot" wire:click="saveSlot" />
