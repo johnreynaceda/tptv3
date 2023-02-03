@@ -14,7 +14,7 @@
         @php
           $dates = \App\Models\Slot::whereHas('test_center', function ($query) {
               $query->where('examination_id', auth()->user()->application->examination_id);
-          })
+          })->where('is_active', 1)
               ->pluck('date_of_exam')
               ->unique()
               ->toArray();

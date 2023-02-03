@@ -24,7 +24,7 @@ class SelectTestingCenter extends Component
             'testing_centers' => Slot::where(
                 'date_of_exam',
                 $this->date
-            )->get(),
+            )->where('is_active', 1)->get(),
         ]);
     }
 

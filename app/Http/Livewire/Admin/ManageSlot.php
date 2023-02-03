@@ -6,10 +6,12 @@ use Livewire\Component;
 use App\Models\Campus;
 use App\Models\TestCenter;
 use App\Models\Slot;
+use WireUi\Traits\Actions;
 use DB;
 
 class ManageSlot extends Component
 {
+    use Actions;
     public $examination;
     public $manage_modal = false;
     public $test_center;
@@ -97,5 +99,49 @@ class ManageSlot extends Component
         DB::commit();
         $this->manage_modal = false;
         $this->reset('test_center', 'building_name', 'date', 'slots', 'rooms');
+    }
+
+    public function deactivateSched($id)
+    {
+        $this->slot_id = $id;
+        $this->dialog()->confirm([
+            'title'       => 'Are you Sure?',
+            'description' => 'Do you really want to deactivate this schedule?',
+            'acceptLabel' => 'Yes, deactivate it.',
+            'method'      => 'deactivateSchedule',
+            'params'      => 'Saved',
+        ]);
+    }
+
+    public function deactivateSchedule()
+    {
+        DB::beginTransaction();
+        $test_center = Slot::where('id', $this->slot_id)->first();
+        $test_center->update([
+            'is_active' => 0,
+        ]);
+        DB::commit();
+    }
+
+    public function activateSched($id)
+    {
+        $this->slot_id = $id;
+        $this->dialog()->confirm([
+            'title'       => 'Are you Sure?',
+            'description' => 'Do you really want to activate this schedule?',
+            'acceptLabel' => 'Yes, activate it.',
+            'method'      => 'activateSchedule',
+            'params'      => 'Saved',
+        ]);
+    }
+
+    public function activateSchedule()
+    {
+        DB::beginTransaction();
+        $test_center = Slot::where('id', $this->slot_id)->first();
+        $test_center->update([
+            'is_active' => 1,
+        ]);
+        DB::commit();
     }
 }

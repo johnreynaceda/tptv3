@@ -6,7 +6,7 @@
           <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             <div class="bg-white p-2 px-4 flex items-center justify-between">
               <x-input wire:model.debounce.500ms="search" placeholder="Search" />
-              <x-button class="hidden" positive label="View All" wire:click="$set('student_slot_modal', true)" />
+              <x-button class="" positive label="View All" wire:click="$set('student_slot_modal', true)" />
 
               <div class="flex space-x-1">
 
