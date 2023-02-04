@@ -85,10 +85,10 @@
 
                 @forelse ($student_slot_details as $detail)
                   <tr>
-                    <td class="whitespace-nowrap py-4 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
+                    <td class="whitespace-nowrap py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
                       {{ $detail->users->name }}
                     </td>
-                      <td class="whitespace-nowrap px-5 py-4 text-center text-sm text-gray-500">
+                      <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
                       {{ $detail->seat_number }}</td>  
                   </tr>
                 @empty
