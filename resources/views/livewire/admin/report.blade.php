@@ -58,12 +58,12 @@
 <x-button class="m-2" positive label="Print" x-on:click="printDiv('printable')"/>
 @if ($exam && $date && $time && $test_center)
 
-    <div class="bg-white mt-5" id="printable" >
+    <div class="bg-white mt-2" id="printable" >
       <div class="flex flex-col items-center justify-center py-5">
-      <p class="text-xl font-bold underline">{{$exam->title}}</p>
-      <p class="text-lg font-bold">{{Carbon\Carbon::parse($date)->format('F d, Y')}}</p>
-      <p class="text-lg font-bold">{{$time}}</p>
-      <p class="text-lg font-bold">{{$campus_name}} - {{$building_name}}</p>
+      <p class="text-lg font-bold underline">{{$exam->title}}</p>
+      <p class="text-md font-bold">{{Carbon\Carbon::parse($date)->format('F d, Y')}}</p>
+      <p class="text-md font-bold">{{$time}}</p>
+      <p class="text-md font-bold">{{$campus_name}} - {{$building_name}}</p>
       @if($rooms == null)
       <p class="text-2xl font-bold">All Rooms</p>
       @else
