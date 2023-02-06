@@ -78,6 +78,7 @@
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">Full Name</th>
+                  <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">Examinee Number</th>
                   <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">Seat Number</th>
                 </tr>
               </thead>
@@ -89,7 +90,9 @@
                       {{ $detail->users->name }}
                     </td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
-                      {{ $detail->seat_number }}</td>  
+                      {{ $detail->users->permit->examinee_number }}</td>
+                      <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
+                      {{ $detail->seat_number }}</td>    
                   </tr>
                 @empty
                   <td colspan="2">
