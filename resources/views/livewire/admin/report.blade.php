@@ -90,7 +90,7 @@
                       {{ $detail->users->name }}
                     </td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
-                      {{ $detail->users->permit->examinee_number }}</td>
+                      {{ $detail->users->permit->examinee_number ?? null }}</td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
                       {{ $detail->seat_number }}</td>    
                   </tr>
