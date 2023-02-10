@@ -29,17 +29,45 @@
               </div>
               <div class="hidden md:block">
                 <div>
-                  <p class="text-sm text-gray-900">
-                    Applied on
-                    <time datetime="2020-01-07">January 7, 2020</time>
-                  </p>
+                  <span class="text-md font-semibold">STATUS</span>
+                  @if($info->user->step == 2)
                   <p class="mt-2 flex items-center text-sm text-gray-500">
-                    <!-- Heroicon name: mini/check-circle -->
-                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>
+                    Filling Up Application
+                  </p>
+                  @elseif($info->user->step == 3)
+                  <p class="mt-2 flex items-center text-sm text-gray-500">
+                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>
+                    For Payment
+                  </p>
+                  @elseif($info->user->step == 4)
+                  <p class="mt-2 flex items-center text-sm text-gray-500">
+                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>
+                    Payment Validation
+                  </p>
+                  @elseif($info->user->step == 5)
+                  <p class="mt-2 flex items-center text-sm text-gray-500">
+                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
                     </svg>
-                    Completed phone screening
+                    Paid
                   </p>
+                  @elseif($info->user->step == 100)
+                  <p class="mt-2 flex items-center text-sm text-gray-500">
+
+                    <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Rejected
+                  </p>
+                  @endif
+
                 </div>
               </div>
             </div>
