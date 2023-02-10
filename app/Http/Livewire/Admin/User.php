@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\User as UserModel;
+use App\Models\PersonalInformation;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Hash;
 use DB;
@@ -12,30 +13,33 @@ class User extends Component
 {
     use Actions;
     public $search;
-    public $user, $information;
+    public $user, $info;
+    public $informations;
+    public $studentModal = false;
+    public $student_id;
     public function render()
     {
         if($this->search == "" && $this->search == null)
         {
-            $this->user = null;
-            $this->information = null;
+            $this->informations = null;
         }else{
-            $this->user = UserModel::where('name', 'like', '%'.$this->search .'%')
-            ->orWhere('email', 'like', '%'.$this->search .'%')
-            ->whereHas('personal_information')->first();
-            if($this->user != null )
-            {
-                $this->information = $this->user->personal_information;
-            }else{
-                $this->information = null;
-            }
-            
+            $this->informations = PersonalInformation::whereHas('user', function($query){
+                $query->where('name', 'like', '%'.$this->search .'%')
+                ->orWhere('email', 'like', '%'.$this->search .'%');
+            })->get();
         }
 
         return view('livewire.admin.user', [
-            'user' => $this->user,
-            'info' => $this->information,
+            'informations' => $this->informations,
         ]);
+    }
+
+    public function openStudentModal($id)
+    {
+        $this->student_id = $id;
+        $this->user = UserModel::where('id', $this->student_id)->first();
+        $this->info = PersonalInformation::where('user_id', $this->student_id)->first();
+        $this->studentModal = true;
     }
 
     public function confirmResetPassword()
