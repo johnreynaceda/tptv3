@@ -52,6 +52,22 @@
         <dt class="text-sm font-medium text-gray-500">Gender</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{$info['sex']}}</dd>
       </div>
+      <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+        <dt class="text-sm font-medium text-gray-500">Status</dt>
+        @if($user['step'] == 1)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"></dd>
+        @elseif($user['step'] == 2)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Filling Up Application</dd>
+        @elseif($user['step'] == 3)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">For Payment</dd>
+        @elseif($user['step'] == 4)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Payment Validation</dd>
+        @elseif($user['step'] == 5)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Paid</dd>
+        @elseif($user['step'] == 100)
+        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rejected</dd>
+        @endif
+      </div>
     </dl>
   </div>
 </div>
