@@ -1567,6 +1567,15 @@ select {
 .mr-1 {
   margin-right: 0.25rem;
 }
+.-ml-4 {
+  margin-left: -1rem;
+}
+.-mt-4 {
+  margin-top: -1rem;
+}
+.-ml-1 {
+  margin-left: -0.25rem;
+}
 .block {
   display: block;
 }
@@ -1672,6 +1681,9 @@ select {
 .h-64 {
   height: 16rem;
 }
+.h-24 {
+  height: 6rem;
+}
 .max-h-56 {
   max-height: 14rem;
 }
@@ -1770,6 +1782,9 @@ select {
 }
 .w-\[calc\(100\%-3\.5rem\)\] {
   width: calc(100% - 3.5rem);
+}
+.w-28 {
+  width: 7rem;
 }
 .min-w-0 {
   min-width: 0px;
@@ -4512,6 +4527,10 @@ input[type="number"].appearance-number-none {
   --tw-text-opacity: 1;
   color: rgb(15 23 42 / var(--tw-text-opacity));
 }
+.hover\:text-indigo-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(99 102 241 / var(--tw-text-opacity));
+}
 .hover\:shadow-sm:hover {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -5915,6 +5934,10 @@ input[type="number"].appearance-number-none {
 
   .sm\:grid-cols-none {
     grid-template-columns: none;
+  }
+
+  .sm\:flex-nowrap {
+    flex-wrap: nowrap;
   }
 
   .sm\:items-start {
