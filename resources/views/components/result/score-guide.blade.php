@@ -10,7 +10,7 @@
 
                                         <th scope="col"
                                             class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
-                                            Standar Score</th>
+                                            Standard Score</th>
                                         <th scope="col"
                                             class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
                                             Qualitative Interpretation</th>
@@ -20,16 +20,16 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            200 to 325
+                                            200 to 324
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            low
+                                            Low
                                         </td>
                                     </tr>
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            326 to 425
+                                            325 to 374
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             Below Average
@@ -38,7 +38,7 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            426 to 475
+                                            375 to 474
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             Low Average
@@ -47,7 +47,7 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            476 to 525
+                                            475 to 524
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             Middle Average
@@ -56,7 +56,7 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            526 to 575
+                                            525 to 579
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             High Average
@@ -65,7 +65,7 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            576 to 675
+                                            580 to 679
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             Above Average
@@ -74,7 +74,7 @@
                                     <tr>
                                         <td
                                             class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
-                                            676 to 800
+                                            680 to 800
                                         </td>
                                         <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             Outstanding

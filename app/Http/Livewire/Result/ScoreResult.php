@@ -20,23 +20,27 @@ class ScoreResult extends Component
 
     public function scoreInterpretation($score)
     {
-        if ($score >= 200 && $score <= 325) {
+        if ($score >= 200 && $score <= 324) {
             return 'Low';
-        } elseif ($score >= 326 && $score <= 375) {
+        } elseif ($score >= 325 && $score <= 374) {
             return 'Below Average';
-        } elseif ($score >= 376 && $score <= 425) {
-            return 'Below Average';
-        } elseif ($score >= 426 && $score <= 475) {
+        }
+        // elseif ($score >= 375 && $score <= 425) {
+        //     return 'Below Average';
+        // }
+        elseif ($score >= 375 && $score <= 474) {
             return 'Low Average';
-        } elseif ($score >= 476 && $score <= 525) {
+        } elseif ($score >= 475 && $score <= 524) {
             return 'Middle Average';
-        } elseif ($score >= 526 && $score <= 575) {
+        } elseif ($score >= 525 && $score <= 579) {
             return 'High Average';
-        } elseif ($score >= 576 && $score <= 625) {
+        } elseif ($score >= 580 && $score <= 679) {
             return 'Above Average';
-        } elseif ($score >= 626 && $score <= 675) {
-            return 'Above Average';
-        } elseif ($score >= 676 && $score <= 800) {
+        }
+        // elseif ($score >= 626 && $score <= 675) {
+        //     return 'Above Average';
+        // }
+        elseif ($score >= 680 && $score <= 800) {
             return 'Outstanding';
         } else {
             return 'Invalid Score';

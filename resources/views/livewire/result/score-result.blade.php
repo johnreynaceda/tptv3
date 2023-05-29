@@ -1,5 +1,5 @@
 <div>
-    {{ $examinee_number }}
+    Examinee Number: <span class="underline">{{ $examinee_number }}</span>
     @if ($result == null)
         <div class="ml-3">
             <h3 class="text-sm font-medium text-red-800">
@@ -47,7 +47,7 @@
                                         Course</th>
                                     <th scope="col"
                                         class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
-                                        Standar Score</th>
+                                        Standard Score</th>
                                     <th scope="col"
                                         class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
                                         Qualitative Interpretation</th>

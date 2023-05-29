@@ -83,8 +83,8 @@
                 <img src="{{ Storage::url($user_personal_information->photo) }}"
                     class="h-40"
                     alt="">
-                <div class="flex items-end ">
-                    <div class="grid space-y-1">
+                <div class="flex items-center">
+                    <div class="grid space-y-3">
                         <h1>
                             Name : <span class="font-semibold">
                                 {{ $user_personal_information->first_name }}
