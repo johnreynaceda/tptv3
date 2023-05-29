@@ -105,9 +105,9 @@ Route::prefix('/applicant')
         Route::get('/permit', [PrintPermitController::class, 'generate'])
             ->name('applicant.permit-generate')
             ->middleware('step_five');
-        Route::get('/result', [ResultController::class, 'result'])->name(
-            'print.result'
-        );
+        // Route::get('/result', [ResultController::class, 'result'])->name(
+        //     'print.result'
+        // );
 
         Route::get('/select-test-center', function () {
             if (auth()->user()->application->student_slot_id != null) {

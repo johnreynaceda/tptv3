@@ -24,13 +24,16 @@
             </svg>
           </div>
           <div class="flex-1 ml-3 md:flex md:justify-between">
-            <p class="text-sm text-blue-700">
+            {{-- <p class="text-sm text-blue-700">
               Result is now available.
-            </p>
+            </p> --}}
+            <p class="text-sm text-blue-700">
+                Result will be posted soon.
+              </p>
             <p class="mt-3 text-sm md:mt-0 md:ml-6">
-              <a href="{{ route('print.result') }}"
+              {{-- <a href="{{ route('print.result') }}"
                 class="font-medium text-blue-700 whitespace-nowrap hover:text-blue-600">View <span
-                  aria-hidden="true">&rarr;</span></a>
+                  aria-hidden="true">&rarr;</span></a> --}}
             </p>
           </div>
         </div>
