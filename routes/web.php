@@ -107,7 +107,27 @@ Route::prefix('/applicant')
             ->middleware('step_five');
         Route::get('/result', [ResultController::class, 'result'])->name(
             'print.result'
-        );
+        )->middleware('survey.result');
+
+        Route::get('/survey', function () {
+            if (App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists() && App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+                return redirect()->route('applicant.home');
+            } elseif (App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists() && !App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+                return redirect()->route('select.courses');
+            } else {
+                return view('applicant.survey');
+            }
+        })->name('show.survey');
+
+        Route::get('/select-course', function () {
+            if (!App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists()) {
+                return redirect()->route('show.survey');
+            } elseif (App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+                return redirect()->route('applicant.home');
+            } else {
+                return view('applicant.select-courses');
+            }
+        })->name('select.courses');
 
         Route::get('/select-test-center', function () {
             if (auth()->user()->application->student_slot_id != null) {

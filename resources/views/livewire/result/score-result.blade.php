@@ -44,7 +44,7 @@
                                 <tr>
                                     <th scope="col"
                                         class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
-                                        Course</th>
+                                        Subject</th>
                                     <th scope="col"
                                         class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
                                         Standard Score</th>
@@ -137,21 +137,23 @@
                 Remarks :
             </div>
             <div class="flex space-x-2">
-                @if ($result->total_standard_score < 527)
+                {{-- @if ($result->total_standard_score < 527)
                     <span
                         class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                         Qualified for Non-Board Courses
+                    </span>
+                @endif --}}
+                @if ($result->total_standard_score >= 375)
+                    <span
+                        class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                        Qualified for Non-Board Degree Programs
                     </span>
                 @endif
-                @if ($result->total_standard_score >= 527)
-                    <span
-                        class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                        Qualified for Non-Board Courses
-                    </span>
-                    <span
-                        class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                        Qualified for Board Courses
-                    </span>
+                @if ($result->total_standard_score >= 525)
+                <span
+                class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                Qualified for Board Degree Programs
+                </span>
                 @endif
             </div>
         </div>

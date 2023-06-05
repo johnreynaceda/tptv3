@@ -81,7 +81,7 @@
             </div>
             <div class="flex mt-10 space-x-2 item-end">
                 <img src="{{ Storage::url($user_personal_information->photo) }}"
-                    class="h-40"
+                    class="h-48"
                     alt="">
                 <div class="flex items-center">
                     <div class="grid space-y-3">
@@ -93,20 +93,42 @@
                                 {{ $user_personal_information->extension }}
                             </span>
                         </h1>
-                        @foreach ($user_program_choices as $user_program_choice)
+                        {{-- @foreach ($user_program_choices as $user_program_choice)
                             <h1>
                                 {{ $user_program_choice->is_priority ? 'First Priority' : 'Second Priority' }} :
                                 <span class="font-semibold">
                                     {{ $user_program_choice->program->name }}
                                 </span>
                             </h1>
+                        @endforeach --}}
+                        @foreach ($user_new_program_choices as $user_program_choice)
+                            <h1>
+                                @switch($user_program_choice->priority_level)
+                                    @case(1)
+                                    First Priority : <span class="font-semibold">{{ $user_program_choice->program->name }}</span>
+                                        @break
+                                    @case(2)
+                                    Second Priority :  <span class="font-semibold">{{ $user_program_choice->program->name }}</span>
+                                        @break
+                                    @case(3)
+                                        Third Priority :  <span class="font-semibold">{{ $user_program_choice->program->name }}</span>
+                                        @break
+                                    @default
+
+                                @endswitch
+
+                                <span class="font-semibold">
+
+                                </span>
+                            </h1>
                         @endforeach
                     </div>
                 </div>
             </div>
-            <div class="grid mt-10 space-y-5">
+            <div class="grid mt-10 space-y-5 px-3">
                 <livewire:result.score-result />
-                <x-result.score-guide />
+                <livewire:result.score-guide />
+                {{-- <x-result.score-guide /> --}}
             </div>
         </div>
     </div>

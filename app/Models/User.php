@@ -63,6 +63,15 @@ class User extends Authenticatable
         return $this->hasOne(StudentSlot::class);
     }
 
+    public function survey_result()
+    {
+        return $this->hasOne(SurveyResult::class);
+    }
+
+    public function selected_courses()
+    {
+        return $this->hasMany(SelectedCourse::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

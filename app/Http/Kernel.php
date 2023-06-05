@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'step_three' => \App\Http\Middleware\StepThree::class,
         'step_four' => \App\Http\Middleware\StepFour::class,
         'step_five' => \App\Http\Middleware\StepFive::class,
+        'survey.result' => \App\Http\Middleware\SurveyResultMiddleware::class,
     ];
 }

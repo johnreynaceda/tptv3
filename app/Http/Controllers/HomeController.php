@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Examination,Result};
+use App\Models\{Examination,Result, SurveyResult, SelectedCourse};
 class HomeController extends Controller
 {
     public function home()
@@ -12,9 +12,13 @@ class HomeController extends Controller
         $active_examination = Examination::where('is_active', 1)->first();
         $examination_id = $has_application?->examination_id;
         $has_result = Result::where('examination_id',  $examination_id)->exists();
+        $has_survey_result = SurveyResult::where('user_id',  auth()->user()->id)->exists();
+        $has_selected_course = SelectedCourse::where('user_id',  auth()->user()->id)->exists();
         return view('applicant.home',[
             'has_application' => $has_application,
             'has_result' => $has_result,
+            'has_survey_result' => $has_survey_result,
+            'has_selected_course' => $has_selected_course,
             'active_examination' => $active_examination ,
         ]);
     }
