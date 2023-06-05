@@ -527,8 +527,9 @@
                         </svg>
                     </div>
                 </div>
+                <h1 class="font-semibold mb-2 mt-4">Comments and Suggestions</h1>
                 <div class="mt-4 h-96 overflow-y-auto">
-                    <h1 class="font-semibold mb-2">Comments and Suggestions</h1>
+
                     <livewire:view-comments />
                 </div>
             </div>

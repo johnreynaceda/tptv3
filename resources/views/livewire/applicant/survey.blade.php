@@ -272,7 +272,7 @@
       </div>
       <div class="h-1 bg-gray-700"></div>
       <div class="p-4">
-        <h2 class="text-md font-semibold mb-2">Comments and Suggestions...</h2>
+        <h2 class="text-md font-semibold mb-2">Comments and Suggestions (optional)</h2>
         <div class="space-y-2">
             <textarea wire:model="comment" class="w-full rounded-sm p-3 h-24"></textarea>
         </div>
