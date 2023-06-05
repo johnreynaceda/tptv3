@@ -12,7 +12,7 @@ class ViewComments extends Component
         return view('livewire.view-comments',[
             'comments' => SurveyResult::with('user.selected_courses')
             ->whereNotNull('comment')
-            ->where('comment', '<>', '')->get(),
+            ->where('comment', '<>', '')->orderBy('created_at', 'desc')->get(),
         ]);
     }
 }
