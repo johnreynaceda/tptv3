@@ -5,12 +5,12 @@
             <div class="absolute left-0 top-0 flex w-6 justify-center -bottom-6">
                 <div class="w-px bg-gray-200"></div>
             </div>
-            @if ($comment->user->personal_information->photo != null )
+            {{-- @if ($comment->user->personal_information->photo != null )
             <img src="{{Storage::url($comment->user->personal_information->photo)}}" alt="" class="relative mt-3 h-7 w-7 flex-none rounded-full bg-gray-50">
-            @else
+            @else --}}
             <img src="{{asset('images/sksu1.png')}}" alt="" class="relative mt-3 h-7 w-7 flex-none rounded-full bg-gray-50">
 
-            @endif
+            {{-- @endif --}}
 
             <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
                 <div class="flex justify-between gap-x-4">
