@@ -9,7 +9,10 @@ class ScoreResult extends Component
     public $examinee_number;
     public function mount()
     {
-        $this->examinee_number = auth()->user()->permit->examinee_number;
+        if(auth()->user()->permit != null)
+        {
+            $this->examinee_number = auth()->user()->permit->examinee_number;
+        }
     }
     public function render()
     {
