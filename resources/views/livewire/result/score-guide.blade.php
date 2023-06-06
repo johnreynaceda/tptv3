@@ -3,6 +3,7 @@
         <div class="flex flex-col mt-1">
             <p class="px-3 py-2 border-t text-lg text-gray-500 whitespace-wrap">
                 <div class="h-1 "></div>
+                @if ($result != null)
                 @if ($result->total_standard_score >= 525 && $result->total_standard_score <= 800)
                 <p> Congratulations! You have passed the admission test (SKSU-TPT).
                 You are qualified to take both board and non-board degree programs.
@@ -21,6 +22,8 @@
                 <p>Thank you for considering SKSU as your preferred institution
                 but you are recommended to enroll in other institution of your choice.</p>
                 @endif
+                @endif
+
             </p>
             {{-- <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
