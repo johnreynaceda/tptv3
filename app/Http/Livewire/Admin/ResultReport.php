@@ -8,6 +8,11 @@ use App\Models\Permit;
 class ResultReport extends Component
 {
     public $remarks;
+
+    public function mount()
+    {
+        $this->remarks = null;
+    }
     public function render()
     {
         $remarks = $this->remarks;
@@ -21,7 +26,7 @@ class ResultReport extends Component
             }
         });
 
-        $permits = $query->paginate(100);
+        $permits = $query->paginate(50);
 
         return view('livewire.admin.result-report', [
             'permits' => $permits,

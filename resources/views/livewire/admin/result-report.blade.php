@@ -97,6 +97,9 @@
               <!-- More people... -->
             </tbody>
           </table>
+          <div class="pagination">
+            {{ $permits->links() }}
+        </div>
         </div>
       </div>
     </div>
