@@ -280,7 +280,7 @@
                             Payments
                         </a> --}}
 
-            <a href="{{ route('admin.reports') }}"
+            {{-- <a href="{{ route('admin.reports') }}"
               class="{{ Request::routeIs('admin.reports') ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium  rounded-md  group">
               <!-- Heroicon name: outline/chart-bar -->
               <svg class="{{ Request::routeIs('admin.reports') ? 'text-white' : 'text-gray-400 group-hover:text-gray-500' }}flex-shrink-0 w-6 h-6 mr-3 "
@@ -290,7 +290,26 @@
                   d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
               Reports
-            </a>
+            </a> --}}
+            <div x-data="{ open: false }" @click.away="open = false" class="relative ">
+                <button @click="open = !open" class="w-full group inline-flex items-center px-2 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:outline-none">
+                  <!-- Heroicon name: outline/chart-bar -->
+                  <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  Reports
+                  <svg x-bind:class="{'text-gray-400 rotate-180': open, 'text-gray-300': !open}" class="flex-shrink-0 ml-1.5 mt-1 h-5 w-5 transition-transform duration-200 transform group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M6 8l4 4 4-4H6z" />
+                  </svg>
+                </button>
+                <div x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-2" class="origin-top-left absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                    <a href="{{ route('admin.result-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Preferred Courses</a>
+                    <a href="{{ route('admin.reports') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Room Assignment</a>
+                  </div>
+                </div>
+
+              </div>
             <hr />
             <form action="{{ route('logout') }}" method="POST" x-data>
               @csrf
