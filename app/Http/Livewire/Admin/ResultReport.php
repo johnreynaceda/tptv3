@@ -21,7 +21,7 @@ class ResultReport extends Component
             }
         });
 
-        $permits = $query->get();
+        $permits = $query->paginate(100);
 
         return view('livewire.admin.result-report', [
             'permits' => $permits,
