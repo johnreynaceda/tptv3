@@ -65,5 +65,10 @@
       </div>
     </div>
   </div>
-  </div>
+  <script>
+    window.addEventListener('afterprint', function() {
+  // Reload the page
+  location.reload();
+});
+    </script>
 </div>
