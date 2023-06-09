@@ -19,4 +19,9 @@ class Program extends Model
     {
         return $this->hasOne(ProgramChoice::class);
     }
+
+    public function selected_courses()
+    {
+        return $this->hasMany(SelectedCourse::class);
+    }
 }
