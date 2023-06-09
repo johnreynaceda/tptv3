@@ -102,36 +102,10 @@
                                 <h1>Post Evaluation Statistics</h1>
                             </div>
                             <div class="mt-5 ">
-                                <div class="space-y-2">
-                                    <div
-                                        class="grid grid-cols-5 py-4 items-center px-5 bg-gray-100 rounded-lg hover:bg-gray-200 ease-in-out duration-150">
+                                <div wire:poll class="space-y-2">
+                                    <div class="flex py-4 items-center px-5 bg-gray-100 rounded-lg ">
+                                        <span class="text-lg font-semibold mr-2">{{App\Models\SurveyResult::with('user.selected_courses')->count()}}</span> out of <span class="text-lg font-semibold ml-2 mr-2">{{App\Models\Result::count()}}</span>view their result.
                                         <div>
-                                            Test
-                                        </div>
-                                        <div>
-                                            Test
-                                        </div>
-                                        <div>
-                                            Test
-                                        </div>
-                                        <div>
-                                            Test
-                                        </div>
-                                        <div>
-                                            <div class="flex justify-end">
-                                                <x-button.circle flat>
-                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-6 w-6"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke="currentColor"
-                                                        stroke-width="2">
-                                                        <path stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
-                                                    </svg>
-                                                </x-button.circle>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
