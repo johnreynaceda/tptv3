@@ -40,7 +40,7 @@ class RankingResult extends Component
         ->whereHas('result', function ($query) {
             $query->orderBy('total_standard_score', 'desc');
         })
-        ->get();
+        ->paginate(100);
 
         $program_selects = Program::when($this->selected_campus, function ($query){
             $query->where('campus_id', $this->selected_campus);

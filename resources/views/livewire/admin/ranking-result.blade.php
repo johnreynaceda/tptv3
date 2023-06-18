@@ -71,6 +71,7 @@
               <!-- More people... -->
             </tbody>
           </table>
+          {{ $rankings->links() }}
         </div>
       </div>
     </div>
