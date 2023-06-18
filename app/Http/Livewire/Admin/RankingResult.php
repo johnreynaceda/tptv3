@@ -37,9 +37,8 @@ class RankingResult extends Component
                 $query->where('program_id', $selected_program_id);
             }
         })
-        ->whereHas('result', function ($query) {
-            $query->orderBy('total_standard_score', 'desc');
-        })
+        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->orderByRaw('CAST(results.total_standard_score AS UNSIGNED) DESC')
         ->paginate(100);
 
         $program_selects = Program::when($this->selected_campus, function ($query){
