@@ -47,6 +47,8 @@ class QualifiedStudentsReport extends Component
             ->get();
 
         return view('livewire.admin.qualified-students-report', [
+            'campus_name' => Campus::where('id', $this->selected_campus)->first()?->name,
+            'program_name' => Program::where('id', $this->selected_program)->first()?->name,
             'rankings' => $this->qualified_students,
             'campuses' => $campuses,
             'program_selects' => $program_selects

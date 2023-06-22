@@ -27,7 +27,19 @@
 </div>
 
     <div class="bg-white mt-2" id="printable" >
-      <div class="flex flex-col items-center justify-center py-5">
+        <div class="flex flex-col items-center justify-center py-5">
+            <p class="text-lg font-bold underline">List of Qualified Students</p>
+            {{-- <p class="text-md font-bold">{{Carbon\Carbon::now()->format('F d, Y')}}</p> --}}
+            {{-- <p class="text-md font-bold">{{$time}}</p> --}}
+            <p class="text-md font-bold">{{$campus_name}} - {{$program_name}}</p>
+            {{-- @if($rooms == null)
+            <p class="text-2xl font-bold">All Rooms</p>
+            @else
+            <p class="text-2xl font-bold">ROOM # {{$rooms}}</p>
+
+            @endif --}}
+
+          </div>
     </div>
 
 
