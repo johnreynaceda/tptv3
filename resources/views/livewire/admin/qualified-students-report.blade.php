@@ -48,9 +48,9 @@
                       {{ $item->user->name }}
                     </td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
-                      {{ $item->result->total_standard_score }}</td>
+                      {{ $item->result?->total_standard_score }}</td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
-                      {{ $item->user->selected_courses->where('priority_level', 1)->first()->program->name }}</td>
+                      {{ $item->user->selected_courses->where('priority_level', 1)->first()?->program->name }}</td>
                   </tr>
                 @endforeach
                 @endif

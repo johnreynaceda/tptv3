@@ -16,6 +16,12 @@ class QualifiedStudentsReport extends Component
     public $campus_id;
     public $program_id;
 
+    public function updatedSelectedCampus()
+    {
+        $this->selected_program = null;
+        $this->qualified_students = null;
+    }
+
 
     public function generateReport()
     {
