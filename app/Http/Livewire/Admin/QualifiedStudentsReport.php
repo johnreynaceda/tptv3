@@ -37,11 +37,12 @@ class QualifiedStudentsReport extends Component
                 $query->where('program_id', $selected_program_id);
             }
         })
-        ->whereHas('result')
+        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->whereRaw('results.total_standard_score > 374')
         ->paginate(100);
 
         $campuses = Campus::get();
-        // dd($rankings);
+
         return view('livewire.admin.qualified-students-report', [
             'rankings' => $rankings,
             'campuses' => $campuses,
