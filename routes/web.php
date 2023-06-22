@@ -66,6 +66,9 @@ Route::prefix('/admin')
         Route::get('/ranking-report', function () {
             return view('admin.ranking-report');
         })->name('admin.ranking-report');
+        Route::get('/qualified-students-report', function () {
+            return view('admin.qualified-students-report');
+        })->name('admin.qualified-students-report');
         Route::get('/programs', function () {
             $campuses = \App\Models\Campus::all('id', 'name');
             return view('admin.programs', ['campuses' => $campuses]);
