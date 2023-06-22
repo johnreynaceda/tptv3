@@ -8,8 +8,7 @@
     }
 }">
 <div class="flex justify-end space-x-3">
-    <x-button positive label="Print" x-on:click="printDiv('printable')"/>
-    <x-button positive label="Generate" wire:click="generateReport"/>
+
 
       <x-native-select wire:model="selected_campus">
         <option>Select Campus</option>
@@ -23,6 +22,8 @@
             <option value={{$item->id}}>{{$item->name}}</option>
         @endforeach
       </x-native-select>
+      <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
+      <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
 </div>
 
     <div class="bg-white mt-2" id="printable" >
