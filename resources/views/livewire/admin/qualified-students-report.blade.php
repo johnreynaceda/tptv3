@@ -35,6 +35,7 @@
       <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
+                  <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">Examinee Number</th>
                   <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">FULL NAME</th>
                   <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">SCORE</th>
                   <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">PROGRAM</th>
@@ -44,6 +45,9 @@
                 @if($rankings)
                 @foreach ($rankings as $item)
                   <tr>
+                    <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
+                        {{ $item->examinee_number }}
+                      </td>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
                       {{ $item->user->name }}
                     </td>
