@@ -23,10 +23,19 @@
         @endforeach
       </x-native-select>
       <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
-      <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" />
+      {{-- <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" /> --}}
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
 </div>
-
+<div class="grid grid-cols-8 mt-5 space-x-3">
+    <x-button dark label="1-1000" icon="download" wire:click="exportRange1To1000" spinner="exportRange1To1000" />
+    <x-button dark label="1001-2000" icon="download" wire:click="exportRange1001To2000" spinner="exportRange1001To2000" />
+    <x-button dark label="2001-3000" icon="download" wire:click="exportRange2001To3000" spinner="exportRange2001To3000" />
+    <x-button dark label="3001-4000" icon="download" wire:click="exportRange3001To4000" spinner="exportRange3001To4000" />
+    <x-button dark label="4001-5000" icon="download" wire:click="exportRange4001To5000" spinner="exportRange4001To5000" />
+    <x-button dark label="5001-6000" icon="download" wire:click="exportRange5001To6000" spinner="exportRange5001To6000" />
+    <x-button dark label="6001-7000" icon="download" wire:click="exportRange6001To7000" spinner="exportRange6001To7000" />
+    <x-button dark label="7001-7500" icon="download" wire:click="exportRange7001To7500" spinner="exportRange7001To7500" />
+</div>
     <div class="bg-white mt-2" id="printable" >
         <div class="flex flex-col items-center justify-center py-5">
             <p class="text-lg font-bold underline">List of Qualified Students</p>

@@ -45,40 +45,82 @@ class QualifiedStudentsReport extends Component
             ->whereRaw('results.total_standard_score > 374')
             ->get();
     }
-
-    public function downloadQualifiedStudents()
+    function exportRange1To1000()
     {
-        $batchSize = 1000;
-        $totalRecords = 7500;
+        $records = $this->retrieveRecordsInRange(1, 1000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
+    }
 
-        for ($start = 0; $start < $totalRecords; $start += $batchSize) {
-            $end = $start + $batchSize;
+    function exportRange1001To2000()
+    {
+        $records = $this->retrieveRecordsInRange(1001, 2000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1001_2000.xlsx');
+    }
 
-            // Retrieve records for the current range
-            $records = Permit::whereHas('user.selected_courses', function ($query) {
+    function exportRange2001To3000()
+    {
+        $records = $this->retrieveRecordsInRange(2001, 3000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_2001_3000.xlsx');
+    }
+
+    function exportRange3001To4000()
+    {
+        $records = $this->retrieveRecordsInRange(3001, 4000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_3001_4000.xlsx');
+    }
+
+    function exportRange4001To5000()
+    {
+        $records = $this->retrieveRecordsInRange(4001, 5000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_4001_5000.xlsx');
+    }
+
+    function exportRange5001To6000()
+    {
+        $records = $this->retrieveRecordsInRange(5001, 6000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_5001_6000.xlsx');
+    }
+
+    function exportRange6001To7000()
+    {
+        $records = $this->retrieveRecordsInRange(6001, 7000);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_6001_7000.xlsx');
+    }
+
+    function exportRange7001To7500()
+    {
+        $records = $this->retrieveRecordsInRange(7001, 7500);
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_7001_7500.xlsx');
+    }
+
+    function retrieveRecordsInRange($start, $end)
+    {
+            return Permit::whereHas('user.selected_courses', function ($query) {
                 $query->where('priority_level', 1);
             })
             ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')
-            ->skip($start)
-            ->take($batchSize)
+            ->skip($start - 1)  // Subtract 1 to account for 1-based index
+            ->take($end - $start + 1)
             ->get();
+    }
 
-            // Export the records using the QualifiedStudentsExport class
-            $filename = "qualified_students_{$start}_{$end}.xlsx";
-            return Excel::download(new QualifiedStudentsExport($records), $filename);
-            // Excel::store(new QualifiedStudentsExport($records), $filename);
-        }
+    function exportRecords($records, $filename)
+    {
+        return Excel::download(new QualifiedStudentsExport($records), $filename);
+        // Excel::download(new QualifiedStudentsExport($records), $filename);
+    }
 
-
-        // $records = Permit::whereHas('user.selected_courses', function ($query) {
-        //     $query->where('priority_level', 1);
-        // })
-        // ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
-        // ->whereRaw('results.total_standard_score > 374')
-        // ->take(1000)
-        // ->get();
-        // return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
+    public function downloadQualifiedStudents()
+    {
+        $records = Permit::whereHas('user.selected_courses', function ($query) {
+            $query->where('priority_level', 1);
+        })
+        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->whereRaw('results.total_standard_score > 374')
+        ->take(1000)
+        ->get();
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
     }
 
     public function mount()
