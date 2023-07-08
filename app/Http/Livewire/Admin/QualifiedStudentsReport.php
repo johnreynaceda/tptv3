@@ -48,7 +48,16 @@ class QualifiedStudentsReport extends Component
 
     public function downloadQualifiedStudents()
     {
-        return  Excel::download(new QualifiedStudentsExport($this->examination), 'qualifiedStudents.xlsx');
+        // Retrieve the first 1000 records from the database
+        $records = Permit::whereHas('user.selected_courses', function ($query) {
+            $query->where('priority_level', 1);
+        })
+        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->whereRaw('results.total_standard_score > 374')
+        ->take(1000)
+        ->get();
+        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
+        // return  Excel::download(new QualifiedStudentsExport($this->examination), 'qualifiedStudents.xlsx');
     }
 
     public function mount()

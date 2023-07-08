@@ -2,28 +2,22 @@
 
 namespace App\Exports;
 
-use App\Models\Permit;
-use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class QualifiedStudentsExport implements FromQuery, WithMapping, WithHeadings
+class QualifiedStudentsExport implements FromCollection, WithMapping, WithHeadings
 {
-    public $examination_id;
+    protected $records;
 
-    public function __construct($examination_id)
+    public function __construct($records)
     {
-        $this->examination_id = $examination_id;
+        $this->records = $records;
     }
 
-    public function query()
+    public function collection()
     {
-        return Permit::query()
-            ->whereHas('user.selected_courses', function ($query) {
-                $query->where('priority_level', 1);
-            })
-            ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
-            ->whereRaw('results.total_standard_score > 374');
+        return $this->records;
     }
 
     public function map($permit): array
@@ -46,10 +40,5 @@ class QualifiedStudentsExport implements FromQuery, WithMapping, WithHeadings
             'Campus',
             'Selected Course',
         ];
-    }
-
-    public function batchSize(): int
-    {
-        return 500;
     }
 }
