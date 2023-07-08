@@ -48,16 +48,37 @@ class QualifiedStudentsReport extends Component
 
     public function downloadQualifiedStudents()
     {
-        // Retrieve the first 1000 records from the database
-        $records = Permit::whereHas('user.selected_courses', function ($query) {
-            $query->where('priority_level', 1);
-        })
-        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
-        ->whereRaw('results.total_standard_score > 374')
-        ->take(1000)
-        ->get();
-        return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
-        // return  Excel::download(new QualifiedStudentsExport($this->examination), 'qualifiedStudents.xlsx');
+        $batchSize = 1000;
+        $totalRecords = 7500;
+
+        for ($start = 0; $start < $totalRecords; $start += $batchSize) {
+            $end = $start + $batchSize;
+
+            // Retrieve records for the current range
+            $records = Permit::whereHas('user.selected_courses', function ($query) {
+                $query->where('priority_level', 1);
+            })
+            ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+            ->whereRaw('results.total_standard_score > 374')
+            ->skip($start)
+            ->take($batchSize)
+            ->get();
+
+            // Export the records using the QualifiedStudentsExport class
+            $filename = "qualified_students_{$start}_{$end}.xlsx";
+            return Excel::download(new QualifiedStudentsExport($records), $filename);
+            // Excel::store(new QualifiedStudentsExport($records), $filename);
+        }
+
+
+        // $records = Permit::whereHas('user.selected_courses', function ($query) {
+        //     $query->where('priority_level', 1);
+        // })
+        // ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        // ->whereRaw('results.total_standard_score > 374')
+        // ->take(1000)
+        // ->get();
+        // return Excel::download(new QualifiedStudentsExport($records), 'qualified_students_1_1000.xlsx');
     }
 
     public function mount()
