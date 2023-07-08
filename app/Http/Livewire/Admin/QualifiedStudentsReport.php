@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Exports\QualifiedStudentsExport;
 use Livewire\Component;
 use App\Models\Campus;
 use App\Models\Program;
 use App\Models\Permit;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class QualifiedStudentsReport extends Component
@@ -15,6 +17,7 @@ class QualifiedStudentsReport extends Component
     public $qualified_students;
     public $campus_id;
     public $program_id;
+    public $examination;
 
     public function updatedSelectedCampus()
     {
@@ -41,6 +44,16 @@ class QualifiedStudentsReport extends Component
             ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')
             ->get();
+    }
+
+    public function downloadQualifiedStudents()
+    {
+        return  Excel::download(new QualifiedStudentsExport($this->examination), 'qualifiedStudents.xlsx');
+    }
+
+    public function mount()
+    {
+        // $this-
     }
 
     public function render()

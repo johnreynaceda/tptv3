@@ -23,6 +23,7 @@
         @endforeach
       </x-native-select>
       <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
+      <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" />
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
 </div>
 
@@ -38,6 +39,7 @@
                   <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">Examinee Number</th>
                   <th scope="col" class="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">FULL NAME</th>
                   <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">SCORE</th>
+                  <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">CAMPUS</th>
                   <th scope="col" class="px-5 py-3.5 text-center text-sm font-semibold text-gray-900">PROGRAM</th>
                 </tr>
               </thead>
@@ -53,6 +55,8 @@
                     </td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
                       {{ $item->result?->total_standard_score }}</td>
+                      <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
+                        {{ $item->user->selected_courses->where('priority_level', 1)->first()?->program->campus->name }}</td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
                       {{ $item->user->selected_courses->where('priority_level', 1)->first()?->program->name }}</td>
                   </tr>
