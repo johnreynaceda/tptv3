@@ -101,7 +101,7 @@
       <div class="flex items-center">
         <div class="flex-shrink-0">
           <img class="h-44 rounded-lg flex-shrink-0" src="{{Storage::url($user->personal_information->photo)}}" alt="">
-          
+
         </div>
         <div class="ml-4">
           <h3 class="text-lg font-medium leading-6 text-gray-900">{{$user->name}}</h3>
@@ -114,10 +114,14 @@
     <div class="ml-4 mt-4 flex flex-shrink-0">
     <x-button negative label="Reset Password" wire:click="confirmResetPassword"/>
     </div>
-    
+
   </div>
   <div class="mt-5 border-t border-gray-200">
     <dl class="sm:divide-y sm:divide-gray-200">
+        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+            <dt class="text-sm font-medium text-gray-500">Examinee Number</dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{$info->user->permit?->examinee_number}}</dd>
+          </div>
       <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
         <dt class="text-sm font-medium text-gray-500">Present Address</dt>
         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{$info->present_address}}</dd>
@@ -176,7 +180,7 @@
     <x-button negative label="Reset Password" wire:click="confirmResetPassword"/>
 
     </div>
-    
+
   </div>
 
 </div>
