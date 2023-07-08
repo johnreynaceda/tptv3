@@ -50,6 +50,6 @@ class QualifiedStudentsExport implements FromQuery, WithMapping, WithHeadings
 
     public function batchSize(): int
     {
-        return 1000;
+        return 500;
     }
 }
