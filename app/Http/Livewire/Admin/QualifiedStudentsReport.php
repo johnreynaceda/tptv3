@@ -18,11 +18,17 @@ class QualifiedStudentsReport extends Component
     public $campus_id;
     public $program_id;
     public $examination;
+    public $student_name;
 
     public function updatedSelectedCampus()
     {
         $this->selected_program = null;
         $this->qualified_students = null;
+    }
+
+    public function updatedStudentName()
+    {
+        $this->generateReport();
     }
 
 
@@ -40,6 +46,11 @@ class QualifiedStudentsReport extends Component
                 if ($this->selected_program) {
                     $query->where('program_id', $this->selected_program);
                 }
+            })
+            ->when($this->student_name, function ($query) {
+                $query->whereHas('user', function ($query) {
+                    $query->where('name', 'like', '%' . $this->student_name . '%');
+                });
             })
             ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')

@@ -26,6 +26,7 @@
       {{-- <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" /> --}}
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
 </div>
+<x-input wire:model="student_name" class="mt-3" label="Search Name" icon="search" placeholder="Search" />
 <div class="grid grid-cols-8 mt-5 space-x-3">
     {{-- <x-button dark label="1-1000" icon="download" wire:click="exportRange1To1000" spinner="exportRange1To1000" />
     <x-button dark label="1001-2000" icon="download" wire:click="exportRange1001To2000" spinner="exportRange1001To2000" />
