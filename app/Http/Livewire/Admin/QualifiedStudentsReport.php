@@ -26,9 +26,30 @@ class QualifiedStudentsReport extends Component
         $this->qualified_students = null;
     }
 
-    public function updatedStudentName()
+    // public function updatedStudentName()
+    // {
+    //     if($this->student_name != null)
+    //     {
+    //         $this->generateReportByName();
+    //     }else{
+    //         $this->student_name = null;
+    //     }
+
+    // }
+
+    public function generateReportByName()
     {
-        $this->generateReport();
+        $this->selected_campus = null;
+        $this->selected_program = null;
+        $this->qualified_students = Permit::whereHas('user', function ($query) {
+            $query->where('name', 'like', '%' . $this->student_name . '%')
+                ->whereHas('selected_courses', function ($query) {
+                    $query->where('priority_level', 1);
+                });
+        })
+        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->whereRaw('results.total_standard_score > 374')
+        ->get();
     }
 
 
@@ -47,11 +68,11 @@ class QualifiedStudentsReport extends Component
                     $query->where('program_id', $this->selected_program);
                 }
             })
-            ->when($this->student_name, function ($query) {
-                $query->whereHas('user', function ($query) {
-                    $query->where('name', 'like', '%' . $this->student_name . '%');
-                });
-            })
+            // ->when($this->student_name, function ($query) {
+            //     $query->whereHas('user', function ($query) {
+            //         $query->where('name', 'like', '%' . $this->student_name . '%');
+            //     });
+            // })
             ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')
             ->get();

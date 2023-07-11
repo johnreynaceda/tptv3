@@ -25,8 +25,18 @@
       <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
       {{-- <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" /> --}}
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
+
 </div>
-<x-input wire:model="student_name" class="mt-3" label="Search Name" icon="search" placeholder="Search" />
+<div class="grid grid-cols-4 items-end space-x-3">
+    <div class="col-span-3">
+        <x-input wire:model.defer="student_name" class="mt-3 w-full" label="Search Name" icon="search" placeholder="Search" />
+    </div>
+    <div class="col-span-1 justify-center">
+        <x-button dark label="Search Name" wire:click="generateReportByName" icon="search" spinner="generateReportByName" />
+    </div>
+
+    </div>
+
 <div class="grid grid-cols-8 mt-5 space-x-3">
     {{-- <x-button dark label="1-1000" icon="download" wire:click="exportRange1To1000" spinner="exportRange1To1000" />
     <x-button dark label="1001-2000" icon="download" wire:click="exportRange1001To2000" spinner="exportRange1001To2000" />
