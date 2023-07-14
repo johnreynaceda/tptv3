@@ -307,6 +307,7 @@
                     <a href="{{ route('admin.result-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Preferred Courses</a>
                     <a href="{{ route('admin.ranking-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Ranking Report</a>
                     <a href="{{ route('admin.qualified-students-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Qualified Students</a>
+                    <a href="{{ route('admin.students-score') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Student Scores</a>
                     <a href="{{ route('admin.reports') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Room Assignment</a>
                   </div>
                 </div>
