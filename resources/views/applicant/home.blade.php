@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-    @elseif (!$has_survey_result && !$has_selected_course)
+    @elseif ($has_result && !$has_survey_result && !$has_selected_course)
      <!-- This example requires Tailwind CSS v2.0+ -->
      <div class="p-4 rounded-md bg-blue-50">
         <div class="flex">

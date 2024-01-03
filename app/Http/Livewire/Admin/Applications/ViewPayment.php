@@ -55,7 +55,8 @@ class ViewPayment extends Component
         $user->update([
             'step' => '5',
         ]);
-        $code_series = "200000"+$user->id;
+        $code_series = "2" . str_pad($user->id, 3, '0', STR_PAD_LEFT);
+        // $code_series = "200000"+$user->id;
         Permit::create([
             'examinee_number' => $code_series,
             'user_id'=>$user->id,

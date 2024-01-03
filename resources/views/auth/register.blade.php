@@ -18,7 +18,7 @@
 
             <div>
                 <x-jet-label for="name"
-                    value="{{ __('Name') }}" />
+                    value="{{ __('Full Name') }}" />
                 <x-jet-input id="name"
                     class="block w-full mt-1"
                     type="text"
