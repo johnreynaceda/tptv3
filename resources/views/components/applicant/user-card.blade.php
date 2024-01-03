@@ -2,7 +2,7 @@
     <div class="relative h-40 p-3 text-white shadow-lg rounded-xl bg-theme">
         <div class="z-20 p-2">
             <h1 class="text-xl font-bold">
-                Hi {{ auth()->user()->name }} !
+                Hi {{ Auth::user()->first_name.' '.Auth::user()->middle_name.' '.Auth::user()->last_name }} !
             </h1>
             <h1>
                 You are logged in!

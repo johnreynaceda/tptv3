@@ -25,7 +25,7 @@
             <div class="flex items-center justify-between col-span-6 ">
                 <div>
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-700"> Welcome {{ auth()->user()->name }}</h1>
+                        <h1 class="text-xl font-semibold text-gray-700"> Welcome {{ Auth::user()->first_name.' '.Auth::user()->middle_name.' '.Auth::user()->last_name }}</h1>
                         <h1 class="text-base font-thin text-gray-500">
                             You are logged in!
                         </h1>

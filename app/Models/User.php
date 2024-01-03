@@ -82,7 +82,9 @@ class User extends Authenticatable
         'step',
         'remarks',
         'role_id',
-        'name',
+        'first_name',
+        'middle_name',
+        'last_name',
         'email',
         'password',
     ];

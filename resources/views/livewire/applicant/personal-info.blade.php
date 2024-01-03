@@ -11,7 +11,7 @@
                         <option value="1">Freshmen</option>
                         <option value="2">Transferee</option>
                     </x-native-select>
-                    <x-input wire:model.debfer="first_name"
+                    <x-input wire:model.defer="first_name"
                         autocomplete="on"
                         label="First Name" />
                     <x-input wire:model.defer="middle_name"

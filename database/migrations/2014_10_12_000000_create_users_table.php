@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('step')->default('1');
             $table->unsignedBigInteger('type_id')->nullable();
             $table->unsignedBigInteger('role_id')->default(2);
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('middle_name')->nullable();
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

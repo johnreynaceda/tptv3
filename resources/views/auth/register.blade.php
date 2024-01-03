@@ -17,16 +17,42 @@
             @csrf
 
             <div>
-                <x-jet-label for="name"
-                    value="{{ __('Full Name') }}" />
-                <x-jet-input id="name"
+                <x-jet-label for="first_name"
+                    value="{{ __('First Name') }}" />
+                <x-jet-input id="first_name"
                     class="block w-full mt-1"
                     type="text"
-                    name="name"
-                    :value="old('name')"
+                    name="first_name"
+                    :value="old('first_name')"
                     required
                     autofocus
-                    autocomplete="name" />
+                    autocomplete="first_name" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="middle_name"
+                    value="{{ __('Middle Name') }}" />
+                <x-jet-input id="middle_name"
+                    class="block w-full mt-1"
+                    type="text"
+                    name="middle_name"
+                    :value="old('middle_name')"
+                    required
+                    autofocus
+                    autocomplete="middle_name" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="last_name"
+                    value="{{ __('Last Name') }}" />
+                <x-jet-input id="last_name"
+                    class="block w-full mt-1"
+                    type="text"
+                    name="last_name"
+                    :value="old('last_name')"
+                    required
+                    autofocus
+                    autocomplete="last_name" />
             </div>
 
             <div class="mt-4">

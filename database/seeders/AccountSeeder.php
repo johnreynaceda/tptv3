@@ -16,7 +16,9 @@ class AccountSeeder extends Seeder
     {
         User::create([
             'role_id' => 1,
-            'name' => 'SKSU TPT',
+            'first_name' => 'SKSU',
+            'middle_name' => '',
+            'last_name' => 'TPT',
             'email' => 'sksutpt@gmail.com',
             'password' => bcrypt('password'),
         ]);

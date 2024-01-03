@@ -9,7 +9,7 @@ use Livewire\WithFileUploads;
 class PersonalInfo extends Component
 {
     use Actions, WithFileUploads;
-    public $type_id,$first_name, $middle_name,$last_name,$extension,$present_address,$permanent_address,$phone_number,$date_of_birth,$place_of_birth,$age,$tribe,$religion,$nationality,$citizenship,$photo,$sex; 
+    public $type_id,$first_name, $middle_name,$last_name,$extension,$present_address,$permanent_address,$phone_number,$date_of_birth,$place_of_birth,$age,$tribe,$religion,$nationality,$citizenship,$photo,$sex;
     public $personal_information;
     protected $rules = [
         'type_id'=>'required|in:1,2',
@@ -136,10 +136,13 @@ class PersonalInfo extends Component
             'icon'=>'success',
         ]);
         $this->loadPersonalInformation();
-        
+
     }
     public function loadPersonalInformation()
     {
+        $this->first_name = auth()->user()->first_name;
+        $this->middle_name = auth()->user()->middle_name;
+        $this->last_name = auth()->user()->last_name;
         $this->personal_information= PersonalInformation::where('user_id',auth()->user()->id)->first();
         if ($this->personal_information) {
             $this->type_id = $this->personal_information->type_id;
