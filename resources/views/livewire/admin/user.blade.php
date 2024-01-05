@@ -17,7 +17,7 @@
             </div>
             <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
               <div>
-                <p class="truncate text-sm font-medium text-indigo-600">{{$info->user->name}}</p>
+                <p class="truncate text-sm font-medium text-indigo-600">{{$info->user->first_name.' '.$info->user->middle_name.' '.$info->user->last_name}}</p>
                 <p class="mt-2 flex items-center text-sm text-gray-500">
                   <!-- Heroicon name: mini/envelope -->
                   <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -104,7 +104,7 @@
 
         </div>
         <div class="ml-4">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">{{$user->name}}</h3>
+          <h3 class="text-lg font-medium leading-6 text-gray-900">{{$user->first_name.' '.$user->middle_name.' '.$user->last_name}}</h3>
           <p class="text-sm text-gray-500">
             <a href="#">{{$user->email}}</a>
           </p>
