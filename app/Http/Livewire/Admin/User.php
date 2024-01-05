@@ -24,7 +24,8 @@ class User extends Component
             $this->informations = null;
         }else{
             $this->informations = PersonalInformation::whereHas('user', function($query){
-                $query->where('name', 'like', '%'.$this->search .'%')
+                $query->where('first_name', 'like', '%'.$this->search .'%')
+                ->orWhere('last_name', 'like', '%'.$this->search .'%')
                 ->orWhere('email', 'like', '%'.$this->search .'%');
             })->get();
         }
@@ -54,7 +55,7 @@ class User extends Component
     }
 
     public function resetPassword()
-    {   
+    {
         DB::beginTransaction();
         $user = UserModel::where('id', $this->user->id)->first();
         $user->password = Hash::make('12345');
