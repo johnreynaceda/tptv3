@@ -23,7 +23,8 @@
     <!-- Styles -->
     <link rel="stylesheet"
         href="{{ mix('css/app.css') }}">
-
+        @livewireStyles
+        @wireUiScripts
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"
         defer></script>
@@ -33,6 +34,8 @@
     <div class="antialiased text-gray-900 bg-gray-100 font-poppins">
         {{ $slot }}
     </div>
+    <x-dialog z-index="z-50" blur="md" align="center" />
+    @livewireScripts
 </body>
 
 </html>

@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/forgot-password', function () {
+    return view('auth.password-forgot');
+})->name('forgot-password');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
