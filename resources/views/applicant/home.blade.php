@@ -923,9 +923,18 @@
                   CONTINUE
                 </x-button>
               @elseif (auth()->user()->step == '3')
+
+                {{-- declined payment --}}
+                @if (auth()->user()->is_declined)
+                <div>
+                   <livewire:applicant.resubmit-payment />
+                </div>
+                @else
                 <x-button href="{{ route('applicant.payment') }}" positive lg rightIcon="cash">
-                  Payment
-                </x-button>
+                    Payment
+                   </x-button>
+                @endif
+
               @elseif (auth()->user()->step == '4')
                 <div class="p-4 border border-yellow-300 rounded-md bg-yellow-50">
                   <div class="flex">
