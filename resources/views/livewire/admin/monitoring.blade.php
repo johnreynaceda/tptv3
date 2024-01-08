@@ -14,7 +14,7 @@
                   <option>Select Time</option>
                   <option value="AM 8:00 - 12:00">AM 8:00 - 12:00</option>
                   <option value="PM 1:00 - 5:00">PM 1:00 - 5:00</option>
-                </x-native-select>                
+                </x-native-select>
                 <x-native-select wire:model="date">
                   <option>Select Date of Exam</option>
                   @foreach ($dates as $item)
@@ -41,7 +41,7 @@
                   <option>Select Time</option>
                   <option value="AM 8:00 - 12:00">AM 8:00 - 12:00</option>
                   <option value="PM 1:00 - 5:00">PM 1:00 - 5:00</option>
-                </x-native-select>                
+                </x-native-select>
                 <x-native-select wire:model="date">
                   <option>Select Date of Exam</option>
                   @foreach ($dates as $item)
@@ -83,7 +83,7 @@
                       {{ $detail->user_id }}
                     </td>
                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                      {{ $detail->users->name }}
+                      {{ $detail->users->first_name.' '.$detail->users->middle_name.' '.$detail->users->last_name }}
                     </td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {{ $detail->slot->date_of_exam }}</td>
@@ -96,7 +96,7 @@
                       <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                       {{ $detail->room_number }}</td>
                       <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                      {{ $detail->seat_number }}</td>  
+                      {{ $detail->seat_number }}</td>
                   </tr>
                 @empty
                   <td colspan="2">
@@ -107,7 +107,7 @@
               </tbody>
             </table>
             </div>
-        
+
             <x-slot name="footer">
                 <div class="flex justify-between gap-x-4">
                     <div></div>
