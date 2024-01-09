@@ -8,7 +8,7 @@
     }
 }">
 <div class="flex space-x-1">
-              
+
 <x-native-select cwire:model="exam">
   <option>Select Exam</option>
   @foreach ($examinations as $exam)
@@ -25,7 +25,7 @@
   <option>Select Time</option>
   <option value="AM 8:00 - 12:00">AM 8:00 - 12:00</option>
   <option value="PM 1:00 - 5:00">PM 1:00 - 5:00</option>
-</x-native-select>  
+</x-native-select>
 <x-native-select wire:model="test_center">
   <option>Select Testing Center</option>
   @foreach ($test_centers as $item)
@@ -72,7 +72,7 @@
       @endif
 
     </div>
-      
+
 
       <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
@@ -87,12 +87,12 @@
                 @forelse ($student_slot_details as $detail)
                   <tr>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
-                      {{ $detail->users->name }}
+                      {{ $detail->users->first_name.' '.$detail->users->middle_name.' '.$detail->users->last_name }}
                     </td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
                       {{ $detail->users->permit->examinee_number ?? null }}</td>
                       <td class="whitespace-nowrap px-5 py-1.5 text-center text-sm text-gray-500">
-                      {{ $detail->seat_number }}</td>    
+                      {{ $detail->seat_number }}</td>
                   </tr>
                 @empty
                   <td colspan="2">
