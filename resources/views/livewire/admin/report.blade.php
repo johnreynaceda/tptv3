@@ -56,7 +56,7 @@
 </x-native-select>
 </div>
 <x-button class="m-2" positive label="Print" x-on:click="printDiv('printable')"/>
-<x-button class="m-2" positive label="Update Examinee Numbers" wire:click="updateExamineeNumbers"/>
+{{-- <x-button class="m-2" positive label="Update Examinee Numbers" wire:click="updateExamineeNumbers"/> --}}
 @if ($exam && $date && $time && $test_center)
 
     <div class="bg-white mt-2" id="printable" >
