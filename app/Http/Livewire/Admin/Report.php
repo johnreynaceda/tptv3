@@ -7,6 +7,8 @@ use App\Models\Examination;
 use App\Models\Slot;
 use App\Models\TestCenter;
 use App\Models\StudentSlot;
+use App\Models\Permit;
+
 class Report extends Component
 {
     public $exam;
@@ -58,8 +60,22 @@ class Report extends Component
                             ->when($this->date, function ($query) {
                                 $query->where('date_of_exam', $this->date);
                             });
-                    })->get(),   
-                           
+                    })->get(),
+
         ]);
+    }
+
+    public function updateExamineeNumbers()
+    {
+        $permits = Permit::all();
+
+        // Update each record
+        foreach ($permits as $permit) {
+            // Update the examinee_number field
+            $permit->examinee_number = str_pad($permit->user->id, 4, '0', STR_PAD_LEFT);
+
+            // Save the changes
+            $permit->save();
+        }
     }
 }
