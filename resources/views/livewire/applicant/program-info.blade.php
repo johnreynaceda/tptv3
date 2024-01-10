@@ -8,7 +8,7 @@
                     id="first_choice"
                     class="space-y-3">
                     <div class="flex items-center space-x-3">
-                        <x-button x-on:click="expanded=!expanded"
+                        <x-button wire:click="loadProgramInformation" x-on:click="expanded=!expanded"
                             sm>
                             <svg x-bind:class="expanded ? 'rotate-90 ease-in-out duration-150' : 'ease-in-out duration-150'"
                                 xmlns="http://www.w3.org/2000/svg"

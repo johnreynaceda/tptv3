@@ -48,7 +48,7 @@ class ProgramInfo extends Component
                 'description'=>'First Priority Program has been set',
                 'icon'=>'success',
             ]);
-          
+
         }
           $this->loadProgramInformation();
             if (auth()->user()->type_id == 2) {
@@ -132,7 +132,7 @@ class ProgramInfo extends Component
                 return;
             }
         }
-        
+
         auth()->user()->application->update([
             'submited_at'=>now(),
             'status'=>'submitted',
@@ -144,10 +144,10 @@ class ProgramInfo extends Component
             'title'=>'Success',
             'description'=>'Application has been submited. Please proceed to payment',
             'icon'=>'success',
-        ]); 
+        ]);
 
         $this->dispatchBrowserEvent('done-all');
         return redirect()->route('applicant.payment');
     }
-    
+
 }
