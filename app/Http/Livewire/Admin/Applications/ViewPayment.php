@@ -104,7 +104,7 @@ class ViewPayment extends Component
         $user = User::where('id', $this->user_id)->first();
         $user->update([
             'step' => '3',
-            'is_declined' => '1',
+            'is_declined' => 1,
             'remarks' => $this->remarks,
         ]);
         $this->notification([
