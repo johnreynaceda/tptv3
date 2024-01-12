@@ -102,11 +102,15 @@ class ViewPayment extends Component
             'remarks' => 'required',
         ]);
         $user = User::where('id', $this->user_id)->first();
-        $user->update([
-            'step' => '3',
-            'is_declined' => 1,
-            'remarks' => $this->remarks,
-        ]);
+        $user->step = '3';
+        $user->is_declined = true;
+        $user->remarks = $this->remarks;
+        $user->save();
+        // $user->update([
+        //     'step' => '3',
+        //     'is_declined' => true,
+        //     'remarks' => $this->remarks,
+        // ]);
         $this->notification([
             'title' => 'Success',
             'description' => 'Payment has been rejected',
