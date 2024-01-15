@@ -57,6 +57,7 @@ class SelectTestingCenter extends Component
             ->whereHas('slot', function ($query) {
                 $query->where('date_of_exam', $this->date);
             })
+            // ->where('room_number', $latest_room_number)
             ->orderBy('created_at', 'desc');
 
         $slot =
@@ -81,7 +82,7 @@ class SelectTestingCenter extends Component
                     $description = 'Please select another testing center'
                 );
             } else {
-                dd($total_slot_per_room->count());
+                dd($slot);
                 if ($total_slot_per_room->count() == 0) {
                     $this->room_number = 1;
                     $this->seat_number = 1;
