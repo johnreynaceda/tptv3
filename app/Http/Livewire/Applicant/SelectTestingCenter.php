@@ -76,12 +76,12 @@ class SelectTestingCenter extends Component
         } else {
 
             if ($total_slot_per_room->count() == 50) {
-                dd($total_slot_per_room->count());
                 $this->dialog()->error(
                     $title = 'Slot is full',
                     $description = 'Please select another testing center'
                 );
             } else {
+                dd($total_slot_per_room->count());
                 if ($total_slot_per_room->count() == 0) {
                     $this->room_number = 1;
                     $this->seat_number = 1;
