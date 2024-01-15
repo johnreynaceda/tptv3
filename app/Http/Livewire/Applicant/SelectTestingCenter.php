@@ -146,7 +146,7 @@ class SelectTestingCenter extends Component
             ->whereHas('slot', function ($query) {
                 $query->where('date_of_exam', $this->date);
             })
-            ->where('room_number', $latest_room_number)
+            // ->where('room_number', $latest_room_number)
             ->orderBy('created_at', 'desc');
         $slot =
             Slot::where('id', $this->center_id)
@@ -164,7 +164,7 @@ class SelectTestingCenter extends Component
                 $description = 'Please select another date or time schedule'
             );
         } else {
-            if ($total_slot_per_room->count() == 50) {
+            if ($total_slot_per_room->count() == $slot) {
                 $this->dialog()->error(
                     $title = 'Slot is full',
                     $description = 'Please select another testing center'
