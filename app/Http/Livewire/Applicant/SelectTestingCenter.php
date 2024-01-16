@@ -90,7 +90,7 @@ class SelectTestingCenter extends Component
             ->where('room_number', $latest_room_number_in_schedule)
             ->where('time', $this->time)->count();
 
-            if($latest_room_number_in_schedule == $total_number_of_rooms)
+            if($latest_room_number_in_schedule == $total_number_of_rooms && $total_seats_in_room == $number_of_seats)
             {
                 $this->dialog()->error(
                     $title = 'All Rooms are full for this schedule',
@@ -233,7 +233,7 @@ class SelectTestingCenter extends Component
               ->where('room_number', $latest_room_number_in_schedule)
               ->where('time', $this->time)->count();
 
-              if($latest_room_number_in_schedule == $total_number_of_rooms)
+              if($latest_room_number_in_schedule == $total_number_of_rooms && $total_seats_in_room == $number_of_seats)
               {
                   $this->dialog()->error(
                       $title = 'All Rooms are full for this schedule',
