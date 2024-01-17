@@ -64,6 +64,9 @@ Route::prefix('/admin')
         Route::get('/report', function () {
             return view('admin.reports');
         })->name('admin.reports');
+        Route::get('/student-list-report', function () {
+            return view('admin.student-list-report');
+        })->name('admin.student-list-report');
         Route::get('/student-report', function () {
             return view('admin.result-report');
         })->name('admin.result-report');
