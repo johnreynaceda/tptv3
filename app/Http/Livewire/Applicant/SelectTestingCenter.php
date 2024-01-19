@@ -8,6 +8,7 @@ use App\Models\Slot;
 use App\Models\StudentSlot;
 use WireUi\Traits\Actions;
 use App\Models\{Examination, Result};
+use Illuminate\Support\Facades\DB;
 
 class SelectTestingCenter extends Component
 {
@@ -309,24 +310,33 @@ class SelectTestingCenter extends Component
 
         // }
 
-        $studen_slot = StudentSlot::create([
-            'user_id' => auth()->user()->id,
-            'slot_id' => $this->center_id,
-            'time' => $this->time,
-            'room_number' => $this->room_number,
-            'seat_number' => $this->seat_number,
-        ]);
-
-        auth()
-            ->user()
-            ->application->update([
-                'student_slot_id' => $studen_slot->id,
+        try {
+            DB::beginTransaction(); // <= Starting the transaction
+            $studen_slot = StudentSlot::create([
+                'user_id' => auth()->user()->id,
+                'slot_id' => $this->center_id,
+                'time' => $this->time,
+                'room_number' => $this->room_number,
+                'seat_number' => $this->seat_number,
             ]);
 
-        $this->notification()->success(
-            $title = 'Success',
-            $description = 'Successfully Saved Slot'
-        );
+            auth()
+                ->user()
+                ->application->update([
+                    'student_slot_id' => $studen_slot->id,
+                ]);
+            DB::commit(); // <= Commit the changes
+            $this->notification()->success(
+                $title = 'Success',
+                $description = 'Successfully Saved Slot'
+            );
+        } catch (\Exception $e) {
+            report($e);
+            DB::rollBack(); // <= Rollback in case of an exception
+        }
+
+
+
 
         return redirect()->route('applicant.home');
     }
