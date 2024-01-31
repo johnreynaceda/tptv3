@@ -23,7 +23,7 @@
             <option value={{$item->id}}>{{$item->name}}</option>
         @endforeach
       </x-native-select> --}}
-      <x-button dark label="Export Excel" icon="download" wire:click="generateReport" spinner="generateReport" />
+      <x-button dark label="Export Excel" icon="download" wire:click="export" spinner="export" />
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
 
 </div>
