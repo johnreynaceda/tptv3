@@ -310,6 +310,7 @@
                     <a href="{{ route('admin.students-score') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Student Scores</a>
                     <a href="{{ route('admin.reports') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Room Assignment</a>
                     <a href="{{ route('admin.student-list-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Student List</a>
+                    <a href="{{ route('admin.registration-date-report') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" tabindex="-1">Registration Date</a>
                   </div>
                 </div>
 
