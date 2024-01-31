@@ -25,7 +25,7 @@
       <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
       {{-- <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" /> --}}
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
-      <x-button dark label="Update" wire:click="updatePermits" spinner="updatePermits" />
+      {{-- <x-button dark label="Update" wire:click="updatePermits" spinner="updatePermits" /> --}}
 
 </div>
 {{-- <div class="grid grid-cols-4 items-end space-x-3">
