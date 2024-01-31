@@ -65,10 +65,9 @@ class ViewPayment extends Component
             $code_series = str_pad($permit->id + 1, 4, '0', STR_PAD_LEFT);
         }
 
-
-       // $code_series = "2" . str_pad($user->id, 3, '0', STR_PAD_LEFT);
-        // $code_series = "200000"+$user->id;
+        $code_series_user = "2" . str_pad($user->id, 4, '0', STR_PAD_LEFT);
         Permit::create([
+            'examinee_number' => $code_series_user,
             'examinee_number_updated' => $code_series,
             'user_id'=>$user->id,
             'examination_id'=>$user->application->examination_id,
