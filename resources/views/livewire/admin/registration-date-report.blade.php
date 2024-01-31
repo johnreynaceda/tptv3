@@ -29,17 +29,18 @@
 </div>
 
 
-<div class="grid grid-cols-8 mt-5 space-x-3">
+<div class="flex justify-end mt-5 space-x-3">
+    <x-input label="Search" placeholder="External Client Name" wire:model="search"/>
+    {{-- <div>
+
+    </div>
+<div class="flex space-x-4">
+    <x-datetime-picker label="From" placeholder="Registration Date" wire:model="from"/>
+    <x-datetime-picker label="To" placeholder="Registration Date" wire:model.defer="to"/>
+</div> --}}
 
 </div>
-    <div class="bg-white mt-2" id="printable" >
-        <div class="flex flex-col items-center justify-center py-5">
-            {{-- <p class="text-lg font-bold underline">List of Students</p>
-            <p class="text-md font-bold">{{$campus_name}} - {{$program_name}}</p> --}}
-          </div>
-          <div class="flex justify-end pr-10 py-3">
-            {{-- <p class="text-lg font-bold">Total : {{$students != null ? $students->count() : 0}}</p> --}}
-          </div>
+    <div class="mt-2" id="printable" >
       <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-white-50 ">
                 <tr>

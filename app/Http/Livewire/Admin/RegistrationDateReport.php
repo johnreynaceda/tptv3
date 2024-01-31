@@ -12,6 +12,9 @@ class RegistrationDateReport extends Component
 {
     protected $student_list;
     public $examination;
+    public $search;
+    public $from;
+    public $to;
 
     public function export()
     {
@@ -25,7 +28,11 @@ class RegistrationDateReport extends Component
 
     public function render()
     {
-        $this->student_list = Permit::whereHas('user.personal_information')->paginate(100);
+        $this->student_list = Permit::whereHas('user.personal_information', function ($query) {
+            $query->where('first_name', 'like', '%' . $this->search . '%')
+                ->orWhere('middle_name', 'like', '%' . $this->search . '%')
+                ->orWhere('last_name', 'like', '%' . $this->search . '%');
+        })->paginate(100);
         return view('livewire.admin.registration-date-report', [
             'students' => $this->student_list
         ]);
