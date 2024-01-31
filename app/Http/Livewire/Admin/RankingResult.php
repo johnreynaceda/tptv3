@@ -37,7 +37,7 @@ class RankingResult extends Component
                 $query->where('program_id', $selected_program_id);
             }
         })
-        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
         ->orderByRaw('CAST(results.total_standard_score AS UNSIGNED) DESC')
         ->paginate(100);
 

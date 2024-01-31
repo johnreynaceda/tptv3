@@ -23,7 +23,7 @@ class QualifiedStudentsExport implements FromCollection, WithMapping, WithHeadin
     public function map($permit): array
     {
         return [
-            $permit->examinee_number,
+            $permit->examinee_number_updated,
             optional($permit->user)->name,
             optional($permit->result)->total_standard_score,
             optional($permit->user->selected_courses->where('priority_level', 1)->first())->program->campus->name,

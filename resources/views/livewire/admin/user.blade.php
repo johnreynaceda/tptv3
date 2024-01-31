@@ -120,7 +120,7 @@
     <dl class="sm:divide-y sm:divide-gray-200">
         <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
             <dt class="text-sm font-medium text-gray-500">Examinee Number</dt>
-            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{$info->user->permit?->examinee_number}}</dd>
+            <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{$info->user->permit?->examinee_number_updated}}</dd>
           </div>
       <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
         <dt class="text-sm font-medium text-gray-500">Present Address</dt>

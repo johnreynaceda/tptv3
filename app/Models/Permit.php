@@ -17,6 +17,6 @@ class Permit extends Model
 
     public function result()
     {
-        return $this->hasOne(Result::class,'examinee_number','examinee_number');
+        return $this->hasOne(Result::class,'examinee_number','examinee_number_updated');
     }
 }

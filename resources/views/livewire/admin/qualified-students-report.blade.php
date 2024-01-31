@@ -68,7 +68,7 @@
                 @foreach ($rankings as $item)
                   <tr>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
-                        {{ $item->examinee_number }}
+                        {{ $item->examinee_number_updated }}
                       </td>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
                       {{ $item->user->name }}

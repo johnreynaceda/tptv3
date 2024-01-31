@@ -28,7 +28,7 @@ class StudentScores extends Component
                     $query->where('priority_level', 1);
                 });
         })
-        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
         ->get();
     }
 

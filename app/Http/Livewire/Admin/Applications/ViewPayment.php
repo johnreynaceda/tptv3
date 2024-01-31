@@ -55,14 +55,21 @@ class ViewPayment extends Component
         $user->update([
             'step' => '5',
         ]);
-        //code_series make 4 digits only
-        $code_series = str_pad($user->id, 4, '0', STR_PAD_LEFT);
+        //get last id of permit then add 1
+        //check if permit is null
+        $permit = Permit::latest()->first();
+        if($permit == null)
+        {
+            $code_series = "0001";
+        }else{
+            $code_series = str_pad($permit->id + 1, 4, '0', STR_PAD_LEFT);
+        }
 
 
        // $code_series = "2" . str_pad($user->id, 3, '0', STR_PAD_LEFT);
         // $code_series = "200000"+$user->id;
         Permit::create([
-            'examinee_number' => $code_series,
+            'examinee_number_updated' => $code_series,
             'user_id'=>$user->id,
             'examination_id'=>$user->application->examination_id,
         ]);

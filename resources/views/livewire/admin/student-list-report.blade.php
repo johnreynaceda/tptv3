@@ -25,6 +25,7 @@
       <x-button dark label="Generate" wire:click="generateReport" spinner="generateReport" />
       {{-- <x-button dark label="Download" icon="download" wire:click="downloadQualifiedStudents" spinner="downloadQualifiedStudents" /> --}}
       <x-button positive label="Print"  icon="printer" x-on:click="printDiv('printable')"/>
+      <x-button dark label="Update" wire:click="updatePermits" spinner="updatePermits" />
 
 </div>
 {{-- <div class="grid grid-cols-4 items-end space-x-3">
@@ -62,7 +63,7 @@
                 @foreach ($students as $item)
                   <tr>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
-                        {{ $item->examinee_number }}
+                        {{ $item->examinee_number_updated }}
                       </td>
                     <td class="whitespace-nowrap uppercase py-1.5 pl-4 px-5 text-sm font-medium text-gray-900 sm:pl-6">
                       {{ $item->user->personal_information->first_name }} {{ $item->user->personal_information->middle_name }} {{ $item->user->personal_information->last_name }}

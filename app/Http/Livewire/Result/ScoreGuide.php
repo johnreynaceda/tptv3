@@ -12,7 +12,7 @@ class ScoreGuide extends Component
     {
         if(auth()->user()->permit != null)
         {
-            $this->examinee_number = auth()->user()->permit->examinee_number;
+            $this->examinee_number = auth()->user()->permit->examinee_number_updated;
         }
 
     }

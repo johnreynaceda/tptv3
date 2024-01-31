@@ -38,7 +38,7 @@ class ResultPerProgramExport implements FromCollection, WithMapping, WithHeading
 
     public function map($permit) : array {
         return [
-            $permit->examinee_number,
+            $permit->examinee_number_updated,
             $permit->user?->personal_information->first_name,
             $permit->user?->personal_information->middle_name,
             $permit->user?->personal_information->last_name,

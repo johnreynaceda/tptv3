@@ -88,7 +88,7 @@
                 <img src="{{ Storage::url($personal_information->photo) }}" class="h-44" alt="">
               </div>
               <div class="w-full mt-1 text-center text-2xl text-white bg-gray-800">
-                {{ $permit->examinee_number }}
+                {{ $permit->examinee_number_updated }}
               </div>
               <div class="my-2">
                 <h1 class="text-center">Confirmation</h1>

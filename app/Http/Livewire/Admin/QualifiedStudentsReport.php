@@ -47,7 +47,7 @@ class QualifiedStudentsReport extends Component
                     $query->where('priority_level', 1);
                 });
         })
-        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
         ->whereRaw('results.total_standard_score > 374')
         ->get();
     }
@@ -73,7 +73,7 @@ class QualifiedStudentsReport extends Component
             //         $query->where('name', 'like', '%' . $this->student_name . '%');
             //     });
             // })
-            ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+            ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')
             ->get();
     }
@@ -130,7 +130,7 @@ class QualifiedStudentsReport extends Component
             return Permit::whereHas('user.selected_courses', function ($query) {
                 $query->where('priority_level', 1);
             })
-            ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+            ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
             ->whereRaw('results.total_standard_score > 374')
             ->skip($start - 1)  // Subtract 1 to account for 1-based index
             ->take($end - $start + 1)
@@ -148,7 +148,7 @@ class QualifiedStudentsReport extends Component
         $records = Permit::whereHas('user.selected_courses', function ($query) {
             $query->where('priority_level', 1);
         })
-        ->join('results', 'permits.examinee_number', '=', 'results.examinee_number')
+        ->join('results', 'permits.examinee_number_updated', '=', 'results.examinee_number')
         ->whereRaw('results.total_standard_score > 374')
         ->take(1000)
         ->get();

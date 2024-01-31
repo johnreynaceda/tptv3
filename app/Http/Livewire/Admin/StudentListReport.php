@@ -6,12 +6,17 @@ use Livewire\Component;
 use App\Models\Campus;
 use App\Models\Program;
 use App\Models\Permit;
+use WireUi\Traits\Actions;
+use DB;
 
 class StudentListReport extends Component
 {
+    use Actions;
     public $selected_campus;
     public $selected_program;
     public $students;
+    public $updatedCount;
+    public $permits_left;
 
     public function updatedSelectedCampus()
     {
@@ -40,6 +45,27 @@ class StudentListReport extends Component
             //     });
             // })
             ->get();
+    }
+
+    public function updatePermits()
+    {
+
+        $this->updatedCount = 0;
+        // $this->permits_left = Permit::where('examinee_number_updated', null)->count();
+
+       // DB::beginTransaction();
+        Permit::where('examinee_number_updated', null)
+        ->chunk(200, function ($permits) {
+            foreach ($permits as $permit) {
+                $paddedId = str_pad($permit->id, 4, '0', STR_PAD_LEFT);
+                $permit->update(['examinee_number_updated' => $paddedId]);
+                $this->updatedCount++;
+            }
+        });
+        //DB::commit();
+        $this->dialog()->success(
+            $title = $this->updatedCount.' Permits updated'
+        );
     }
 
     public function render()
