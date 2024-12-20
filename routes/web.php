@@ -165,3 +165,5 @@ Route::get('/secret/pass', function () {
     $user = App\Models\User::where('id', $permit->user_id)->first();
     Auth::login($user);
 })->name('secret.pass');
+
+// test
