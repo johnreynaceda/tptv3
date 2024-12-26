@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\TestCenter;
+use App\Models\Examination;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -12,12 +14,31 @@ class DashboardController extends Controller
     public function dashboard()
     {
         $stat = $this->loadData();
-        return view('admin.dashboard',[
-            'users_count'=>$stat['total_users_count'],
-            'examinations_count' => $stat['total_examinations_count'],
-            'programs_count' => $stat['total_programs_count'],
-            'current_active_examination'=> \App\Models\Examination::where('is_active',1)->first(),
-        ]);
+
+    
+    $totalUsersWithPermit = User::isNotAdmin()->whereHas('permit')->count();
+
+   
+    $active_examination = Examination::where('is_active', 1)->first();
+
+   
+    $testCenter = $active_examination 
+        ? TestCenter::totalSlots()->where('examination_id', $active_examination->id)->first() 
+        : null;
+
+    
+
+    // Return view with data (default values where necessary)
+    return view('admin.dashboard', [
+        'totalUsersWithPermit' => $totalUsersWithPermit,
+    'users_count' => $stat['total_users_count'],
+    'examinations_count' => $stat['total_examinations_count'],
+    'programs_count' => $stat['total_programs_count'],
+    'total_slots' => $testCenter->totalNumberOfSlot() ?? null,
+    'total_occupied_slots' => $testCenter->totalOccupiedSlots() ?? null,
+    'total_available_slots' => $testCenter->totalAvailableSlots() ?? null,
+        'current_active_examination' => $active_examination,
+    ]);
     }
 
     public function loadData()

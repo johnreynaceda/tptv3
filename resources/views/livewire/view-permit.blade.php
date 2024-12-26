@@ -14,6 +14,7 @@
                 }
 
                 .cut-line {
+                    
                     border-top: 2px dashed black;
                     margin: 10px 0;
                 }
@@ -21,6 +22,9 @@
                 .qr-code {
                     float: right;
                     margin-right: 10px;
+                }
+                .admin{
+                    background: white !important;
                 }
             }
         </style>

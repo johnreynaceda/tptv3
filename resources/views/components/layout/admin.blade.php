@@ -22,7 +22,7 @@
   <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="h-full bg-gray-100 font-poppins ">
+<body class="h-full bg-gray-100 font-poppins admin">
 
   <div>
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
