@@ -45,28 +45,51 @@
                     autocomplete="current-password" />
             </div>
             <div class="block mt-4">
-                <a href="{{ route('forgot-password') }}"
+                {{-- Continue with Google' --}}
+                      {{-- <a href="{{ route('forgot-password') }}"
                 class="text-sm text-gray-600 underline">
                 Forgot Password?
-            </a>
-                {{-- <label for="remember_me"
+            </a> --}}
+                <label for="remember_me"
                     class="flex items-center">
                     <x-jet-checkbox id="remember_me"
                         name="remember" />
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label> --}}
+                </label>
+              
+
+              
             </div>
-            <div class="flex items-center justify-end mt-4 space-x-3">
-                <a href="{{ route('register') }}"
-                    class="text-sm text-gray-600 underline">
-                    Don't have an account?
-                </a>
-                <x-button type="submit"
-                    positive>
+            <div class="flex flex-col items-center justify-end mt-4 space-y-4">
+                <x-button type="submit" class="w-full" positive>
                     LOGIN
                 </x-button>
+                <div class="flex items-center my-4">
+                    <div class="flex-grow border-t border-gray-400 h-2 w-full"></div>
+                    <span class="px-3 text-sm text-gray-600">Or</span>
+                    <div class="flex-grow border-t border-gray-400 h-2 w-full"></div>
+                </div>
+               
+                
+
+                <a href="{{ route('auth.google.redirect') }}" 
+                    class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 hover:bg-gray-100  mt-8">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                        alt="Google Icon" class="h-5 w-5 mr-2 ">
+                    <span class="font-medium text-gray-600">Continue With Google </span>
+                     <span class="text-xs ml-2 text-green-600">
+                        (Recommended)
+                     </span>
+                </a>
             </div>
         </form>
+        <div class="text-center mt-6">
+            <a href="{{ route('register') }}" class="text-sm text-gray-600 underline">
+                Don't have an account?
+            </a>
+        </div>
+
+        
     </x-jet-authentication-card>
 </x-guest-layout>
 {{-- <!DOCTYPE html>

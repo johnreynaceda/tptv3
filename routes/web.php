@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    GoogleController,
     HomeController,
     PrintPermitController,
     ResultController
@@ -21,6 +22,10 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/google', [GoogleController::class,'redirect'])->middleware('guest')->name('auth.google.redirect');
+Route::get('/auth/google/callback', [GoogleController::class,'callBack'])->middleware('guest')->name('auth.google.callBack');
+
 
 Route::get('/forgot-password', function () {
     return view('auth.password-forgot');
