@@ -50,12 +50,24 @@
                         <h2 class="text-sm font-medium text-gray-600">TERTIARY PLACEMENT TEST</h2>
                     </div>
                     <div>
-                        <img src="{{ asset('images/logo2.png') }}" class="h-16" alt="SKSU Logo">
+                        {{-- <img src="{{ asset('images/logo2.png') }}" class="h-16" alt="SKSU Logo"> --}}
                     </div>
+                    {{-- @dump($permit->examinee_number_updated)
+                    @dump($permit->examinee_number) --}}
                     <!-- QR Code -->
                     <div class="absolute top-4 right-4">
-                        <img src="{{ asset('images/qr-code-placeholder.png') }}" alt="QR Code" class="h-16 w-16">
+                        @if(!empty($permit->examinee_number))
+                            <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($permit->examinee_number, 'QRCODE') }}" 
+                                 alt="QR Code" 
+                                 class="h-16 w-16">
+                        @else
+                            <img src="{{ asset('images/qr-code-placeholder.png') }}" 
+                                 alt="QR Code Placeholder" 
+                                 class="h-16 w-16">
+                        @endif
                     </div>
+                    
+                    
                 </div>
 
                 <!-- Examinee Details -->

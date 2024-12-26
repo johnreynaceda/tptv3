@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
+        "milon/barcode": "^11.0",
         "phpoffice/phpspreadsheet": "^1.21",
         "psr/simple-cache": "^2.0",
         "wireui/wireui": "^1.7"

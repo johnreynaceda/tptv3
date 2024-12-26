@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Applications;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\{Examination,Application,User,Payment,Proof,Permit};
 
 class ViewPayment extends Component
@@ -83,13 +84,18 @@ class ViewPayment extends Component
     //     $this->dispatchBrowserEvent('none');
     // }
 
+
     public function approveConfirm()
-    {
+{
+    DB::beginTransaction(); // Start the transaction
+    
+    try {
         $user = User::where('id', $this->user_id)
                     ->with('application') // Load the application relationship
                     ->first();
-    
+        
         if (!$user || !$user->application) {
+            DB::rollBack(); // Rollback the transaction on error
             $this->notification([
                 'title' => 'Error',
                 'description' => 'User or application not found.',
@@ -118,6 +124,9 @@ class ViewPayment extends Component
             'examination_id' => $user->application->examination_id,
         ]);
     
+        // Commit the transaction
+        DB::commit();
+
         // Notify and refresh
         $this->notification([
             'title' => 'Success',
@@ -127,7 +136,20 @@ class ViewPayment extends Component
     
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
+    } catch (\Exception $e) {
+        DB::rollBack(); // Rollback the transaction on exception
+        
+        // Log the error for debugging
+        Log::error('Error approving confirmation: ' . $e->getMessage());
+
+        $this->notification([
+            'title' => 'Error',
+            'description' => 'An error occurred while processing the request.',
+            'icon' => 'error',
+        ]);
     }
+}
+
     
 
    
