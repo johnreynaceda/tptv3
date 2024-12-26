@@ -49,39 +49,86 @@ class ViewPayment extends Component
         ]);
     }
 
+    // public function approveConfirm()
+    // {
+    //     $user = User::where('id', $this->user_id)
+    //                     ->with(['application'])
+    //                     ->first();
+    //     $user->update([
+    //         'step' => '5',
+    //     ]);
+    //     //get last id of permit then add 1
+    //     //check if permit is null
+    //     $permit = Permit::latest()->first();
+    //     if($permit == null)
+    //     {
+    //         $code_series = "0001";
+    //     }else{
+    //         $code_series = str_pad($permit->id + 1, 4, '0', STR_PAD_LEFT);
+    //     }
+
+    //     $code_series_user = "2" . str_pad($user->id, 4, '0', STR_PAD_LEFT);
+    //     Permit::create([
+    //         'examinee_number' => $code_series_user,
+    //         'examinee_number_updated' => $code_series,
+    //         'user_id'=>$user->id,
+    //         'examination_id'=>$user->application->examination_id,
+    //     ]);
+    //     $this->notification([
+    //         'title' => 'Success',
+    //         'description' => 'Payment has been approved',
+    //         'icon' => 'success',
+    //     ]);
+    //     $this->emit('refresh');
+    //     $this->dispatchBrowserEvent('none');
+    // }
+
     public function approveConfirm()
     {
         $user = User::where('id', $this->user_id)
-                        ->with(['application'])
-                        ->first();
+                    ->with('application') // Load the application relationship
+                    ->first();
+    
+        if (!$user || !$user->application) {
+            $this->notification([
+                'title' => 'Error',
+                'description' => 'User or application not found.',
+                'icon' => 'error',
+            ]);
+            return;
+        }
+    
+        // Update user step
         $user->update([
             'step' => '5',
         ]);
-        //get last id of permit then add 1
-        //check if permit is null
-        $permit = Permit::latest()->first();
-        if($permit == null)
-        {
-            $code_series = "411111";
-        }else{
-            $code_series = str_pad($permit->id + 1, 6, '0', STR_PAD_LEFT);
-        }
-
+    
+        // Determine the permit examinee number
+        $permit = Permit::latest()->first(); // Get the last created permit
+        $code_series = $permit ? str_pad($permit->id + 1, 6, '0', STR_PAD_LEFT) : "411111";
+    
+        // Generate examinee number for the user
         $code_series_user = "4" . str_pad($user->id, 6, '0', STR_PAD_LEFT);
+    
+        // Create new permit
         Permit::create([
             'examinee_number' => $code_series_user,
             'examinee_number_updated' => $code_series_user,
-            'user_id'=>$user->id,
-            'examination_id'=>$user->application->examination_id,
+            'user_id' => $user->id,
+            'examination_id' => $user->application->examination_id,
         ]);
+    
+        // Notify and refresh
         $this->notification([
             'title' => 'Success',
-            'description' => 'Payment has been approved',
+            'description' => 'Payment has been approved.',
             'icon' => 'success',
         ]);
+    
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
     }
+    
 
    
 
