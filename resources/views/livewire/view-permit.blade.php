@@ -66,7 +66,7 @@
                             <img src="{{ Storage::url($personal_information->photo) }}" alt="User Photo" class="h-full">
                         </div>
                         <div class="mt-3 bg-black text-white permit-number py-2 text-lg font-bold">
-                            {{ $permit->examinee_number_updated }}
+                            {{ $permit->examinee_number_updated??'' }}
                         </div>
                     </div>
 

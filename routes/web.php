@@ -44,7 +44,7 @@ Route::middleware([
                 return redirect()->route('admin.dashboard');
                 break;
             case 2:
-                return redirect()->route('IsNotAdmin');
+                return redirect()->route('applicant.home');
                 break;
         }
     })->name('dashboard');
@@ -122,7 +122,7 @@ Route::prefix('/applicant')
     ])
     ->group(function () {
         Route::get('/home', [HomeController::class, 'home'])->name(
-            'IsNotAdmin'
+            'applicant.home'
         );
         Route::get('/fill/application', [
             HomeController::class,
