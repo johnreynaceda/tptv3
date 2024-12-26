@@ -18,4 +18,8 @@ class Examination extends Model
     {
         return $this->hasMany(Result::class);
     }
+
+    
+
+
 }

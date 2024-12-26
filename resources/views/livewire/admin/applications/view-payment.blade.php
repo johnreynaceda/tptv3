@@ -28,13 +28,19 @@
                         </h1>
                         <ul>
                             @foreach ($payment->proofs as $key => $proof)
-                                <li class="space-y-3">
-                                    <a href="{{ Storage::url($proof->path) }}"
-                                        target="_blank"
-                                        class="text-blue-600">
-                                        View image {{ $key + 1 }}
-                                    </a>
-                                </li>
+                            @if(optional($proof)->path)
+                            <li class="space-y-3">
+                                <a href="{{ Storage::url($proof->path) }}"
+                                    target="_blank"
+                                    class="text-blue-600"
+                                    title="View the proof document">
+                                    <img src="{{ Storage::url($proof->path) }}" 
+                                         alt="Proof document for {{ $proof->name ?? 'item' }}" 
+                                         class="max-w-xs h-auto rounded-md shadow-md object-cover" />
+                                </a>
+                            </li>
+                        @endif
+                        
                             @endforeach
                         </ul>
                     </div>

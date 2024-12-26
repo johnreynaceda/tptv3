@@ -129,11 +129,16 @@
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Actual Photo</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            @if($user->personal_information->photo)
                             <a href="{{ Storage::url($user->personal_information->photo) }}"
                                 target="_blank"
                                 class="font-semibold text-blue-600">
-                                View
+                                <img src="{{ Storage::url($user->personal_information->photo) }}" 
+                                     alt="{{ $user->personal_information->photo }}" 
+                                     class="w-64 h-64" />
                             </a>
+                        @endif
+                        
                         </dd>
                     </div>
 

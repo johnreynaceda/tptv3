@@ -284,9 +284,15 @@
               <div class=" border-t-4 border-black mt-3  ml-6 ">
                 <h1 class="font-bold mt-2 uppercase">Appointment Details</h1>
                 <div class="mt-2">
-                  <h1 class="text-gray-600 text-sm mt-1">Date of Exam:
-                    {{ \Carbon\Carbon::parse(auth()->user()->application->student_slot->slot->date_of_exam)->format('F d, Y') }}
-                  </h1>
+                  @if(optional( auth()->user()->application->student_slot)->slot)
+                    <h1 class="text-gray-600 text-sm mt-1">
+                        Date of Exam: {{ \Carbon\Carbon::parse( auth()->user()->application->student_slot->slot->date_of_exam)->format('F d, Y') }}
+                    </h1>
+                @else
+                    <h1 class="text-gray-600 text-sm mt-1">
+                        Date of Exam: Not Assigned
+                    </h1>
+                @endif
                   <h1 class="text-gray-600 text-sm mt-1">Time:
                     {{ auth()->user()->application->student_slot->time }}
                   </h1>

@@ -208,9 +208,9 @@
             </a>
 
             <a href="{{ route('admin.examinations') }}"
-              class="{{ Request::routeIs('admin.examinations') ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium  rounded-md  group">
+              class="{{ Request::routeIs(['admin.examinations','admin.permit']) ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium  rounded-md  group">
               <svg
-                class="{{ Request::routeIs('admin.examinations') ? 'text-white' : 'text-gray-400 group-hover:text-gray-500' }}flex-shrink-0 w-6 h-6 mr-3 "
+                class="{{ Request::routeIs(['admin.examinations','admin.permit']) ? 'text-white' : 'text-gray-400 group-hover:text-gray-500' }}flex-shrink-0 w-6 h-6 mr-3 "
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                 stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round"

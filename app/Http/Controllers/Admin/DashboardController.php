@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -21,7 +22,7 @@ class DashboardController extends Controller
 
     public function loadData()
     {
-        $query_1 = DB::table('users')->select([
+        $query_1 = User::isNotAdmin()->select([
             DB::raw('"total_users_count" as label'),
             DB::raw('count(*) as value'),
         ]);

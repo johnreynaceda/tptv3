@@ -32,6 +32,7 @@
         </x-slot>
         <x-slot name="body">
             @forelse ($applications as $application)
+          
                 <x-table.row>
                     <x-table.data>
                         {{ $application->user->personal_information->first_name }}
@@ -95,6 +96,26 @@
                                         d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
                                         clip-rule="evenodd" />
                                 </svg> </x-button>
+                                
+
+                                @if ($application->user->permit)
+                                <a href="{{ route('admin.permit', ['user' => $application->user]) }}"
+                                   class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         class="h-6 w-6"
+                                         fill="none"
+                                         viewBox="0 0 24 24"
+                                         stroke="currentColor"
+                                         stroke-width="2">
+                                        <path stroke-linecap="round"
+                                              stroke-linejoin="round"
+                                              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                    </svg>
+                                    <span class="ml-2">Permit</span>
+                                </a>
+                            @endif
+                            
+                            
                         </div>
                     </x-table.data>
                 </x-table.row>

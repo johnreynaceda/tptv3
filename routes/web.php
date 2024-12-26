@@ -8,6 +8,8 @@ use App\Http\Controllers\{
     ResultController
 };
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Livewire\ViewPermit;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,6 +108,9 @@ Route::prefix('/admin')
         Route::get('/users', function () {
             return view('admin.users');
         })->name('admin.users');
+
+        //view permit
+        Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
     });
 
 Route::prefix('/applicant')

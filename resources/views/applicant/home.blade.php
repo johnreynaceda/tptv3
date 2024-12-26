@@ -912,6 +912,45 @@
             @default
           @endswitch
         </div>
+        <div>
+          {{-- // total slot  --}}
+          <div class="flex justify-center mt-5">
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 1a7 7 0 110 14A7 7 0 0110 3zm0 2a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1zm0 10a1 1 0 100 2 1 1 0 000-2z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-500">{{ $total_slots}} slots available</span>
+            </div>
+
+            {{-- total occupied slots --}}
+            <div class="flex items-center space-x-2 ml-5">
+              <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 1a7 7 0 110 14A7 7 0 0110 3zm0 2a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1zm0 10a1 1 0 100 2 1 1 0 000-2z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-500">{{ $total_occupied_slots}}
+                slots occupied</span>
+   
+            </div>
+
+            <div class="flex items-center space-x-2 ml-5">
+              <svg class="w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                  d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 1a7 7 0 110 14A7 7 0 0110 3zm0 2a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1zm0 10a1 1 0 100 2 1 1 0 000-2z"
+                  clip-rule="evenodd" />
+              </svg>
+              <span class="text-gray-500">{{ $total_available_slots}}
+                slots available</span>
+            </div>
+          
+
+        </div>
         <div class="flex justify-center mt-5">
           @if ($active_examination)
             @if (!$has_application)

@@ -59,6 +59,7 @@ class ManageSlot extends Component
             'slots' => 'required|numeric',
             'rooms' => 'required|numeric',
         ]);
+        
         DB::beginTransaction();
         $test_center = TestCenter::create([
             'examination_id' => $this->examination,

@@ -84,6 +84,7 @@
       <div x-cloak x-show="action=='view-payment'">
         <livewire:admin.applications.view-payment />
       </div>
+      
     </div>
     <livewire:admin.applications.upload-result :examination="$examination_id" />
 </x-layout.admin>

@@ -19,4 +19,10 @@ class Slot extends Model
     {
         return $this->hasMany(StudentSlot::class);
     }
+
+    //sum of student slots
+    public function scopeTotalSlots($query)
+    {
+        return $query->withCount('student_slots');
+    }
 }
