@@ -45,7 +45,7 @@
 
                         <x-dashboard.card-list>
                             <!-- Total Users -->
-                            <x-dashboard.card-item title="Total Users"
+                            <x-dashboard.card-item title="System Users"
                                 count="{{ $users_count }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
@@ -60,7 +60,7 @@
                             </x-dashboard.card-item>
                         
                             <!-- Total Users with Permit -->
-                            <x-dashboard.card-item title="Total Users With Permit"
+                            <x-dashboard.card-item title="Takers With Permit"
                                 count="{{ $totalUsersWithPermit }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
