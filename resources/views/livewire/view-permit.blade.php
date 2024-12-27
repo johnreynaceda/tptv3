@@ -52,10 +52,8 @@
                     <div>
                         {{-- <img src="{{ asset('images/logo2.png') }}" class="h-16" alt="SKSU Logo"> --}}
                     </div>
-                    {{-- @dump($permit->examinee_number_updated)
-                    @dump($permit->examinee_number) --}}
-                    <!-- QR Code -->
-                    <div class="absolute top-4 right-4">
+                   
+                    {{-- <div class="absolute top-4 right-4">
                         @if(!empty($permit->examinee_number))
                             <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($permit->examinee_number, 'QRCODE') }}" 
                                  alt="QR Code" 
@@ -65,7 +63,23 @@
                                  alt="QR Code Placeholder" 
                                  class="h-16 w-16">
                         @endif
+                    </div> --}}
+
+                    <div class="absolute top-4 right-4">
+                        @if(!empty($permit))
+                            <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($permit->generateQrData(), 'QRCODE') }}" 
+                                 alt="QR Code" 
+                                 class="h-16 w-16">
+                        @else
+                            <div class="h-16 w-16 flex text-center text-xs items-center justify-center border border-gray-400 rounded bg-gray-100 text-gray-600">
+                                <p>No</p>
+                                <p>Schedule</p>
+                            </div>
+                        @endif
                     </div>
+                    
+                    
+                    
                     
                     
                 </div>

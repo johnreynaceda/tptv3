@@ -85,15 +85,82 @@ class ViewPayment extends Component
     // }
 
 
-    public function approveConfirm()
+//     public function approveConfirm()
+// {
+//     DB::beginTransaction(); // Start the transaction
+    
+//     try {
+//         $user = User::where('id', $this->user_id)
+//                     ->with('application') // Load the application relationship
+//                     ->first();
+        
+//         if (!$user || !$user->application) {
+//             DB::rollBack(); // Rollback the transaction on error
+//             $this->notification([
+//                 'title' => 'Error',
+//                 'description' => 'User or application not found.',
+//                 'icon' => 'error',
+//             ]);
+//             return;
+//         }
+    
+//         // Update user step
+//         $user->update([
+//             'step' => '5',
+//         ]);
+    
+//         // Determine the permit examinee number
+//         $permit = Permit::latest()->first(); // Get the last created permit
+//         $code_series = $permit ? str_pad($permit->id + 1, 6, '0', STR_PAD_LEFT) : "411111";
+    
+//         // Generate examinee number for the user
+//         $code_series_user = "4" . str_pad($user->id, 6, '0', STR_PAD_LEFT);
+    
+//         // Create new permit
+//         Permit::create([
+//             'examinee_number' => $code_series_user,
+//             'examinee_number_updated' => $code_series_user,
+//             'user_id' => $user->id,
+//             'examination_id' => $user->application->examination_id,
+//         ]);
+    
+//         // Commit the transaction
+//         DB::commit();
+
+//         // Notify and refresh
+//         $this->notification([
+//             'title' => 'Success',
+//             'description' => 'Payment has been approved.',
+//             'icon' => 'success',
+//         ]);
+    
+//         $this->emit('refresh');
+//         $this->dispatchBrowserEvent('none');
+//     } catch (\Exception $e) {
+//         DB::rollBack(); // Rollback the transaction on exception
+        
+//         // Log the error for debugging
+//         Log::error('Error approving confirmation: ' . $e->getMessage());
+
+//         $this->notification([
+//             'title' => 'Error',
+//             'description' => 'An error occurred while processing the request.',
+//             'icon' => 'error',
+//         ]);
+//     }
+// }
+
+    
+
+public function approveConfirm()
 {
     DB::beginTransaction(); // Start the transaction
-    
+
     try {
         $user = User::where('id', $this->user_id)
                     ->with('application') // Load the application relationship
                     ->first();
-        
+
         if (!$user || !$user->application) {
             DB::rollBack(); // Rollback the transaction on error
             $this->notification([
@@ -103,27 +170,30 @@ class ViewPayment extends Component
             ]);
             return;
         }
-    
+
         // Update user step
         $user->update([
             'step' => '5',
         ]);
-    
-        // Determine the permit examinee number
-        $permit = Permit::latest()->first(); // Get the last created permit
-        $code_series = $permit ? str_pad($permit->id + 1, 6, '0', STR_PAD_LEFT) : "411111";
-    
-        // Generate examinee number for the user
-        $code_series_user = "4" . str_pad($user->id, 6, '0', STR_PAD_LEFT);
-    
+
+        // Get the last examinee number
+        $lastPermit = Permit::orderBy('examinee_number', 'desc')->first();
+
+        // Start from 411111 if no permits exist, otherwise increment
+        $nextExamineeNumber = $lastPermit 
+            ? max(intval($lastPermit->examinee_number) + 1, 411111) // Start at 411111 if no valid number exists
+            : 411111;
+
+        $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT); // Pad to 6 digits
+
         // Create new permit
         Permit::create([
-            'examinee_number' => $code_series_user,
-            'examinee_number_updated' => $code_series_user,
+            'examinee_number' => $nextExamineeNumberFormatted, // Store the correctly formatted number
+            'examinee_number_updated' => $nextExamineeNumberFormatted,
             'user_id' => $user->id,
             'examination_id' => $user->application->examination_id,
         ]);
-    
+
         // Commit the transaction
         DB::commit();
 
@@ -133,12 +203,12 @@ class ViewPayment extends Component
             'description' => 'Payment has been approved.',
             'icon' => 'success',
         ]);
-    
+
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
     } catch (\Exception $e) {
         DB::rollBack(); // Rollback the transaction on exception
-        
+
         // Log the error for debugging
         Log::error('Error approving confirmation: ' . $e->getMessage());
 
@@ -150,7 +220,6 @@ class ViewPayment extends Component
     }
 }
 
-    
 
    
 
