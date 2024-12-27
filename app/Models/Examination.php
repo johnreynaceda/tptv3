@@ -28,5 +28,6 @@ class Examination extends Model
         return $this->hasMany(Permit::class);
     }
 
+    
 
 }

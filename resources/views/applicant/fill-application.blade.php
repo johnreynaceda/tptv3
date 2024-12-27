@@ -16,6 +16,13 @@
             <span class="ml-3 text-lg text-gray-700">Back</span>
         </a>
     </template>
+
+    @if ($has_available_slots)
+               
+              
+    
+   
+
     <div x-data="{ current: 1 }"
         class="my-5 space-y-4"
         x-on:done-pi.window="current++"
@@ -116,4 +123,10 @@
             </nav>
         </div>
     </div>
+    @else
+    <div class="my-10">
+        <x-no-slot-available />
+
+    </div>
+    @endif
 </x-layout.applicant>

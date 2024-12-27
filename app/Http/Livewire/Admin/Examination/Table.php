@@ -17,6 +17,7 @@ class Table extends Component
     {
         return view('livewire.admin.examination.table',[
             'examinations'=>Examination::query()
+                                        
                                         ->where('title','like','%'.$this->search.'%')
                                         ->paginate(10)
         ]);

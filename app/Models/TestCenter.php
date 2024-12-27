@@ -53,6 +53,10 @@ class TestCenter extends Model
         });
     }
 
+    public function hasAvailableSlots()
+{
+    return $this->totalAvailableSlots() > 0;
+}
 
 
     public function totalNumberOfSlot()
