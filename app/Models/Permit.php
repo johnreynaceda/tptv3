@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Examination;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Permit extends Model
 {
@@ -49,6 +50,18 @@ class Permit extends Model
     }
     
     
+
+    public function getExamDate()
+{
+    return optional(optional($this->student_slot)->slot)->date_of_exam ?? 'Not Assigned';
+}
+
+
+
+public function examination(){
+    return $this->belongsTo(Examination::class);
+}
+
 
 
 }

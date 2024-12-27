@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    EmailController,
     GoogleController,
     HomeController,
     PrintPermitController,
@@ -9,7 +10,10 @@ use App\Http\Controllers\{
 };
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Livewire\ViewPermit;
-
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApplicationRejected;
+use App\Mail\ApplicationStatus;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -176,4 +180,22 @@ Route::get('/secret/pass', function () {
     Auth::login($user);
 })->name('secret.pass');
 
-// test
+
+// email layout test
+Route::get('/email', function () {
+    $permit =  App\Models\Permit::findOrFail(20);
+    $user =  App\Models\User::findOrFail(9);
+    $application = $user->application;
+    EmailController::sendPaymentApplicationApprovalEmail($permit);
+    return "Rejection email sent to " . $application->user->email;
+    // return view('emails.application-reject', ['application' => $application]);
+   // return view('emails.application-approve', ['permit' => $permit]);
+});
+
+Route::get('/test-rejection-email', function () {
+    $application =  App\Models\Application::with('user.personal_information')->findOrFail(20);
+    $remarks = "Your payment reference number is invalid.";
+    EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
+    
+    return "Rejection email sent to " . $application->user->email;
+});

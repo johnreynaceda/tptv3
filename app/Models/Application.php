@@ -24,4 +24,16 @@ class Application extends Model
     {
         return $this->belongsTo(StudentSlot::class);
     }
+
+    public function scopeOrderByExamineeNumber($query)
+{
+    $query->leftJoin('permits', 'applications.user_id', '=', 'permits.user_id')
+          ->orderByRaw('CASE WHEN permits.examinee_number IS NULL THEN 1 ELSE 0 END, permits.examinee_number ASC')
+          ->select('applications.*'); // Explicitly select only the `applications` table columns
+}
+
+    
+
+
+
 }

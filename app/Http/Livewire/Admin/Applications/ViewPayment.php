@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Applications;
 
+use App\Http\Controllers\EmailController;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\DB;
@@ -187,7 +188,7 @@ public function approveConfirm()
         $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT); // Pad to 6 digits
 
         // Create new permit
-        Permit::create([
+       $permit = Permit::create([
             'examinee_number' => $nextExamineeNumberFormatted, // Store the correctly formatted number
             'examinee_number_updated' => $nextExamineeNumberFormatted,
             'user_id' => $user->id,
@@ -203,6 +204,7 @@ public function approveConfirm()
             'description' => 'Payment has been approved.',
             'icon' => 'success',
         ]);
+        EmailController::sendPaymentApplicationApprovalEmail($permit);
 
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
@@ -268,6 +270,7 @@ public function approveConfirm()
             'description' => 'Payment has been rejected',
             'icon' => 'success',
         ]);
+        EmailController::sendPaymentApplicationRejectionEmail($user->application, $this->remarks);
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
     }

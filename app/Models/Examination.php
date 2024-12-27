@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Permit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Examination extends Model
 {
@@ -20,6 +21,12 @@ class Examination extends Model
     }
 
     
+
+    // has permits  
+    public function permits()
+    {
+        return $this->hasMany(Permit::class);
+    }
 
 
 }
