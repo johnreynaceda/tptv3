@@ -1,43 +1,14 @@
-<x-guest-layout>
+
+ <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <img src="{{ asset('images/sksu1.png') }}" alt="Logo" class="h-20 mx-auto mb-4">
-            <div class="text-xl md:text-2xl font-extrabold text-gray-800 mb-4">
-                SKSU-TPT
-            </div>
+            <img src="{{ asset('images/sksu1.png') }}" 
+                class="h-16 mx-auto mb-4" 
+                alt="SKSU Logo">
         </x-slot>
-        <div class="bg-white rounded-lg p-6 md:p-8 text-center max-w-sm sm:max-w-md mx-auto">
-            <div class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-4">
-                Log in with Google to Get Started
-            </div>
-            <p class="text-sm md:text-base text-gray-600 mb-6">
-                Please ensure you use a valid Google account to log in and access the platform.
-            </p>
-            <a href="{{ route('auth.google.redirect') }}" 
-                class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 md:p-3 hover:bg-gray-100 transition duration-300 ease-in-out">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
-                    alt="Google Icon" class="h-5 md:h-6 w-5 md:w-6 mr-3">
-                <span class="font-medium text-gray-700 text-sm md:text-lg">
-                    Continue with Google
-                </span>
-            </a>
-        </div>
-    </x-jet-authentication-card>
-</x-guest-layout>
-
-
-
-{{-- <x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-        </x-slot>
-        <div class="flex items-center mb-5 space-x-3">
-            <img src="{{ asset('images/sksu1.png') }}"
-                class="h-14"
-                alt="">
-            <div class="text-2xl font-bold text-center text-gray-600">
-                Sign in to your account
-            </div>
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-bold text-gray-800">TPT ADMIN</h1>
+            <p class="text-sm text-gray-600">Please log in to access your admin dashboard.</p>
         </div>
         @if (session('status'))
             <div class="mb-4 text-sm font-medium text-green-600">
@@ -86,41 +57,22 @@
               
             </div>
             
-        </form>
-        <div class="flex flex-col items-center justify-end mt-4 space-y-4">
-            <x-button type="submit" class="w-full" positive>
-                LOGIN
-            </x-button>
-            <div class="flex items-center my-4">
-                <div class="flex-grow border-t border-gray-400 h-2 w-full"></div>
-                <span class="px-3 text-sm text-gray-600">Or</span>
-                <div class="flex-grow border-t border-gray-400 h-2 w-full"></div>
-            </div>
-           
+            <div class="flex flex-col items-center justify-end mt-4 space-y-4">
+                <x-button type="submit" class="w-full" positive>
+                    LOGIN
+                </x-button>
+               
+                
+    
             
-
-            <a href="{{ route('auth.google.redirect') }}" 
-            class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 hover:bg-gray-100 mt-8">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
-                alt="Google Icon" class="h-5 w-5 mr-2">
-            <span class="font-medium text-gray-600 text-base sm:text-sm md:text-base lg:text-lg">
-                Continue With Google
-            </span>
-            <span class="text-xs ml-2 text-green-600 hidden sm:inline-block">
-                (Recommended)
-            </span>
-        </a>
-        
-        </div>
-        <div class="text-center mt-6">
-            <a href="{{ route('register') }}" class="text-sm text-gray-600 underline">
-                Don't have an account?
-            </a>
-        </div>
+            
+            </div>
+        </form>
+     
 
         
     </x-jet-authentication-card>
-</x-guest-layout> --}}
+</x-guest-layout> 
 
 
 {{-- <!DOCTYPE html>

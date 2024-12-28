@@ -81,7 +81,17 @@
                                     Philippines
                                 </p>
                             </div>
+
                             <div class="mt-12 sm:max-w-lg sm:w-full sm:flex">
+                                <div class="sm:ml-3 w-full">
+                                    <a href="{{ route('auth.google.redirect') }}"
+                                        class="block w-full px-5 py-3 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:px-10 text-center">
+                                        Get Started with Google
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            {{-- <div class="mt-12 sm:max-w-lg sm:w-full sm:flex">
                                 <div class="mt-4 sm:mt-0 sm:ml-3">
                                     <a href="{{ route('login') }}"
                                         class="block w-full px-5 py-3 text-base font-medium text-green-500 bg-white border rounded-md shadow hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 sm:px-10">
@@ -94,7 +104,7 @@
                                         Register
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

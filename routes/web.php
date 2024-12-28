@@ -36,6 +36,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// login admin
+Route::get('/admin/login', function () {return view('auth.login-admin');})->name('login.admin')->middleware('guest');
+
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->middleware('guest')->name('auth.google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'callBack'])->middleware('guest')->name('auth.google.callBack');
 

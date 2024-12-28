@@ -97,22 +97,23 @@
                 You are now eligible to proceed with the entrance examination process. Please note the following key steps ahead:
             </p>
             <ol>
-                <li><strong>Exam Schedule:</strong> You will receive a notification shortly with your exam date, time, and location.</li>
-                <li><strong>Exam Permit:</strong> You can now access and download your official exam permit via your account portal.</li>
-                <li><strong>Preparation:</strong> Make sure to review the instructions and bring all required materials on the exam day.</li>
+                <li><strong>Book Your Exam Slot:</strong> You can now select an available exam date, time, and location through your account portal.</li>
+                <li><strong>Exam Permit:</strong> Once you have booked your slot, you can access and download your official exam permit from your account portal.</li>
+                <li><strong>Preparation:</strong> Ensure you review the instructions and bring all required materials on the exam day.</li>
             </ol>
+            
             <p>
                 <strong>Note:</strong> Validation of payment and completion of the entrance test are preliminary steps. Final admission to the university is subject to further evaluations and processes.
             </p>
             <p>
                 If you have any questions or require assistance, feel free to reach out to us.
             </p>
-            <a href="#" class="cta-button">Download Your Permit</a>
+            
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p>📩 Need assistance? Contact us at <a href="mailto:sksu-support@example.com">sksu-support@example.com</a></p>
+            <p>📩 Need assistance? Contact us at <a href="mailto:sksu-support@example.com">sksutpt@gmail.com</a></p>
             <p>&copy; {{ date('Y') }} Sultan Kudarat State University</p>
         </div>
     </div>
