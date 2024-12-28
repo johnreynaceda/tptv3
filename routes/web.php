@@ -142,64 +142,64 @@ Route::prefix('/admin')
             //  
       
             
-            //     $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') 
-            //     ->setOption('args', ['--disable-web-security'])
-            //     ->ignoreHttpsErrors()
-            //     ->noSandbox()
-            //     ->showBackground()
-            //     ->setOption('scale', 0.9)
-            //     ->emulateMedia('print')
-            //     ->setNodeBinary('/usr/bin/node')
-            //     ->setNpmBinary('/usr/bin/npm')
-            //     ->setChromePath('chromium-browser')
-            //     ->setCustomTempPath('/home/www-data/browsershot-html')
-            //     ->addChromiumArguments([
-            //         'lang' => "en-US,en;q=0.9",
-            //         'hide-scrollbars',
-            //         'enable-font-antialiasing',
-            //         'force-device-scale-factor' => 1,
-            //         'font-render-hinting' => 'none',
-            //         'user-data-dir' => '/home/www-data/user-data',
-            //         'disk-cache-dir' => '/home/www-data/user-data/Default/Cache',
-            //     ])
-            //     ->pdf(); 
+                $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') 
+                ->setOption('args', ['--disable-web-security'])
+                // ->ignoreHttpsErrors()
+                // ->noSandbox()
+                // ->showBackground()
+                // ->setOption('scale', 0.9)
+                // ->emulateMedia('print')
+                // ->setNodeBinary('/usr/bin/node')
+                // ->setNpmBinary('/usr/bin/npm')
+                // ->setChromePath('chromium-browser')
+                // ->setCustomTempPath('/home/www-data/browsershot-html')
+                // ->addChromiumArguments([
+                //     'lang' => "en-US,en;q=0.9",
+                //     'hide-scrollbars',
+                //     'enable-font-antialiasing',
+                //     'force-device-scale-factor' => 1,
+                //     'font-render-hinting' => 'none',
+                //     'user-data-dir' => '/home/www-data/user-data',
+                //     'disk-cache-dir' => '/home/www-data/user-data/Default/Cache',
+                // ])
+                ->pdf(); 
             
-            // // Return PDF content as API response
-            // return response($pdfContent, 200, [
-            //         'Content-Type' => 'application/pdf',
-            //         'Content-Disposition' => 'inline; filename="example.pdf"',
-            //     ]);
+            // Return PDF content as API response
+            return response($pdfContent, 200, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="example.pdf"',
+                ]);
                 
                 // ---------------
                 //    VERSION 3
 
-                $htmlContent = view('livewire.permit-layout', ['permit' => $permit])->render();
+                // $htmlContent = view('livewire.permit-layout', ['permit' => $permit])->render();
 
-                // Generate the PDF content
-                $pdfContent = Browsershot::html($htmlContent)
-                    ->noSandbox() // Disable sandboxing; necessary for some server environments
-                    ->showBackground() // Ensure backgrounds are rendered
-                    ->emulateMedia('print') // Emulate print media type
-                    ->format('A4') // Set the paper format to A4
-                    ->setNodeBinary('/usr/bin/node') // Specify the Node.js binary path
-                    ->setNpmBinary('/usr/bin/npm') // Specify the npm binary path
-                    ->setChromePath('/usr/bin/chromium-browser') // Specify the Chromium binary path
-                    ->addChromiumArguments([
-                        '--disable-web-security',
-                        '--hide-scrollbars',
-                        '--enable-font-antialiasing',
-                        '--force-device-scale-factor=1',
-                        '--font-render-hinting=none',
-                        '--user-data-dir=/home/www-data/user-data',
-                        '--disk-cache-dir=/home/www-data/user-data/Default/Cache',
-                    ])
-                    ->pdf();
+                // // Generate the PDF content
+                // $pdfContent = Browsershot::html($htmlContent)
+                //     ->noSandbox() // Disable sandboxing; necessary for some server environments
+                //     ->showBackground() // Ensure backgrounds are rendered
+                //     ->emulateMedia('print') // Emulate print media type
+                //     ->format('A4') // Set the paper format to A4
+                //     ->setNodeBinary('/usr/bin/node') // Specify the Node.js binary path
+                //     ->setNpmBinary('/usr/bin/npm') // Specify the npm binary path
+                //     ->setChromePath('/usr/bin/chromium-browser') // Specify the Chromium binary path
+                //     ->addChromiumArguments([
+                //         '--disable-web-security',
+                //         '--hide-scrollbars',
+                //         '--enable-font-antialiasing',
+                //         '--force-device-scale-factor=1',
+                //         '--font-render-hinting=none',
+                //         '--user-data-dir=/home/www-data/user-data',
+                //         '--disk-cache-dir=/home/www-data/user-data/Default/Cache',
+                //     ])
+                //     ->pdf();
             
-                // Return the PDF content as a response
-                return response($pdfContent, 200, [
-                    'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="permit.pdf"',
-                ]);
+                // // Return the PDF content as a response
+                // return response($pdfContent, 200, [
+                //     'Content-Type' => 'application/pdf',
+                //     'Content-Disposition' => 'inline; filename="permit.pdf"',
+                // ]);
 
         })->name('admin.generate-pdf-permit');
     });
