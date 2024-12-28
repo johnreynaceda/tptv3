@@ -26,7 +26,9 @@ class DashboardController extends Controller
         ? TestCenter::totalSlots()->where('examination_id', $active_examination->id)->first() 
         : null;
 
-    
+        $total_slots = $testCenter ? $testCenter->totalNumberOfSlot() : 0;
+        $total_occupied_slots = $testCenter ? $testCenter->totalOccupiedSlots() : 0;
+        $total_available_slots = $testCenter ? $testCenter->totalAvailableSlots() : 0;
 
     // Return view with data (default values where necessary)
     return view('admin.dashboard', [
@@ -34,9 +36,9 @@ class DashboardController extends Controller
     'users_count' => $stat['total_users_count'],
     'examinations_count' => $stat['total_examinations_count'],
     'programs_count' => $stat['total_programs_count'],
-    'total_slots' => $testCenter->totalNumberOfSlot() ?? null,
-    'total_occupied_slots' => $testCenter->totalOccupiedSlots() ?? null,
-    'total_available_slots' => $testCenter->totalAvailableSlots() ?? null,
+    'total_slots' => $total_slots,
+        'total_occupied_slots' => $total_occupied_slots,
+        'total_available_slots' => $total_available_slots,
         'current_active_examination' => $active_examination,
     ]);
     }
