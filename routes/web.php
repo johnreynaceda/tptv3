@@ -126,29 +126,31 @@ Route::prefix('/admin')
         //view permit
         // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
         Route::get('/permit/{permit}/view', ViewOnlyPermit::class)->name('admin.permit.view');
-        Route::get('/permit/{permit}', PermitLayout::class)->name('admin.permit');
+     
 
-        Route::get('/generate-pdf/{permit}', function (Permit $permit) {
-
-
-                $htmlContent = View::make('livewire.permit-layout', ['permit' => $permit])->render();
-
-                // Generate the PDF from the HTML content
-                $pdfContent = Browsershot::html($htmlContent)
-                    ->setOption('args', ['--disable-web-security'])
-                    ->pdf();
-
-                    $fullName = $permit->user->personal_information->fullName();
-                    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName).'PERMIT';
-            
-                // Return the PDF content as a response
-                return response($pdfContent, 200, [
-                    'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
-                ]);
-
-        })->name('admin.generate-pdf-permit');
     });
+
+    Route::get('/permit/{permit}', PermitLayout::class)->name('admin.permit');
+    Route::get('/generate-pdf/{permit}', function (Permit $permit) {
+
+
+        $htmlContent = View::make('livewire.permit-layout', ['permit' => $permit])->render();
+
+        // Generate the PDF from the HTML content
+        $pdfContent = Browsershot::html($htmlContent)
+            ->setOption('args', ['--disable-web-security'])
+            ->pdf();
+
+            $fullName = $permit->user->personal_information->fullName();
+            $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName).'PERMIT';
+    
+        // Return the PDF content as a response
+        return response($pdfContent, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
+        ]);
+
+})->name('admin.generate-pdf-permit');
 
 Route::prefix('/applicant')
     ->middleware([
