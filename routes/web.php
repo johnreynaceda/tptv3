@@ -159,8 +159,9 @@ Route::prefix('/admin')
                 $pdfContent = Browsershot::html(
                     View::make('livewire.permit-layout', ['permit' => $permit])->render()
                 )
-                    ->setOption('args', ['--no-sandbox'])
-                    ->setOption('executablePath', '/usr/bin/chromium-browser')
+                    ->setNodeBinary('/root/.nvm/versions/node/v22.12.0/bin/node') // Set the correct Node.js binary
+                    ->setOption('args', ['--no-sandbox']) // Puppeteer argument for non-sandboxed environments
+                    ->setOption('executablePath', '/usr/bin/chromium-browser') // Set the correct Chromium path
                     ->pdf();
             
                 return response($pdfContent, 200, [
