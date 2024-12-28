@@ -141,7 +141,25 @@ Route::prefix('/admin')
             //  
       
             
-                $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route}')
+            //     $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route}')
+            //     ->setOption('args', ['--no-sandbox']) // Required for some server environments
+            //     ->pdf(); // Generate the PDF as binary content
+            
+            // // Return PDF content as API response
+            // return response($pdfContent, 200, [
+            //         'Content-Type' => 'application/pdf',
+            //         'Content-Disposition' => 'inline; filename="example.pdf"',
+            //     ]);
+                
+                // ---------------
+                //    VERSION 3
+
+
+                  
+            
+       
+
+                $pdfContent = Browsershot::url(route('admin.permit',['permit'=> $permit])) // Use named route for your custom route}')
                 ->setOption('args', ['--no-sandbox']) // Required for some server environments
                 ->pdf(); // Generate the PDF as binary content
             
@@ -150,24 +168,6 @@ Route::prefix('/admin')
                     'Content-Type' => 'application/pdf',
                     'Content-Disposition' => 'inline; filename="example.pdf"',
                 ]);
-                
-                // ---------------
-                //    VERSION 3
-                  
-                
-
-                // $html = view('livewire.permit-layout', ['permit' => $permit])->render();
-
-                // // Generate the PDF content with Browsershot
-                // $pdfContent = Browsershot::html($html)
-                //     ->setOption('args', ['--no-sandbox', '--disable-setuid-sandbox']) // Sandboxing fixes
-                //     ->pdf(); // Generate the PDF as binary content
-            
-                // // Return the PDF content as a downloadable response
-                // return response($pdfContent, 200, [
-                //     'Content-Type' => 'application/pdf',
-                //     'Content-Disposition' => 'inline; filename="permit.pdf"',
-                // ]);
 
 
         })->name('admin.generate-pdf-permit');
