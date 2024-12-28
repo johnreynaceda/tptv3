@@ -59,28 +59,54 @@
             </div>
     
             <div class="">
-                <div class="flex">
+                <div class="flex gap-6">
                     <!-- Left Section: Photo and Examinee Number -->
                     <div>
-                        <div class="w-24 h-24 border border-black flex items-center justify-center">
-                            <img src="{{ Storage::url($permit->user->personal_information->photo) }}" alt="User Photo" class="h-full">
+                        <!-- Image Container -->
+                        <div class="w-32 h-32 border border-black flex items-center justify-center bg-gray-100">
+                            @if($permit->user->personal_information->photo)
+                                <img src="{{ Storage::url($permit->user->personal_information->photo) }}" alt="User Photo" class="h-full w-full object-cover">
+                            @else
+                                <span class="text-xs text-gray-500">Photo Not Available</span>
+                            @endif
                         </div>
-                        <div class="text-center">
-                            <p class="text-lg font-bold">1.11414</p>
+                
+                        <!-- Examinee Number -->
+                        <div class="text-center mt-2">
+                            <p class="text-lg font-bold text-3xl ">1.11414</p>
                             <p class="text-sm">Examinee Number</p>
                         </div>
                     </div>
-                    
+                
                     <!-- Right Section: Personal Details -->
-                    <div class="">
-                        <p class="text-sm"><span class="font-bold">Full Name:</span> DELA CRUZ, JUAN PEDRO</p>
-                        <p class="text-sm"><span class="font-bold">Present Address:</span> BARANGAY TINA, TACURONG CITY</p>
-                        <p class="text-sm"><span class="font-bold">School:</span> TACURONG NATIONAL HIGH SCHOOL</p>
-                        <p class="text-sm"><span class="font-bold">Sex:</span> MALE</p>
-                        <p class="text-sm"><span class="font-bold">Date of Birth:</span> JUNE 15, 1989</p>
-                        <p class="text-sm"><span class="font-bold">PWD / Pregnant / Special Need:</span> YES</p>
+                    <div class="grid grid-cols-1 gap-2 ">
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">Full Name:</span>
+                            <span>DELA CRUZ, JUAN PEDRO</span>
+                        </div>
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">Present Address:</span>
+                            <span>BARANGAY TINA, TACURONG CITY</span>
+                        </div>
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">School:</span>
+                            <span>TACURONG NATIONAL HIGH SCHOOL</span>
+                        </div>
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">Sex:</span>
+                            <span>MALE</span>
+                        </div>
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">Date of Birth:</span>
+                            <span>JUNE 15, 1989</span>
+                        </div>
+                        <div class="text-sm flex">
+                            <span class="font-bold min-w-[150px]">PWD / Pregnant / Special Need:</span>
+                            <span class="ml-2">:YES</span>
+                        </div>
                     </div>
                 </div>
+                
                 
     
                
