@@ -160,7 +160,7 @@ Route::prefix('/admin')
                     View::make('livewire.permit-layout', ['permit' => $permit])->render()
                 )
                 ->setOption('args', ['--no-sandbox']) 
-                ->setIncludePath('/root/.nvm/versions/node/v22.12.0/bin/npm')
+                ->setIncludePath('$PATH:/root/.nvm/versions/node/v22.12.0/bin/npm')
                     ->pdf(); 
             
                 return response($pdfContent, 200, [
