@@ -178,11 +178,14 @@ Route::prefix('/admin')
                 $pdfContent = Browsershot::html($htmlContent)
                     ->setOption('args', ['--disable-web-security'])
                     ->pdf();
+
+                    $fullName = $permit->user->personal_information->fullName();
+                    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName);
             
                 // Return the PDF content as a response
                 return response($pdfContent, 200, [
                     'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="example.pdf"',
+                    'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
                 ]);
 
         })->name('admin.generate-pdf-permit');
