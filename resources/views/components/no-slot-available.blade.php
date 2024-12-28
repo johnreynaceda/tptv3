@@ -8,7 +8,7 @@
       </p>
       <a 
       href="mailto:sksutpt@gmail.com" 
-      class="px-6 py-2 bg-blue-600 text-green-600 rounded-lg shadow hover:bg-blue-700  inline-block mb-4"
+      class="px-6 py-2 bg-white text-green-600 rounded-lg shadow hover:bg-white  inline-block mb-4"
   >
   sksutpt@gmail.com
   </a>

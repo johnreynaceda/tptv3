@@ -36,9 +36,41 @@ class Table extends Component
         // ->paginate(10);
         // return view('livewire.admin.applications.table', compact('applications'));
 
+
+
+        // return view('livewire.admin.applications.table', [
+        //     'applications' => Application::query()
+        //         ->where('examination_id', $this->examination)
+        //         ->whereHas('user', function ($query) {
+        //             $query->whereIn('step', $this->step);
+        //         })
+                
+        //         ->when($this->search, function ($query) {
+        //             $query->whereHas('user.personal_information', function ($query) {
+        //                 $query->where('first_name', 'like', '%' . $this->search . '%')
+        //                     ->orWhere('last_name', 'like', '%' . $this->search . '%');
+        //             });
+        //         })
+        //         ->when($this->type, function ($query) {
+        //             $query->whereHas('user.personal_information', function ($query) {
+        //                 $query->where('type_id', $this->type);
+        //             });
+        //         })
+        //         ->with(['user' => [
+        //             'personal_information',
+        //             'school_information',
+        //             'program_choices' => [
+        //                 'program'
+        //             ],
+
+        //         ],'user.permit'])
+        //         // ->orderByExamineeNumber()
+        //         ->paginate(10),
+        // ]);
+
         return view('livewire.admin.applications.table', [
             'applications' => Application::query()
-                ->where('examination_id', $this->examination)
+                ->where('applications.examination_id', $this->examination) // Specify the table name explicitly
                 ->whereHas('user', function ($query) {
                     $query->whereIn('step', $this->step);
                 })
@@ -53,18 +85,26 @@ class Table extends Component
                         $query->where('type_id', $this->type);
                     });
                 })
-                ->with(['user' => [
-                    'personal_information',
-                    'school_information',
-                    'program_choices' => [
-                        'program'
+                ->with([
+                    'user' => [
+                        'personal_information',
+                        'school_information',
+                        'program_choices' => [
+                            'program',
+                        ],
                     ],
-
-                ],'user.permit'])
-                // ->orderByExamineeNumber()
+                    'user.permit',
+                ])
+                ->leftJoin('users', 'applications.user_id', '=', 'users.id') // Join users
+                ->leftJoin('permits', 'users.id', '=', 'permits.user_id') // Join permits
+                ->select('applications.*') // Ensure only application fields are selected
+                ->orderByRaw('CAST(permits.examinee_number AS UNSIGNED) ASC') // Numeric sorting
                 ->paginate(10),
         ]);
+        
 
+
+        
         
     }
 

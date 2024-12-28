@@ -14,6 +14,10 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApplicationRejected;
 use App\Mail\ApplicationStatus;
+use App\Http\Livewire\GeneratePdf;
+use App\Http\Livewire\PermitLayout;
+use Spatie\Browsershot\Browsershot;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -198,4 +202,27 @@ Route::get('/test-rejection-email', function () {
     EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
     
     return "Rejection email sent to " . $application->user->email;
+});
+
+Route::get('/pdf/test', PermitLayout::class)->name('pdf.test'); // Named route for Browsershot
+
+// Route::get('/generate-pdf', GeneratePdf::class);
+// Route::get('/generate-pdf', function () {
+//     $filePath = storage_path('app/public/example.pdf'); // Save to storage/app/public
+//     Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs')
+//         ->setOption('args', ['--no-sandbox']) // Required for some server environments
+//         ->save($filePath); // Save the PDF
+
+//     return response()->download($filePath); // Provide the file as a downloadable response
+// });
+
+
+Route::get('/generate-pdf', function () {
+    $filePath = storage_path('app/public/example.pdf'); // Save to storage/app/public
+
+    Browsershot::url('http://127.0.0.1:8000/pdf/test') // Use named route for your custom route
+        ->setOption('args', ['--no-sandbox']) // Required for some server environments
+        ->save($filePath); // Save the PDF
+
+    return response()->download($filePath); // Provide the file as a downloadable response
 });
