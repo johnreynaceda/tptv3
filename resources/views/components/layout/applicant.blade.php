@@ -109,7 +109,11 @@
 
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="mx-auto sm:max-w-3xl">
-           
+            <div class="sticky top-0 z-40 flex w-full p-3 bg-white">
+                <div id="menuContainer">
+                    {{--  --}}
+                </div>
+            </div>
             <div class="px-4">
                 {{ $slot }}
 

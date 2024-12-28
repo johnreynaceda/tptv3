@@ -86,6 +86,7 @@ class HomeController extends Controller
 
     public function fillApplication()
     {
+
         $active_examination = Examination::where('is_active', 1)->first();
         $testCenter = TestCenter::totalSlots()
         ->where('examination_id', $active_examination->id)
