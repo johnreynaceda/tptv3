@@ -97,8 +97,8 @@
                 You are now eligible to proceed with the entrance examination process. Please note the following key steps ahead:
             </p>
             <ol>
-                <li><strong>Book Your Exam Slot:</strong> You can now select an available exam date, time, and location through your account portal.</li>
-                <li><strong>Exam Permit:</strong> Once you have booked your slot, you can access and download your official exam permit from your account portal.</li>
+                <li><strong>Exam Slot Assigned:</strong> Your exam date, time, and location are now available in your account portal.</li>
+                <li><strong>Exam Permit:</strong> You can access and download your official exam permit from your account portal.</li>
                 <li><strong>Preparation:</strong> Ensure you review the instructions and bring all required materials on the exam day.</li>
             </ol>
             
