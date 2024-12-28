@@ -21,4 +21,13 @@ class PersonalInformation extends Model
     return "{$this->last_name}, {$this->first_name}{$middleName}";
 }
 
+public function getFormattedDateOfBirthAttribute()
+{
+    if (!$this->date_of_birth) {
+        return ''; // Return an empty string or a default message if null
+    }
+
+    return \Carbon\Carbon::createFromFormat('Y-m-d', $this->date_of_birth)->format('F j, Y');
+}
+
 }

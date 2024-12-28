@@ -16,6 +16,7 @@ use App\Mail\ApplicationRejected;
 use App\Mail\ApplicationStatus;
 use App\Http\Livewire\GeneratePdf;
 use App\Http\Livewire\PermitLayout;
+use App\Http\Livewire\ViewOnlyPermit;
 use Spatie\Browsershot\Browsershot;
 use App\Models\Permit;
 use Illuminate\Support\Facades\View;
@@ -121,6 +122,7 @@ Route::prefix('/admin')
 
         //view permit
         // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
+        Route::get('/permit/{permit}/view', ViewOnlyPermit::class)->name('admin.permit.view');
         Route::get('/permit/{permit}', PermitLayout::class)->name('admin.permit');
 
         Route::get('/generate-pdf/{permit}', function (Permit $permit) {

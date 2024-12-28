@@ -1,4 +1,4 @@
-<div>
+<div class="bg-gray-100 min-h-screen ">
 
     <x-layout.ordinary>
         <head>
@@ -6,7 +6,7 @@
             <script src="https://cdn.tailwindcss.com"></script>
         </head>
 
-        <div class="mt-8">
+        <div class="">
     <style>
       @page {
             size: auto;
@@ -49,8 +49,8 @@
 
         
          
-         {{-- <div class=" mx-auto border border-black p-4 max-w-[8.5in] "> --}}
-         <div class=" mx-auto  p-4 max-w-[8.5in] ">
+            <div class=" mx-auto border border-black p-4 max-w-[8.5in]  ">
+         {{-- <div class=" mx-auto  p-4 max-w-[8.5in] "> --}}
            
             <div class="text-end mb-6 flex items-center justify-between">
                 <div class="text-center w-full">
@@ -113,7 +113,7 @@
                         </div>
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">Date of Birth:</span>
-                            <span class="uppercase">{{ $permit->user->personal_information->formatted_date_of_birth ?? 'None' }}</span>
+                            <span class="uppercase">{{ $permit->user->personal_information->formatted_date_of_birth  ?? 'None' }}</span>
                         </div>
                         <div class="text-sm flex items-center">
                             <span class="font-bold min-w-[150px]">PWD / Pregnant / Special Need:</span>

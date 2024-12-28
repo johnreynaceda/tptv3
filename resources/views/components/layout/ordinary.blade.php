@@ -31,8 +31,7 @@
         defer></script>
 </head>
 
-<body 
-    class="relative font-poppins">
+<body class="relative font-poppins ">
     <!-- This example requires Tailwind CSS v2.0+ -->
     {{$slot}}
 </body>

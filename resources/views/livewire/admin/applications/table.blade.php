@@ -98,8 +98,8 @@
                                 </svg> </x-button>
                                 
 
-                                @if ($application->user->permit)
-                                {{-- <a href="{{ route('admin.permit', ['permit' => $application->user->permit]) }}" target="_blank" --}}
+                                {{-- @if ($application->user->permit)
+                         
                                 <a href="{{route('admin.generate-pdf-permit', ['permit' => $application->user->permit])}}" target="_blank"
                                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-700 bg-white rounded-md shadow-sm hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,65 @@
                                     </svg>
                                     <span class="ml-2">Permit</span>
                                 </a>
-                            @endif
+
+                              
+                            @endif --}}
+
+                            @if ($application->user->permit)
+                            <!-- Modal Trigger -->
+                            <div x-data="{ isOpen: false }">
+                                <x-button flat @click="isOpen = true" spinner>
+                                    Permit
+                                </x-button>
+                        
+                                <!-- Modal -->
+                                <template x-if="isOpen">
+                                    <div>
+                                        <!-- Background -->
+                                        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="isOpen = false" aria-hidden="true"></div>
+                        
+                                        <!-- Modal Content -->
+                                        <div class="fixed inset-0 z-10 flex items-center justify-center overflow-y-auto">
+                                            <div x-show="isOpen" 
+                                                 x-transition 
+                                                 class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mx-4 sm:mx-auto">
+                                                <h3 class="text-lg font-semibold text-gray-800 mb-4 text-center">Permit Options</h3>
+                                                <div class="flex gap-4">
+                                                    <!-- View Button -->
+                                                    <a href="{{ route('admin.permit.view', ['permit' => $application->user->permit]) }}" 
+                                                       target="_blank" 
+                                                       @click="isOpen = false" 
+                                                       class="flex items-center justify-center gap-2 flex-1 px-4 py-2 text-center bg-white text-green-600 border border-green-500 rounded-md hover:bg-green-100 transition">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12h3m-3 0h-3m-3 0h-3M9 12H6m9-9v3m0 3V6m0 6V9M3 21h18M3 15v6M3 21l3-6m15 6l-3-6" />
+                                                        </svg>
+                                                        View
+                                                    </a>
+                                                
+                                                    <!-- Download Button -->
+                                                    <a href="{{ route('admin.generate-pdf-permit', ['permit' => $application->user->permit]) }}" 
+                                                       target="_blank" 
+                                                       @click="isOpen = false" 
+                                                       class="flex items-center justify-center gap-2 flex-1 px-4 py-2 text-center bg-green-500 text-white rounded-md hover:bg-green-600 transition">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 21v-2m4 2v-4m4 4v-2M3 15h18M9 11V4a1 1 0 011-1h4a1 1 0 011 1v7m-6 0h6" />
+                                                        </svg>
+                                                        Download
+                                                    </a>
+                                                </div>
+                                                
+                        
+                                                <button @click="isOpen = false" 
+                                                        class="mt-6 w-full px-4 py-2 border bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400">
+                                                    Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        @endif
+                        
                             
                             
                         </div>
