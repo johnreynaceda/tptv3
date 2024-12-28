@@ -145,6 +145,7 @@ Route::prefix('/admin')
                 ->setNodeBinary('/usr/local/bin/node')
                 ->setNpmBinary('/usr/local/bin/npm')
                 ->setOption('args', ['--no-sandbox']) // 
+                ->setChromePath('/usr/bin/chromium-browser') // 
                 ->pdf(); 
             
             // Return PDF content as API response
