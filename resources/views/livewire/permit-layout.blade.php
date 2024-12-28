@@ -83,7 +83,7 @@
                 
                         <!-- Examinee Number -->
                         <div class="text-center mt-2">
-                            <p class="text-lg font-bold text-3xl ">1.11414</p>
+                            <p class="text-lg font-bold text-3xl ">{{$permit->examinee_number}}</p>
                             <p class="text-sm">Examinee Number</p>
                         </div>
                     </div>

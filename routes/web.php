@@ -141,7 +141,7 @@ Route::prefix('/admin')
             //  
       
             
-                $pdfContent = Browsershot::url('https://sksu-tpt.com/permit/' . $permit->id) // Use named route for your custom route}')
+                $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route}')
                 ->setOption('args', ['--no-sandbox']) // Required for some server environments
                 ->pdf(); // Generate the PDF as binary content
             
