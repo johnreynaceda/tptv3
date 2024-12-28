@@ -160,6 +160,7 @@ Route::prefix('/admin')
                     View::make('livewire.permit-layout', ['permit' => $permit])->render()
                 )
                     ->setOption('args', ['--no-sandbox'])
+                    ->setOption('executablePath', '/usr/bin/chromium-browser')
                     ->pdf();
             
                 return response($pdfContent, 200, [
