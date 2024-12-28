@@ -19,6 +19,7 @@ use App\Http\Livewire\PermitLayout;
 use Spatie\Browsershot\Browsershot;
 use App\Models\Permit;
 use Illuminate\Support\Facades\View;
+use Barryvdh\DomPDF\Facade\Pdf;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -142,10 +143,25 @@ Route::prefix('/admin')
       
             
                 $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') 
-                ->setNodeBinary('/usr/local/bin/node')
-                ->setNpmBinary('/usr/local/bin/npm')
-                ->setOption('args', ['--no-sandbox']) // 
-                ->setChromePath('/usr/bin/chromium-browser') // 
+                ->setOption('args', ['--disable-web-security'])
+                ->ignoreHttpsErrors()
+                ->noSandbox()
+                ->showBackground()
+                ->setOption('scale', 0.9)
+                ->emulateMedia('print')
+                ->setNodeBinary('/usr/bin/node')
+                ->setNpmBinary('/usr/bin/npm')
+                ->setChromePath('chromium-browser')
+                ->setCustomTempPath('/home/www-data/browsershot-html')
+                ->addChromiumArguments([
+                    'lang' => "en-US,en;q=0.9",
+                    'hide-scrollbars',
+                    'enable-font-antialiasing',
+                    'force-device-scale-factor' => 1,
+                    'font-render-hinting' => 'none',
+                    'user-data-dir' => '/home/www-data/user-data',
+                    'disk-cache-dir' => '/home/www-data/user-data/Default/Cache',
+                ])
                 ->pdf(); 
             
             // Return PDF content as API response
@@ -182,6 +198,9 @@ Route::prefix('/admin')
                 //     'Content-Disposition' => 'inline; filename="permit.pdf"',
                 // ]);
 
+                // $pdf = Pdf::loadView('livewire.permit-layout', ['permit' => $permit]);
+                // $filename = $permit->user->personal_information->fullName();
+                // return $pdf->download($filename . '.pdf');
 
         })->name('admin.generate-pdf-permit');
     });
