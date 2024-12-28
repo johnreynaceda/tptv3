@@ -79,11 +79,12 @@
                         <!-- Image Container -->
                         <div class="w-32 h-32 border border-black flex items-center justify-center bg-gray-100">
                             @if($permit->user->personal_information->photo)
-                                <img src="{{ Storage::url($permit->user->personal_information->photo) }}" alt="User Photo" class="h-full w-full object-cover">
+                                <img src="{{ asset('storage/' . $permit->user->personal_information->photo) }}" alt="User Photo" class="h-full w-full object-cover">
                             @else
                                 <span class="text-xs text-gray-500">Photo Not Available</span>
                             @endif
                         </div>
+                        
                 
                         <!-- Examinee Number -->
                         <div class="text-center mt-2">
