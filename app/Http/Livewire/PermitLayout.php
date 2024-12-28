@@ -8,12 +8,10 @@ use Livewire\Component;
 class PermitLayout extends Component
 {   
 
-    public $permit;
+    public  $permit;
 
-    public function mount()
-    {   
-
-        $permit = Permit::findOrFail(28);
+    public function mount(Permit $permit)
+    {
         $this->permit = $permit;
     }
 

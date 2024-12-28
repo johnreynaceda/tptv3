@@ -1,7 +1,9 @@
-<x-layout.applicant>
+<div>
 
+    <x-layout.admin>
+        
 
-<div class="mt-8">
+        <div class="mt-8">
     <style>
       @page {
             size: auto;
@@ -41,6 +43,8 @@
 
     
         </style>
+
+        
          
          <div class=" mx-auto border border-black p-4 max-w-[8.5in] ">
            
@@ -85,32 +89,44 @@
                     </div>
                 
                     <!-- Right Section: Personal Details -->
-                    <div class="grid grid-cols-1 gap-2 ">
+                    <div class="grid grid-cols-1 gap-2">
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">Full Name:</span>
-                            <span>DELA CRUZ, JUAN PEDRO</span>
+                            <span class="uppercase">{{ $permit->user->personal_information->fullName() ?? 'None' }}</span>
                         </div>
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">Present Address:</span>
-                            <span>BARANGAY TINA, TACURONG CITY</span>
+                            <span class="uppercase">{{ $permit->user->personal_information->present_address ?? 'None' }}</span>
                         </div>
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">School:</span>
-                            <span>TACURONG NATIONAL HIGH SCHOOL</span>
+                            <span class="uppercase">{{ $permit->user->school_information->school_graduated ?? 'None' }}</span>
                         </div>
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">Sex:</span>
-                            <span>MALE</span>
+                            <span class="uppercase">{{ $permit->user->personal_information->sex ?? 'None' }}</span>
                         </div>
                         <div class="text-sm flex">
                             <span class="font-bold min-w-[150px]">Date of Birth:</span>
-                            <span>JUNE 15, 1989</span>
+                            <span class="uppercase">{{ $permit->user->personal_information->date_of_birth ?? 'None' }}</span>
                         </div>
-                        <div class="text-sm flex">
+                        <div class="text-sm flex items-center">
                             <span class="font-bold min-w-[150px]">PWD / Pregnant / Special Need:</span>
-                            <span class="ml-2">:YES</span>
+                            <span class="ml-2 flex items-center gap-6">
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 border border-black inline-block mr-2"></span>
+                                    <span class="">Yes</span>
+                                </span>
+                                <span class="flex items-center">
+                                    <span class="w-3 h-3 border border-black inline-block mr-2"></span>
+                                    <span class="">No</span>
+                                </span>
+                            </span>
                         </div>
+                        
+                        
                     </div>
+                    
                 </div>
                 
                 
@@ -190,4 +206,6 @@
         
 
         
-</x-layout.applicant>
+
+    </x-layout.admin>
+</div>

@@ -17,6 +17,7 @@ use App\Mail\ApplicationStatus;
 use App\Http\Livewire\GeneratePdf;
 use App\Http\Livewire\PermitLayout;
 use Spatie\Browsershot\Browsershot;
+use App\Models\Permit;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/auth/google', [GoogleController::class,'redirect'])->middleware('guest')->name('auth.google.redirect');
-Route::get('/auth/google/callback', [GoogleController::class,'callBack'])->middleware('guest')->name('auth.google.callBack');
+Route::get('/auth/google', [GoogleController::class, 'redirect'])->middleware('guest')->name('auth.google.redirect');
+Route::get('/auth/google/callback', [GoogleController::class, 'callBack'])->middleware('guest')->name('auth.google.callBack');
 
 
 Route::get('/forgot-password', function () {
@@ -118,7 +119,58 @@ Route::prefix('/admin')
         })->name('admin.users');
 
         //view permit
-        Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
+        // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
+        Route::get('/permit/{permit}', PermitLayout::class)->name('admin.permit');
+
+        Route::get('/generate-pdf/{permit}', function (Permit $permit) {
+
+
+            // ---------------
+              //  VERSION 1
+            //
+            
+            // $filePath = storage_path('app/public/example.pdf'); // Save to storage/app/public
+            
+            // Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route
+            //     ->setOption('args', ['--no-sandbox']) // Required for some server environments
+            //     ->save($filePath); // Save the PDF
+            
+            // return response()->download($filePath)->deleteFileAfterSend(true); // Provide the file as a downloadable response
+            // ---------------
+              //  VERSION 2
+            //  
+      
+            
+                $pdfContent = Browsershot::url('https://sksu-tpt.com/permit/' . $permit->id) // Use named route for your custom route}')
+                ->setOption('args', ['--no-sandbox']) // Required for some server environments
+                ->pdf(); // Generate the PDF as binary content
+            
+            // Return PDF content as API response
+            return response($pdfContent, 200, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="example.pdf"',
+                ]);
+                
+                // ---------------
+                //    VERSION 3
+                  
+                
+
+                // $html = view('livewire.permit-layout', ['permit' => $permit])->render();
+
+                // // Generate the PDF content with Browsershot
+                // $pdfContent = Browsershot::html($html)
+                //     ->setOption('args', ['--no-sandbox', '--disable-setuid-sandbox']) // Sandboxing fixes
+                //     ->pdf(); // Generate the PDF as binary content
+            
+                // // Return the PDF content as a downloadable response
+                // return response($pdfContent, 200, [
+                //     'Content-Type' => 'application/pdf',
+                //     'Content-Disposition' => 'inline; filename="permit.pdf"',
+                // ]);
+
+
+        })->name('admin.generate-pdf-permit');
     });
 
 Route::prefix('/applicant')
@@ -193,18 +245,19 @@ Route::get('/email', function () {
     EmailController::sendPaymentApplicationApprovalEmail($permit);
     return "Rejection email sent to " . $application->user->email;
     // return view('emails.application-reject', ['application' => $application]);
-   // return view('emails.application-approve', ['permit' => $permit]);
+    // return view('emails.application-approve', ['permit' => $permit]);
 });
 
 Route::get('/test-rejection-email', function () {
     $application =  App\Models\Application::with('user.personal_information')->findOrFail(20);
     $remarks = "Your payment reference number is invalid.";
     EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
-    
+
     return "Rejection email sent to " . $application->user->email;
 });
 
-Route::get('/pdf/test', PermitLayout::class)->name('pdf.test'); // Named route for Browsershot
+
+
 
 // Route::get('/generate-pdf', GeneratePdf::class);
 // Route::get('/generate-pdf', function () {
@@ -215,14 +268,3 @@ Route::get('/pdf/test', PermitLayout::class)->name('pdf.test'); // Named route f
 
 //     return response()->download($filePath); // Provide the file as a downloadable response
 // });
-
-
-Route::get('/generate-pdf', function () {
-    $filePath = storage_path('app/public/example.pdf'); // Save to storage/app/public
-
-    Browsershot::url('http://127.0.0.1:8000/pdf/test') // Use named route for your custom route
-        ->setOption('args', ['--no-sandbox']) // Required for some server environments
-        ->save($filePath); // Save the PDF
-
-    return response()->download($filePath); // Provide the file as a downloadable response
-});
