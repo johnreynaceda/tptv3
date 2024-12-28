@@ -156,9 +156,20 @@ Route::prefix('/admin')
 
 
                   
-                $pdfContent = Browsershot::html(
-                    View::make('livewire.permit-layout', ['permit' => $permit])->render()
-                )
+                // $pdfContent = Browsershot::html(
+                //     View::make('livewire.permit-layout', ['permit' => $permit])->render()
+                // )
+                // ->setOption('args', ['--no-sandbox']) 
+                // ->setIncludePath('$PATH:/root/.nvm/versions/node/v22.12.0/bin/npm')
+                //     ->pdf(); 
+            
+                // return response($pdfContent, 200, [
+                //     'Content-Type' => 'application/pdf',
+                //     'Content-Disposition' => 'inline; filename="permit.pdf"',
+                // ]);
+
+                $pdfContent = Browsershot::html(route('admin.permit',['permit' => $permit]), )->render()
+                
                 ->setOption('args', ['--no-sandbox']) 
                 ->setIncludePath('$PATH:/root/.nvm/versions/node/v22.12.0/bin/npm')
                     ->pdf(); 
