@@ -134,7 +134,7 @@ Route::prefix('/admin')
                     ->pdf();
 
                     $fullName = $permit->user->personal_information->fullName();
-                    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName);
+                    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName).'PERMIT';
             
                 // Return the PDF content as a response
                 return response($pdfContent, 200, [
