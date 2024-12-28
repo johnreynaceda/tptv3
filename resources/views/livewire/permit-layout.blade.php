@@ -50,7 +50,7 @@
         
          
          {{-- <div class=" mx-auto border border-black p-4 max-w-[8.5in] "> --}}
-         <div class=" mx-auto  p-4 max-w-[8.5in] ">
+         <div class=" mx-auto  max-w-[8.5in] ">
            
             <div class="text-end mb-6 flex items-center justify-between">
                 <div class="text-center w-full">
