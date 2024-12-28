@@ -18,7 +18,7 @@ use App\Http\Livewire\GeneratePdf;
 use App\Http\Livewire\PermitLayout;
 use Spatie\Browsershot\Browsershot;
 use App\Models\Permit;
-
+use Illuminate\Support\Facades\View;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -156,17 +156,15 @@ Route::prefix('/admin')
 
 
                   
+                $pdfContent = Browsershot::html(
+                    View::make('livewire.permit-layout', ['permit' => $permit])->render()
+                )
+                    ->setOption('args', ['--no-sandbox'])
+                    ->pdf();
             
-       
-
-                $pdfContent = Browsershot::url(route('admin.permit',['permit'=> $permit])) // Use named route for your custom route}')
-                ->setOption('args', ['--no-sandbox']) // Required for some server environments
-                ->pdf(); // Generate the PDF as binary content
-            
-            // Return PDF content as API response
-            return response($pdfContent, 200, [
+                return response($pdfContent, 200, [
                     'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="example.pdf"',
+                    'Content-Disposition' => 'inline; filename="permit.pdf"',
                 ]);
 
 
