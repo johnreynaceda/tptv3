@@ -25,6 +25,13 @@
             border-bottom: 3px solid black;
         }
 
+        .bbt{
+            border-top: 1px solid black;
+        }
+        .bbb{
+            border-bottom: 1px solid black;
+        }
+
         .custom-dashed {
     border-top: 2px dashed black;
     border-top-style: dashed;
@@ -37,26 +44,25 @@
          
          <div class=" mx-auto border border-black p-4 max-w-[8.5in] ">
            
-            <div class="text-end mb-6  flex items-center justify-between">
+            <div class="text-end mb-6 flex items-center justify-between">
                 <div class="text-center w-full">
-
-                    <h1 class=" text-lg uppercase">Sultan Kudarat State University Tertiary Placement Test</h1>
+                    <h1 class="text-lg uppercase">Sultan Kudarat State University Tertiary Placement Test</h1>
                     <h2 class="font-bold uppercase text-xl">Test Permit</h2>
                 </div>
-                {{-- <div class="flex justify-end  min-w-28">
+                <div>
                     @if(!empty($permit))
                         <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($permit->generateQrData(), 'QRCODE') }}" 
                              alt="QR Code" 
-                             class="h-24 w-24">
+                             class="h-24 w-24 ">
                     @else
                         <div class="h-16 w-16 flex text-center text-xs items-center justify-center border border-gray-400 rounded bg-gray-100 text-gray-600">
                             <p>No</p>
                             <p>Schedule</p>
                         </div>
                     @endif
-                </div> --}}
-               
+                </div>
             </div>
+            
     
             <div class="">
                 <div class="flex gap-6">
@@ -157,17 +163,17 @@
             
             <div class="mt-6  pt-4">
                 <p class="text-sm">To be filled out by SKSU Personnel only.</p>
-                <div class="mt-4 text-center">
-                    <h4 class="text-sm font-semibold">Examiner's Confirmation</h4>
+                <div class="mt-8 text-center">
+                    <h2 class=" uppercase text-xl text-center">Examiner's Confirmation</h2>
                 </div>
-                <div class="mt-4 flex justify-between items-center">
-                    <div class="w-1/2">
-                        <p class="text-sm">Signature over printed name</p>
-                        <div class="border-b border-black"></div>
+                <div class="mt-14 flex justify-around items-center space-x-12">
+                    <div class="flex flex-col items-center">
+                        <div class="bbb   w-full  mt-1"></div>
+                        <p class="text-sm px-4">Signature over printed name</p>
                     </div>
-                    <div class="w-1/4">
-                        <p class="text-sm">Date</p>
-                        <div class="border-b border-black"></div>
+                    <div class="flex flex-col items-center">
+                        <div class="bbb w-full mt-1"></div>
+                        <p class="text-sm px-4">Date</p>
                     </div>
                 </div>
             </div>
