@@ -141,15 +141,15 @@ Route::prefix('/admin')
             //  
       
             
-            //     $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route}')
-            //     ->setOption('args', ['--no-sandbox']) // Required for some server environments
-            //     ->pdf(); // Generate the PDF as binary content
+                $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route}')
+                ->setOption('args', ['--no-sandbox']) // Required for some server environments
+                ->pdf(); // Generate the PDF as binary content
             
-            // // Return PDF content as API response
-            // return response($pdfContent, 200, [
-            //         'Content-Type' => 'application/pdf',
-            //         'Content-Disposition' => 'inline; filename="example.pdf"',
-            //     ]);
+            // Return PDF content as API response
+            return response($pdfContent, 200, [
+                    'Content-Type' => 'application/pdf',
+                    'Content-Disposition' => 'inline; filename="example.pdf"',
+                ]);
                 
                 // ---------------
                 //    VERSION 3
@@ -168,16 +168,16 @@ Route::prefix('/admin')
                 //     'Content-Disposition' => 'inline; filename="permit.pdf"',
                 // ]);
 
-                $pdfContent = Browsershot::html(route('admin.permit',['permit' => $permit]), )->render()
+                // $pdfContent = Browsershot::html(route('admin.permit',['permit' => $permit]), )->render()
                 
-                ->setOption('args', ['--no-sandbox']) 
-                ->setIncludePath('$PATH:/root/.nvm/versions/node/v22.12.0/bin/npm')
-                    ->pdf(); 
+                // ->setOption('args', ['--no-sandbox']) 
+                // ->setIncludePath('$PATH:/root/.nvm/versions/node/v22.12.0/bin/npm')
+                //     ->pdf(); 
             
-                return response($pdfContent, 200, [
-                    'Content-Type' => 'application/pdf',
-                    'Content-Disposition' => 'inline; filename="permit.pdf"',
-                ]);
+                // return response($pdfContent, 200, [
+                //     'Content-Type' => 'application/pdf',
+                //     'Content-Disposition' => 'inline; filename="permit.pdf"',
+                // ]);
 
 
         })->name('admin.generate-pdf-permit');
