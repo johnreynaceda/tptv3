@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use Illuminate\Validation\Rule;
-
+use Illuminate\Validation\ValidationException;
 class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
@@ -21,6 +21,17 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
+        $usedAsCredentials = User::where('email', $input['email'])
+            ->where('provider', 'CREDENTIALS') // Check for provider 'CREDENTIALS'
+            ->exists();
+
+        if ($usedAsCredentials) {
+            // Throw a validation exception with a user-friendly error message
+            throw ValidationException::withMessages([
+                'email' => 'This email is already associated with a non-Google account. Please use your credentials to log in.',
+            ]);
+        }
+        
         Validator::make($input, [
             'first_name' => ['required', 'string', 'max:255', Rule::unique('users')->where(function ($query) use ($input) {
                 return $query->where('first_name', $input['first_name'])
