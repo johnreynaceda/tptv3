@@ -142,8 +142,8 @@ Route::prefix('/admin')
       
             
                 $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') 
-                ->setNodeBinary('/root/.nvm/versions/node/v22.12.0/bin/node')
-                ->setNpmBinary('/root/.nvm/versions/node/v22.12.0/bin/npm')
+                ->setNodeBinary('/usr/local/bin/node')
+                ->setNpmBinary('/usr/local/bin/npm')
                 ->setOption('args', ['--no-sandbox']) // Required for server environments
                 ->pdf(); 
             
