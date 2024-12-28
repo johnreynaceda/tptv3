@@ -126,52 +126,6 @@ Route::prefix('/admin')
         Route::get('/generate-pdf/{permit}', function (Permit $permit) {
 
 
-            // ---------------
-              //  VERSION 1
-            //
-            
-            // $filePath = storage_path('app/public/example.pdf'); // Save to storage/app/public
-            
-            // Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') // Use named route for your custom route
-            //     ->setOption('args', ['--no-sandbox']) // Required for some server environments
-            //     ->save($filePath); // Save the PDF
-            
-            // return response()->download($filePath)->deleteFileAfterSend(true); // Provide the file as a downloadable response
-            // ---------------
-              //  VERSION 2
-            //  
-      
-            //     //WORKING VBERSIOTN
-            //     $pdfContent = Browsershot::url('https://spatie.be/docs/browsershot/v4/usage/creating-pdfs') 
-            //     ->setOption('args', ['--disable-web-security'])
-            //     // ->ignoreHttpsErrors()
-            //     // ->noSandbox()
-            //     // ->showBackground()
-            //     // ->setOption('scale', 0.9)
-            //     // ->emulateMedia('print')
-            //     // ->setNodeBinary('/usr/bin/node')
-            //     // ->setNpmBinary('/usr/bin/npm')
-            //     // ->setChromePath('chromium-browser')
-            //     // ->setCustomTempPath('/home/www-data/browsershot-html')
-            //     // ->addChromiumArguments([
-            //     //     'lang' => "en-US,en;q=0.9",
-            //     //     'hide-scrollbars',
-            //     //     'enable-font-antialiasing',
-            //     //     'force-device-scale-factor' => 1,
-            //     //     'font-render-hinting' => 'none',
-            //     //     'user-data-dir' => '/home/www-data/user-data',
-            //     //     'disk-cache-dir' => '/home/www-data/user-data/Default/Cache',
-            //     // ])
-            //     ->pdf(); 
-            
-            // // Return PDF content as API response
-            // return response($pdfContent, 200, [
-            //         'Content-Type' => 'application/pdf',
-            //         'Content-Disposition' => 'inline; filename="example.pdf"',
-            //     ]);
-                
-                // ---------------
-                //    VERSION 3
                 $htmlContent = View::make('livewire.permit-layout', ['permit' => $permit])->render();
 
                 // Generate the PDF from the HTML content
