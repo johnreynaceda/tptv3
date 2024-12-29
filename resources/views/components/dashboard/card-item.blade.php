@@ -1,5 +1,6 @@
 @props(['title', 'count'])
 
+
 <li class="col-span-1 p-3 divide-y divide-gray-200 ">
     <div class="grid ">
         <div class="flex">

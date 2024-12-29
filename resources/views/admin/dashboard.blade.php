@@ -44,23 +44,10 @@
                     <div wire:poll.5000ms.visible>
 
                         <x-dashboard.card-list>
-                            <!-- Total Users -->
-                            <x-dashboard.card-item title="System Users"
-                                count="{{ $users_count }}">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="w-8 h-8"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-                                    <path stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                            </x-dashboard.card-item>
+                          
                         
                             <!-- Total Users with Permit -->
-                            <x-dashboard.card-item title="Examinees with Permit and Assigned Slot"
+                            <x-dashboard.card-item title="Examinees With Permit & Slot"
                                 count="{{ $totalUsersWithPermitWithSlot }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
@@ -73,7 +60,7 @@
                                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                             </x-dashboard.card-item>
-                            <x-dashboard.card-item title="Examinees with Permit but Without Assigned Slot"
+                            <x-dashboard.card-item title="With Permit Only"
                                 count="{{ $totalUsersWithPermitButNoSlot }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
@@ -86,21 +73,8 @@
                                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                             </x-dashboard.card-item>
+                            <div></div>
                         
-                            <!-- Total Examinations -->
-                            <x-dashboard.card-item title="Total Examinations"
-                                count="{{ $examinations_count }}">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="w-8 h-8"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-                                    <path stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                                </svg>
-                            </x-dashboard.card-item>
                         
                             <!-- Total Programs -->
                           
@@ -148,6 +122,20 @@
                                 </svg>
                             </x-dashboard.card-item>
                         
+                            <!-- Total Examinations -->
+                            <x-dashboard.card-item title="Total Examinations"
+                                count="{{ $examinations_count }}">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="w-8 h-8"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    stroke-width="2">
+                                    <path stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                </svg>
+                            </x-dashboard.card-item>
                             <!-- Total Available Slots -->
                            
                             <x-dashboard.card-item title="Offered Programs"
@@ -163,6 +151,21 @@
                                     d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </x-dashboard.card-item>
+
+                          <!-- Total Users -->
+                          <x-dashboard.card-item title="System Users"
+                          count="{{ $users_count }}">
+                          <svg xmlns="http://www.w3.org/2000/svg"
+                              class="w-8 h-8"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              stroke-width="2">
+                              <path stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                          </svg>
+                      </x-dashboard.card-item>
                         </x-dashboard.card-list>
                         
 
