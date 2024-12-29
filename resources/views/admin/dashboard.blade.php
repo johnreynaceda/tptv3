@@ -41,7 +41,7 @@
             </div>
             <div class="col-span-4">
                 <div class="p-3 bg-white border border-gray-300 rounded-xl">
-                    <div>
+                    <div wire:poll.5000ms.visible>
 
                         <x-dashboard.card-list>
                             <!-- Total Users -->
