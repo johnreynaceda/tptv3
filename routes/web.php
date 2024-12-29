@@ -21,6 +21,8 @@ use Spatie\Browsershot\Browsershot;
 use App\Models\Permit;
 use Illuminate\Support\Facades\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersWithoutSlotExport;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,6 +128,10 @@ Route::prefix('/admin')
         //view permit
         // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
         Route::get('/permit/{permit}/view', ViewOnlyPermit::class)->name('admin.permit.view');
+
+        Route::get('/export/users-without-slot', function () {
+    return Excel::download(new UsersWithoutSlotExport, 'users_without_slot.xlsx');
+})->name('export.users_without_slot');
      
 
     });
