@@ -82,9 +82,9 @@
         @if ($totalUsersWithPermitButNoSlot > 0)
         <div class=" flex items-center ">
             
-            <a href="{{ route('export.users_without_slot') }}" class="underline text-green-700">
+            <a href="{{ route('export.users_without_slot') }}" class="underline text-green-700 text-sm">
                
-                Download Excel
+                Download
             </a>
             
         </div>
