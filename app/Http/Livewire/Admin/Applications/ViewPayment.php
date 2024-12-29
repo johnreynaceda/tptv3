@@ -151,19 +151,93 @@ class ViewPayment extends Component
 //     }
 // }
 
+
+// version 3
     
+
+// public function approveConfirm()
+// {
+//     DB::beginTransaction(); // Start the transaction
+
+//     try {
+//         $user = User::where('id', $this->user_id)
+//                     ->with('application') // Load the application relationship
+//                     ->first();
+
+//         if (!$user || !$user->application) {
+//             DB::rollBack(); // Rollback the transaction on error
+//             $this->notification([
+//                 'title' => 'Error',
+//                 'description' => 'User or application not found.',
+//                 'icon' => 'error',
+//             ]);
+//             return;
+//         }
+
+//         // Update user step
+//         $user->update([
+//             'step' => '5',
+//         ]);
+
+//         // Get the last examinee number
+//         $lastPermit = Permit::orderBy('examinee_number', 'desc')->first();
+
+//         // Start from 411111 if no permits exist, otherwise increment
+//         $nextExamineeNumber = $lastPermit 
+//             ? max(intval($lastPermit->examinee_number) + 1, 411111) // Start at 411111 if no valid number exists
+//             : 411111;
+
+//         $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT); // Pad to 6 digits
+
+//         // Create new permit
+//        $permit = Permit::create([
+//             'examinee_number' => $nextExamineeNumberFormatted, // Store the correctly formatted number
+//             'examinee_number_updated' => $nextExamineeNumberFormatted,
+//             'user_id' => $user->id,
+//             'examination_id' => $user->application->examination_id,
+//         ]);
+
+//         // Commit the transaction
+//         DB::commit();
+
+//         // Notify and refresh
+//         $this->notification([
+//             'title' => 'Success',
+//             'description' => 'Payment has been approved.',
+//             'icon' => 'success',
+//         ]);
+//         EmailController::sendPaymentApplicationApprovalEmail($permit);
+
+//         $this->emit('refresh');
+//         $this->dispatchBrowserEvent('none');
+//     } catch (\Exception $e) {
+//         DB::rollBack(); // Rollback the transaction on exception
+
+//         // Log the error for debugging
+//         Log::error('Error approving confirmation: ' . $e->getMessage());
+
+//         $this->notification([
+//             'title' => 'Error',
+//             'description' => 'An error occurred while processing the request.',
+//             'icon' => 'error',
+//         ]);
+//     }
+// }
+
+
+   
 
 public function approveConfirm()
 {
-    DB::beginTransaction(); // Start the transaction
+    DB::beginTransaction(); 
 
     try {
         $user = User::where('id', $this->user_id)
-                    ->with('application') // Load the application relationship
+                    ->with('application') 
                     ->first();
 
         if (!$user || !$user->application) {
-            DB::rollBack(); // Rollback the transaction on error
+            DB::rollBack(); 
             $this->notification([
                 'title' => 'Error',
                 'description' => 'User or application not found.',
@@ -172,46 +246,59 @@ public function approveConfirm()
             return;
         }
 
-        // Update user step
+
+        if (Permit::where('user_id', $user->id)->exists()) {
+            DB::rollBack(); 
+            $this->notification([
+                'title' => 'Error',
+                'description' => 'This user already has a permit. Duplicate permits are not allowed.',
+                'icon' => 'error',
+            ]);
+            return;
+        }
+
+
         $user->update([
             'step' => '5',
         ]);
 
-        // Get the last examinee number
+       
         $lastPermit = Permit::orderBy('examinee_number', 'desc')->first();
 
-        // Start from 411111 if no permits exist, otherwise increment
+   
         $nextExamineeNumber = $lastPermit 
-            ? max(intval($lastPermit->examinee_number) + 1, 411111) // Start at 411111 if no valid number exists
+            ? max(intval($lastPermit->examinee_number) + 1, 411111) 
             : 411111;
 
-        $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT); // Pad to 6 digits
+        $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT);
 
-        // Create new permit
-       $permit = Permit::create([
-            'examinee_number' => $nextExamineeNumberFormatted, // Store the correctly formatted number
+     
+        $permit = Permit::create([
+            'examinee_number' => $nextExamineeNumberFormatted,
             'examinee_number_updated' => $nextExamineeNumberFormatted,
             'user_id' => $user->id,
             'examination_id' => $user->application->examination_id,
         ]);
 
-        // Commit the transaction
+       
         DB::commit();
 
-        // Notify and refresh
+     
         $this->notification([
             'title' => 'Success',
             'description' => 'Payment has been approved.',
             'icon' => 'success',
         ]);
+
+     
         EmailController::sendPaymentApplicationApprovalEmail($permit);
 
         $this->emit('refresh');
         $this->dispatchBrowserEvent('none');
     } catch (\Exception $e) {
-        DB::rollBack(); // Rollback the transaction on exception
+        DB::rollBack(); 
 
-        // Log the error for debugging
+      
         Log::error('Error approving confirmation: ' . $e->getMessage());
 
         $this->notification([
@@ -221,10 +308,6 @@ public function approveConfirm()
         ]);
     }
 }
-
-
-   
-
 
     
     

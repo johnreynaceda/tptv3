@@ -1,11 +1,9 @@
 <div>
     <div class="border border-gray-300 rounded-md">
         @if ($user_id != '')
-            <x-card title="Payment Information"
-                shadow="shadow-none">
+            <x-card title="Payment Information" shadow="shadow-none">
                 <x-slot name="action">
-                    <x-button icon="arrow-left"
-                        x-on:click="$dispatch('none')">
+                    <x-button icon="arrow-left" x-on:click="$dispatch('none')">
                         Return
                     </x-button>
                 </x-slot>
@@ -28,19 +26,16 @@
                         </h1>
                         <ul>
                             @foreach ($payment->proofs as $key => $proof)
-                            @if(optional($proof)->path)
-                            <li class="space-y-3">
-                                <a href="{{ Storage::url($proof->path) }}"
-                                    target="_blank"
-                                    class="text-blue-600"
-                                    title="View the proof document">
-                                    <img src="{{ Storage::url($proof->path) }}" 
-                                         alt="Proof document for {{ $proof->name ?? 'item' }}" 
-                                         class="max-w-xs h-auto rounded-md shadow-md object-cover" />
-                                </a>
-                            </li>
-                        @endif
-                        
+                                @if (optional($proof)->path)
+                                    <li class="space-y-3">
+                                        <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
+                                            title="View the proof document">
+                                            <img src="{{ Storage::url($proof->path) }}"
+                                                alt="Proof document for {{ $proof->name ?? 'item' }}"
+                                                class="max-w-xs h-auto rounded-md shadow-md object-cover" />
+                                        </a>
+                                    </li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>
@@ -48,16 +43,13 @@
                 @if ($payment->user->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
-                            <x-button negative
-                                wire:click="reject"
-                                spinner="reject">
+                            <x-button negative wire:click="reject" spinner="reject">
                                 Deny Payment
                             </x-button>
-                            <x-button positive
-                                wire:click="approve"
-                                spinner="approve">
+                            <x-button positive wire:click="approve" spinner="approve" wire:loading.attr="disabled">
                                 Approve Payment
                             </x-button>
+
                         </div>
                     </x-slot>
                 @endif
@@ -66,18 +58,18 @@
     </div>
 
     <x-modal.card align="center" title="Add Remarks" blur wire:model.defer="reject_modal">
-    <div class="">
-    <x-textarea wire:model="remarks" class="w-full focus:outline-none" label="Reason" placeholder="" />
-    </div>
- 
-    <x-slot name="footer">
-        <div class="flex justify-between gap-x-4"> 
-            <div></div>
-            <div class="flex">
-                <x-button flat label="Cancel" x-on:click="close" />
-                <x-button primary label="Save" wire:click="rejectConfirm" />
-            </div>
+        <div class="">
+            <x-textarea wire:model="remarks" class="w-full focus:outline-none" label="Reason" placeholder="" />
         </div>
-    </x-slot>
-</x-modal.card>
+
+        <x-slot name="footer">
+            <div class="flex justify-between gap-x-4">
+                <div></div>
+                <div class="flex">
+                    <x-button flat label="Cancel" x-on:click="close" />
+                    <x-button primary label="Save" wire:click="rejectConfirm" />
+                </div>
+            </div>
+        </x-slot>
+    </x-modal.card>
 </div>
