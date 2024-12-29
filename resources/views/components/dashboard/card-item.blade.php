@@ -1,8 +1,7 @@
-@props(['title', 'count'])
+@props(['title', 'count', 'class' => '']) <!-- Accept an optional 'class' prop -->
 
-
-<li class="col-span-1 p-3 divide-y divide-gray-200 ">
-    <div class="grid ">
+<li {{ $attributes->merge(['class' => 'col-span-1 p-3 divide-y divide-gray-200 ' . $class]) }}> <!-- Merge default and passed classes -->
+    <div class="grid">
         <div class="flex">
             <div class="p-2 text-white bg-gray-400 rounded-lg">
                 {{ $slot }}
