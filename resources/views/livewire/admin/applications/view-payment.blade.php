@@ -43,12 +43,14 @@
                 @if ($payment->user->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
-                            <x-button negative wire:click="reject" spinner="reject">
+                            
+                            <x-button negative wire:click="reject" spinner="reject" wire:loading.attr="disabled" wire:target="reject">
                                 Deny Payment
                             </x-button>
-                            <x-button positive wire:click="approve" spinner="approve" wire:loading.attr="disabled">
+                            <x-button positive wire:click="approve" spinner="approve" wire:loading.attr="disabled" wire:target="approve">
                                 Approve Payment
                             </x-button>
+                            
 
                         </div>
                     </x-slot>
