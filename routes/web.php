@@ -128,11 +128,10 @@ Route::prefix('/admin')
         //view permit
         // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
         Route::get('/permit/{permit}/view', ViewOnlyPermit::class)->name('admin.permit.view');
-
         Route::get('/export/users-without-slot', function () {
-    return Excel::download(new UsersWithoutSlotExport, 'users_without_slot.xlsx');
-})->name('export.users_without_slot');
-     
+            $filename = 'users_without_slot_' . now()->year . '.xlsx'; // Include the current year
+            return Excel::download(new UsersWithoutSlotExport, $filename);
+        })->name('export.users_without_slot');
 
     });
 
