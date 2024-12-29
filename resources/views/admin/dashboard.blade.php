@@ -84,7 +84,7 @@
             
             <a href="{{ route('export.users_without_slot') }}" class="underline text-green-700 text-sm">
                
-                Download
+                Download Excel
             </a>
             
         </div>
