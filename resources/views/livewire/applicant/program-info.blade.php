@@ -2,6 +2,10 @@
     <div class="border border-gray-300 rounded-md">
         <x-card shadow="shadow-none"
             title="Program Choice">
+            <div class="mb-4 p-3 bg-gray-100 rounded text-sm text-gray-700">
+                <strong>Note:</strong> Selecting your first priority program indicates that this is your primary choice for enrollment at the university. Your second priority program serves as your alternative or backup option.
+            </div>
+            
             <form class="space-y-5">
                 @csrf
                 <div x-data="{ expanded: false }"

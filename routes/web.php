@@ -33,7 +33,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 // login admin

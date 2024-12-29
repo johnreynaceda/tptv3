@@ -9,7 +9,7 @@
             </h1>
         </div>
         <div class="absolute z-10 right-4 bottom-4">
-            <svg data-name="Layer 1"
+            {{-- <svg data-name="Layer 1"
                 xmlns="http://www.w3.org/2000/svg"
                 class="z-10 h-20 sm:h-40 "
                 viewBox="0 0 889.07556 459.37952"
@@ -212,7 +212,7 @@
                     cy="368.37952"
                     r="9"
                     fill="#d4ff63" />
-            </svg>
+            </svg> --}}
         </div>
     </div>
 </div>
