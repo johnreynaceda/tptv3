@@ -293,7 +293,8 @@ public function approveConfirm()
      
         EmailController::sendPaymentApplicationApprovalEmail($permit);
 
-        $this->emit('refresh');
+        // $this->emit('refresh');
+        $this->emit('refreshTable');
         $this->dispatchBrowserEvent('none');
     } catch (\Exception $e) {
         DB::rollBack(); 
@@ -354,7 +355,8 @@ public function approveConfirm()
             'icon' => 'success',
         ]);
         EmailController::sendPaymentApplicationRejectionEmail($user->application, $this->remarks);
-        $this->emit('refresh');
-        $this->dispatchBrowserEvent('none');
+        // $this->emit('refresh');
+        $this->emit('refreshTable');
+                $this->dispatchBrowserEvent('none');
     }
 }

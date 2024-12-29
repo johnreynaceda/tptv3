@@ -14,6 +14,7 @@ class Table extends Component
     public $type = '';
     protected $listeners = [
         'refresh' => '$refresh',
+        'refreshTable' => '$refresh', // Li
     ];
     public function render()
     {
