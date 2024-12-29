@@ -4,7 +4,7 @@
   </svg> --}}
   <h1 class="text-2xl font-bold text-gray-800 mb-4">Currently Unavailable</h1>
   <p class="text-gray-600 mb-6">
-      It seems there are no active examinations or available slots at this time. Please check back later or reach out to support for more information.
+    Oops! It seems there aren’t any active examinations or slots right now. Need help? Our support team is just a message away!
   </p>
   <a 
       href="mailto:sksutpt@gmail.com" 
