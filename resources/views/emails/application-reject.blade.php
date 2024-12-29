@@ -91,7 +91,7 @@
 
         <!-- Footer -->
         <div class="footer">
-            <p>📩 Need assistance? Contact us at <a href="mailto:sksu-support@example.com">sksu-support@example.com</a></p>
+            <p>📩 Need assistance? Contact us at <a href="mailto:sksu-support@example.com">sksutpt@gmail.com</a></p>
             <p>&copy; {{ date('Y') }} Sultan Kudarat State University</p>
         </div>
     </div>
