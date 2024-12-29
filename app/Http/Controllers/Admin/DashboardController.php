@@ -16,7 +16,21 @@ class DashboardController extends Controller
         $stat = $this->loadData();
 
     
-    $totalUsersWithPermit = User::isNotAdmin()->whereHas('permit')->count();
+        $totalUsersWithPermitWithSlot = User::isNotAdmin()
+        ->whereHas('permit') // Ensure the user has a permit
+        ->whereHas('student_slot', function ($query) {
+            $query->whereHas('slot'); // Check if the student_slot has a related slot
+        })
+        ->count();
+
+        $totalUsersWithPermitButNoSlot = User::isNotAdmin()
+    ->whereHas('permit') // Ensure the user has a permit
+    ->whereDoesntHave('student_slot', function ($query) {
+        $query->whereHas('slot'); // Exclude users with a related slot
+    })
+    ->count();
+
+    
 
    
     $active_examination = Examination::where('is_active', 1)->first();
@@ -32,7 +46,8 @@ class DashboardController extends Controller
 
     // Return view with data (default values where necessary)
     return view('admin.dashboard', [
-        'totalUsersWithPermit' => $totalUsersWithPermit,
+        'totalUsersWithPermitWithSlot' => $totalUsersWithPermitWithSlot,
+        'totalUsersWithPermitButNoSlot' => $totalUsersWithPermitButNoSlot,
     'users_count' => $stat['total_users_count'],
     'examinations_count' => $stat['total_examinations_count'],
     'programs_count' => $stat['total_programs_count'],
