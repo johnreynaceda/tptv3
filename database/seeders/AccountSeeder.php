@@ -22,5 +22,13 @@ class AccountSeeder extends Seeder
             'email' => 'sksutpt@gmail.com',
             'password' => bcrypt('password'),
         ]);
+        User::create([
+            'role_id' => 2,
+            'first_name' => 'SKSU',
+            'middle_name' => '',
+            'last_name' => 'TPT',
+            'email' => 'applicant@gmail.com',
+            'password' => bcrypt('password'),
+        ]);
     }
 }

@@ -24,4 +24,28 @@ class Campus extends Model
     {
         return $this->hasMany(Slot::class);
     }
+
+    /**
+     * Get the total number of slots for the campus.
+     *
+     * @return int
+     */
+    public function totalSlots()
+    {
+        return $this->test_centers->sum(function ($testCenter) {
+            return $testCenter->slots->sum('slots');
+        });
+    }
+
+    /**
+     * Get the total number of rooms for the campus.
+     *
+     * @return int
+     */
+    public function totalRooms()
+    {
+        return $this->test_centers->sum(function ($testCenter) {
+            return $testCenter->slots->sum('number_of_rooms');
+        });
+    }
 }

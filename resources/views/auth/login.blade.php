@@ -13,6 +13,58 @@
             <p class="text-sm md:text-base text-gray-600 mb-6">
                 Please ensure you use a valid Google account to log in and access the platform.
             </p>
+            <div class="text-left ">
+                
+
+                <form method="POST"
+                action="{{ route('login') }}">
+                @csrf
+                
+                <div>
+                    <x-jet-label for="email"
+                    value="{{ __('Email') }}" />
+                    <x-jet-input id="email"
+                    class="block w-full mt-1"
+                    type="email"
+                    name="email"
+                    :value="old('email')"
+                    required
+                    autofocus />
+                </div>
+                
+                <div class="mt-4">
+                    <x-jet-label for="password"
+                    value="{{ __('Password') }}" />
+                    <x-jet-input id="password"
+                    class="block w-full mt-1"
+                    type="password"
+                    name="password"
+                    required
+                    autocomplete="current-password" />
+                </div>
+                {{-- <div class="block mt-4">
+                    
+                    <label for="remember_me"
+                    class="flex items-center">
+                    <x-jet-checkbox id="remember_me"
+                    name="remember" />
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+                 --}}
+                
+                
+            </div>
+            <div class="mt-6"></div>
+            <x-button type="submit" class="w-full" positive>
+                LOGIN
+            </x-button>
+
+
+            
+        </form>
+    </div>
+        <div class="flex flex-col items-center justify-end mt-4 space-y-4">
+           
             <a href="{{ route('auth.google.redirect') }}" 
                 class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 md:p-3 hover:bg-gray-100 transition duration-300 ease-in-out">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 

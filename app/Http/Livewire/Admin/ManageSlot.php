@@ -21,15 +21,32 @@ class ManageSlot extends Component
     public $date;
     public $is_edit = false;
     public $slot_id;
+
+    public $search = ''; // Search input field
+    // public function render()
+    // {
+    //     return view('livewire.admin.manage-slot', [
+    //         'campuses' => Campus::all(),
+    //         'centers' => TestCenter::where('examination_id', $this->examination)
+    //             ->with(['campus', 'slots'])
+    //             ->get(),
+    //     ]);
+    // }
+
     public function render()
-    {
-        return view('livewire.admin.manage-slot', [
-            'campuses' => Campus::all(),
-            'centers' => TestCenter::where('examination_id', $this->examination)
-                ->with(['campus', 'slots'])
-                ->get(),
-        ]);
-    }
+{
+    // Fetch test centers and their slots with campus data
+    $test_centers = TestCenter::with(['campus', 'slots'])
+        ->where('examination_id', $this->examination)
+        ->get()
+        ->groupBy('campus_id'); // Group by campus_id
+
+    return view('livewire.admin.manage-slot', [
+        'campuses' => Campus::all(),
+        'test_centers_by_campus' => $test_centers, // Pass grouped data to the view
+    ]);
+}
+
 
     public function openAddModal()
     {

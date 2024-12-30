@@ -247,6 +247,31 @@ public function approveConfirm()
         }
 
 
+        $examination = $user->application->examination;
+
+        if (!$examination) {
+            DB::rollBack();
+            $this->notification([
+                'title' => 'Error',
+                'description' => 'Examination not found for the user.',
+                'icon' => 'error',
+            ]);
+            return;
+        }
+
+        // Check if there are available active slots in the examination
+        if ($examination->totalAvailableActiveSlots() <= 0) {
+            DB::rollBack();
+
+            $this->dialog()->error(
+                $title = 'No available',
+                $description = 'There are no available slots remaining for this examination. Approval cannot proceed.'
+            );
+     
+           
+            return;
+        }
+
         if (Permit::where('user_id', $user->id)->exists()) {
             DB::rollBack(); 
             $this->notification([

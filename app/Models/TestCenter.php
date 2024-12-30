@@ -25,6 +25,10 @@ class TestCenter extends Model
     {
         return $this->belongsTo(Examination::class);
     }
+    public function examination()
+    {
+        return $this->belongsTo(Examination::class);
+    }
 
     //scope with relations
     public function scopeWithRelations($query)

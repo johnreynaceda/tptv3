@@ -8,13 +8,13 @@
           <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             <div class="py-2 flex justify-between items-center bg-white px-4">
               <div>
-                <x-input wire:model.debounce.500ms="search" placeholder="Search" />
+                {{-- <x-input wire:model.debounce.500ms="search" placeholder="Search" /> --}}
               </div>
               <div>
                 <x-button label="Add New" icon="plus" wire:click="openAddModal" dark />
               </div>
             </div>
-            <table class="min-w-full divide-y divide-gray-300">
+            {{-- <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
                   <th scope="col"
@@ -71,7 +71,71 @@
                   </tr>
                 @endforeach
               </tbody>
-            </table>
+            </table> --}}
+
+            <div>
+              @foreach ($test_centers_by_campus as $campus_id => $centers)
+                  <div class="mb-8">
+                      <!-- Campus Name -->
+                      <h2 class="py-3.5 text-left text-sm font-semibold uppercase text-white bg-gray-600 px-2 rounded-t-lg">
+                          {{ $centers->first()->campus->name }}
+                      </h2>
+          
+                      <!-- Table with Aligned Headers -->
+                      <table class="divide-y divide-gray-200 bg-white w-full rounded-lg">
+                          <thead class="bg-gray-100">
+                              <tr>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Exam Date</th>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Building Name</th>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Slots</th>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Number of Rooms</th>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Status</th>
+                                  <th class="py-2 px-3 text-left text-sm uppercase text-gray-900 font-normal">Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($centers as $center)
+                                  @foreach ($center->slots as $index => $slot)
+                                      <tr class="{{ $index % 2 === 0 ? 'bg-gray-50' : 'bg-gray-100' }}">
+                                          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-800">
+                                              {{ \Carbon\Carbon::parse($slot->date_of_exam)->format('F d, Y') }}
+                                          </td>
+                                          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-800">
+                                              {{ $slot->building_name }}
+                                          </td>
+                                          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-800">
+                                              {{ $slot->slots }}
+                                          </td>
+                                          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-800">
+                                              {{ $slot->number_of_rooms }}
+                                          </td>
+                                          <!-- Status Column -->
+                                          <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                              @if ($slot->is_active)
+                                                  <x-button negative label="Deactivate" wire:click="deactivateSched({{ $slot->id }})" />
+                                              @else
+                                                  <x-button positive label="Activate" wire:click="activateSched({{ $slot->id }})" />
+                                              @endif
+                                          </td>
+                                          <!-- Actions Column -->
+                                          <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                              <div class="flex justify-end items-center">
+                                                  <x-button sm flat icon="pencil-alt" wire:click="openUpdateModal({{ $slot->id }})" positive label="Edit" />
+                                                  {{-- <x-button sm flat icon="trash" wire:click="deleteSlot({{ $slot->id }})" negative label="Delete" /> --}}
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  @endforeach
+                              @endforeach
+                          </tbody>
+                      </table>
+                  </div>
+              @endforeach
+          </div>
+          
+          
+          
+          
           </div>
         </div>
       </div>

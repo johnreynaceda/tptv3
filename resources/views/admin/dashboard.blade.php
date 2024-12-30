@@ -100,7 +100,7 @@
                         
                             <!-- Total Slots -->
                             <x-dashboard.card-item title="Total Slots"
-                                count="{{ $total_slots ?? 'N/A' }}">
+                                count="{{ $total_active_slots ?? 'N/A' }}">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
                                     fill="none"
@@ -113,7 +113,7 @@
                                 </svg>
                             </x-dashboard.card-item>
                             <x-dashboard.card-item title="Remaining Slots"
-                            count="{{ $total_available_slots ?? 'N/A' }}">
+                            count="{{ $total_available_active_slots ?? 'N/A' }}">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 class="w-8 h-8"
                                 fill="none"
@@ -128,7 +128,8 @@
                         
                             <!-- Total Occupied Slots -->
                             <x-dashboard.card-item title="Occupied Slots"
-                                count="{{ $total_occupied_slots ?? 'N/A' }}">
+                                count="{{ $total_occupied_active_slots ?? 'N/A' }}">
+                              
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-8 h-8"
                                     fill="none"
