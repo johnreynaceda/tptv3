@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersWithoutSlotExport;
+use App\Http\Livewire\CampusManagement;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,6 +79,10 @@ Route::prefix('/admin')
             DashboardController::class,
             'dashboard',
         ])->name('admin.dashboard');
+        Route::get('/campuses', function () {
+            return view('admin.campuses');
+        })->name('admin.campuses');
+        // Route::get('/campuses', CampusManagement::class)->name('campuses.index');
         Route::get('/examinations', function () {
             return view('admin.examinations');
         })->name('admin.examinations');
@@ -148,7 +153,7 @@ Route::prefix('/admin')
 
             $fullName = $permit->user->personal_information->fullName();
             $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $fullName).'PERMIT';
-    
+
         // Return the PDF content as a response
         return response($pdfContent, 200, [
             'Content-Type' => 'application/pdf',
