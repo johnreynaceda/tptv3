@@ -33,7 +33,7 @@ class ApplicationRejected extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('no-reply@sksu.edu.ph', 'SKSU-TPT'),
+            from: new Address($this->application->user->email, 'SKSU-TPT'),
             subject: "Application Rejected",
         );
     }
