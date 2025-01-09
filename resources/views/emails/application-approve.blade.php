@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application Validation For {{$permit->examination->title}} Status</title>
+    <title>Entrance Exam Slot Selection</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,7 +35,8 @@
 
         .header h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
+            line-height: 1.5;
         }
 
         .content {
@@ -46,8 +47,17 @@
 
         .content p {
             margin: 10px 0;
-            line-height: 1.8;
+            line-height: 1.6;
             font-size: 16px;
+        }
+
+        .content ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .content ol li {
+            margin: 10px 0;
         }
 
         .cta-button {
@@ -59,6 +69,7 @@
             text-decoration: none;
             font-size: 16px;
             border-radius: 5px;
+            text-align: center;
         }
 
         .cta-button:hover {
@@ -91,30 +102,40 @@
         <div class="content">
             <p>Hi {{ $permit->user->personal_information->fullName() }},</p>
             <p>
-                Thank you for submitting your proof of payment for the <strong>{{$permit->examination->title}}</strong>. We are pleased to inform you that your payment has been validated successfully.
+                Thank you for submitting your proof of payment for the <strong>{{ $permit->examination->title }}</strong>. We are pleased to inform you that your payment has been successfully validated!
             </p>
             <p>
-                You are now eligible to proceed with the entrance examination process. Please note the following key steps ahead:
+                To proceed with the entrance examination, you need to log in again and complete the next step by selecting your exam schedule.
             </p>
             <ol>
-                <li><strong>Exam Slot Assigned:</strong> Your exam date, time, and location are now available in your account portal.</li>
-                <li><strong>Exam Permit:</strong> You can access and download your official exam permit from your account portal.</li>
-                <li><strong>Preparation:</strong> Ensure you review the instructions and bring all required materials on the exam day.</li>
+                <li><strong>Step 1: Log in to Your Account</strong>
+                    Visit our portal at <a href="https://sksu-tpt.com" target="_blank">https://sksu-tpt.com</a> and log in using your registered Gmail account.
+                </li>
+                <li><strong>Step 2: Select Your Slot</strong>
+                    After logging in, navigate to the "Selection of Test Center" page. From there, you will be able to:
+                    <ul>
+                        <li>Choose your preferred exam time.</li>
+                        <li>Select the exam date that suits you.</li>
+                        <li>Pick the most convenient test center.</li>
+                    </ul>
+                </li>
+                <li><strong>Step 3: Download Your Exam Permit</strong>
+                    Once you have selected your slot, you will be able to download your official exam permit.
+                </li>
             </ol>
-            
+
             <p>
-                <strong>Note:</strong> Validation of payment and completion of the entrance test are preliminary steps. Final admission to the university is subject to further evaluations and processes.
+                <strong>Note:</strong> Selecting your slot is essential to finalize your entrance examination schedule. Please complete this step as soon as possible.
             </p>
             <p>
-                If you have any questions or require assistance, feel free to reach out to us.
+                If you have any questions or require assistance, don’t hesitate to contact us at <a href="mailto:sksutpt@gmail.com">sksutpt@gmail.com</a>.
             </p>
-            
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p>📩 Need assistance? Contact us at <a href="mailto:sksu-support@example.com">sksutpt@gmail.com</a></p>
-            <p>&copy; {{ date('Y') }} Sultan Kudarat State University</p>
+            <p>📩 Need help? Email us at <a href="mailto:sksutpt@gmail.com">sksutpt@gmail.com</a></p>
+            <p>&copy; {{ date('Y') }} Sultan Kudarat State University. All rights reserved.</p>
         </div>
     </div>
 </body>

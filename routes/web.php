@@ -237,12 +237,16 @@ Route::get('/email', function () {
     // return view('emails.application-approve', ['permit' => $permit]);
 });
 
-Route::get('/test-rejection-email', function () {
-    $application =  App\Models\Application::with('user.personal_information')->findOrFail(20);
-    $remarks = "Your payment reference number is invalid.";
-    EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
+Route::get('/test-email', function () {
+    // $application =  App\Models\Application::with('user.personal_information')->first();
+    // $remarks = "Your payment reference number is invalid.";
+    // EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
 
-    return "Rejection email sent to " . $application->user->email;
+    $permit = App\Models\Permit::first();
+    $email = $permit->user->email;;
+    EmailController::sendPaymentApplicationApprovalEmail($permit);
+
+    return "Email was set " . $email;
 });
 
 
