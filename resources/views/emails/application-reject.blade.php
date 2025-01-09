@@ -82,12 +82,18 @@
                 <strong>Reason:</strong> {{ $remarks }}
             </p>
             <p>
-                If you believe this decision was made in error or if you wish to resubmit your application, please contact our support team for further instructions.
+                To resolve this, please log in to your Gmail account again by clicking <a href="https://sksu-tpt.com" target="_blank">https://sksu-tpt.com</a>, upload the official receipt, and resubmit your application.
             </p>
             <p>
-                Thank you for your understanding.
+                If you have any questions or require further assistance, you may:
             </p>
-        </div>
+            <ul>
+                <li>Email us at <a href="mailto:sksutpt@gmail.com">sksutpt@gmail.com</a></li>
+                <li>Visit the Sultan Kudarat State University Access Campus</li>
+            </ul>
+            <p>
+                Thank you for your understanding and cooperation.
+            </p>
 
         <!-- Footer -->
         <div class="footer">

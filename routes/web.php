@@ -243,10 +243,11 @@ Route::get('/test-email', function () {
     // EmailController::sendPaymentApplicationRejectionEmail($application, $remarks);
 
     $permit = App\Models\Permit::first();
-    $email = $permit->user->email;;
+    $email = $permit->user->email;
     EmailController::sendPaymentApplicationApprovalEmail($permit);
 
-    return "Email was set " . $email;
+    return "Email was sent ";
+    // return "Email was sent " . $email;
 });
 
 
