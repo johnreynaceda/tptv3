@@ -41,7 +41,8 @@
             </div>
             <div class="col-span-4">
                 <div class="p-3 bg-white border border-gray-300 rounded-xl">
-                    <div wire:poll.5000ms.visible>
+                    <div>
+                    {{-- <div wire:poll.5000ms.visible> --}}
 
                         <x-dashboard.card-list>
                           
@@ -206,7 +207,7 @@
                                 <h1>Post Evaluation Statistics</h1>
                             </div>
                             <div class="mt-5 ">
-                                <div wire:poll class="space-y-2">
+                                <div  wire:poll.15s.visible class="space-y-2">
                                     <div class="flex py-4 items-center px-5 bg-gray-100 rounded-lg ">
                                         <span class="text-lg font-semibold mr-2">{{App\Models\SurveyResult::with('user.selected_courses')->count()}}</span> out of <span class="text-lg font-semibold ml-2 mr-2">{{App\Models\Result::count()}}</span>view their result.
                                         <div>

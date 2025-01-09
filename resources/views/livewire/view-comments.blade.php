@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div  wire:poll.10s.visible>
     <ul role="list" class="space-y-6">
         @forelse ($comments as $comment)
         <li class="relative flex gap-x-4">
