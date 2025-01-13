@@ -16,10 +16,14 @@ class PersonalInformation extends Model
     }
 
     public function fullName(): string
-{
-    $middleName = $this->middle_name ? " {$this->middle_name}" : ''; // Include middle name if it exists
-    return "{$this->last_name}, {$this->first_name}{$middleName}";
-}
+    {
+        $firstName = $this->first_name ?? '';
+        $middleName = $this->middle_name ? " {$this->middle_name}" : '';
+        $lastName = $this->last_name ?? '';
+        
+        return trim("{$lastName}, {$firstName}{$middleName}");
+    }
+    
 
 public function getFormattedDateOfBirthAttribute()
 {
