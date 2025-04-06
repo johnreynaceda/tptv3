@@ -7,6 +7,11 @@
                         Return
                     </x-button>
                 </x-slot>
+                @if ($payment === null)
+                    <div class="text-red-600">
+                        Payment information not found
+                    </div>
+                @endif
                 <div class="space-y-3">
                     <h1>
                         Applicant : <span class="font-semibold">
