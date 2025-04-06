@@ -10,16 +10,16 @@
                 <div class="space-y-3">
                     <h1>
                         Applicant : <span class="font-semibold">
-                            {{ optional(optional($payment)->user)->personal_information->first_name ?? 'N/A' }}
-                            {{ optional(optional($payment)->user)->personal_information->middle_name ?? '' }}
-                            {{ optional(optional($payment)->user)->personal_information->last_name ?? '' }}
+                            {{ optional(optional($payment)?.user)->personal_information?->first_name ?? 'N/A' }}
+                            {{ optional(optional($payment)?.user)->personal_information?->middle_name ?? '' }}
+                            {{ optional(optional($payment)?.user)->personal_information?->last_name ?? '' }}
                         </span>
                     </h1>
                     <h1>
-                        Reference Number : <span class="font-semibold">{{ $payment->reference_number }}</span>
+                        Reference Number : <span class="font-semibold">{{ $payment?->reference_number ?? '' }}</span>
                     </h1>
                     <h1>
-                        Paid At : <span class="font-semibold">{{ $payment->paid_at }}</span>
+                        Paid At : <span class="font-semibold">{{ $payment?->paid_at ?? '' }}</span>
                     </h1>
                     <hr>
                     <div class="space-y-3">
@@ -27,7 +27,7 @@
                             Proof of Payment
                         </h1>
                         <ul>
-                            @foreach ($payment->proofs as $key => $proof)
+                            @foreach ($payment?->proofs as $key => $proof)
                                 @if (optional($proof)->path)
                                     <li class="space-y-3">
                                         <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
@@ -42,7 +42,7 @@
                         </ul>
                     </div>
                 </div>
-                @if ($payment->user->step == '4')
+                @if ($payment?->user->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
 
