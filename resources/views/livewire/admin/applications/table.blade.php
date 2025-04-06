@@ -35,24 +35,26 @@
           
                 <x-table.row>
                     <x-table.data>
-                        {{ $application->user->personal_information->first_name }}
-                        {{ $application->user->personal_information->middle_name }}
-                        {{ $application->user->personal_information->last_name }}
-                        {{ $application->user->personal_information->extension }}
+                        {{ optional($application->user->personal_information)->first_name ?? 'N/A' }}
+                        {{ optional($application->user->personal_information)->middle_name ?? '' }}
+                        {{ optional($application->user->personal_information)->last_name ?? '' }}
+                        {{ optional($application->user->personal_information)->extension ?? '' }}
                     </x-table.data>
                     <x-table.data>
-                        @foreach ($application->user->program_choices as $program_choice)
+                        @forelse (optional($application->user)->program_choices ?? [] as $program_choice)
                             <span>
-                                {{ $program_choice->program->name }}
-                                @if ($program_choice->is_priority)
+                                {{ optional($program_choice->program)->name ?? 'Unknown Program' }}
+                                @if (optional($program_choice)->is_priority)
                                     <span class="text-green-600"> (Priority)</span>
                                 @endif
                             </span>
                             <br>
-                        @endforeach
+                        @empty
+                            <span class="text-gray-500">No programs selected</span>
+                        @endforelse
                     </x-table.data>
                     <x-table.data>
-                        @switch($application->user->step)
+                        @switch(optional($application->user)->step ?? '')
                             @case('4')
                                 <span
                                     class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
@@ -73,7 +75,7 @@
                     <x-table.data>
                         <div class="flex space-x-3">
                             <x-button flat
-                                wire:click="select({{ $application->user->id }})"
+                                wire:click="select({{ optional($application->user)->id ?? 0 }})"
                                 spinner="select({{ $application->user->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                     class="w-5 h-5"
@@ -85,7 +87,7 @@
                                 </svg>
                             </x-button>
                             <x-button flat
-                                wire:click="viewInfo({{ $application->user->id }})"
+                                wire:click="viewInfo({{ optional($application->user)->id ?? 0 }})"
                                 spinner="viewInfo({{ $application->user->id }})"><svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="w-5 h-5"
