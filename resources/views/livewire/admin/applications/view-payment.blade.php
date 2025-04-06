@@ -15,9 +15,9 @@
                 <div class="space-y-3">
                     <h1>
                         Applicant : <span class="font-semibold">
-                            {{ optional(optional($payment)?.user)->personal_information?->first_name ?? 'N/A' }}
-                            {{ optional(optional($payment)?.user)->personal_information?->middle_name ?? '' }}
-                            {{ optional(optional($payment)?.user)->personal_information?->last_name ?? '' }}
+                            {{ optional(optional($payment)?->user)?->personal_information?->first_name ?? 'N/A' }}
+                            {{ optional(optional($payment)?->user)?->personal_information?->middle_name ?? '' }}
+                            {{ optional(optional($payment)?->user)?->personal_information?->last_name ?? '' }}
                         </span>
                     </h1>
                     <h1>
@@ -32,7 +32,7 @@
                             Proof of Payment
                         </h1>
                         <ul>
-                            @foreach ($payment?->proofs as $key => $proof)
+                            @forelse (optional($payment)?->proofs ?? [] as $key => $proof)
                                 @if (optional($proof)->path)
                                     <li class="space-y-3">
                                         <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
@@ -43,11 +43,13 @@
                                         </a>
                                     </li>
                                 @endif
-                            @endforeach
+                            @empty
+                                <li class="text-gray-500">No proof of payment uploaded</li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
-                @if ($payment?->user->step == '4')
+                @if (optional($payment)?->user?->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
 

@@ -71,10 +71,11 @@ class Table extends Component
 
         return view('livewire.admin.applications.table', [
             'applications' => Application::query()
-                ->where('applications.examination_id', $this->examination) // Specify the table name explicitly
+                ->where('applications.examination_id', $this->examination)
                 ->whereHas('user', function ($query) {
                     $query->whereIn('step', $this->step);
                 })
+                ->whereHas('user.personal_information')
                 ->when($this->search, function ($query) {
                     $query->whereHas('user.personal_information', function ($query) {
                         $query->where('first_name', 'like', '%' . $this->search . '%')
@@ -90,16 +91,17 @@ class Table extends Component
                     'user' => [
                         'personal_information',
                         'school_information',
-                        'program_choices' => [
-                            'program',
-                        ],
+                        'program_choices' => function($query) {
+                            $query->with('program')->orderBy('is_priority', 'desc');
+                        },
                     ],
                     'user.permit',
                 ])
-                ->leftJoin('users', 'applications.user_id', '=', 'users.id') // Join users
-                ->leftJoin('permits', 'users.id', '=', 'permits.user_id') // Join permits
-                ->select('applications.*') // Ensure only application fields are selected
-                ->orderByRaw('CAST(permits.examinee_number AS UNSIGNED) ASC') // Numeric sorting
+                ->leftJoin('users', 'applications.user_id', '=', 'users.id')
+                ->leftJoin('permits', 'users.id', '=', 'permits.user_id')
+                ->select('applications.*')
+                ->orderByRaw('CASE WHEN permits.examinee_number IS NULL THEN 1 ELSE 0 END')
+                ->orderByRaw('CAST(permits.examinee_number AS UNSIGNED) ASC')
                 ->paginate(10),
         ]);
         
