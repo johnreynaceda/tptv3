@@ -9,9 +9,11 @@
                 </x-slot>
                 <div class="space-y-3">
                     <h1>
-                        Applicant : <span class="font-semibold">{{ optional($payment->user->personal_information)->first_name ?? 'N/A' }}
-                            {{ optional($payment->user->personal_information)->middle_name ?? '' }}
-                            {{ optional($payment->user->personal_information)->last_name ?? '' }}</span>
+                        Applicant : <span class="font-semibold">
+                            {{ optional(optional($payment)->user)->personal_information->first_name ?? 'N/A' }}
+                            {{ optional(optional($payment)->user)->personal_information->middle_name ?? '' }}
+                            {{ optional(optional($payment)->user)->personal_information->last_name ?? '' }}
+                        </span>
                     </h1>
                     <h1>
                         Reference Number : <span class="font-semibold">{{ $payment->reference_number }}</span>
@@ -43,14 +45,14 @@
                 @if ($payment->user->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
-                            
+
                             <x-button negative wire:click="reject" spinner="reject" wire:loading.attr="disabled" wire:target="reject">
                                 Deny Payment
                             </x-button>
                             <x-button positive wire:click="approve" spinner="approve" wire:loading.attr="disabled" wire:target="approve">
                                 Approve Payment
                             </x-button>
-                            
+
 
                         </div>
                     </x-slot>
