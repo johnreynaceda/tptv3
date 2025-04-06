@@ -9,9 +9,9 @@
                 </x-slot>
                 <div class="space-y-3">
                     <h1>
-                        Applicant : <span class="font-semibold">{{ $payment->user->personal_information->first_name }}
-                            {{ $payment->user->personal_information->middle_name }}
-                            {{ $payment->user->personal_information->last_name }}</span>
+                        Applicant : <span class="font-semibold">{{ optional($payment->user->personal_information)->first_name ?? 'N/A' }}
+                            {{ optional($payment->user->personal_information)->middle_name ?? '' }}
+                            {{ optional($payment->user->personal_information)->last_name ?? '' }}</span>
                     </h1>
                     <h1>
                         Reference Number : <span class="font-semibold">{{ $payment->reference_number }}</span>
