@@ -31,6 +31,19 @@ class ViewPayment extends Component
         }
 
         $this->user_id = $id;
+        
+        // First check if payment exists for this user
+        if (!Payment::where('user_id', $id)->exists()) {
+            $this->payment = null;
+            $this->notification([
+                'title' => 'Error',
+                'description' => 'No payment record found for this user',
+                'icon' => 'error'
+            ]);
+            return;
+        }
+
+        // Load payment with relationships if it exists
         $this->payment = Payment::query()
             ->where('user_id', $id)
             ->with([
@@ -44,7 +57,7 @@ class ViewPayment extends Component
         if (!$this->payment) {
             $this->notification([
                 'title' => 'Error',
-                'description' => 'Payment not found',
+                'description' => 'Error loading payment details',
                 'icon' => 'error'
             ]);
         }
