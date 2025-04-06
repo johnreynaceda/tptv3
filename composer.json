@@ -19,6 +19,7 @@
         "phpoffice/phpspreadsheet": "^1.21",
         "psr/simple-cache": "^2.0",
         "spatie/browsershot": "^5.0",
+        "spatie/laravel-db-snapshots": "^2.7",
         "wireui/wireui": "^1.7"
     },
     "require-dev": {
