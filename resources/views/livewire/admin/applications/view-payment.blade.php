@@ -7,54 +7,54 @@
                         Return
                     </x-button>
                 </x-slot>
-                @if (!isset($payment))
-                    <div class="text-red-600">
-                        Payment data not loaded
-                    </div>
-                @if (!$payment)
+                @if (!isset($payment) || $payment === null)
                     <div class="text-red-600">
                         Payment not found
                     </div>
                 @else
                 <div class="space-y-3">
-                    <h1>
-                        Applicant : <span class="font-semibold">
-                            {{ $payment?->user?->personal_information?->first_name ?? 'N/A' }}
-                            {{ $payment?->user?->personal_information?->middle_name ?? '' }}
-                            {{ $payment?->user?->personal_information?->last_name ?? '' }}
-                        </span>
-                    </h1>
-                    <h1>
-                        Reference Number : <span class="font-semibold">{{ $payment?->reference_number ?? '' }}</span>
-                    </h1>
-                    <h1>
-                        Paid At : <span class="font-semibold">{{ $payment?->paid_at ?? '' }}</span>
-                    </h1>
-                    <hr>
-                    <div class="space-y-3">
+                    @if($payment?->user)
                         <h1>
-                            Proof of Payment
+                            Applicant : <span class="font-semibold">
+                                {{ $payment->user->personal_information?->first_name ?? 'N/A' }}
+                                {{ $payment->user->personal_information?->middle_name ?? '' }}
+                                {{ $payment->user->personal_information?->last_name ?? '' }}
+                            </span>
                         </h1>
-                        <ul>
-                            @forelse ($payment?->proofs ?? [] as $key => $proof)
-                                @if ($proof?->path)
-                                    <li class="space-y-3">
-                                        <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
-                                            title="View the proof document">
-                                            <img src="{{ Storage::url($proof->path) }}"
-                                                alt="Proof document for {{ $proof->name ?? 'item' }}"
-                                                class="max-w-xs h-auto rounded-md shadow-md object-cover" />
-                                        </a>
-                                    </li>
-                                @endif
-                            @empty
-                                <li class="text-gray-500">No proof of payment uploaded</li>
-                            @endforelse
-                        </ul>
-                    </div>
+                        <h1>
+                            Reference Number : <span class="font-semibold">{{ $payment->reference_number ?? 'N/A' }}</span>
+                        </h1>
+                        <h1>
+                            Paid At : <span class="font-semibold">{{ $payment->paid_at ?? 'Not yet paid' }}</span>
+                        </h1>
+                    @endif
+                    @if($payment)
+                        <hr>
+                        <div class="space-y-3">
+                            <h1>
+                                Proof of Payment
+                            </h1>
+                            <ul>
+                                @forelse ($payment->proofs ?? [] as $proof)
+                                    @if ($proof?->path)
+                                        <li class="space-y-3">
+                                            <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
+                                                title="View the proof document">
+                                                <img src="{{ Storage::url($proof->path) }}"
+                                                    alt="Proof document for {{ $proof->name ?? 'item' }}"
+                                                    class="max-w-xs h-auto rounded-md shadow-md object-cover" />
+                                            </a>
+                                        </li>
+                                    @endif
+                                @empty
+                                    <li class="text-gray-500">No proof of payment uploaded</li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 @endif
-                @if (optional($payment)?->user?->step == '4')
+                @if ($payment?->user?->step === '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
 
