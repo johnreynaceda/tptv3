@@ -26,13 +26,28 @@ class ViewPayment extends Component
     }
     public function loadUserPayment($id)
     {
+        if (!$id) {
+            return;
+        }
+
         $this->user_id = $id;
         $this->payment = Payment::query()
-                                    ->where('user_id', $id)
-                                    ->with(['user'=>[
-                                        'personal_information',
-                                    ],'proofs'])
-                                    ->first();
+            ->where('user_id', $id)
+            ->with([
+                'user' => [
+                    'personal_information',
+                ],
+                'proofs'
+            ])
+            ->first();
+
+        if (!$this->payment) {
+            $this->notification([
+                'title' => 'Error',
+                'description' => 'Payment not found',
+                'icon' => 'error'
+            ]);
+        }
     }
 
     public function approve()
