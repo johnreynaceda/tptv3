@@ -13,46 +13,53 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $stat = $this->loadData();
+        // Get basic stats using optimized query
+        $stats = $this->loadData();
 
+        // Get permit and slot statistics in a single query
+        $userStats = DB::select(
+            "SELECT 
+                SUM(CASE 
+                    WHEN permits.id IS NOT NULL AND student_slots.id IS NOT NULL THEN 1 
+                    ELSE 0 
+                END) as users_with_permit_and_slot,
+                SUM(CASE 
+                    WHEN permits.id IS NOT NULL AND student_slots.id IS NULL THEN 1 
+                    ELSE 0 
+                END) as users_with_permit_only
+            FROM users
+            LEFT JOIN permits ON users.id = permits.user_id
+            LEFT JOIN student_slots ON users.id = student_slots.user_id
+            WHERE users.role_id = 2"
+        )[0];
 
-        $totalUsersWithPermitWithSlot = User::isNotAdmin()
-            ->whereHas('permit') // Ensure the user has a permit
-            ->whereHas('student_slot', function ($query) {
-                $query->whereHas('slot'); // Check if the student_slot has a related slot
-            })
-            ->count();
+        // Get active examination with pre-calculated slot statistics
+        $active_examination = Examination::where('is_active', 1)
+            ->withCount([
+                'test_centers as total_active_slots' => function($query) {
+                    $query->join('slots', 'test_centers.id', '=', 'slots.test_center_id')
+                          ->where('slots.is_active', true)
+                          ->select(DB::raw('SUM(slots.slots)'));
+                },
+                'test_centers as total_occupied_active_slots' => function($query) {
+                    $query->join('slots', 'test_centers.id', '=', 'slots.test_center_id')
+                          ->join('student_slots', 'slots.id', '=', 'student_slots.slot_id')
+                          ->where('slots.is_active', true);
+                }
+            ])
+            ->first();
 
-        $totalUsersWithPermitButNoSlot = User::isNotAdmin()
-            ->whereHas('permit') // Ensure the user has a permit
-            ->whereDoesntHave('student_slot', function ($query) {
-                $query->whereHas('slot'); // Exclude users with a related slot
-            })
-            ->count();
+        // Calculate available slots
+        $total_active_slots = $active_examination ? $active_examination->total_active_slots : 0;
+        $total_occupied_active_slots = $active_examination ? $active_examination->total_occupied_active_slots : 0;
+        $total_available_active_slots = $total_active_slots - $total_occupied_active_slots;
 
-
-
-
-        $active_examination = Examination::where('is_active', 1)->first();
-
-
-        $testCenter = $active_examination
-            ? TestCenter::totalSlots()->where('examination_id', $active_examination->id)->first()
-            : null;
-            $total_active_slots = $active_examination ? $active_examination->totalActiveSlots() : 0;
-            $total_occupied_active_slots = $active_examination ? $active_examination->totalOccupiedActiveSlots() : 0;
-            $total_available_active_slots = $active_examination ? $active_examination->totalAvailableActiveSlots() : 0;
-
-        
-
-        // Return view with data (default values where necessary)
         return view('admin.dashboard', [
-            'totalUsersWithPermitWithSlot' => $totalUsersWithPermitWithSlot,
-            'totalUsersWithPermitButNoSlot' => $totalUsersWithPermitButNoSlot,
-            'users_count' => $stat['total_users_count'],
-            'examinations_count' => $stat['total_examinations_count'],
-            'programs_count' => $stat['total_programs_count'],
-        
+            'totalUsersWithPermitWithSlot' => $userStats->users_with_permit_and_slot,
+            'totalUsersWithPermitButNoSlot' => $userStats->users_with_permit_only,
+            'users_count' => $stats['total_users_count'],
+            'examinations_count' => $stats['total_examinations_count'],
+            'programs_count' => $stats['total_programs_count'],
             'total_active_slots' => $total_active_slots,
             'total_occupied_active_slots' => $total_occupied_active_slots,
             'total_available_active_slots' => $total_available_active_slots,
@@ -62,28 +69,14 @@ class DashboardController extends Controller
 
     public function loadData()
     {
-        $query_1 = User::isNotAdmin()->select([
-            DB::raw('"total_users_count" as label'),
-            DB::raw('count(*) as value'),
-        ]);
+        // Combine all count queries into a single query
+        $stats = DB::select(
+            "SELECT
+                (SELECT COUNT(*) FROM users WHERE role_id = 2) as total_users_count,
+                (SELECT COUNT(*) FROM examinations) as total_examinations_count,
+                (SELECT COUNT(*) FROM programs WHERE is_offered = 1) as total_programs_count"
+        )[0];
 
-        $query_2 = DB::table('examinations')->select([
-            DB::raw('"total_examinations_count" as label'),
-            DB::raw('count(*) as value'),
-        ]);
-
-        $query_3 = DB::table('programs')
-            ->where('is_offered', 1)
-            ->select([
-                DB::raw('"total_programs_count" as label'),
-                DB::raw('count(*) as value'),
-            ]);
-
-        return $query_1->unionAll($query_2)
-            ->unionAll($query_3)
-            ->get()
-            ->mapWithKeys(function ($item) {
-                return [$item->label => $item->value];
-            })->toArray();
+        return (array) $stats;
     }
 }

@@ -121,9 +121,10 @@ class Examination extends Model
     }
     public function totalActiveSlots()
     {
-        return $this->test_centers->sum(function ($testCenter) {
-            return $testCenter->slots->where('is_active', true)->sum('slots');
-        });
+        return $this->test_centers()
+            ->join('slots', 'test_centers.id', '=', 'slots.test_center_id')
+            ->where('slots.is_active', true)
+            ->sum('slots.slots');
     }
 
     /**
@@ -132,16 +133,13 @@ class Examination extends Model
      * @return int
      */
     public function totalOccupiedActiveSlots()
-{
-    return $this->test_centers->sum(function ($testCenter) {
-        return $testCenter->slots
-            ->where('is_active', true)
-            ->sum(function ($slot) {
-                return $slot->student_slots ? $slot->student_slots->count() : 0;
-            });
-    });
-}
-
+    {
+        return $this->test_centers()
+            ->join('slots', 'test_centers.id', '=', 'slots.test_center_id')
+            ->leftJoin('student_slots', 'slots.id', '=', 'student_slots.slot_id')
+            ->where('slots.is_active', true)
+            ->count('student_slots.id');
+    }
 
     /**
      * Total available active slots.
