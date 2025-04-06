@@ -87,7 +87,6 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </x-button>
-                            @endif
                             <x-button flat
                                 wire:click="viewInfo({{ optional($application->user)->id ?? 0 }})"
                                 spinner="viewInfo({{ $application->user->id }})"><svg

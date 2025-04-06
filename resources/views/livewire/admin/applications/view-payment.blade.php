@@ -7,6 +7,10 @@
                         Return
                     </x-button>
                 </x-slot>
+                @if (!isset($payment))
+                    <div class="text-red-600">
+                        Payment data not loaded
+                    </div>
                 @if (!$payment)
                     <div class="text-red-600">
                         Payment not found
@@ -15,9 +19,9 @@
                 <div class="space-y-3">
                     <h1>
                         Applicant : <span class="font-semibold">
-                            {{ optional(optional($payment)?->user)?->personal_information?->first_name ?? 'N/A' }}
-                            {{ optional(optional($payment)?->user)?->personal_information?->middle_name ?? '' }}
-                            {{ optional(optional($payment)?->user)?->personal_information?->last_name ?? '' }}
+                            {{ $payment?->user?->personal_information?->first_name ?? 'N/A' }}
+                            {{ $payment?->user?->personal_information?->middle_name ?? '' }}
+                            {{ $payment?->user?->personal_information?->last_name ?? '' }}
                         </span>
                     </h1>
                     <h1>
@@ -32,8 +36,8 @@
                             Proof of Payment
                         </h1>
                         <ul>
-                            @forelse (optional($payment)?->proofs ?? [] as $key => $proof)
-                                @if (optional($proof)->path)
+                            @forelse ($payment?->proofs ?? [] as $key => $proof)
+                                @if ($proof?->path)
                                     <li class="space-y-3">
                                         <a href="{{ Storage::url($proof->path) }}" target="_blank" class="text-blue-600"
                                             title="View the proof document">
