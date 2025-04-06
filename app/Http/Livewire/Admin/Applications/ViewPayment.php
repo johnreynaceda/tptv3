@@ -13,8 +13,8 @@ class ViewPayment extends Component
 {
 
     use Actions;
-    public $payment;
-    public $user_id;
+    public $payment = null;
+    public $user_id = '';
     public $reject_modal = false;
     public $remarks;
     protected $listeners = [

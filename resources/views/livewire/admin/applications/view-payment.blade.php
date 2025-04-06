@@ -1,17 +1,17 @@
 <div>
     <div class="border border-gray-300 rounded-md">
-        @if ($user_id != '')
+        @if ($user_id !== '')
             <x-card title="Payment Information" shadow="shadow-none">
                 <x-slot name="action">
                     <x-button icon="arrow-left" x-on:click="$dispatch('none')">
                         Return
                     </x-button>
                 </x-slot>
-                @if ($payment === null)
+                @if (!$payment)
                     <div class="text-red-600">
-                        Payment information not found
+                        Payment not found
                     </div>
-                @endif
+                @else
                 <div class="space-y-3">
                     <h1>
                         Applicant : <span class="font-semibold">
@@ -49,6 +49,7 @@
                         </ul>
                     </div>
                 </div>
+                @endif
                 @if (optional($payment)?->user?->step == '4')
                     <x-slot name="footer">
                         <div class="flex justify-end space-x-3">
