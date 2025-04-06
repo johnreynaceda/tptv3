@@ -28,7 +28,6 @@ class ViewPayment extends Component
     {
         $this->user_id = $id;
         $this->payment = Payment::query()
-        ->whereHas('user.personal_information')
                                     ->where('user_id', $id)
                                     ->with(['user'=>[
                                         'personal_information',
