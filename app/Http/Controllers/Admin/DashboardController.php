@@ -16,26 +16,49 @@ class DashboardController extends Controller
         // Get basic stats using optimized query
         $stats = $this->loadData();
 
-        // Get permit and slot statistics in a single query
-        $userStats = DB::select(
-            "SELECT 
-                SUM(CASE 
-                    WHEN permits.id IS NOT NULL AND student_slots.id IS NOT NULL THEN 1 
-                    ELSE 0 
-                END) as users_with_permit_and_slot,
-                SUM(CASE 
-                    WHEN permits.id IS NOT NULL AND student_slots.id IS NULL THEN 1 
-                    ELSE 0 
-                END) as users_with_permit_only
-            FROM users
-            LEFT JOIN permits ON users.id = permits.user_id
-            LEFT JOIN student_slots ON users.id = student_slots.user_id
-            WHERE users.role_id = 2"
-        )[0];
+        // Get the currently active examination
+        $active_examination = Examination::where('is_active', 1)->first();
 
-        // Get active examination with pre-calculated slot statistics
-        $active_examination = Examination::where('is_active', 1)
-            ->withCount([
+        // Default userStats in case there's no active examination
+        $userStats = (object)[
+            'users_with_permit_and_slot' => 0,
+            'users_with_permit_only' => 0,
+        ];
+
+        if ($active_examination) {
+            // Get permit and slot statistics based on the active examination only
+            $userStats = DB::select(
+                "SELECT
+                    SUM(CASE
+                        WHEN permits.id IS NOT NULL
+                             AND student_slots.id IS NOT NULL
+                             AND slots.test_center_id IN (
+                                 SELECT id FROM test_centers WHERE examination_id = ?
+                             )
+                        THEN 1
+                        ELSE 0
+                    END) as users_with_permit_and_slot,
+                    SUM(CASE
+                        WHEN permits.id IS NOT NULL
+                             AND (student_slots.id IS NULL
+                                  OR slots.test_center_id NOT IN (
+                                      SELECT id FROM test_centers WHERE examination_id = ?
+                                  )
+                             )
+                        THEN 1
+                        ELSE 0
+                    END) as users_with_permit_only
+                FROM users
+                LEFT JOIN permits ON users.id = permits.user_id
+                LEFT JOIN student_slots ON users.id = student_slots.user_id
+                LEFT JOIN slots ON student_slots.slot_id = slots.id
+                WHERE users.role_id = 2
+                ",
+                [$active_examination->id, $active_examination->id]
+            )[0];
+
+            // Load slot statistics for the active examination
+            $active_examination->loadCount([
                 'test_centers as total_active_slots' => function($query) {
                     $query->join('slots', 'test_centers.id', '=', 'slots.test_center_id')
                           ->where('slots.is_active', true)
@@ -46,8 +69,8 @@ class DashboardController extends Controller
                           ->join('student_slots', 'slots.id', '=', 'student_slots.slot_id')
                           ->where('slots.is_active', true);
                 }
-            ])
-            ->first();
+            ]);
+        }
 
         // Calculate available slots
         $total_active_slots = $active_examination ? $active_examination->total_active_slots : 0;
@@ -66,6 +89,7 @@ class DashboardController extends Controller
             'current_active_examination' => $active_examination,
         ]);
     }
+
 
     public function loadData()
     {

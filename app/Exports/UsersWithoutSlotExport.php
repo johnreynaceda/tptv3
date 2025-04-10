@@ -13,16 +13,21 @@ class UsersWithoutSlotExport implements FromView
      */
     public function view(): View
     {
-        $users = User::isNotAdmin()
-            ->whereHas('permit') // Users with permits
-            ->whereDoesntHave('student_slot', function ($query) {
-                $query->whereHas('slot'); // Without slots
-            })
-            ->with(['permit', 'personal_information']) // Load related permit and personal information
-            ->get();
+        $activeExam = \App\Models\Examination::where('is_active', 1)->first();
 
-        return view('exports.users-without-slot', [
-            'users' => $users,
-        ]);
+    $users = User::isNotAdmin()
+        ->whereHas('permit')
+        ->where(function ($query) use ($activeExam) {
+            $query->whereDoesntHave('student_slot')
+                ->orWhereHas('student_slot.slot.test_center', function ($q) use ($activeExam) {
+                    $q->where('examination_id', '!=', $activeExam->id);
+                });
+        })
+        ->with(['permit', 'personal_information'])
+        ->get();
+
+    return view('exports.users-without-slot', [
+        'users' => $users,
+    ]);
     }
 }
