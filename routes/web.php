@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersWithoutSlotExport;
+use App\Exports\UsersWithPermitAndSlotExport;
 use App\Http\Livewire\CampusManagement;
 /*
 |--------------------------------------------------------------------------
@@ -137,6 +138,11 @@ Route::prefix('/admin')
             $filename = 'users_without_slot_' . now()->year . '.xlsx'; // Include the current year
             return Excel::download(new UsersWithoutSlotExport, $filename);
         })->name('export.users_without_slot');
+
+        Route::get('/export/users-with-slot', function () {
+            $filename = 'users_with_slot_' . now()->year . '.xlsx';
+            return Excel::download(new UsersWithPermitAndSlotExport, $filename);
+        })->name('export.users_with_slot');
 
     });
 

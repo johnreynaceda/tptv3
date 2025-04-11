@@ -20,6 +20,13 @@ class Program extends Model
         return $this->hasOne(ProgramChoice::class);
     }
 
+/*************  ✨ Windsurf Command ⭐  *************/
+    /**
+     * Get the selected courses for this program
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+/*******  683b553f-0f19-494b-8f28-14d09baf62d9  *******/
     public function selected_courses()
     {
         return $this->hasMany(SelectedCourse::class);
