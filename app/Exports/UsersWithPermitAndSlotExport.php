@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 class UsersWithPermitAndSlotExport implements FromQuery, WithHeadings, WithMapping, WithChunkReading
 {
     use Exportable;
-    //updae
+    
     public function query()
     {
         $activeExam = Examination::where('is_active', 1)->first();
