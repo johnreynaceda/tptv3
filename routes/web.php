@@ -135,13 +135,19 @@ Route::prefix('/admin')
         // Route::get('/permit/{user}', ViewPermit::class)->name('admin.permit');
         Route::get('/permit/{permit}/view', ViewOnlyPermit::class)->name('admin.permit.view');
         Route::get('/export/users-without-slot', function () {
-            $filename = 'users_without_slot_' . now()->year . '.xlsx'; // Include the current year
+            $filename = 'student_with_permit_but_no_slot_' . now()->year . '.xlsx'; // Include the current year
             return Excel::download(new UsersWithoutSlotExport, $filename);
         })->name('export.users_without_slot');
 
         Route::get('/export/users-with-slot', function () {
-            $filename = 'users_with_slot_' . now()->year . '.xlsx';
-            return Excel::download(new UsersWithPermitAndSlotExport, $filename);
+             $filename = 'students_with_slots_and_permit_' . now()->year . '.xlsx';
+            // return Excel::download(new UsersWithPermitAndSlotExport, $filename);
+            // Change from:
+             return Excel::download(new UsersWithPermitAndSlotExport, $filename);
+
+// To:
+// return Excel::download(new UsersWithPermitAndSlotExport, $filename, \Maatwebsite\Excel\Excel::CSV);
+
         })->name('export.users_with_slot');
 
         // Queued export routes
