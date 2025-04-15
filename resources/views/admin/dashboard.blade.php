@@ -64,14 +64,14 @@
                                 <x-slot name="extra">
 
 
-                                    {{-- @if ($totalUsersWithPermitWithSlot > 0) --}}
+                                    @if ($totalUsersWithPermitWithSlot > 0)
                                         <div class="flex flex-col space-y-1">
                                             <a href="{{ route('export.users_with_slot') }}" class="underline text-green-700 text-sm">
                                                 Download Excel (Direct)
                                             </a>
 
                                         </div>
-                                    {{-- @endif --}}
+                                    @endif
                                 </x-slot>
                             </x-dashboard.card-item>
                             <x-dashboard.card-item
@@ -98,7 +98,7 @@
 
             <a href="{{ route('export.users_without_slot') }}" class="underline text-green-700 text-sm">
 
-                Download Excels
+                Download Excel
             </a>
 
         </div>
