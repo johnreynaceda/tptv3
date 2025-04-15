@@ -143,6 +143,11 @@ Route::prefix('/admin')
             $filename = 'users_with_slot_' . now()->year . '.xlsx';
             return Excel::download(new UsersWithPermitAndSlotExport, $filename);
         })->name('export.users_with_slot');
+        
+        // Queued export routes
+        Route::get('/export/queue-users-with-permit-and-slot', [App\Http\Controllers\QueuedExportController::class, 'exportUsersWithPermitAndSlot'])->name('export.queue_users_with_permit_and_slot');
+        Route::get('/exports', [App\Http\Controllers\QueuedExportController::class, 'listExports'])->name('export.list');
+        Route::get('/exports/download/{filename}', [App\Http\Controllers\QueuedExportController::class, 'downloadExport'])->name('export.download');
 
     });
 
