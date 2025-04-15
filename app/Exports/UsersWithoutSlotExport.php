@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 class UsersWithoutSlotExport implements FromQuery, WithHeadings, WithMapping, WithChunkReading
 {
     use Exportable;
-    
+
     public function query()
     {
         $activeExam = Examination::where('is_active', 1)->first();
@@ -21,6 +21,11 @@ class UsersWithoutSlotExport implements FromQuery, WithHeadings, WithMapping, Wi
         return User::query()
             ->select('users.*')
             ->join('permits', 'users.id', '=', 'permits.user_id')
+            ->join('program_choices', function($join) {
+                $join->on('users.id', '=', 'program_choices.user_id')
+                     ->where('program_choices.is_priority', 1);
+            })
+            ->join('programs', 'program_choices.program_id', '=', 'programs.id')
             ->where('users.role_id', '!=', 1)
             ->where(function ($query) use ($activeExam) {
                 $query->whereDoesntHave('student_slot')
@@ -28,6 +33,7 @@ class UsersWithoutSlotExport implements FromQuery, WithHeadings, WithMapping, Wi
                         $q->where('examination_id', '!=', $activeExam->id);
                     });
             })
+            ->orderBy('programs.name')
             ->with([
                 'permit',
                 'personal_information',
