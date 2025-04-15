@@ -66,7 +66,7 @@
                                     {{-- @dump($totalUsersWithPermitWithSlot) --}}
                                     @if ($totalUsersWithPermitWithSlot > 0)
                                         <div class="flex flex-col space-y-1">
-                                            <a href="{{ route('export.users_with_slot') }}"  target="_blank" class="underline text-green-700 text-sm">
+                                            <a href="{{ route('export.users_with_slot') }}"  target="_blank" class=" underline text-green-700 text-sm">
                                                 Download Excel (Direct)
                                             </a>
 
