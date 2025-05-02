@@ -19,6 +19,7 @@ use App\Http\Livewire\PermitLayout;
 use App\Http\Livewire\ViewOnlyPermit;
 use Spatie\Browsershot\Browsershot;
 use App\Models\Permit;
+use App\Models\PersonalInformation;
 use Illuminate\Support\Facades\View;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
@@ -285,3 +286,9 @@ Route::get('/yow', function () {
 
 //     return response()->download($filePath); // Provide the file as a downloadable response
 // });
+
+
+Route::get('/xss-test', function () {
+    $student = PersonalInformation::find(1); // or use your test student's ID
+    return view('xss-test', compact('student'));
+});
