@@ -98,8 +98,8 @@
                                     <path fill-rule="evenodd"
                                         d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
                                         clip-rule="evenodd" />
-                                </svg> </x-button>
-
+                                 </svg> </x-button>
+                            @endif
 
                                 {{-- @if ($application->user->permit)
 
@@ -175,9 +175,6 @@
                                 </template>
                             </div>
                         @endif
-
-
-
                         </div>
                     </x-table.data>
                 </x-table.row>
@@ -192,9 +189,9 @@
 
                 @endforelse
 
-            </x-slot>
-            <x-slot name="footer">
-                {{ $applications->links() }}
-            </x-slot>
-        </x-table.main>
-    </div>
+        </x-slot>
+        <x-slot name="footer">
+            {{ $applications->links() }}
+        </x-slot>
+    </x-table.main>
+</div>
