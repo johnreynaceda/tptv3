@@ -74,7 +74,7 @@
                     </x-table.data>
                     <x-table.data>
                         <div class="flex space-x-3">
-                            @if ($application->user->permit)
+
                             <x-button flat
                                 wire:click="select({{ optional($application->user)->id ?? 0 }})"
                                 spinner="select({{ $application->user->id }})">
@@ -99,7 +99,6 @@
                                         d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
                                         clip-rule="evenodd" />
                                  </svg> </x-button>
-                            @endif
 
                                 {{-- @if ($application->user->permit)
 
@@ -121,8 +120,8 @@
 
                             @endif --}}
 
-                            @if ($application->user->permit)
                             <!-- Modal Trigger -->
+                            @if ($application->user->permit)
                             <div x-data="{ isOpen: false }">
                                 <x-button flat @click="isOpen = true" spinner>
                                     Permit
