@@ -142,8 +142,7 @@ Route::prefix('/admin')
 
         Route::get('/export/users-with-slot', function () {
              $filename = 'students_with_slots_and_permit_' . now()->year . '.xlsx';
-            // return Excel::download(new UsersWithPermitAndSlotExport, $filename);
-            // Change from:
+            
              return Excel::download(new UsersWithPermitAndSlotExport, $filename);
 
 // To:
