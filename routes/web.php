@@ -26,6 +26,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersWithoutSlotExport;
 use App\Exports\UsersWithPermitAndSlotExport;
 use App\Http\Livewire\CampusManagement;
+use App\Http\Livewire\ExaminationResultPage;
+use App\Http\Livewire\ExaminationWithResultPage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SurveyResult;
 use App\Models\SelectedCourse;
@@ -102,6 +104,8 @@ Route::prefix('/admin')
         Route::get('/examinations', function () {
             return view('admin.examinations');
         })->name('admin.examinations');
+        Route::get('/examination-with-results', ExaminationWithResultPage::class)->name('admin.examination-with-results');
+        Route::get('/examination-results/{examination}', ExaminationResultPage::class)->name('admin.examination-results');
         Route::get('/monitoring', function () {
             return view('admin.monitoring');
         })->name('admin.monitoring');

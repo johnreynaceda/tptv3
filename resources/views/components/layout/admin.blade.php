@@ -218,6 +218,7 @@
               </svg>
               Examinations
             </a>
+          
             <a href="{{ route('admin.campuses') }}"
               class="{{ Request::routeIs(['admin.campuses']) ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium  rounded-md  group">
 
@@ -261,6 +262,7 @@
               </svg>
               Users
             </a>
+          
             {{-- <a href="#"
                             class="flex items-center px-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 group">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -342,6 +344,23 @@
                 Log Out
               </a>
             </form>
+            <hr />
+            <div class="mt-8">
+
+                <a href="{{ route('admin.examination-with-results') }}"
+                class="{{ Request::routeIs(['admin.examination-with-results']) ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium rounded-md group">
+                <svg
+                class="{{ Request::routeIs(['admin.examination-with-results']) ? 'text-white' : 'text-gray-400 group-hover:text-gray-500' }} flex-shrink-0 w-6 h-6 mr-3"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" aria-hidden="true">
+                <!-- Heroicon: Check Circle -->
+                <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 12l2 2l4 -4" />
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            Exam Results
+        </a>
+        </div>
           </nav>
         </div>
 
