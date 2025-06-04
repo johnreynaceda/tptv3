@@ -64,16 +64,26 @@ class GoogleController extends Controller
     $last_name = $nameParts[1] ?? '';
 
     // Create or update the user without restrictions
-    $user = User::updateOrCreate([
-        'email' => $google_user->email,
-    ], [
-        'first_name' => $first_name,
-        'last_name' => $last_name,
-        'provider' => 'GOOGLE', // Update provider to Google
-        'provider_id' => $google_user->id,
-        'email_verified_at' => now(),
-        'password' => null, // No password required for OAuth users
-    ]);
+
+// List of admin emails (case-insensitive)
+$adminEmails = [
+    'sksutpt@gmail.com',
+    'admin@gmail.com',
+];
+
+$roleId = in_array(strtolower($google_user->email), array_map('strtolower', $adminEmails)) ? 1 : 2;
+
+$user = User::updateOrCreate([
+    'email' => $google_user->email,
+], [
+    'role_id' => $roleId,
+    'first_name' => $first_name,
+    'last_name' => $last_name,
+    'provider' => 'GOOGLE',
+    'provider_id' => $google_user->id,
+    'email_verified_at' => now(),
+    'password' => null,
+]);
 
     // Log the user in
     Auth::login($user);
