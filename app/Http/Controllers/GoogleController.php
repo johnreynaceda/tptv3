@@ -86,17 +86,24 @@ $user = User::updateOrCreate([
 ]);
 
     // Log the user in
-    Auth::login($user);
-
-    Auth::login($user);
+    // Log the user in
+Auth::login($user);
 
 if (auth()->check()) {
-    logger('User IS authenticated: ' . auth()->user()->email);
+    logger('User IS authenticated:', [
+        'id' => auth()->user()->id,
+        'email' => auth()->user()->email,
+        'role_id' => auth()->user()->role_id,
+        'provider' => auth()->user()->provider,
+        'provider_id' => auth()->user()->provider_id,
+        'email_verified_at' => auth()->user()->email_verified_at,
+        // Add other fields as needed
+    ]);
 } else {
     logger('User NOT authenticated after login!');
 }
 
-return redirect()->route('dashboard');
+
 
 
     return redirect()->route('dashboard');
