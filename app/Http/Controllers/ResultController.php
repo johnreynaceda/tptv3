@@ -11,11 +11,23 @@ class ResultController extends Controller
     {
         $examinee_number = null;
         $result = null;
+        $resultsVisible = false;
+        $currentExamination = null;
 
         // Get the examinee number from permit if available
         if(auth()->user()->permit != null) {
             $examinee_number = auth()->user()->permit->examinee_number_updated;
             $result = Result::where('examinee_number', $examinee_number)->first();
+
+            // Get the current examination associated with the user's application
+            if (auth()->user()->application) {
+                $currentExamination = auth()->user()->application->examination;
+
+                // Check if results should be shown based on the show_results flag
+                if ($currentExamination && $currentExamination->show_results) {
+                    $resultsVisible = true;
+                }
+            }
         }
 
         return view('applicant.result', [
@@ -26,8 +38,8 @@ class ResultController extends Controller
             'user_new_program_choices' => SelectedCourse::where('user_id', auth()->user()->id)->get(),
             'examinee_number' => $examinee_number,
             'result' => $result,
-
-
+            'resultsVisible' => $resultsVisible,
+            'examination' => $currentExamination,
         ]);
     }
 

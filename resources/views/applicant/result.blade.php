@@ -120,16 +120,17 @@
         document.body.innerHTML = originalContents;
     }
 }"
-    class="py-10 antialiased font-poppins">
-    <div class="flex justify-between max-w-5xl px-3 mx-auto sm:px-0">
-        <h1>
+    class="py-10 antialiased font-poppins ">
+    <div class="flex justify-between items-center max-w-3xl px-3 mx-auto sm:px-0">
+        <h1 class="text-xl sm:text-2xl font-bold">
             TPT RESULT
         </h1>
         <div class="flex space-x-3">
             <x-button x-on:click="printDiv('printable')"
                 icon="printer"
-                positive>
-                Print
+                positive
+                class="text-xs sm:text-sm">
+                Print Result
             </x-button>
         </div>
     </div>
@@ -142,261 +143,103 @@
 
     <div class="flex">
         <div class="flex mr-2">
-            <img src="{{ asset('images/bagong_pilipinas.png') }}" class="w-16 mx-auto  h-16" alt="University Logo">
-            <img src="{{ asset('images/sksu1.png') }}" class="w-16 mx-auto  h-16" alt="Header Logo">
+            <img src="{{ asset('images/bagong_pilipinas.png') }}" class="w-16 mx-auto h-16" alt="University Logo">
+            <img src="{{ asset('images/sksu1.png') }}" class="w-16 mx-auto h-16" alt="Header Logo">
         </div>
         <div>
-            <p class=" leading-[1.1rem] text-gray-600 text-sm font-bold uppercase">Republic of the Philippines</p>
-            <p class=" leading-[1.1rem] text-lg text-green-800 font-bold">SULTAN KUDARAT STATE UNIVERSITY</p>
-            <p class=" leading-[1.1rem] text-gray-600 text-sm">EJC Montilla, City of Tacurong, 9800</p>
-            <p class=" leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
+            <p class="leading-[1.1rem] text-gray-600 text-sm font-bold uppercase">Republic of the Philippines</p>
+            <p class="leading-[1.1rem] text-lg text-green-800 font-bold">SULTAN KUDARAT STATE UNIVERSITY</p>
+            <p class="leading-[1.1rem] text-gray-600 text-sm">EJC Montilla, City of Tacurong, 9800</p>
+            <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
         </div>
     </div>
-    <div class="flex items-center justify-center  border-b-2 border-[#008000] pt-1 pb-3 text-gray-700 text-sm">
-        <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs space-x-2 ml-2 hover:underline">
-            <i class="text-green-600  fas fa-globe"></i>
-            <span>https://www.sksu.edu.ph</span>
-        </a>
+    <div class="border-b-2 border-[#008000] pt-1 pb-3 text-gray-700 text-sm">
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
+                <i class="text-green-600 fas fa-globe mr-2"></i>
+                <span>https://www.sksu.edu.ph</span>
+            </a>
 
-        <a href="mailto:officeofthepresident@sksu.edu.ph" class="flex items-center text-xs space-x-2 ml-2 hover:underline">
-            <i class="text-green-600  fas fa-envelope"></i>
-            <span>officeofthepresident@sksu.edu.ph</span>
-        </a>
+            <a href="mailto:officeofthepresident@sksu.edu.ph" class="flex items-center text-xs hover:underline">
+                <i class="text-green-600 fas fa-envelope mr-2"></i>
+                <span class="truncate max-w-[180px] md:max-w-none">officeofthepresident@sksu.edu.ph</span>
+            </a>
 
-        <a href="tel:(064)200-7338" class="flex items-center text-xs space-x-2 ml-2 hover:underline">
-            <i class="text-green-600  fas fa-phone-alt"></i>
-            <span>(064) 200-7338</span>
-        </a>
+            <a href="tel:(064)200-7338" class="flex items-center text-xs hover:underline">
+                <i class="text-green-600 fas fa-phone-alt mr-2"></i>
+                <span>(064) 200-7338</span>
+            </a>
     </div>
 
 </div>
 
 
-     <div class="flex print-compact print-avoid-break mt-4">
+    @if(isset($resultsVisible) && !$resultsVisible)
+    <!-- Results are not visible -->
+    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8">
+        <div class="flex items-center justify-center py-12">
+            <div class="text-center">
+                <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-yellow-800">Results Not Available</h3>
+                            <div class="mt-2 text-sm text-yellow-700">
+                                <p>The examination results are not yet available for viewing. Please check back later or contact the Guidance and Testing Center for more information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-4">Results will be made available once they are finalized and released by the administration.</p>
+            </div>
+        </div>
+    </div>
+    @else
+    <!-- Results are visible -->
+    <div class="flex print-compact print-avoid-break mt-4">
 
-
-        <!-- Logo Placeholder -->
-        <div class="w-1/4 flex   ">
-            <div class="border border-gray-400 w-32 h-36 flex items-center justify-center overflow-hidden">
-                <img src="{{Auth::user()->personal_information->photo ?? asset('images/placeholder.png') }}" alt="{{Auth::user()->personal_information->photo ?? 'images/sksu1.png' }}" class="w-full h-auto">
+        <!-- Photo Placeholder - Standard Passport Size -->
+        <div class="w-1/4 flex">
+            <div class="border border-gray-400 w-[35mm] h-[45mm] flex items-center justify-center overflow-hidden bg-white">
+                <img src="{{Auth::user()->personal_information->photo ?? asset('images/placeholder.png') }}" alt="{{Auth::user()->personal_information->photo ?? 'images/sksu1.png' }}" class="object-cover w-full h-full">
             </div>
         </div>
         <!-- Header & Details -->
-        <div class="w-3/4 ">
-            <div class=" text-sm font-medium">Guidance and Testing Center</div>
+        <div class="w-3/4 pl-4">
+            <div class="text-sm font-medium">Guidance and Testing Center</div>
             <div class="leading-[1.1rem] font-extrabold mt-1 mb-2 print-text-lg">SKSU TERTIARY PLACEMENT<br>TEST RESULT 2025</div>
             <div class="mt-2 text-sm">
-                <div>
-                    <span class="font-semibold">NAME OF EXAMINEE</span>
-                    <span class="ml-3">: {{ $user_personal_information->first_name ?? '' }} {{ $user_personal_information->middle_name ?? '' }} {{ $user_personal_information->last_name ?? '' }} {{ $user_personal_information->extension ?? '' }}</span>
+                <div class="mb-1">
+                    <span class="font-semibold inline-block w-40">NAME OF EXAMINEE</span>
+                    <span>: {{ $user_personal_information->first_name ?? '' }} {{ $user_personal_information->middle_name ?? '' }} {{ $user_personal_information->last_name ?? '' }} {{ $user_personal_information->extension ?? '' }}</span>
                 </div>
-                <div>
-                    <span class="font-semibold">EXAMINEE NUMBER</span>
-                    <span class="ml-3">: {{ $examinee_number ?? 'N/A' }}</span>
+                <div class="mb-1">
+                    <span class="font-semibold inline-block w-40">EXAMINEE NUMBER</span>
+                    <span>: {{ $examinee_number ?? 'N/A' }}</span>
                 </div>
-                <div>
-                    <span class="font-semibold">DATE OF EXAMINATION</span>
-                    <span class="ml-3">: {{ $result->examination_date ?? 'April 6, 2025' }}</span>
+                <div class="mb-1">
+                    <span class="font-semibold inline-block w-40">DATE OF EXAMINATION</span>
+                    <span>: {{ $result->examination_date ?? 'April 6, 2025' }}</span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mt-1 print-compact print-avoid-break">
+    <div class="mt-2 print-compact print-avoid-break">
          <!-- Table -->
                 <livewire:result.score-result />
                 {{-- <livewire:result.score-guide /> --}}
 
     </div>
 
-    <div class=" rounded  bg-white py-6 print:mt-4 print-compact print-break-after">
-    <!-- Title & Subtitle -->
-    <div class="text-center mb-4">
-        <div class="font-bold text-base">
-            SKSU Tertiary Placement Test Cut-off Scores Per Program
-        </div>
-        <div class="text-xs italic mt-1 text-gray-700">
-            The cut-off score is the minimum required score to qualify for a specific program and only applicants who meet or exceed the prescribed standard are eligible for selection.
-        </div>
-    </div>
-
-    <!-- Table -->
-    <div class="overflow-x-auto">
-        <table class="min-w-full text-xs print-table-compact">
-            <thead>
-                <tr class="bg-gray-50">
-                    <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
-                    <th class="border border-gray-300 px-2 py-1 w-1/12">STANDARD SCORE</th>
-                    <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
-                    <th class="border border-gray-300 px-2 py-1 w-1/12">STANDARD SCORE</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Medical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">650</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Electronics Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Nursing</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">600</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Food and Service Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Accountancy</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">600</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Accounting Information System</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Elementary Education</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Management Accounting</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Physical Education</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Arts in Political Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: English</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Hospitality Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Filipino</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Tourism Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Mathematics</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Biology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Arts in Economics</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Social Studies</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Entrepreneurship</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Criminology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Industrial Security Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Civil Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Environmental Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Computer Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Agribusiness</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Electronics Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Computer Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Midwifery</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Information System</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technology and Livelihood Education major in Agri-fishery</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Information Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Agriculture</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Automotive Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Fisheries</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Civil and Construction Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical Teacher Education major in: Automotive Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Architectural Drafting Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Civil Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Electrical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Drafting Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Electronics Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Electrical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
-                    <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Food Innovation and Culinary Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <livewire:result.score-guide />
+    <livewire:footer-signature/>
 
     <!-- Signatories -->
-    <div class="mt-6 grid grid-cols-3 gap-2 print:mt-3 print-compact print-avoid-break">
-        <div class="flex flex-col ">
-            <span class="text-xs print:text-[7px]">Prepared by:</span>
-            <div class="flex w-full">
-                <img src="{{ asset('images/signature/john-michael.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
-            </div>
-            <div class="text-xs font-semibold print:text-[7px]">JAN MICHAEL B. SALDICAYA, LPT</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 1443740</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">Personnel, Guidance and Testing Center</div>
-        </div>
-        <div class="flex flex-col ">
-            <span class="text-xs print:text-[7px]">Interpreted by:</span>
-            <div class="flex w-full">
-                <img src="{{ asset('images/signature/mark.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
-            </div>
-            <div class="text-xs font-semibold print:text-[7px]">MARK F. ONIA, RPm, RPsy</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 0004578 / 0001990</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">University Psychometrician</div>
-        </div>
-        <div class="flex flex-col ">
-            <span class="text-xs print:text-[7px]">Noted:</span>
-            <div class="flex w-full">
-                <img src="{{ asset('images/signature/bacera.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
-            </div>
-            <div class="text-xs font-semibold print:text-[7px]">JOSELYN H. BACERA, RGC</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 0002274</div>
-            <div class="text-xs text-gray-600 print:text-[6px]">Director, Guidance and Testing Center</div>
-        </div>
-    </div>
+
 
     {{-- <div class="flex justify-end mt-2 print-compact">
         <span class="text-sm font-bold">FORM B</span>
@@ -414,6 +257,8 @@
     <!-- Remarks -->
 
 </div>
+
+@endif
 
 
 
