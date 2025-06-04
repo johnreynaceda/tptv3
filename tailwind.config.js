@@ -22,7 +22,8 @@ module.exports = {
                 poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'theme': '#10B981'
+                'theme': '#10B981',
+                
             },
             backgroundImage: {
                 'card-d': "url('/images/card-d.png')"
