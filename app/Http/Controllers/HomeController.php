@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\{Examination,Result, SurveyResult, SelectedCourse, TestCenter};
+
 class HomeController extends Controller
 {
     // public function home()
     // {
 
-        
 
-    
+
+
     //     // ]);
 
     //     $has_application = auth()->user()->application;
@@ -47,7 +49,7 @@ class HomeController extends Controller
     // $total_available_slots = $testCenter ? $testCenter->totalAvailableSlots() : 0;
     // $has_available_slots = $testCenter ? $testCenter->hasAvailableSlots() : 0;
 
-    
+
 
     // return view('applicant.home', [
     //     'has_available_slots'=>$has_available_slots,
@@ -65,9 +67,11 @@ class HomeController extends Controller
     {
         $has_application = auth()->user()->application;
         $active_examination = Examination::where('is_active', 1)->first();
-    
+
+
         // Ensure the active examination exists
         if (!$active_examination) {
+
             return view('applicant.home', [
                 'has_application' => $has_application,
                 'has_result' => false,
@@ -77,20 +81,25 @@ class HomeController extends Controller
                 'total_slots' => 0,
                 'total_occupied_slots' => 0,
                 'total_available_slots' => 0,
+                'show_result' => false,
             ]);
         }
-    
+
         $examination_id = $has_application?->examination_id;
         $has_result = Result::where('examination_id', $examination_id)->exists();
         $has_survey_result = SurveyResult::where('user_id', auth()->user()->id)->exists();
         $has_selected_course = SelectedCourse::where('user_id', auth()->user()->id)->exists();
-    
+
         // Use the examination's helper methods for slot data
         $total_slots = $active_examination->totalSlots();
         $total_occupied_slots = $active_examination->totalOccupiedSlots();
-        $total_available_slots = $active_examination->totalAvailableActiveSlots(); 
-        $has_available_slots = $total_available_slots > 0; 
-    
+        $total_available_slots = $active_examination->totalAvailableActiveSlots();
+        $has_available_slots = $total_available_slots > 0;
+
+        $user = Auth::user();
+        $user_has_result = Result::where('examinee_number', $user->permit->examinee_number)->exists();
+        
+
         return view('applicant.home', [
             'has_available_slots' => $has_available_slots,
             'has_application' => $has_application,
@@ -101,19 +110,21 @@ class HomeController extends Controller
             'total_slots' => $total_slots,
             'total_occupied_slots' => $total_occupied_slots,
             'total_available_slots' => $total_available_slots,
+            'show_results' => $active_examination->show_results,
+            'user_has_result' => $user_has_result,
         ]);
     }
-    
-    
+
+
 
 
     public function fillApplication()
     {
 
         $active_examination = Examination::where('is_active', 1)->first();
-       
-        $has_available_slots = $active_examination 
-        ? $active_examination->totalAvailableActiveSlots() > 0 
+
+        $has_available_slots = $active_examination
+        ? $active_examination->totalAvailableActiveSlots() > 0
         : false;
 
         return view('applicant.fill-application',[

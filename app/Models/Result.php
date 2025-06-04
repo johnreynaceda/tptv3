@@ -10,6 +10,10 @@ class Result extends Model
     use HasFactory;
     protected $guarded = [];
 
+    protected $casts = [
+        'show_result'=> 'boolean',
+    ];
+
     public function examination()
     {
         return $this->belongsTo(Examination::class);

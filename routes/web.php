@@ -27,6 +27,10 @@ use App\Exports\UsersWithoutSlotExport;
 use App\Exports\UsersWithPermitAndSlotExport;
 use App\Http\Livewire\CampusManagement;
 use Illuminate\Support\Facades\Auth;
+use App\Models\SurveyResult;
+use App\Models\SelectedCourse;
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -218,24 +222,29 @@ Route::prefix('/applicant')
         )->middleware('survey.result');
 
         Route::get('/survey', function () {
-            if (App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists() && App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+            $userId = auth()->user()->id;
+            $hasSurveyResult = SurveyResult::where('user_id', $userId)->exists();
+            $hasSelectedCourse = SelectedCourse::where('user_id', $userId)->exists();
+            
+            if ($hasSurveyResult && $hasSelectedCourse) {
                 return redirect()->route('applicant.home');
-            } elseif (App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists() && !App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+            } elseif ($hasSurveyResult && !$hasSelectedCourse) {
                 return redirect()->route('select.courses');
             } else {
                 return view('applicant.survey');
             }
         })->name('show.survey');
-
+        
         Route::get('/select-course', function () {
-            if (!App\Models\SurveyResult::where('user_id', auth()->user()->id)->exists()) {
+            if (!SurveyResult::where('user_id', auth()->user()->id)->exists()) {
                 return redirect()->route('show.survey');
-            } elseif (App\Models\SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
+            } elseif (SelectedCourse::where('user_id', auth()->user()->id)->exists()) {
                 return redirect()->route('applicant.home');
             } else {
                 return view('applicant.select-courses');
             }
         })->name('select.courses');
+        
 
         Route::get('/select-test-center', function () {
             if (auth()->user()->application->student_slot_id != null) {
