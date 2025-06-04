@@ -26,6 +26,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersWithoutSlotExport;
 use App\Exports\UsersWithPermitAndSlotExport;
 use App\Http\Livewire\CampusManagement;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
