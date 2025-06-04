@@ -1,27 +1,8 @@
-<div class="mt-16 px-4">
-    <div class="flex flex-col items-end">
-        <div class="flex w-full justify-end space-x-16">
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('images/sig_saldicaya.png') }}" class="h-12 mb-1" alt="Prepared by Signature">
-                <span class="text-xs font-medium">JAN MICHAEL B. SALDICAYA, LPT</span>
-                <span class="text-xs">PRC License No.: 1443740</span>
-                <span class="text-xs">Personnel, Guidance and Testing Center</span>
-                <span class="mt-2 text-xs font-bold">Prepared by:</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('images/sig_onia.png') }}" class="h-12 mb-1" alt="Interpreted by Signature">
-                <span class="text-xs font-medium">MARK F. ONIA, RPm, RPsy</span>
-                <span class="text-xs">PRC License No.: 0004578 / 0001990</span>
-                <span class="text-xs">University Psychometrician</span>
-                <span class="mt-2 text-xs font-bold">Interpreted by:</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <img src="{{ asset('images/sig_bacera.png') }}" class="h-12 mb-1" alt="Noted Signature">
-                <span class="text-xs font-medium">JOSELYN H. BACERA, RGC</span>
-                <span class="text-xs">PRC License No.: 0002274</span>
-                <span class="text-xs">Director, Guidance and Testing Center</span>
-                <span class="mt-2 text-xs font-bold">Noted:</span>
-            </div>
+<tr>
+    <td colspan="4" class="border border-gray-300 px-2 py-1">
+        <span class="font-bold">Remarks:</span>
+        <div class="text-xs italic text-justify text-gray-600 indent-2" style="text-indent:50px;">
+            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
         </div>
-    </div>
-</div>
+    </td>
+</tr>

@@ -74,7 +74,7 @@
                 border-width: 1px !important;
                 color: black !important;
               }
-              
+
               /* Make only table cell borders visible and darker */
               .print-table-compact table, .print-table-compact th, .print-table-compact td {
                 border-color: #000000 !important;
@@ -87,7 +87,7 @@
               .text-green-800, .text-green-700, .text-green-600 { color: black !important; }
               .text-gray-600, .text-gray-700 { color: #4b5563 !important; }
               .border-[#008000] { border-color: #000000 !important; border-width: 2px !important; }
-              
+
               /* Only make specific borders visible where intended */
               table .border, table .border-gray-300, table .border-gray-400,
               .border-gray-300.px-2, .border-gray-400.px-2 {
@@ -95,7 +95,7 @@
                 border-width: 1px !important;
                 border-style: solid !important;
               }
-              
+
               /* Remove borders from parent containers */
               #printable, .max-w-3xl, .mx-auto {
                 border: none !important;
@@ -178,7 +178,7 @@
         <!-- Logo Placeholder -->
         <div class="w-1/4 flex   ">
             <div class="border border-gray-400 w-32 h-36 flex items-center justify-center overflow-hidden">
-                <img src="{{ asset('images/logo2.png') }}" alt="SKSU Logo" class="w-full h-auto">
+                <img src="{{Auth::user()->personal_information->photo ?? asset('images/placeholder.png') }}" alt="{{Auth::user()->personal_information->photo ?? 'images/sksu1.png' }}" class="w-full h-auto">
             </div>
         </div>
         <!-- Header & Details -->
@@ -188,79 +188,24 @@
             <div class="mt-2 text-sm">
                 <div>
                     <span class="font-semibold">NAME OF EXAMINEE</span>
-                    <span class="ml-3">: Juan Dela Cruz</span>
+                    <span class="ml-3">: {{ $user_personal_information->first_name ?? '' }} {{ $user_personal_information->middle_name ?? '' }} {{ $user_personal_information->last_name ?? '' }} {{ $user_personal_information->extension ?? '' }}</span>
                 </div>
                 <div>
                     <span class="font-semibold">EXAMINEE NUMBER</span>
-                    <span class="ml-3">: 2025-000123</span>
+                    <span class="ml-3">: {{ $examinee_number ?? 'N/A' }}</span>
                 </div>
                 <div>
                     <span class="font-semibold">DATE OF EXAMINATION</span>
-                    <span class="ml-3">: April 6, 2025</span>
+                    <span class="ml-3">: {{ $result->examination_date ?? 'April 6, 2025' }}</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Table -->
     <div class="mt-1 print-compact print-avoid-break">
-        <table class="w-full text-sm print-table-compact ">
-            <thead>
-                <tr class="bg-gray-50 text-center">
-                    <th class="border border-gray-300 px-2 py-2 font-bold">SUBJECT</th>
-                    <th class="border border-gray-300 px-2 py-2 font-bold">STANDARD SCORE</th>
-                    <th class="border border-gray-300 px-2 py-2 font-bold">STANINE</th>
-                    <th class="border border-gray-300 px-2 py-2 font-bold">QUALITATIVE INTERPRETATION</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">ENGLISH</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">FILIPINO</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">MATHEMATICS</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">SCIENCE</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1">SOCIAL STUDIES</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
-                <tr>
-                    <td class="border border-gray-300 px-2 py-1 font-bold">OVERALL</td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                    <td class="border border-gray-300 px-2 py-1"></td>
-                </tr>
+         <!-- Table -->
+                <livewire:result.score-result />
+                {{-- <livewire:result.score-guide /> --}}
 
-                <tr>
-                    <td colspan="4" class="border border-gray-300 px-2 py-1">
-                        <span class="font-bold">Remarks:</span>
-                        <div class="text-xs italic text-justify text-gray-600 indent-2" style="text-indent:50px;">
-                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 
     <div class=" rounded  bg-white py-6 print:mt-4 print-compact print-break-after">
@@ -423,44 +368,45 @@
     </div>
 
     <!-- Signatories -->
-    <div class="mt-8 flex justify-between print:mt-4 print-compact print-avoid-break">
-        <div class="flex flex-col items-center w-1/3">
-            <span class="text-xs">Prepared by:</span>
-            <img src="{{ asset('images/signature/john-michael.png') }}" class="h-10 my-1" alt="Signature">
-            <div class="text-xs font-semibold">JAN MICHAEL B. SALDICAYA, LPT</div>
-            <div class="text-xs">PRC License No.: 1443740</div>
-            <div class="text-xs">Personnel, Guidance and Testing Center</div>
+    <div class="mt-6 grid grid-cols-3 gap-2 print:mt-3 print-compact print-avoid-break">
+        <div class="flex flex-col ">
+            <span class="text-xs print:text-[7px]">Prepared by:</span>
+            <div class="flex w-full">
+                <img src="{{ asset('images/signature/john-michael.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
+            </div>
+            <div class="text-xs font-semibold print:text-[7px]">JAN MICHAEL B. SALDICAYA, LPT</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 1443740</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">Personnel, Guidance and Testing Center</div>
         </div>
-        <div class="flex flex-col items-center w-1/3">
-            <span class="text-xs">Interpreted by:</span>
-            <img src="{{ asset('images/signature/mark.png') }}" class="h-10 my-1" alt="Signature">
-            <div class="text-xs font-semibold">MARK F. ONIA, RPm, RPsy</div>
-            <div class="text-xs">PRC License No.: 0004578 / 0001990</div>
-            <div class="text-xs">University Psychometrician</div>
+        <div class="flex flex-col ">
+            <span class="text-xs print:text-[7px]">Interpreted by:</span>
+            <div class="flex w-full">
+                <img src="{{ asset('images/signature/mark.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
+            </div>
+            <div class="text-xs font-semibold print:text-[7px]">MARK F. ONIA, RPm, RPsy</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 0004578 / 0001990</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">University Psychometrician</div>
         </div>
-        <div class="flex flex-col items-center w-1/3">
-            <span class="text-xs">Noted:</span>
-            <img src="{{ asset('images/signature/bacera.png') }}" class="h-10 my-1" alt="Signature">
-            <div class="text-xs font-semibold">JOSELYN H. BACERA, RGC</div>
-            <div class="text-xs">PRC License No.: 0002274</div>
-            <div class="text-xs">Director, Guidance and Testing Center</div>
+        <div class="flex flex-col ">
+            <span class="text-xs print:text-[7px]">Noted:</span>
+            <div class="flex w-full">
+                <img src="{{ asset('images/signature/bacera.png') }}" class="h-8 my-1 print:h-6" alt="Signature">
+            </div>
+            <div class="text-xs font-semibold print:text-[7px]">JOSELYN H. BACERA, RGC</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">PRC License No.: 0002274</div>
+            <div class="text-xs text-gray-600 print:text-[6px]">Director, Guidance and Testing Center</div>
         </div>
     </div>
 
-    <div class="flex justify-end mt-2 print-compact">
+    {{-- <div class="flex justify-end mt-2 print-compact">
         <span class="text-sm font-bold">FORM B</span>
-    </div>
-    <footer class="print-text-xs">
-        <div class="text-center text-xs text-gray-600 mb-2 print:mb-0">
-            Republic of the Philippines | SULTAN KUDARAT STATE UNIVERSITY, EJC Montilla, City of Tacurong, 9800, Province of Sultan Kudarat
-            <br>
-            VISION: A leading University in advancing scholarly innovation, multi-cultural convergence, and responsive public service in a borderless Region.
-            <br>
-            MISSION: The University shall primarily provide advanced instruction and professional training in science and technology, agriculture, fisheries, education and other relevant fields of study. It shall also undertake research and extension services, and provide progressive leadership in its areas of specialization.
-            <br>
-            MAXIM: Generator of Solutions. | CORE VALUES: Patriotism, Respect, Integrity, Zeal, Excellence in Public Service.
+    </div> --}}
+    <footer class="print-text-xs mt-2">
+        <div class="text-center text-xs text-gray-600 mb-1 print:mb-0 print:text-[5px] print:leading-none">
+            <p class="mb-0">Republic of the Philippines | SULTAN KUDARAT STATE UNIVERSITY | EJC Montilla, City of Tacurong</p>
+            <p class="mb-0"><span class="font-bold">VISION:</span> A leading University in advancing scholarly innovation, multi-cultural convergence, and responsive public service.</p>
+            <p class="mb-0"><span class="font-bold">CORE VALUES:</span> Patriotism, Respect, Integrity, Zeal, Excellence in Public Service.</p>
         </div>
-
     </footer>
 </div>
 

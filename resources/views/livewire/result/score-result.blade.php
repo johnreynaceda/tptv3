@@ -1,4 +1,70 @@
-<div>
+
+
+    <table class="w-full text-sm print-table-compact ">
+        <thead>
+            <tr class="bg-gray-50 text-center">
+                <th class="border border-gray-300 px-2 py-2 font-bold">SUBJECT</th>
+                <th class="border border-gray-300 px-2 py-2 font-bold">STANDARD SCORE</th>
+                <th class="border border-gray-300 px-2 py-2 font-bold">STANINE</th>
+                <th class="border border-gray-300 px-2 py-2 font-bold">QUALITATIVE INTERPRETATION</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+             <div>
+<tr>
+    <td class="border border-gray-300 px-2 py-1">ENGLISH</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->english_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->english_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1"> {{  $this->scoreInterpretation($result->english_standard_score) }}</td>
+</tr>
+<tr>
+    <td class="border border-gray-300 px-2 py-1">FILIPINO</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->filipino_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->filipino_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1">{{ $this->scoreInterpretation($result->filipino_standard_score) }}</td>
+</tr>
+<tr>
+    <td class="border border-gray-300 px-2 py-1">MATHEMATICS</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->math_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->math_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1">{{ $this->scoreInterpretation($result->math_standard_score) }}</td>
+</tr>
+<tr>
+    <td class="border border-gray-300 px-2 py-1">SCIENCE</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->science_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->science_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1">{{ $this->scoreInterpretation($result->science_standard_score) }}</td>
+</tr>
+<tr>
+    <td class="border border-gray-300 px-2 py-1">SOCIAL STUDIES</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->social_studies_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->social_studies_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1">{{ $this->scoreInterpretation($result->social_studies_standard_score) }}</td>
+</tr>
+<tr>
+    <td class="border border-gray-300 px-2 py-1 font-bold">OVERALL</td>
+    <td class="border border-gray-300 px-2 py-1 text-center font-bold">{{ $result->total_standard_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1 text-center">{{ $result->total_raw_score ?? '' }}</td>
+    <td class="border border-gray-300 px-2 py-1">{{ $this->scoreInterpretation($result->total_standard_score) }}</td>
+</tr>
+
+</div>
+
+
+            <tr>
+                <td colspan="4" class="border border-gray-300 px-2 py-1">
+                    <span class="font-bold">Remarks:</span>
+                    <div class="text-xs italic text-justify text-gray-600 indent-2" style="text-indent:50px;">
+                        Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+{{-- <div>
     Examinee Number: <span class="underline">{{ $examinee_number }}</span>
     @if ($result == null)
         <div class="ml-3">
@@ -163,7 +229,7 @@
                         Qualified for Non-Board Courses
                     </span>
                 @endif --}}
-                @if ($result->total_standard_score >= 400)
+                {{-- @if ($result->total_standard_score >= 400)
                     <span
                         class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                         Qualified for Non-Board Degree Programs
@@ -178,4 +244,5 @@
             </div>
         </div>
     @endif
-</div>
+</div> --}}
+
