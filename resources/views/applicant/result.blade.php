@@ -80,9 +80,10 @@
                 </div>
             </div>
             <div class="flex mt-10 space-x-2 item-end">
+             
                 <img src="{{ Storage::url($user_personal_information->photo) }}"
                     class="h-48"
-                    alt="">
+                    alt="profile.jpg">
                 <div class="flex items-center">
                     <div class="grid space-y-3">
                         <h1>

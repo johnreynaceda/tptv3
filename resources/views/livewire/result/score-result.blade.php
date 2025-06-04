@@ -50,10 +50,12 @@
                                         Standard Score</th>
                                     <th scope="col"
                                         class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
+                                       Stanine</th>
+                                    <th scope="col"
+                                        class="px-3 py-3 text-xs font-medium tracking-wide text-left text-gray-500 uppercase">
                                         Qualitative Interpretation</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
                                     <td
                                         class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900 whitespace-nowrap sm:pl-6">
@@ -61,6 +63,9 @@
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $result->math_standard_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->math_raw_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->math_standard_score) }}
@@ -75,6 +80,9 @@
                                         {{ $result->english_standard_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->english_raw_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->english_standard_score) }}
                                     </td>
                                 </tr>
@@ -85,6 +93,9 @@
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $result->filipino_standard_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->filipino_raw_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->filipino_standard_score) }}
@@ -99,6 +110,9 @@
                                         {{ $result->science_standard_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->science_raw_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->science_standard_score) }}
                                     </td>
                                 </tr>
@@ -111,6 +125,9 @@
                                         {{ $result->social_studies_standard_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->social_studies_raw_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->social_studies_standard_score) }}
                                     </td>
                                 </tr>
@@ -121,6 +138,9 @@
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $result->total_standard_score }}
+                                    </td>
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                        {{ $result->total_raw_score }}
                                     </td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap">
                                         {{ $this->scoreInterpretation($result->total_standard_score) }}
@@ -143,13 +163,13 @@
                         Qualified for Non-Board Courses
                     </span>
                 @endif --}}
-                @if ($result->total_standard_score >= 375)
+                @if ($result->total_standard_score >= 400)
                     <span
                         class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                         Qualified for Non-Board Degree Programs
                     </span>
                 @endif
-                @if ($result->total_standard_score >= 525)
+                @if ($result->total_standard_score >= 530)
                 <span
                 class="inline-flex border items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                 Qualified for Board Degree Programs
