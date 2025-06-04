@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
   @livewireStyles
-  @wireUiScripts
+ 
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
@@ -384,9 +384,14 @@
     </div>
 
   </div>
-  <x-notifications z-index="z-50" />
-  <x-dialog z-index="z-50" blur="md" align="center" />
-  @livewireScripts
+   {{-- Notifications and dialogs (for WireUI) --}}
+   <x-notifications z-index="z-50" />
+   <x-dialog z-index="z-50" blur="md" align="center" />
+ {{-- WireUI Scripts (should be before @livewireScripts) --}}
+ @wireUiScripts
+
+ {{-- Livewire Scripts (should be the LAST scripts before </body>) --}}
+ @livewireScripts
 </body>
 
 </html>

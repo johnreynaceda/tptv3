@@ -3,8 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Examination;
 use WireUi\Traits\Actions;
+use App\Models\Examination;
+use Illuminate\Support\Facades\DB;
 
 class ExaminationWithResultPage extends Component
 {
@@ -23,34 +24,29 @@ public function toggleShowResults($examinationId)
     $exam = Examination::findOrFail($examinationId);
 
     $this->dialog()->confirm([
-        'title'       => $exam->show_results ? 'Hide Results?' : 'Publish Results?',
-        'description' => $exam->show_results 
-            ? 'Are you sure you want to hide these results from the public?' 
-            : 'Are you sure you want to make these results public?',
-        'icon'        => $exam->show_results ? 'question' : 'exclamation',
-        'accept'      => [
-            'label'  => 'Yes, ' . ($exam->show_results ? 'hide' : 'publish') . ' results',
-            'method' => 'confirmToggleResults',
-        ],
-        'reject' => [
-            'label'  => 'Cancel',
-        ],
+        'title'       => 'Are you Sure?',
+        'description' => 'Save the information?',
+        'acceptLabel' => 'Yes, save it',
+        'method'      => 'confirmToggleResults',
+        'params'      => 'Saved',
     ]);
+
 }
 
 public function confirmToggleResults()
 {
+    DB::beginTransaction();
     $exam = Examination::findOrFail($this->examinationId);
     $exam->show_results = !$exam->show_results;
     $exam->save();
 
     $this->examinations = Examination::whereHas('results')->get();
-
-    $this->notification([
-        'title' => 'Success',
-        'description' => 'Results are now ' . ($exam->show_results ? 'available to the public' : 'hidden from the public'),
-        'icon' => 'success',
-    ]);
+    DB::commit();
+    // $this->notification([
+    //     'title' => 'Success',
+    //     'description' => 'Results are now ' . ($exam->show_results ? 'available to the public' : 'hidden from the public'),
+    //     'icon' => 'success',
+    // ]);
 }
 
     public function render()
