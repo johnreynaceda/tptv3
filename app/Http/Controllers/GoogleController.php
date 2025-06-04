@@ -78,6 +78,17 @@ class GoogleController extends Controller
     // Log the user in
     Auth::login($user);
 
+    Auth::login($user);
+
+if (auth()->check()) {
+    logger('User IS authenticated: ' . auth()->user()->email);
+} else {
+    logger('User NOT authenticated after login!');
+}
+
+return redirect()->route('dashboard');
+
+
     return redirect()->route('dashboard');
 }
 
