@@ -52,12 +52,7 @@ Route::get('/auth/google/callback', [GoogleController::class, 'callBack'])->name
 Route::get('/forgot-password', function () {
     return view('auth.password-forgot');
 })->name('forgot-password');
-Route::get('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect()->route('login'); // Or ->route('login.admin') if needed
-});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
