@@ -57,6 +57,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+     logger('DASHBOARD user:', [
+        'auth' => auth()->check(),
+        'id' => optional(auth()->user())->id,
+        'email' => optional(auth()->user())->email,
+        'role_id' => optional(auth()->user())->role_id,
+        'email_verified_at' => optional(auth()->user())->email_verified_at,
+    ]);
     Route::get('/dashboard', function () {
         switch (auth()->user()->role_id) {
             case 1:
