@@ -46,6 +46,27 @@
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->total_standard_score) }}</td>
                 </tr>
+                <tr>
+                    <td colspan="4" class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">
+                        <div class="">
+                            <span class="font-bold">Remarks:</span>
+                            @php
+                                $passedExam = isset($result->total_standard_score) && $result->total_standard_score >= 400;
+                            @endphp
+
+                            @if($result->total_standard_score >= 400)
+                            <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
+                                Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
+                            </div>
+                            @else
+                            <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
+                                Thank you for considering SKSU as your preferred institution but you are recommended to enroll in other institution of your choice.
+                            </div>
+                            @endif
+                        </div>
+                    </td>
+                </tr>
+
             </tbody>
         </table>
     </div>

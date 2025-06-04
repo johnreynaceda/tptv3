@@ -1,4 +1,7 @@
 <div class=" rounded  bg-white py-6 print:mt-4 print-compact print-break-after">
+    <!-- Remarks Section -->
+  
+
     <!-- Title & Subtitle -->
     <div class="text-center mb-4">
         <div class="font-bold text-base">
