@@ -46,40 +46,62 @@
               /* Ensure table headers/footers repeat properly */
               table { page-break-inside: avoid; }
               tr, img { page-break-inside: avoid; }
-              
+
               /* Reduce margins and padding for print */
               .print-compact {
                 margin: 0 !important;
                 padding: 4px !important;
               }
-              
+
               /* Adjust font sizes for print */
               .print-text-xs { font-size: 8px !important; }
               .print-text-sm { font-size: 10px !important; }
               .print-text-base { font-size: 12px !important; }
               .print-text-lg { font-size: 14px !important; }
-              
+
               /* Hide non-essential elements when printing */
               .print-hide { display: none !important; }
-              
+
               /* Ensure page breaks appropriately */
               .print-avoid-break { page-break-inside: avoid; }
               .print-break-after { page-break-after: always; }
-              
-              /* Adjust table for print */
+
+              /* Adjust table for print - ensure borders are visible */
               .print-table-compact th, .print-table-compact td {
-                padding: 2px !important;
-                font-size: 9px !important;
-                border-color: #d1d5db !important;
+                padding: 2px 4px !important;
+                font-size: 10px !important;
+                border-color: #000000 !important;
+                border-width: 1px !important;
+                color: black !important;
               }
               
-              /* Ensure consistent colors in print */
+              /* Make only table cell borders visible and darker */
+              .print-table-compact table, .print-table-compact th, .print-table-compact td {
+                border-color: #000000 !important;
+                border-width: 1px !important;
+                border-style: solid !important;
+              }
+
+              /* Ensure consistent colors in print but keep borders visible */
               .bg-gray-50, .bg-gray-100 { background-color: white !important; }
               .text-green-800, .text-green-700, .text-green-600 { color: black !important; }
               .text-gray-600, .text-gray-700 { color: #4b5563 !important; }
-              .border-[#008000] { border-color: #4b5563 !important; }
+              .border-[#008000] { border-color: #000000 !important; border-width: 2px !important; }
+              
+              /* Only make specific borders visible where intended */
+              table .border, table .border-gray-300, table .border-gray-400,
+              .border-gray-300.px-2, .border-gray-400.px-2 {
+                border-color: #000000 !important;
+                border-width: 1px !important;
+                border-style: solid !important;
+              }
+              
+              /* Remove borders from parent containers */
+              #printable, .max-w-3xl, .mx-auto {
+                border: none !important;
+              }
             }
-            
+
             /* Optimize viewing experience */
             @media screen {
               .max-w-3xl {
@@ -228,7 +250,7 @@
                     <td class="border border-gray-300 px-2 py-1"></td>
                     <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
-            
+
                 <tr>
                     <td colspan="4" class="border border-gray-300 px-2 py-1">
                         <span class="font-bold">Remarks:</span>
@@ -266,135 +288,135 @@
             <tbody>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Medical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">650</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">650</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Electronics Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Nursing</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">600</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">600</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Food and Service Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Accountancy</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">600</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">600</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Accounting Information System</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">475</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Elementary Education</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Management Accounting</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">475</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Physical Education</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Arts in Political Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">475</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: English</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Hospitality Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">475</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Filipino</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Tourism Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">475</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">475</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Mathematics</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Biology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">450</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Arts in Economics</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">450</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Secondary Education major in: Social Studies</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Entrepreneurship</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">450</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Criminology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Industrial Security Management</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">450</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">450</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Civil Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Environmental Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Computer Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Agribusiness</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Electronics Engineering</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Computer Science</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Midwifery</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">530</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">530</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Information System</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technology and Livelihood Education major in Agri-fishery</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Information Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Agriculture</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Automotive Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Science in Fisheries</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Civil and Construction Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical Teacher Education major in: Automotive Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Architectural Drafting Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Civil Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Electrical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Drafting Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Electronics Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Technical-Vocational Teacher Education major in: Electrical Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">500</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">500</td>
                     <td class="border border-gray-300 px-2 py-1">Bachelor of Industrial Technology major in: Food Innovation and Culinary Technology</td>
-                    <td class="border border-gray-300 px-2 py-1 text-center">400</td>
+                    <td class="border border-gray-300 px-2 py-1 text-center font-bold">400</td>
                 </tr>
             </tbody>
         </table>
@@ -438,17 +460,17 @@
             <br>
             MAXIM: Generator of Solutions. | CORE VALUES: Patriotism, Respect, Integrity, Zeal, Excellence in Public Service.
         </div>
-        
+
     </footer>
 </div>
 
 
     <!-- Remarks -->
-    
+
 </div>
 
 
-        
+
 
 
 
@@ -476,7 +498,7 @@
                 </div>
             </div>
             <div class="flex mt-10 space-x-2 item-end">
-             
+
                 <img src="{{ Storage::url($user_personal_information->photo) }}"
                     class="h-48"
                     alt="profile.jpg">
@@ -490,7 +512,7 @@
                                 {{ $user_personal_information->extension }}
                             </span>
                         </h1>
-                    
+
                         @foreach ($user_new_program_choices as $user_program_choice)
                             <h1>
                                 @switch($user_program_choice->priority_level)
@@ -518,7 +540,7 @@
             <div class="grid mt-10 space-y-5 px-3">
                 <livewire:result.score-result />
                 <livewire:result.score-guide />
-                
+
             </div>
         </div> --}}
     </div>
