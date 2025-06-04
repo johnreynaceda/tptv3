@@ -153,7 +153,7 @@
             <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
         </div>
     </div>
-    <div class="border-b-2 border-[#008000] pt-1 pb-3 text-gray-700 text-sm">
+    <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
         <div class="flex flex-wrap justify-center gap-4">
             <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
                 <i class="text-green-600 fas fa-globe mr-2"></i>
