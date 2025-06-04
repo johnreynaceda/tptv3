@@ -41,6 +41,7 @@
                 box-shadow: none !important;
                 background: white !important;
                 font-size: 12px !important;
+                color: black !important;
               }
               /* Ensure table headers/footers repeat properly */
               table { page-break-inside: avoid; }
@@ -69,7 +70,14 @@
               .print-table-compact th, .print-table-compact td {
                 padding: 2px !important;
                 font-size: 9px !important;
+                border-color: #d1d5db !important;
               }
+              
+              /* Ensure consistent colors in print */
+              .bg-gray-50, .bg-gray-100 { background-color: white !important; }
+              .text-green-800, .text-green-700, .text-green-600 { color: black !important; }
+              .text-gray-600, .text-gray-700 { color: #4b5563 !important; }
+              .border-[#008000] { border-color: #4b5563 !important; }
             }
             
             /* Optimize viewing experience */
@@ -177,52 +185,52 @@
         <table class="w-full text-sm print-table-compact ">
             <thead>
                 <tr class="bg-gray-50 text-center">
-                    <th class="border border-gray-500 px-2 py-2 font-bold">SUBJECT</th>
-                    <th class="border border-gray-500 px-2 py-2 font-bold">STANDARD SCORE</th>
-                    <th class="border border-gray-500 px-2 py-2 font-bold">STANINE</th>
-                    <th class="border border-gray-500 px-2 py-2 font-bold">QUALITATIVE INTERPRETATION</th>
+                    <th class="border border-gray-300 px-2 py-2 font-bold">SUBJECT</th>
+                    <th class="border border-gray-300 px-2 py-2 font-bold">STANDARD SCORE</th>
+                    <th class="border border-gray-300 px-2 py-2 font-bold">STANINE</th>
+                    <th class="border border-gray-300 px-2 py-2 font-bold">QUALITATIVE INTERPRETATION</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1">ENGLISH</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1">ENGLISH</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1">FILIPINO</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1">FILIPINO</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1">MATHEMATICS</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1">MATHEMATICS</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1">SCIENCE</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1">SCIENCE</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1">SOCIAL STUDIES</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1">SOCIAL STUDIES</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
                 <tr>
-                    <td class="border border-gray-500 px-2 py-1 font-bold">OVERALL</td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
-                    <td class="border border-gray-500 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1 font-bold">OVERALL</td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
+                    <td class="border border-gray-300 px-2 py-1"></td>
                 </tr>
             
                 <tr>
-                    <td colspan="4" class="border border-gray-500 px-2 py-1">
+                    <td colspan="4" class="border border-gray-300 px-2 py-1">
                         <span class="font-bold">Remarks:</span>
                         <div class="text-xs italic text-justify text-gray-600 indent-2" style="text-indent:50px;">
                             Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
@@ -248,11 +256,11 @@
     <div class="overflow-x-auto">
         <table class="min-w-full text-xs print-table-compact">
             <thead>
-                <tr class="bg-gray-100">
-                    <th class="border border-gray-400 px-2 py-1 w-1/4">PROGRAM</th>
-                    <th class="border border-gray-400 px-2 py-1 w-1/12">STANDARD SCORE</th>
-                    <th class="border border-gray-400 px-2 py-1 w-1/4">PROGRAM</th>
-                    <th class="border border-gray-400 px-2 py-1 w-1/12">STANDARD SCORE</th>
+                <tr class="bg-gray-50">
+                    <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
+                    <th class="border border-gray-300 px-2 py-1 w-1/12">STANDARD SCORE</th>
+                    <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
+                    <th class="border border-gray-300 px-2 py-1 w-1/12">STANDARD SCORE</th>
                 </tr>
             </thead>
             <tbody>
