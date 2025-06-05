@@ -97,8 +97,10 @@ class HomeController extends Controller
         $has_available_slots = $total_available_slots > 0;
 
         $user = Auth::user();
-        $user_has_result = Result::where('examinee_number', $user->permit->examinee_number)->exists();
-        
+        $user_has_result = $examinee_number
+    ? Result::where('examinee_number', $examinee_number)->exists()
+    : false;
+
 
         return view('applicant.home', [
             'has_available_slots' => $has_available_slots,
