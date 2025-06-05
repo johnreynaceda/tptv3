@@ -1,9 +1,9 @@
 <div>
     <x-layout.admin>
-    <div class="grid grid-cols-3 gap-4 p-6 ">
+    <div class="grid grid-cols-8 gap-4 p-6 ">
 
         
-        <div class=" col-span-2 p-6 bg-white rounded-lg">
+        <div class=" col-span-6 p-6 bg-white rounded-lg">
 
             <h1 class="text-xl font-bold mb-4">Results for: {{ $examination->title }}</h1>
             <div class="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-center">
@@ -27,38 +27,39 @@
             
             <div class="flex flex-wrap gap-2 mb-4">
                 <!-- Total Results -->
-                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col justify-between">
-                    <span class="text-gray-500 text-xs mb-0.5">Total Results</span>
-                    <div class="flex items-end gap-1">
-                        <span class="text-xl font-bold text-gray-800">{{ $stats['count'] }}</span>
-                        <span class="text-xs text-green-600 font-medium flex items-center">
-                            <svg class="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                            </svg>
-                            +3.0%
-                        </span>
-                    </div>
-                    <div class="text-[10px] text-gray-400 mt-1">vs last month</div>
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
+                    <span class="text-gray-500 text-xs mb-0.5">Total Examinees</span>
+                    <span class="text-xl font-bold text-gray-800">{{ $stats['count'] }}</span>
                 </div>
                 <!-- Min Score -->
-                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col justify-between">
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
                     <span class="text-gray-500 text-xs mb-0.5">Min Score</span>
                     <span class="text-xl font-bold text-gray-800">{{ $stats['min'] ?? 'N/A' }}</span>
                 </div>
                 <!-- Max Score -->
-                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col justify-between">
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
                     <span class="text-gray-500 text-xs mb-0.5">Max Score</span>
                     <span class="text-xl font-bold text-gray-800">{{ $stats['max'] ?? 'N/A' }}</span>
                 </div>
                 <!-- Average -->
-                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col justify-between">
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
                     <span class="text-gray-500 text-xs mb-0.5">Average</span>
                     <span class="text-xl font-bold text-gray-800">{{ $stats['average'] ?? 'N/A' }}</span>
                 </div>
-                <!-- Passers -->
-                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col justify-between">
-                    <span class="text-gray-500 text-xs mb-0.5">Passers</span>
-                    <span class="text-xl font-bold text-teal-700">{{ $stats['passers'] }}</span>
+                <!-- Board Passers -->
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
+                    <span class="text-gray-500 text-xs mb-0.5">Board Passers</span>
+                    <span class="text-xl font-bold text-teal-700">{{ $stats['board_passers'] }}</span>
+                </div>
+                <!-- Non-Board Passers -->
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
+                    <span class="text-gray-500 text-xs mb-0.5">Non-Board Passers</span>
+                    <span class="text-xl font-bold text-orange-600">{{ $stats['nonboard_passers'] }}</span>
+                </div>
+                <!-- Failed -->
+                <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
+                    <span class="text-gray-500 text-xs mb-0.5">Failed</span>
+                    <span class="text-xl font-bold text-red-600">{{ $stats['failed'] }}</span>
                 </div>
             </div>
             
@@ -67,12 +68,13 @@
                 <table class="min-w-full text-xs">
                     <thead class="bg-gray-100">
                         <tr>
-                            <th class="border px-2 py-1">#</th>
+                            
                             <th class="border px-2 py-1">Examinee #</th>
                             <th class="border px-2 py-1">Full Name</th>
                             <th class="border px-2 py-1">Total Score</th>
                             <th class="border px-2 py-1">Interpretation</th>
-                        <th class="border px-2 py-1">Math</th>
+                            <th class="border px-2 py-1">Qualified For</th>
+                             <th class="border px-2 py-1">Math</th>
                             <th class="border px-2 py-1">English</th>
                             <th class="border px-2 py-1">Filipino</th>
                             <th class="border px-2 py-1">Science</th>
@@ -83,11 +85,12 @@
                     <tbody>
                         @forelse($results as $i => $result)
                         <tr class="even:bg-gray-50">
-                            <td class="border px-2 py-1 text-center">{{ $results->firstItem() + $i }}</td>
+                            
                             <td class="border px-2 py-1">{{ $result->examinee_number }}</td>
                             <td class="border px-2 py-1">{{ $result->full_name }}</td>
-                            <td class="border px-2 py-1 text-center font-bold">{{ $result->total_standard_score }}</td>
+                            <td class="border px-2 py-1 text-center font-bold {{ $result->total_standard_score < 400 ? 'text-red-600' : 'text-green-600' }}">{{ $result->total_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
+                            <td class="border px-2 py-1 text-center">{{ $this->qualifiedType($result->total_standard_score) }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->math_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->english_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->filipino_standard_score }}</td>
@@ -115,7 +118,7 @@
                     
                 </table>
             </div>
-            <div class="col-span-1">
+            <div class="col-span-2">
                 <livewire:result.single-score-guide />
             </div>
         </div>

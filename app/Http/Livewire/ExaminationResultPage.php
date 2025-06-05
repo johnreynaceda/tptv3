@@ -30,25 +30,34 @@ class ExaminationResultPage extends Component
     }
 
     public function calculateStats()
-    {
-        $scores = $this->examination->results()
-            ->when($this->search, function($q) {
-                $q->where(function($q) {
-                    $q->where('full_name', 'like', "%{$this->search}%")
-                      ->orWhere('examinee_number', 'like', "%{$this->search}%");
-                });
-            })
-            ->pluck('total_standard_score')
-            ->filter()
-            ->map(fn($s) => intval($s));
-        $this->stats = [
-            'count'   => $scores->count(),
-            'min'     => $scores->min(),
-            'max'     => $scores->max(),
-            'average' => $scores->avg() ? number_format($scores->avg(), 2) : null,
-            'passers' => $scores->filter(fn($s) => $s >= 400)->count(),
-        ];
-    }
+{
+    $scores = $this->examination->results()
+        ->when($this->search, function($q) {
+            $q->where(function($q) {
+                $q->where('full_name', 'like', "%{$this->search}%")
+                  ->orWhere('examinee_number', 'like', "%{$this->search}%");
+            });
+        })
+        ->pluck('total_standard_score')
+        ->filter()
+        ->map(fn($s) => intval($s));
+
+    $this->stats = [
+        'count'            => $scores->count(),
+        'min'              => $scores->min(),
+        'max'              => $scores->max(),
+        'average'          => $scores->avg() ? number_format($scores->avg(), 2) : null,
+        'board_passers'    => $scores->filter(fn($s) => $s >= 530)->count(),
+        'nonboard_passers' => $scores->filter(fn($s) => $s >= 400 && $s < 530)->count(),
+        'failed'           => $scores->filter(fn($s) => $s < 400)->count(),
+    ];
+}
+public function qualifiedType($score)
+{
+    if ($score >= 530) return 'Board Program & Non-Board Program';
+    if ($score >= 400) return 'Non-Board Program';
+    return 'Not Qualified';
+}
 
     protected function stanineInterpretation($stanine)
 {
