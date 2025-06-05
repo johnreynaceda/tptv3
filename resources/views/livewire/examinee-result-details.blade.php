@@ -256,58 +256,93 @@
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">ENGLISH</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->english_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->english_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->english_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->english_raw_score) }}</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">FILIPINO</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->filipino_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->filipino_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->filipino_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->filipino_raw_score) }}</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">MATHEMATICS</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->math_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->math_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->math_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->math_raw_score) }}</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">SCIENCE</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->science_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->science_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->science_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->science_raw_score) }}</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">SOCIAL STUDIES</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->social_studies_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->social_studies_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->social_studies_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->social_studies_raw_score) }}</td>
                         </tr>
                         <tr>
                             <td class="border border-gray-300 px-2 py-1 font-bold text-xs sm:text-sm">OVERALL</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->total_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
-                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->total_standard_score) }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
                         </tr>
-                        <tr>
-                            <td colspan="4" class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">
-                                <div class="">
-                                    <span class="font-bold">Remarks:</span>
-                                    @php
-                                        $passedExam = isset($result->total_standard_score) && $result->total_standard_score >= 400;
-                                    @endphp
-        
-                                    @if($result->total_standard_score >= 400)
-                                    <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
-                                        Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule. Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
-                                    </div>
-                                    @else
-                                    <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
-                                        Thank you for considering SKSU as your preferred institution but you are recommended to enroll in other institution of your choice.
-                                    </div>
-                                    @endif
-                                </div>
-                            </td>
-                        </tr>
+                   <tr>
+                       <td colspan="4" class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">
+                           <div class="">
+                            <div class="flex">
+                                <span class="font-bold">Remarks:</span>
+                                @php
+                                $passedExam = isset($result->total_standard_score) && $result->total_standard_score >= 400;
+                                
+                                // Define board programs and their minimum scores
+                                $boardPrograms = [
+                                    'Bachelor of Science in Medical Technology' => 650,
+                                    'Bachelor of Science in Nursing' => 600,
+                                    'Bachelor of Science in Accountancy' => 600,
+                                    'Bachelor of Elementary Education' => 530,
+                                    'Bachelor of Physical Education' => 530,
+                                    'Bachelor of Secondary Education major in: English' => 530,
+                                    'Bachelor of Secondary Education major in: Filipino' => 530,
+                                    'Bachelor of Secondary Education major in: Mathematics' => 530,
+                                    'Bachelor of Secondary Education major in: Science' => 530,
+                                    'Bachelor of Secondary Education major in: Social Studies' => 530,
+                                    'Bachelor of Science in Criminology' => 530,
+                                    'Bachelor of Science in Civil Engineering' => 530,
+                                    'Bachelor of Science in Computer Engineering' => 530,
+                                    'Bachelor of Science in Electronics Engineering' => 530,
+                                    'Bachelor of Science in Midwifery' => 530,
+                                ];
+                                
+                                // Get the examinee's program from the result
+                                $examineeProgram = $result->program_applied ?? null;
+                                $isBoardProgram = isset($boardPrograms[$examineeProgram]);
+                            @endphp
+                                                    
+                            <div class="ml-2 ">
+
+                                {{ $isBoardProgram ? 'Board Program' : 'Non-Board Program' }}
+                            </div>
+                            </div>
+                              
+                                               
+                               @if($passedExam)
+                                   <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
+                                       @if($isBoardProgram)
+                                           Congratulations! You have passed the SKSU Tertiary Placement Test for Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                                       @else
+                                           Congratulations! You have passed the SKSU Tertiary Placement Test for Non-Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                                       @endif
+                                   </div>
+                               @else
+                                   <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
+                                       Thank you for considering SKSU as your preferred institution but you are recommended to enroll in other institution of your choice.
+                                   </div>
+                               @endif
+                           </div>
+                       </td>
+                   </tr>
         
                     </tbody>
                 </table>

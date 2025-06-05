@@ -21,30 +21,22 @@ class ScoreResult extends Component
         ]);
     }
 
-    public function scoreInterpretation($score)
+    public function stanineInterpretation($score)
     {
-        if ($score >= 200 && $score <= 324) {
-            return 'Low';
-        } elseif ($score >= 325 && $score <= 374) {
-            return 'Below Average';
-        }
-        // elseif ($score >= 375 && $score <= 425) {
-        //     return 'Below Average';
-        // }
-        elseif ($score >= 375 && $score <= 474) {
-            return 'Low Average';
-        } elseif ($score >= 475 && $score <= 524) {
-            return 'Middle Average';
-        } elseif ($score >= 525 && $score <= 579) {
-            return 'High Average';
-        } elseif ($score >= 580 && $score <= 679) {
-            return 'Above Average';
-        }
-        // elseif ($score >= 626 && $score <= 675) {
-        //     return 'Above Average';
-        // }
-        elseif ($score >= 680 && $score <= 800) {
+        if ($score == 9) {
             return 'Outstanding';
+        } elseif ($score == 8 || $score == 7) {
+            return 'Above Average';
+        } elseif ($score == 6) {
+            return 'High Average';
+        } elseif ($score == 5) {
+            return 'Middle Average';
+        } elseif ($score == 4) {
+            return 'Low Average';
+        } elseif ($score == 3 || $score == 2) {
+            return 'Below Average';
+        } elseif ($score == 1) {
+            return 'Low';
         } else {
             return 'Invalid Score';
         }

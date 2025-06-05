@@ -15,14 +15,20 @@ class ExamineeResultDetails extends Component
     public $user;
     public $examination;
 
-    protected function scoreInterpretation($score)
-    {
-        if ($score >= 500) return 'Outstanding';
-        if ($score >= 400) return 'Very Satisfactory';
-        if ($score >= 300) return 'Satisfactory';
-        if ($score >= 200) return 'Fair';
-        return 'Needs Improvement';
-    }
+    protected function stanineInterpretation($stanine)
+{
+    if ($stanine == 9) return 'Outstanding';
+    if ($stanine == 8) return 'Above Average';
+    if ($stanine == 7) return 'Above Average';
+    if ($stanine == 6) return 'High Average';
+    if ($stanine == 5) return 'Middle Average';
+    if ($stanine == 4) return 'Low Average';
+    if ($stanine == 3) return 'Below Average';
+    if ($stanine == 2) return 'Below Average';
+    if ($stanine == 1) return 'Low';
+    return '';
+}
+
 
     public function mount(Result $result)
     {

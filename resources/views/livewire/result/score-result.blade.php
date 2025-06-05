@@ -14,37 +14,37 @@
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">ENGLISH</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->english_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->english_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->english_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->english_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">FILIPINO</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->filipino_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->filipino_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->filipino_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->filipino_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">MATHEMATICS</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->math_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->math_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->math_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->math_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">SCIENCE</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->science_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->science_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->science_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->science_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">SOCIAL STUDIES</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->social_studies_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->social_studies_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->social_studies_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->social_studies_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-300 px-2 py-1 font-bold text-xs sm:text-sm">OVERALL</td>
                     <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->total_standard_score ?? '' }}</td>
                     <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
-                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->scoreInterpretation($result->total_standard_score) }}</td>
+                    <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
                 </tr>
                 <tr>
                     <td colspan="4" class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">
