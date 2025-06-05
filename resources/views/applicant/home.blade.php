@@ -11,7 +11,29 @@
   <x-applicant.user-card />
   <div class="my-10">
     @if ($user_has_result && $has_survey_result && $has_selected_course)
-      <!-- This example requires Tailwind CSS v2.0+ -->
+
+    @if(!$show_results)
+        <div class="p-4 rounded-md bg-yellow-50">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: solid/information-circle -->
+            <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+              fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="flex-1 ml-3 md:flex md:justify-between">
+            <p class="text-sm text-yellow-700">
+              Results will be made available once they are finalized and released by the administration.
+            </p>
+
+          </div>
+        </div>
+      </div>
+      @else
+<!-- This example requires Tailwind CSS v2.0+ -->
       <div class="p-4 rounded-md bg-blue-50">
         <div class="flex">
           <div class="flex-shrink-0">
@@ -38,7 +60,9 @@
           </div>
         </div>
       </div>
-    @elseif ($user_has_result && !$has_survey_result && !$has_selected_course)
+    @endif
+    @elseif ($user_has_result && !$has_survey_result && !$has_selected_course)`
+    @if($show_results)
      <!-- This example requires Tailwind CSS v2.0+ -->
      <div class="p-4 rounded-md bg-blue-50">
         <div class="flex">
@@ -64,6 +88,32 @@
           </div>
         </div>
       </div>
+     @else
+
+      <div class="p-4 rounded-md bg-yellow-50">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: solid/information-circle -->
+            <svg class="w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+              fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="flex-1 ml-3 md:flex md:justify-between">
+            <p class="text-sm text-yellow-700">
+              Results will be made available once they are finalized and released by the administration.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      
+
+
+      @endif
       @elseif ($user_has_result && !$has_survey_result && !$has_selected_course)
       <!-- This example requires Tailwind CSS v2.0+ -->
       <div class="p-4 rounded-md bg-blue-50">
