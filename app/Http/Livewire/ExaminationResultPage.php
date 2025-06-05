@@ -50,18 +50,19 @@ class ExaminationResultPage extends Component
         ];
     }
 
-    public function scoreInterpretation($score)
-    {
-        $score = intval($score);
-        if ($score >= 200 && $score <= 324) return 'Low';
-        if ($score >= 325 && $score <= 374) return 'Below Average';
-        if ($score >= 375 && $score <= 474) return 'Low Average';
-        if ($score >= 475 && $score <= 524) return 'Middle Average';
-        if ($score >= 525 && $score <= 579) return 'High Average';
-        if ($score >= 580 && $score <= 679) return 'Above Average';
-        if ($score >= 680 && $score <= 800) return 'Outstanding';
-        return 'Invalid';
-    }
+    protected function stanineInterpretation($stanine)
+{
+    if ($stanine == 9) return 'Outstanding';
+    if ($stanine == 8) return 'Above Average';
+    if ($stanine == 7) return 'Above Average';
+    if ($stanine == 6) return 'High Average';
+    if ($stanine == 5) return 'Middle Average';
+    if ($stanine == 4) return 'Low Average';
+    if ($stanine == 3) return 'Below Average';
+    if ($stanine == 2) return 'Below Average';
+    if ($stanine == 1) return 'Low';
+    return '';
+}
 
     public function render()
     {

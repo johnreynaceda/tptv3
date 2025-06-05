@@ -87,7 +87,7 @@
                             <td class="border px-2 py-1">{{ $result->examinee_number }}</td>
                             <td class="border px-2 py-1">{{ $result->full_name }}</td>
                             <td class="border px-2 py-1 text-center font-bold">{{ $result->total_standard_score }}</td>
-                            <td class="border px-2 py-1 text-center">{{ $this->scoreInterpretation($result->total_standard_score) }}</td>
+                            <td class="border px-2 py-1 text-center">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->math_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->english_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->filipino_standard_score }}</td>
