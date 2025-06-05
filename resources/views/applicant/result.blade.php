@@ -42,6 +42,8 @@
                 background: white !important;
                 font-size: 12px !important;
                 color: black !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
               }
               /* Ensure table headers/footers repeat properly */
               table { page-break-inside: avoid; }
@@ -139,7 +141,7 @@
 
         <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact">
             <!-- OFFICIAL HEADER WITH LOGOS -->
-    <div>
+             <div>
 
         <div class="flex">
             <div class="flex mr-2">

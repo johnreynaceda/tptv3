@@ -1,4 +1,4 @@
-<div class="mt-6 grid grid-cols-3 gap-2 print:mt-3 print-compact print-avoid-break">
+<div class="mt-6 grid grid-cols-3 gap-2 print:mt-3 print-compact print-avoid-break print-signature">
     <div class="flex flex-col ">
         <span class="text-xs print:text-[7px]">Prepared by:</span>
         <div class="flex w-full">
