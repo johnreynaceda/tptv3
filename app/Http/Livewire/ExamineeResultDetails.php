@@ -38,8 +38,8 @@ class ExamineeResultDetails extends Component
         $this->full_name = $result->full_name;
         
         // Set photo with fallback
-        $this->photo = $this->user && $this->user->personalInformation && $this->user->personalInformation->photo
-            ? asset('storage/' . $this->user->personalInformation->photo)
+        $this->photo = $this->user && $this->user->personal_information && $this->user->personal_information->photo
+            ? Storage::url($this->user->personal_information->photo)
             : asset('images/placeholder.png');
     }
 

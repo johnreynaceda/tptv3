@@ -214,7 +214,7 @@
             <!-- Photo Placeholder - Standard Passport Size -->
             <div class="w-1/4 flex">
                 <div class="border border-gray-400 w-[35mm] h-[45mm] flex items-center justify-center overflow-hidden bg-white">
-                    <img src="{{Auth::user()->personal_information->photo ?? asset('images/placeholder.png') }}" alt="{{Auth::user()->personal_information->photo ?? 'images/sksu1.png' }}" class="object-cover w-full h-full">
+                    <img src="{{ $photo }}" alt="{{ $photo }}" class="object-cover w-full h-full">
                 </div>
             </div>
             <!-- Header & Details -->
@@ -224,11 +224,11 @@
                 <div class="mt-2 text-sm">
                     <div class="mb-1">
                         <span class="font-semibold inline-block w-40">NAME OF EXAMINEE</span>
-                        <span>: {{ $user_personal_information->first_name ?? '' }} {{ $user_personal_information->middle_name ?? '' }} {{ $user_personal_information->last_name ?? '' }} {{ $user_personal_information->extension ?? '' }}</span>
+                        <span>: {{ $result->full_name ??''}}</span>
                     </div>
                     <div class="mb-1">
                         <span class="font-semibold inline-block w-40">EXAMINEE NUMBER</span>
-                        <span>: {{ $examinee_number ?? 'N/A' }}</span>
+                        <span>: {{ $result->examinee_number ?? 'N/A' }}</span>
                     </div>
                     <div class="mb-1">
                         <span class="font-semibold inline-block w-40">DATE OF EXAMINATION</span>
