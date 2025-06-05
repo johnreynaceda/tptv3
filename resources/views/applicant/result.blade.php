@@ -139,39 +139,39 @@
 
         <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact">
             <!-- OFFICIAL HEADER WITH LOGOS -->
-<div>
+    <div>
 
-    <div class="flex">
-        <div class="flex mr-2">
-            <img src="{{ asset('images/bagong_pilipinas.png') }}" class="w-16 mx-auto h-16" alt="University Logo">
-            <img src="{{ asset('images/sksu1.png') }}" class="w-16 mx-auto h-16" alt="Header Logo">
+        <div class="flex">
+            <div class="flex mr-2">
+                <img src="{{ asset('images/bagong_pilipinas.png') }}" class="w-16 mx-auto h-16" alt="University Logo">
+                <img src="{{ asset('images/sksu1.png') }}" class="w-16 mx-auto h-16" alt="Header Logo">
+            </div>
+            <div>
+                <p class="leading-[1.1rem] text-gray-600 text-sm font-bold uppercase">Republic of the Philippines</p>
+                <p class="leading-[1.1rem] text-lg text-green-800 font-bold">SULTAN KUDARAT STATE UNIVERSITY</p>
+                <p class="leading-[1.1rem] text-gray-600 text-sm">EJC Montilla, City of Tacurong, 9800</p>
+                <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
+            </div>
         </div>
-        <div>
-            <p class="leading-[1.1rem] text-gray-600 text-sm font-bold uppercase">Republic of the Philippines</p>
-            <p class="leading-[1.1rem] text-lg text-green-800 font-bold">SULTAN KUDARAT STATE UNIVERSITY</p>
-            <p class="leading-[1.1rem] text-gray-600 text-sm">EJC Montilla, City of Tacurong, 9800</p>
-            <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
+        <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
+                    <i class="text-green-600 fas fa-globe mr-2"></i>
+                    <span>https://www.sksu.edu.ph</span>
+                </a>
+
+                <a href="mailto:officeofthepresident@sksu.edu.ph" class="flex items-center text-xs hover:underline">
+                    <i class="text-green-600 fas fa-envelope mr-2"></i>
+                    <span class="truncate max-w-[180px] md:max-w-none">officeofthepresident@sksu.edu.ph</span>
+                </a>
+
+                <a href="tel:(064)200-7338" class="flex items-center text-xs hover:underline">
+                    <i class="text-green-600 fas fa-phone-alt mr-2"></i>
+                    <span>(064) 200-7338</span>
+                </a>
         </div>
+
     </div>
-    <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
-                <i class="text-green-600 fas fa-globe mr-2"></i>
-                <span>https://www.sksu.edu.ph</span>
-            </a>
-
-            <a href="mailto:officeofthepresident@sksu.edu.ph" class="flex items-center text-xs hover:underline">
-                <i class="text-green-600 fas fa-envelope mr-2"></i>
-                <span class="truncate max-w-[180px] md:max-w-none">officeofthepresident@sksu.edu.ph</span>
-            </a>
-
-            <a href="tel:(064)200-7338" class="flex items-center text-xs hover:underline">
-                <i class="text-green-600 fas fa-phone-alt mr-2"></i>
-                <span>(064) 200-7338</span>
-            </a>
-    </div>
-
-</div>
 
 
     @if(isset($resultsVisible) && !$resultsVisible)
@@ -223,7 +223,7 @@
                 </div>
                 <div class="mb-1">
                     <span class="font-semibold inline-block w-40">DATE OF EXAMINATION</span>
-                    <span>: {{ $result->examination_date ?? 'April 6, 2025' }}</span>
+                    <span>: April 6, 2025</span>
                 </div>
             </div>
         </div>

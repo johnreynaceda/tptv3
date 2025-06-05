@@ -33,20 +33,21 @@ public function toggleShowResults($examinationId)
 
 }
 
-public function confirmToggleResults()
+public function confirmToggleResults($examinationId)
 {
     DB::beginTransaction();
-    $exam = Examination::findOrFail($this->examinationId);
+    $exam = Examination::findOrFail($examinationId);
     $exam->show_results = !$exam->show_results;
     $exam->save();
 
     $this->examinations = Examination::whereHas('results')->get();
     DB::commit();
-    // $this->notification([
-    //     'title' => 'Success',
-    //     'description' => 'Results are now ' . ($exam->show_results ? 'available to the public' : 'hidden from the public'),
-    //     'icon' => 'success',
-    // ]);
+ 
+    $this->dialog()->success(
+        $title = 'Success',
+        $description = 'Results are now ' . ($exam->show_results ? 'available to the public' : 'hidden from the public')
+    );
+
 }
 
     public function render()
