@@ -1,16 +1,18 @@
-<div class="">
+<div class="bg-white print:p-0 print:m-0">
     <style>
         @page {
-            size: auto;
-            margin: 0 !important;
-            padding: 0.5cm 1cm;
-            background: white;
+            size: A4;
+            margin: 1cm !important;
+            padding: 0 !important;
+            background: white !important;
         }
         
         @media print {
             @page {
-                size: auto;
-                margin: 0.5cm 1cm;
+                size: A4;
+                margin: 1cm !important;
+                padding: 0 !important;
+                background: white !important;
             }
             
             html, body {
@@ -34,20 +36,34 @@
                 color: black !important;
             }
             
-            body * {
-                visibility: hidden;
+            /* Reset body styles for printing */
+            body {
+                background: white !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                width: 100% !important;
+                height: auto !important;
             }
             
-            #printable, #printable * {
-                visibility: visible;
+            /* Ensure all elements are visible when printing */
+            * {
+                visibility: visible !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             #printable {
-                width: 100%;
-                padding: 0;
-                margin: 0 auto;
-                max-width: 21cm; /* Standard A4 width */
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+                max-width: 21cm !important; /* Standard A4 width */
                 position: relative;
+                background: white !important;
+                box-shadow: none !important;
+                page-break-before: avoid !important;
+                break-before: avoid !important;
             }
           /* Ensure table headers/footers repeat properly */
           table { page-break-inside: avoid; }
@@ -74,12 +90,33 @@
 
           /* Ensure page breaks appropriately */
           .print-avoid-break { 
-            page-break-inside: avoid;
-            break-inside: avoid;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+            -webkit-region-break-inside: avoid !important;
+            margin: 0 !important;
+            padding: 0 !important;
           }
           .print-break-after { 
-            page-break-after: always;
-            break-after: page;
+            page-break-after: always !important;
+            break-after: page !important;
+          }
+          
+          /* Prevent unwanted page breaks */
+          .print-keep-together {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+          }
+          
+          /* Force background colors in print */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          
+          /* Prevent empty pages */
+          html, body {
+            height: auto !important;
+            overflow: visible !important;
           }
           
           /* Prevent unwanted page breaks inside important elements */
@@ -169,12 +206,12 @@
     </div>
  
         
-<div class="px-3 sm:px-0 print:p-0 print:m-0 print:bg-white print:shadow-none print:max-w-full print:pt-0 print:mx-auto " id="printable">
+<div class="bg-white rounded-lg overflow-hidden print:mt-4 print-section print-keep-together" id="printable">
     <!-- Print Button -->
    
    <!-- Print Button -->
   
-    <div class="max-w-3xl mx-auto border border-gray-300 bg-white   p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact">
+    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block">
         <div>
 
             <div class="flex">
@@ -209,7 +246,7 @@
     
         </div>
 
-        <div class="flex print-compact print-avoid-break mt-4">
+        <div class="flex print-compact  mt-4">
 
             <!-- Photo Placeholder - Standard Passport Size -->
             <div class="w-1/4 flex">
@@ -392,11 +429,17 @@ $boardProgramsList = [
                         </div>
                         <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
                             @if($qualifiedBoard && $qualifiedNonBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Board and Non-Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @elseif($qualifiedBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @elseif($qualifiedNonBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Non-Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @else
                             Thank you for considering SKSU as your preferred institution,
                             but you are recommended to enroll in another institution of your choice.
@@ -418,6 +461,7 @@ $boardProgramsList = [
         <div class="mt-4">
             <livewire:footer-signature/>
         </div>
+        <livewire:result.score-guide />
   
     
         <!-- Footer -->

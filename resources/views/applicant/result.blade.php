@@ -33,6 +33,11 @@
 
         <style>
             @media print {
+              @page {
+                size: A4;
+                margin: 10mm 10mm 10mm 10mm;
+              }
+              
               html, body, #printable {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -45,62 +50,71 @@
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
               }
-              /* Ensure table headers/footers repeat properly */
-              table { page-break-inside: avoid; }
-              tr, img { page-break-inside: avoid; }
-
-              /* Reduce margins and padding for print */
+              
+              /* Ensure content stays together */
+              .print-keep-together {
+                page-break-inside: avoid;
+                break-inside: avoid;
+              }
+              
+              /* Prevent page breaks inside important sections */
+              .print-section {
+                page-break-inside: avoid;
+                break-inside: avoid;
+                margin-bottom: 10px;
+              }
+              
+              /* Adjust spacing for print */
               .print-compact {
                 margin: 0 !important;
-                padding: 4px !important;
+                padding: 2px !important;
               }
 
-              /* Adjust font sizes for print */
-              .print-text-xs { font-size: 8px !important; }
+              /* Font sizes for print */
+              .print-text-xs { font-size: 9px !important; }
               .print-text-sm { font-size: 10px !important; }
-              .print-text-base { font-size: 12px !important; }
-              .print-text-lg { font-size: 14px !important; }
-
-              /* Hide non-essential elements when printing */
-              .print-hide { display: none !important; }
-
-              /* Ensure page breaks appropriately */
-              .print-avoid-break { page-break-inside: avoid; }
-              .print-break-after { page-break-after: always; }
-
-              /* Adjust table for print - ensure borders are visible */
-              .print-table-compact th, .print-table-compact td {
-                padding: 2px 4px !important;
+              .print-text-base { font-size: 11px !important; }
+              .print-text-lg { font-size: 12px !important; }
+              
+              /* Ensure tables don't break across pages */
+              table {
+                page-break-inside: auto;
+              }
+              
+              tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+              }
+              
+              /* Table styles */
+              .print-table-compact {
+                width: 100% !important;
+                border-collapse: collapse;
+              }
+              
+              .print-table-compact th, 
+              .print-table-compact td {
+                padding: 3px 5px !important;
                 font-size: 10px !important;
-                border-color: #000000 !important;
-                border-width: 1px !important;
+                border: 1px solid #000 !important;
+              }
+              
+              /* Make sure images print properly */
+              img {
+                max-width: 100% !important;
+                height: auto !important;
+              }
+              
+              /* Force background colors */
+              .bg-white, .bg-gray-50, .bg-gray-100 { 
+                background-color: white !important; 
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
+              
+              /* Ensure text is readable */
+              .text-black, .text-gray-800, .text-gray-900 {
                 color: black !important;
-              }
-
-              /* Make only table cell borders visible and darker */
-              .print-table-compact table, .print-table-compact th, .print-table-compact td {
-                border-color: #000000 !important;
-                border-width: 1px !important;
-                border-style: solid !important;
-              }
-
-              /* Ensure consistent colors in print but keep borders visible */
-              .bg-gray-50, .bg-gray-100 { background-color: white !important; }
-              .text-green-800, .text-green-700, .text-green-600 { color: black !important; }
-              .text-gray-600, .text-gray-700 { color: #4b5563 !important; }
-              .border-[#008000] { border-color: #000000 !important; border-width: 2px !important; }
-
-              /* Only make specific borders visible where intended */
-              table .border, table .border-gray-300, table .border-gray-400,
-              .border-gray-300.px-2, .border-gray-400.px-2 {
-                border-color: #000000 !important;
-                border-width: 1px !important;
-                border-style: solid !important;
-              }
-
-              /* Remove borders from parent containers */
-              #printable, .max-w-3xl, .mx-auto {
-                border: none !important;
               }
             }
 
@@ -202,7 +216,7 @@
     </div>
     @else
     <!-- Results are visible -->
-    <div class="flex print-compact print-avoid-break mt-4">
+    <div class="flex print-compact  mt-4 mb-2">
 
         <!-- Photo Placeholder - Standard Passport Size -->
         <div class="w-1/4 flex">
@@ -230,15 +244,19 @@
             </div>
         </div>
     </div>
-    <div class="mt-2 print-compact print-avoid-break">
-         <!-- Table -->
-                <livewire:result.score-result />
-                {{-- <livewire:result.score-guide /> --}}
-
-    </div>
-
-    <livewire:result.score-guide />
+    
+        
+    <livewire:result.score-result />
     <livewire:footer-signature/>
+    <livewire:result.score-guide />
+
+    {{-- <div class="print:hidden">
+        <livewire:result.score-guide />
+    </div>
+    <livewire:footer-signature/>
+    <div class="hidden print:block">
+        <livewire:result.score-guide />
+    </div> --}}
 
     <!-- Signatories -->
 

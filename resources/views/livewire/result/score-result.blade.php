@@ -1,6 +1,6 @@
 <div class="overflow-x-auto -mx-2 sm:mx-0">
     <div class="inline-block min-w-full sm:px-0 px-2">
-        <table class="w-full text-sm print-table-compact">
+        <table class="min-w-full divide-y divide-gray-200 print-table-compact" style="page-break-inside: avoid;">
             <thead>
                 <tr class="bg-gray-50 text-center">
                     <th class="border border-gray-300 px-2 py-2 font-bold text-xs sm:text-sm">SUBJECT</th>
@@ -150,11 +150,17 @@ $boardProgramsList = [
                         </div>
                         <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
                             @if($qualifiedBoard && $qualifiedNonBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Board and Non-Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @elseif($qualifiedBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @elseif($qualifiedNonBoard)
-                                Congratulations! You have passed the SKSU Tertiary Placement Test for Non-Board Programs. You may now proceed with the enrollment process. Please bring the printed copy of your SKSU-TPT result, Grade 12 report card or transcript of records, and any valid ID.
+                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
+                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
+                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID. 
                             @else
                             Thank you for considering SKSU as your preferred institution,
                             but you are recommended to enroll in another institution of your choice.
