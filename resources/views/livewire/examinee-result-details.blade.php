@@ -260,7 +260,7 @@
                 <div class="leading-[1.1rem] font-extrabold mt-1 mb-2 print-text-lg">SKSU TERTIARY PLACEMENT<br>TEST RESULT 2025</div>
                 <div class="mt-2 text-sm">
                     <div class="mb-1">
-                        <span class="font-semibold inline-block w-40">NAME OF EXAMINEE</span>
+                        <span class="font-semibold inline-block w-40 uppercase">NAME OF EXAMINEE</span>
                         <span>: {{ $result->full_name ??''}}</span>
                     </div>
                     <div class="mb-1">
