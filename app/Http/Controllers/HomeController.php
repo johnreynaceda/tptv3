@@ -86,7 +86,7 @@ class HomeController extends Controller
         }
 
         $examination_id = $has_application?->examination_id;
-        $has_result = Result::where('examination_id', $examination_id)->exists();
+        $has_result = $active_examination->results()->exists();
         $has_survey_result = SurveyResult::where('user_id', auth()->user()->id)->exists();
         $has_selected_course = SelectedCourse::where('user_id', auth()->user()->id)->exists();
 
