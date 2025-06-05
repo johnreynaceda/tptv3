@@ -344,8 +344,9 @@
                 Log Out
               </a>
             </form>
+            <div class="mt-10"></div>
             <hr />
-            <div class="mt-8">
+            <div class="mt-10">
 
                 <a href="{{ route('admin.examination-with-results') }}"
                 class="{{ Request::routeIs(['admin.examination-with-results']) ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium rounded-md group">
