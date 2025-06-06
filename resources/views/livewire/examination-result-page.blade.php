@@ -2,7 +2,7 @@
     <x-layout.admin>
     <div class="grid grid-cols-8 gap-4 p-6 ">
 
-        
+
         <div class=" col-span-6 p-6 bg-white rounded-lg">
 
             <h1 class="text-xl font-bold mb-4">Results for: {{ $examination->title }}</h1>
@@ -22,9 +22,9 @@
                         class="pl-10 pr-4 py-3 border border-gray-300 rounded-lg shadow-sm w-full focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-base"
                     />
                 </div>
-               
+
             </div>
-            
+
             <div class="flex flex-wrap gap-2 mb-4">
                 <!-- Total Results -->
                 <div class="flex-1 min-w-[120px] max-w-xs bg-white rounded-lg shadow px-4 py-3 flex flex-col">
@@ -62,13 +62,13 @@
                     <span class="text-xl font-bold text-red-600">{{ $stats['failed'] }}</span>
                 </div>
             </div>
-            
-            
+
+
             <div class="overflow-x-auto">
                 <table class="min-w-full text-xs">
                     <thead class="bg-gray-100">
                         <tr>
-                            
+
                             <th class="border px-2 py-1">Examinee #</th>
                             <th class="border px-2 py-1">Full Name</th>
                             <th class="border px-2 py-1">Total Score</th>
@@ -85,7 +85,7 @@
                     <tbody>
                         @forelse($results as $i => $result)
                         <tr class="even:bg-gray-50">
-                            
+
                             <td class="border px-2 py-1">{{ $result->examinee_number }}</td>
                             <td class="border px-2 py-1">{{ $result->full_name }}</td>
                             <td class="border px-2 py-1 text-center font-bold {{ $result->total_standard_score < 400 ? 'text-red-600' : 'text-green-600' }}">{{ $result->total_standard_score }}</td>
@@ -96,9 +96,12 @@
                             <td class="border px-2 py-1 text-center">{{ $result->filipino_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->science_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->social_studies_standard_score }}</td>
-                            <td class="border px-2 py-2 text-center ">
-                                <a href="{{ route('admin.examinee-result-details', $result->id) }}" target="_blank" class="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1  rounded hover:text-gray-200 hover:bg-gray-600 transition-all hover:scale-105 ">
+                            <td class="border px-2 py-2 text-center space-x-1">
+                                <a href="{{ route('admin.examinee-result-details', $result->id) }}" target="_blank" class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
                                     View Details
+                                </a>
+                                <a href="{{ route('admin.generate-examination-result', $result->examinee_number) }}" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
+                                    Generate PDF
                                 </a>
                             </td>
                         </tr>
@@ -110,12 +113,12 @@
                     </tbody>
                     </table>
                     </div>
-                    
+
                     <!-- Pagination Links -->
                     <div class="mt-4">
                         {{ $results->links() }}
                     </div>
-                    
+
                 </table>
             </div>
             <div class="col-span-2">
