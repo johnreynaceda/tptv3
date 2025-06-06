@@ -8,193 +8,161 @@
         </head>
 <div class="bg-white print:p-0 print:m-0">
     <style>
+        /* Base styles */
         @page {
+            margin: 1cm;
             size: A4;
-            margin: 1cm !important;
-            padding: 0 !important;
-            background: white !important;
         }
 
-        @media print {
-            @page {
-                size: A4;
-                margin: 1cm !important;
-                padding: 0 !important;
-                background: white !important;
-            }
-
-            html, body {
-                width: 100% !important;
-                height: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            #printable {
-                width: 100% !important;
-                max-width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                background: white !important;
-                box-shadow: none !important;
-                font-size: 10px !important;
-                color: black !important;
-            }
-
-            /* Reset body styles for printing */
-            body {
-                background: white !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                width: 100% !important;
-                height: auto !important;
-            }
-
-            /* Ensure all elements are visible when printing */
-            * {
-                visibility: visible !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-
-            #printable {
-                width: 100% !important;
-                padding: 0 !important;
-                margin: 0 auto !important;
-                max-width: 21cm !important; /* Standard A4 width */
-                position: relative;
-                background: white !important;
-                box-shadow: none !important;
-                page-break-before: avoid !important;
-                break-before: avoid !important;
-            }
-          /* Ensure table headers/footers repeat properly */
-          table { page-break-inside: avoid; }
-          tr, img { page-break-inside: avoid; }
-
-          /* Reduce margins and padding for print */
-          .print-compact {
-            margin: 0 !important;
-            padding: 4px !important;
-          }
-
-          /* Adjust font sizes for print */
-          html {
-            font-size: 12px !important;
-          }
-          .print-text-xs { font-size: 0.67rem !important; }
-          .print-text-sm { font-size: 0.83rem !important; }
-          .print-text-base { font-size: 1rem !important; }
-          .print-text-lg { font-size: 1.17rem !important; }
-          .print-text-xl { font-size: 1.33rem !important; }
-
-          /* Hide non-essential elements when printing */
-          .print-hide { display: none !important; }
-
-          /* Ensure page breaks appropriately */
-          .print-avoid-break {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-            -webkit-region-break-inside: avoid !important;
-            margin: 0 !important;
-            padding: 0 !important;
-          }
-          .print-break-after {
-            page-break-after: always !important;
-            break-after: page !important;
-          }
-
-          /* Prevent unwanted page breaks */
-          .print-keep-together {
-            page-break-inside: avoid !important;
-            break-inside: avoid !important;
-          }
-
-          /* Force background colors in print */
-          * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-          }
-
-          /* Prevent empty pages */
-          html, body {
-            height: auto !important;
-            overflow: visible !important;
-          }
-
-          /* Prevent unwanted page breaks inside important elements */
-          table, thead, tbody, tr, td, th, div, p {
-            page-break-inside: avoid;
-            break-inside: avoid;
-          }
-
-          /* Adjust table for print - ensure borders are visible */
-          .print-table-compact th, .print-table-compact td {
-            padding: 2px 4px !important;
-            font-size: 10px !important;
-            border-color: #000000 !important;
-            border-width: 1px !important;
-            color: black !important;
-          }
-
-          /* Make only table cell borders visible and darker */
-          .print-table-compact table, .print-table-compact th, .print-table-compact td {
-            border-color: #000000 !important;
-            border-width: 1px !important;
-            border-style: solid !important;
-          }
-
-          /* Ensure consistent colors in print but keep borders visible */
-          .bg-gray-50, .bg-gray-100 { background-color: white !important; }
-          .text-green-800, .text-green-700, .text-green-600 { color: black !important; }
-          .text-gray-600, .text-gray-700 { color: #4b5563 !important; }
-          .border-[#008000] { border-color: #000000 !important; border-width: 2px !important; }
-
-          /* Only make specific borders visible where intended */
-          table .border, table .border-gray-300, table .border-gray-400,
-          .border-gray-300.px-2, .border-gray-400.px-2 {
-            border-color: #000000 !important;
-            border-width: 1px !important;
-            border-style: solid !important;
-          }
-
-          /* Remove borders from parent containers */
-          #printable, .max-w-3xl, .mx-auto {
-            border: none !important;
-          }
-        }
-
-        /* Optimize viewing experience */
-        @media screen {
-          .max-w-3xl {
-            max-width: 48rem;
-          }
-        }
-
-        @page {
-            size: auto;
-            margin: 0 !important;
-
-        }
-
-        #printable {
-            width: 100%;
-            margin: 0 auto;
+        body {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            line-height: 1.4;
+            color: #333;
+            background: #fff;
+            margin: 0;
             padding: 0;
+        }
+
+        /* Print container */
+        .print-container {
             max-width: 21cm;
+            margin: 0 auto;
+            padding: 1cm;
         }
 
+        /* Header styles */
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #1a5f23;
+            padding-bottom: 0.5rem;
+        }
+
+        .header img {
+            height: 80px;
+            margin: 0 15px;
+        }
+
+        .header h1 {
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+
+        /* Student info section */
+        .student-info {
+            display: flex;
+            margin: 1.5rem 0;
+            gap: 2rem;
+        }
+
+        .photo-container {
+            width: 35mm;
+            height: 45mm;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .student-details {
+            flex-grow: 1;
+        }
+
+        .student-details h2 {
+            color: #1a5f23;
+            border-bottom: 2px solid #1a5f23;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Table styles */
         .print-table-compact {
-            page-break-inside: avoid;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 11pt;
         }
 
-        .print-avoid-break {
-            page-break-inside: avoid;
+        .print-table-compact th,
+        .print-table-compact td {
+            border: 1px solid #000;
+            padding: 0.5rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .print-table-compact th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .print-table-compact tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Signature section */
+        .signature-section {
+            margin: 2rem 0;
+            padding-top: 1rem;
+        }
+
+        /* Footer styles */
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ddd;
+            font-size: 10pt;
+            color: #666;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                font-size: 11pt;
+            }
+
+            .print-container {
+                padding: 0;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            /* Ensure tables don't break across pages */
+            table {
+                page-break-inside: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+
+            /* Ensure images don't break across pages */
+            img {
+                max-width: 100%;
+                height: auto;
+                page-break-inside: avoid;
+            }
+
+            /* Adjust margins for printing */
+            @page :first {
+                margin-top: 1cm;
+            }
         }
     </style>
     <div class="pt-2">
