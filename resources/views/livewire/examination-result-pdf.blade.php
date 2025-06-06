@@ -422,34 +422,56 @@ $boardProgramsList = [
                             <h4 class="font-semibold text-sm mb-2">YOUR QUALIFICATION STATUS</h4>
                             <div class="space-y-2">
                                 @if($qualifiedBoard && $qualifiedNonBoard)
-                                    <div class="text-green-600 block ml-2">✓ Qualified for Board Program</div>
-                                    <div class="text-green-600 block ml-2">✓ Qualified for Non-Board Program</div>
+                                    <div class="flex items-center text-green-700">
+                                        <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Qualified for Board Programs</span>
+                                    </div>
+                                    <div class="flex items-center text-green-700">
+                                        <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Qualified for Non-Board Programs</span>
+                                    </div>
                                 @elseif($qualifiedBoard)
-                                    <div class="text-green-600 block ml-2">✓ Qualified for Board Program</div>
+                                    <div class="flex items-center text-green-700">
+                                        <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Qualified for Board Programs</span>
+                                    </div>
                                 @elseif($qualifiedNonBoard)
-                                    <div class="text-green-600 block ml-2">✓ Qualified for Non-Board Program</div>
+                                    <div class="flex items-center text-green-700">
+                                        <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Qualified for Non-Board Programs</span>
+                                    </div>
                                 @else
-                                    <div class="text-red-600 ml-2">✗ Not qualified for any program</div>
+                                    <div class="flex items-center text-red-600">
+                                        <svg class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414-1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span>Not qualified for any program</span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
-                        <div class="text-xs italic text-justify text-gray-600 mt-1" style="text-indent:50px;">
-                            @if($qualifiedBoard && $qualifiedNonBoard)
-                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
-                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
-                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
-                            @elseif($qualifiedBoard)
-                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
-                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
-                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
-                            @elseif($qualifiedNonBoard)
-                            Congratulations! You have passed the SKSU Tertiary Placement Test. Please refer to the table below and choose
-                            a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.
-                            Please bring the printed copy of the SKSU-TPT result, Grade 12 report card or transcript of record and any valid ID.
-                            @else
-                            Thank you for considering SKSU as your preferred institution,
-                            but you are recommended to enroll in another institution of your choice.
-                            @endif
+
+                            <div class="mt-3 text-xs text-gray-700 bg-white p-3 rounded border border-gray-200">
+                                @if($qualifiedBoard || $qualifiedNonBoard)
+                                    <p class="mb-2">Congratulations! You have passed the SKSU Tertiary Placement Test.</p>
+                                    <p class="mb-2">Please refer to the table above and choose a degree program where you may qualify based on your score and submit yourself for an interview on a set schedule.</p>
+                                    <p><strong>Requirements for Interview:</strong></p>
+                                    <ul class="list-disc pl-5 mt-1">
+                                        <li>Printed copy of the SKSU-TPT result</li>
+                                        <li>Grade 12 report card or transcript of records</li>
+                                        <li>Any valid ID</li>
+                                    </ul>
+                                @else
+                                    <p>Thank you for considering SKSU as your preferred institution. Unfortunately, your score does not meet the minimum requirements for our programs. We encourage you to explore other educational opportunities that align with your qualifications.</p>
+                                @endif
+                            </div>
                         </div>
                     </td>
                 </tr>
