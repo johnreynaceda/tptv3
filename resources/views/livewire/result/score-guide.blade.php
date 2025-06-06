@@ -1,20 +1,18 @@
-<div class="bg-white py-6 print:mt-4 print-section print-keep-together">
+<div class="bg-white py-4 print:mt-2 print-section">
     <!-- Title & Subtitle -->
-    <div class="text-center mb-6">
-        <h2 class="font-bold text-lg mb-1">
+    <div class="text-center mb-2">
+        <h2 class="font-bold text-lg mb-0">
             SKSU Tertiary Placement Test Cut-off Scores
         </h2>
-        <p class="text-xs italic text-gray-700">
+        <p class="text-xs italic text-gray-700 mt-1">
             The cut-off score is the minimum required score to qualify for a specific program.
             Only applicants who meet or exceed the prescribed standard are eligible for selection.
         </p>
     </div>
 
     <!-- Table -->
-    <div class="overflow-x-auto -mx-6 sm:mx-0 print:mx-0">
-        <div class="inline-block min-w-full sm:px-0 px-6 print:px-0">
-        <table class="min-w-full text-xs print-table-compact" style="">
-       <!-- <table class="min-w-full text-xs print-table-compact" style="page-break-inside: avoid;"> -->
+    <div class="overflow-x-auto mt-2">
+        <table class="w-full text-xs border border-gray-300" style="page-break-inside: auto;">
             <thead>
                 <tr class="bg-gray-50">
                     <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
@@ -158,5 +156,5 @@
                 </tr>
             </tbody>
         </table>
-        </div>
     </div>
+</div>
