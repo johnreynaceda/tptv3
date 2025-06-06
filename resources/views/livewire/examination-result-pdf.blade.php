@@ -425,7 +425,7 @@ $boardProgramsList = [
         <div class="">
             <livewire:footer-signature/>
         </div>
-        <div style="page-break-before: always; margin-top: 2rem;">
+        <div style="page-break-before: always">
 
             <livewire:result.score-guide />
         </div>
