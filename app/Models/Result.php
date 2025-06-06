@@ -19,4 +19,17 @@ class Result extends Model
     {
         return $this->belongsTo(Examination::class);
     }
+    public function stanineInterpretation($stanine)
+    {
+        if ($stanine == 9) return 'Outstanding';
+        if ($stanine == 8) return 'Above Average';
+        if ($stanine == 7) return 'Above Average';
+        if ($stanine == 6) return 'High Average';
+        if ($stanine == 5) return 'Middle Average';
+        if ($stanine == 4) return 'Low Average';
+        if ($stanine == 3) return 'Below Average';
+        if ($stanine == 2) return 'Below Average';
+        if ($stanine == 1) return 'Low';
+        return '';
+    }
 }

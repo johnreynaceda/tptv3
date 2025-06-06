@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\SurveyResult;
 use App\Models\SelectedCourse;
 use App\Models\User;
+use App\Models\Result;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +68,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    
+
      logger('DASHBOARD user:', [
         'auth' => auth()->check(),
         'id' => optional(auth()->user())->id,
@@ -162,7 +164,7 @@ Route::prefix('/admin')
 
         Route::get('/export/users-with-slot', function () {
              $filename = 'students_with_slots_and_permit_' . now()->year . '.xlsx';
-            
+
              return Excel::download(new UsersWithPermitAndSlotExport, $filename);
 
 // To:
@@ -231,7 +233,7 @@ Route::prefix('/applicant')
             $userId = auth()->user()->id;
             $hasSurveyResult = SurveyResult::where('user_id', $userId)->exists();
             $hasSelectedCourse = SelectedCourse::where('user_id', $userId)->exists();
-            
+
             if ($hasSurveyResult && $hasSelectedCourse) {
                 return redirect()->route('applicant.home');
             } elseif ($hasSurveyResult && !$hasSelectedCourse) {
@@ -240,7 +242,7 @@ Route::prefix('/applicant')
                 return view('applicant.survey');
             }
         })->name('show.survey');
-        
+
         Route::get('/select-course', function () {
             if (!SurveyResult::where('user_id', auth()->user()->id)->exists()) {
                 return redirect()->route('show.survey');
@@ -250,7 +252,7 @@ Route::prefix('/applicant')
                 return view('applicant.select-courses');
             }
         })->name('select.courses');
-        
+
 
         Route::get('/select-test-center', function () {
             if (auth()->user()->application->student_slot_id != null) {
@@ -316,3 +318,47 @@ Route::get('/xss-test', function () {
     $student = PersonalInformation::find(1); // or use your test student's ID
     return view('xss-test', compact('student'));
 });
+
+
+   Route::get('/generate-examination/{examinee_number}', function ($examinee_number) {
+    // Find the result by examinee number
+    $result = Result::where('examinee_number', $examinee_number)
+        ->with('examination')
+        ->firstOrFail();
+
+    // Get the related user data through permit
+    $permit = Permit::where('examinee_number', $examinee_number)
+        ->with(['user.personal_information'])
+        ->first();
+
+    if (!$permit || !$permit->user) {
+        abort(404, 'User or permit not found for this examinee number');
+    }
+
+    $photo = $permit->user && $permit->user->personal_information && $permit->user->personal_information->photo
+            ? Storage::url($permit->user->personal_information->photo)
+            : asset('images/placeholder.png');
+
+
+
+    $htmlContent = View::make('livewire.examination-result-pdf', [
+        'result' => $result,
+        'user' => $permit->user,
+        'full_name' => $result->full_name,
+        'examination' => $result->examination,
+        'photo' => $photo
+    ])->render();
+
+    // Generate the PDF from the HTML content
+    $pdfContent = Browsershot::html($htmlContent)
+    ->setOption('args', ['--disable-web-security'])
+    ->pdf();
+    
+    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $permit->user->personal_information->fullName()) . '_RESULT';
+
+    // Return the PDF content as a response
+    return response($pdfContent, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
+    ]);
+})->name('admin.generate-examination-result');
