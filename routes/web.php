@@ -336,7 +336,7 @@ Route::get('/xss-test', function () {
     }
 
     $photo = $permit->user && $permit->user->personal_information && $permit->user->personal_information->photo
-            ? Storage::url($permit->user->personal_information->photo)
+            ? asset('storage/' . $permit->user->personal_information->photo)
             : asset('images/placeholder.png');
 
 
@@ -353,7 +353,7 @@ Route::get('/xss-test', function () {
     $pdfContent = Browsershot::html($htmlContent)
     ->setOption('args', ['--disable-web-security'])
     ->pdf();
-    
+
     $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $permit->user->personal_information->fullName()) . '_RESULT';
 
     // Return the PDF content as a response
