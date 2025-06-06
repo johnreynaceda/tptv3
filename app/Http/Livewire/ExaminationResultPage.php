@@ -33,9 +33,10 @@ class ExaminationResultPage extends Component
 {
     $scores = $this->examination->results()
         ->when($this->search, function($q) {
-            $q->where(function($q) {
-                $q->where('full_name', 'like', "%{$this->search}%")
-                  ->orWhere('examinee_number', 'like', "%{$this->search}%");
+            $searchTerm = strtolower($this->search);
+            $q->where(function($q) use ($searchTerm) {
+                $q->whereRaw('LOWER(full_name) LIKE ?', ["%{$searchTerm}%"])
+                  ->orWhereRaw('LOWER(examinee_number) LIKE ?', ["%{$searchTerm}%"]);
             });
         })
         ->pluck('total_standard_score')
@@ -77,9 +78,10 @@ public function qualifiedType($score)
     {
         $results = $this->examination->results()
             ->when($this->search, function($q) {
-                $q->where(function($q) {
-                    $q->where('full_name', 'like', "%{$this->search}%")
-                      ->orWhere('examinee_number', 'like', "%{$this->search}%");
+                $searchTerm = strtolower($this->search);
+                $q->where(function($q) use ($searchTerm) {
+                    $q->whereRaw('LOWER(full_name) LIKE ?', ["%{$searchTerm}%"])
+                      ->orWhereRaw('LOWER(examinee_number) LIKE ?', ["%{$searchTerm}%"]);
                 });
             })
             ->orderBy('full_name')
