@@ -1,4 +1,4 @@
-<div class="mt-8 pt-4  print:mt-4 print:pt-2 print:border-t-2 print:border-black print-keep-together">
+<div class="mt-8 pt-4  print:mt-4 print:pt-2  print-keep-together">
     <div class="flex flex-col sm:flex-row justify-between gap-4 print:gap-2">
         <!-- Prepared By -->
         <div class="flex-1 text-center">

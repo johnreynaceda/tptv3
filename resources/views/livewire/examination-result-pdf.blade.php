@@ -454,7 +454,7 @@ $boardProgramsList = [
 
         <!-- Score Guide -->
         {{-- <livewire:result.score-guide /> --}}
-        <div class="mt-4">
+        <div class="">
             <livewire:footer-signature/>
         </div>
         <livewire:result.score-guide />
