@@ -13,7 +13,8 @@
     <!-- Table -->
     <div class="overflow-x-auto -mx-6 sm:mx-0 print:mx-0">
         <div class="inline-block min-w-full sm:px-0 px-6 print:px-0">
-        <table class="min-w-full text-xs print-table-compact" style="page-break-inside: avoid;">
+        <table class="min-w-full text-xs print-table-compact" style="">
+       <!-- <table class="min-w-full text-xs print-table-compact" style="page-break-inside: avoid;"> -->
             <thead>
                 <tr class="bg-gray-50">
                     <th class="border border-gray-300 px-2 py-1 w-1/4">PROGRAM</th>
