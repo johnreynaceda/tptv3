@@ -53,10 +53,17 @@
                             {{-- <p class="text-sm text-blue-700">
                 Result will be posted soon.
               </p> --}}
-                            <p class="mt-3 text-sm md:mt-0 md:ml-6">
+                            <p class="mt-3 text-sm space-x-4 md:mt-0 md:ml-6">
                                 <a href="{{ route('print.result') }}"
                                     class="font-medium text-blue-700 whitespace-nowrap hover:text-blue-600">View <span
                                         aria-hidden="true">&rarr;</span></a>
+                                @if(auth()->user()->permit && auth()->user()->permit->examinee_number)
+                                <a href="{{ route('generate-examination-result', ['examinee_number' => auth()->user()->permit->examinee_number]) }}"
+                                    target="_blank"
+                                    class="font-medium text-green-700 whitespace-nowrap hover:text-green-600">
+                                    Generate PDF <span aria-hidden="true">↓</span>
+                                </a>
+                                @endif
                             </p>
                         </div>
                     </div>

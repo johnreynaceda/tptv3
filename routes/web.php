@@ -362,3 +362,46 @@ Route::get('/xss-test', function () {
         'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
     ]);
 })->name('admin.generate-examination-result');
+
+   Route::get('/tpt-result/{examinee_number}', function ($examinee_number) {
+    // Find the result by examinee number
+    $result = Result::where('examinee_number', $examinee_number)
+        ->with('examination')
+        ->firstOrFail();
+
+    // Get the related user data through permit
+    $permit = Permit::where('examinee_number', $examinee_number)
+        ->with(['user.personal_information'])
+        ->first();
+
+    if (!$permit || !$permit->user) {
+        abort(404, 'User or permit not found for this examinee number');
+    }
+
+    $photo = $permit->user && $permit->user->personal_information && $permit->user->personal_information->photo
+            ? asset('storage/' . $permit->user->personal_information->photo)
+            : asset('images/placeholder.png');
+
+
+
+    $htmlContent = View::make('livewire.examination-result-pdf', [
+        'result' => $result,
+        'user' => $permit->user,
+        'full_name' => $result->full_name,
+        'examination' => $result->examination,
+        'photo' => $photo
+    ])->render();
+
+    // Generate the PDF from the HTML content
+    $pdfContent = Browsershot::html($htmlContent)
+    ->setOption('args', ['--disable-web-security'])
+    ->pdf();
+
+    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $permit->user->personal_information->fullName()) . '_RESULT';
+
+    // Return the PDF content as a response
+    return response($pdfContent, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
+    ]);
+})->name('generate-examination-result');
