@@ -30,36 +30,6 @@
                     <x-input wire:model.defer="tribe" autocomplete="on" label="Tribe" />
                     <x-input wire:model.defer="religion" autocomplete="on" label="Religion" />
                     <x-input wire:model.defer="nationality" autocomplete="on" label="Nationality" />
-                    <!-- <x-input wire:model.defer="citizenship"
-                        autocomplete="on"
-                        label="Citizenship" /> -->
-
-                    {{-- <div id="imagepreview">
-                        @if ($personal_information?->photo)
-                            <img src="{{ Storage::url($personal_information->photo) }}" alt="" class="h-40">
-                        @endif
-                    </div>
-                    <x-input wire:model="photo" label="Actual Photo" accept="image/*" type="file"
-                        hint="If you encounter an error while uploading your photo, please try to reduce the size of your photo to less than 2MB."
-                        corner-hint="Use white background with name tag" />
-                    <div wire:loading.flex wire:target="photo">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 animate-spin" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span class="ml-3 text-gray-500">
-                            Please wait while preparing your photo...
-                        </span>
-                    </div>
-                    @if ($photo && $photo != $personal_information?->photo)
-                        <div>
-                            <span class="text-green-700">
-                                File is ready.
-                            </span>
-                        </div>
-                    @endif --}}
 
                     <div class="mt-4">
                         <x-label value="Actual Photo" />
@@ -69,11 +39,9 @@
                         @endif
 
                         {{-- Trigger Modal --}}
-                     <x-button primary wire:click="$set('showCameraModal', true)">
-    Capture / Upload Photo
-</x-button>
-
-
+                        <x-button primary wire:click="openCameraModal">
+                            Capture / Upload Photo
+                        </x-button>
                     </div>
                 </div>
             </form>
@@ -81,11 +49,11 @@
                 <div class="flex justify-end">
                     @if (auth()->user()->step == '2')
                         @if ($this->personal_information)
-                            <x-button  wire:click="update">
+                            <x-button wire:click="update">
                                 Update
                             </x-button>
                         @else
-                            <x-button  wire:click="create">
+                            <x-button wire:click="create">
                                 Save
                             </x-button>
                         @endif
@@ -94,131 +62,246 @@
             </x-slot>
         </x-card>
     </div>
-<x-modal wire:model="showCameraModal" align="center">
+
+    {{-- Camera Modal --}}
+    <x-modal wire:model="showCameraModal" align="center">
         <x-slot name="button"></x-slot>
-        <div x-data="cameraModalHandler()" x-init="init()" class="text-center">
+        <div x-data="cameraModalHandler()" 
+             x-init="
+                 console.log('Alpine component initialized');
+                 setTimeout(() => {
+                     console.log('Checking modal state:', $wire.showCameraModal);
+                     if ($wire.showCameraModal) {
+                         console.log('Modal is open, starting camera...');
+                         startCamera();
+                     }
+                 }, 500);
+                 
+                 Livewire.on('start-camera', () => {
+                     console.log('Received start-camera event');
+                     setTimeout(() => startCamera(), 300);
+                 });
+             "
+             class="text-center">
             <h2 class="font-semibold text-lg mb-3">📷 Capture Photo</h2>
 
+            {{-- Camera status --}}
+            <div x-show="cameraLoading" class="mb-3 text-gray-600">
+                <svg class="animate-spin h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Starting camera...
+            </div>
+
             {{-- Video / Canvas --}}
-            <video x-ref="video" x-show="!captured" autoplay playsinline
+            <video x-ref="video" x-show="!captured && !cameraLoading" autoplay playsinline
                 class="rounded-md border w-full h-64 bg-black mx-auto"></video>
             <canvas x-ref="canvas" x-show="captured"
-                width="480" height="360"
+                width="640" height="480"
                 class="rounded-md border w-full h-64 bg-black mx-auto"></canvas>
+
+            {{-- Upload loading indicator --}}
+            <div x-show="uploading" class="mt-2 text-gray-600">
+                <svg class="animate-spin h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Uploading photo...
+            </div>
 
             {{-- Buttons --}}
             <div class="flex justify-center gap-2 mt-4">
-                <x-button x-show="!captured"
+                <x-button x-show="!captured && !cameraLoading" @click="capturePhoto()">
+                    📸 Capture
+                </x-button>
 
-                    @click="capturePhoto()"
+                <x-button x-show="captured" @click="retakePhoto()" x-bind:disabled="uploading">
+                    🔄 Retake
+                </x-button>
 
+                <x-button x-show="captured" @click="savePhoto()" x-bind:disabled="uploading">
+                    ✅ Save
+                </x-button>
 
-                    >Capture</x-button>
-
-                <x-button x-show="captured"
-
-                    @click="retakePhoto()"
-
-
-                    >Retake</x-button>
-
-                <x-button x-show="captured"
-
-                    @click="savePhoto()"
-
-
-                    >Save</x-button>
+                <x-button secondary @click="closeModal()" x-bind:disabled="uploading">
+                    Cancel
+                </x-button>
             </div>
         </div>
     </x-modal>
 
-@section('footer-applicant')
-<script>
-function cameraModalHandler() {
-    return {
-        stream: null,
-        video: null,
-        canvas: null,
-        captured: false,
+    <script>
+    function cameraModalHandler() {
+        return {
+            stream: null,
+            video: null,
+            canvas: null,
+            captured: false,
+            uploading: false,
+            cameraLoading: false,
 
-        init() {
-            document.addEventListener('modal-closed', () => this.stopCamera());
-        },
+            async startCamera() {
+                this.cameraLoading = true;
+                this.captured = false;
+                
+                // Wait for DOM to be ready
+                await this.$nextTick();
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                this.video = this.$refs.video;
+                this.canvas = this.$refs.canvas;
 
-        async startCamera() {
-            this.video = this.$refs.video;
-            this.canvas = this.$refs.canvas;
+                if (!this.video) {
+                    console.error('Video element not found');
+                    this.cameraLoading = false;
+                    alert('⚠️ Error: Video element not ready');
+                    return;
+                }
 
-            try {
-                this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
-                this.video.srcObject = this.stream;
-            } catch (err) {
-                console.error("Camera access denied:", err);
-                this.toast('Camera Access Denied', 'Please allow camera access in your browser settings.', 'warning');
+                try {
+                    console.log('Requesting camera access...');
+                    
+                    // Check if mediaDevices is available
+                    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                        throw new Error('Camera API not supported in this browser');
+                    }
+                    
+                    this.stream = await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            facingMode: 'user',
+                            width: { ideal: 640 },
+                            height: { ideal: 480 }
+                        },
+                        audio: false
+                    });
+
+                    console.log('Camera stream obtained:', this.stream);
+                    this.video.srcObject = this.stream;
+
+                    // Wait for video to be ready with timeout
+                    await Promise.race([
+                        new Promise((resolve) => {
+                            this.video.onloadedmetadata = () => {
+                                console.log('Video metadata loaded, dimensions:', this.video.videoWidth, 'x', this.video.videoHeight);
+                                resolve();
+                            };
+                        }),
+                        new Promise((_, reject) => 
+                            setTimeout(() => reject(new Error('Video load timeout')), 5000)
+                        )
+                    ]);
+
+                    await this.video.play();
+                    console.log('Camera started successfully');
+                    this.cameraLoading = false;
+
+                } catch (err) {
+                    console.error('Camera access error:', err);
+                    this.cameraLoading = false;
+                    let errorMsg = '⚠️ Camera error: ';
+                    
+                    if (err.name === 'NotAllowedError') {
+                        errorMsg += 'Permission denied. Please allow camera access.';
+                    } else if (err.name === 'NotFoundError') {
+                        errorMsg += 'No camera found on this device.';
+                    } else if (err.name === 'NotReadableError') {
+                        errorMsg += 'Camera is already in use by another application.';
+                    } else {
+                        errorMsg += err.message || 'Unknown error occurred.';
+                    }
+                    
+                    alert(errorMsg);
+                }
+            },
+
+            capturePhoto() {
+                console.log('Capture button clicked');
+                console.log('Video element:', this.video);
+                console.log('Video dimensions:', this.video?.videoWidth, 'x', this.video?.videoHeight);
+                console.log('Video ready state:', this.video?.readyState);
+                
+                if (!this.video) {
+                    console.error('Video element is null');
+                    alert('⚠️ Camera not initialized. Please close and reopen the modal.');
+                    return;
+                }
+                
+                if (!this.video.videoWidth || this.video.videoWidth === 0) {
+                    console.error('Video not ready - no video dimensions');
+                    alert('⚠️ Camera not ready. Please wait for the camera to fully load (you should see yourself on screen).');
+                    return;
+                }
+
+                try {
+                    this.canvas.width = this.video.videoWidth;
+                    this.canvas.height = this.video.videoHeight;
+                    const ctx = this.canvas.getContext('2d');
+                    ctx.drawImage(this.video, 0, 0);
+                    this.captured = true;
+                    this.stopCamera();
+                    console.log('Photo captured successfully');
+                } catch (err) {
+                    console.error('Capture error:', err);
+                    alert('⚠️ Failed to capture photo: ' + err.message);
+                }
+            },
+
+            retakePhoto() {
+                this.captured = false;
+                this.startCamera();
+            },
+
+            stopCamera() {
+                if (this.stream) {
+                    this.stream.getTracks().forEach(track => {
+                        track.stop();
+                        console.log('Camera track stopped');
+                    });
+                    this.stream = null;
+                    if (this.video) {
+                        this.video.srcObject = null;
+                    }
+                }
+            },
+
+            async savePhoto() {
+                this.uploading = true;
+                const dataUrl = this.canvas.toDataURL('image/jpeg', 0.8);
+                const blob = this.dataURItoBlob(dataUrl);
+                const file = new File([blob], 'captured_photo.jpg', { type: 'image/jpeg' });
+
+                try {
+                    console.log('Uploading photo...');
+                    await this.$wire.upload('photo', file);
+                    console.log('Upload successful');
+                    alert('✅ Photo uploaded successfully!');
+                    this.closeModal();
+                } catch (error) {
+                    console.error('Upload failed:', error);
+                    alert('❌ Failed to upload photo. Please try again.');
+                } finally {
+                    this.uploading = false;
+                }
+            },
+
+            closeModal() {
+                this.stopCamera();
+                this.captured = false;
+                this.$wire.showCameraModal = false;
+            },
+
+            dataURItoBlob(dataURI) {
+                const byteString = atob(dataURI.split(',')[1]);
+                const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                const ab = new ArrayBuffer(byteString.length);
+                const ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([ab], { type: mimeString });
             }
-        },
-
-        capturePhoto() {
-            this.canvas.width = this.video.videoWidth;
-            this.canvas.height = this.video.videoHeight;
-            this.canvas.getContext('2d').drawImage(this.video, 0, 0);
-            this.captured = true;
-            this.stopCamera();
-        },
-
-        retakePhoto() {
-            this.captured = false;
-            this.startCamera();
-        },
-
-        stopCamera() {
-            if (this.stream) {
-                this.stream.getTracks().forEach(track => track.stop());
-                this.stream = null;
-            }
-        },
-
-        async savePhoto() {
-            const dataUrl = this.canvas.toDataURL('image/jpeg');
-            const blob = this.dataURItoBlob(dataUrl);
-
-            try {
-                await $wire.upload('photo', blob, 'captured_photo.jpg',
-                    () => this.toast('Photo Captured!', 'Your photo has been uploaded successfully.', 'success'),
-                    (error) => this.toast('Upload Failed', error.message, 'error')
-                );
-            } catch (e) {
-                this.toast('Unexpected Error', e.message, 'error');
-            }
-        },
-
-        toast(title, description, type) {
-            // Graceful check if WireUI notify is available
-            if ($wire && $wire.notify) {
-                $wire.notify({
-                    title: title,
-                    description: description,
-                    icon: type
-                });
-            } else {
-                console.log(`[${type.toUpperCase()}] ${title}: ${description}`);
-                alert(`${title}\n${description}`);
-            }
-        },
-
-        dataURItoBlob(dataURI) {
-            const byteString = atob(dataURI.split(',')[1]);
-            const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-            const ab = new ArrayBuffer(byteString.length);
-            const ia = new Uint8Array(ab);
-            for (let i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
-            return new Blob([ab], { type: mimeString });
         }
     }
-}
-</script>
-@endsection
-
+    </script>
 </div>

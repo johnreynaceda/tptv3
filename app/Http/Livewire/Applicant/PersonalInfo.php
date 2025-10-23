@@ -31,6 +31,12 @@ class PersonalInfo extends Component
         'photo'=>'required|image|mimes:png,jpg|max:100000',
         'sex'=>'required',
     ];
+
+    public function openCameraModal()
+{
+    $this->showCameraModal = true;
+    $this->emit('start-camera'); // Livewire v2
+}
     protected $validationAttributes=['type_id'=>'type'];
     protected $listeners = ['done-all'=>'$refresh'];
     public function mount()
