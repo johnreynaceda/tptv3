@@ -1287,4 +1287,5 @@
                 </div>
         @endif
     </div>
+    
 </x-layout.applicant>
