@@ -162,6 +162,12 @@
                         class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
                         Cancel
                     </x-button>
+
+                    <x-button dark size="sm" @click="switchCamera()" x-bind:disabled="uploading"
+    class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
+Switch Camera
+</x-button>
+
                 </div>
             </div>
         </x-modal>
@@ -171,12 +177,15 @@
     <script>
         function cameraModalHandler() {
             return {
+                facingMode: 'user',
                 stream: null,
                 video: null,
                 canvas: null,
                 captured: false,
                 uploading: false,
                 cameraLoading: false,
+
+
 
                 async startCamera() {
                     this.cameraLoading = true;
@@ -209,7 +218,7 @@
 
                         this.stream = await navigator.mediaDevices.getUserMedia({
                             video: {
-                                facingMode: 'environment', // 👈 Forces rear camera
+                              facingMode: { ideal: this.facingMode }, // dynam
                                 width: {
                                     ideal: 1280
                                 },
@@ -326,6 +335,12 @@
                         }
                     }
                 },
+                switchCamera() {
+    this.facingMode = this.facingMode === 'user' ? 'environment' : 'user';
+    console.log('🔁 Switching camera to:', this.facingMode);
+    this.stopCamera();
+    this.startCamera();
+},
 
                 async savePhoto() {
                     this.uploading = true;
