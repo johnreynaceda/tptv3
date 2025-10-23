@@ -126,6 +126,8 @@
     <x-dialog z-index="z-50"
         blur="md"
         align="center" />
+
+        @yield('footer-applicant')
     @livewireScripts
 </body>
 

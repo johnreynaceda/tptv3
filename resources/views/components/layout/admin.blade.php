@@ -394,7 +394,9 @@
 
 
  {{-- Livewire Scripts (should be the LAST scripts before </body>) --}}
+  @yield('footer-admin')
  @livewireScripts
+
 </body>
 
 </html>
