@@ -33,7 +33,8 @@
                     <!-- <x-input wire:model.defer="citizenship"
                         autocomplete="on"
                         label="Citizenship" /> -->
-                    <div id="imagepreview">
+
+                    {{-- <div id="imagepreview">
                         @if ($personal_information?->photo)
                             <img src="{{ Storage::url($personal_information->photo) }}" alt="" class="h-40">
                         @endif
@@ -58,18 +59,33 @@
                                 File is ready.
                             </span>
                         </div>
-                    @endif
+                    @endif --}}
+
+                    <div class="mt-4">
+                        <x-label value="Actual Photo" />
+                        @if ($personal_information?->photo)
+                            <img src="{{ Storage::url($personal_information->photo) }}" alt="Photo"
+                                class="mx-auto my-2 rounded-md h-40 object-cover border">
+                        @endif
+
+                        {{-- Trigger Modal --}}
+                     <x-button primary wire:click="$set('showCameraModal', true)">
+    Capture / Upload Photo
+</x-button>
+
+
+                    </div>
                 </div>
             </form>
             <x-slot name="footer">
                 <div class="flex justify-end">
                     @if (auth()->user()->step == '2')
                         @if ($this->personal_information)
-                            <x-button blue wire:click="update">
+                            <x-button  wire:click="update">
                                 Update
                             </x-button>
                         @else
-                            <x-button positive wire:click="create">
+                            <x-button  wire:click="create">
                                 Save
                             </x-button>
                         @endif
@@ -78,4 +94,131 @@
             </x-slot>
         </x-card>
     </div>
+<x-modal wire:model="showCameraModal" align="center">
+        <x-slot name="button"></x-slot>
+        <div x-data="cameraModalHandler()" x-init="init()" class="text-center">
+            <h2 class="font-semibold text-lg mb-3">📷 Capture Photo</h2>
+
+            {{-- Video / Canvas --}}
+            <video x-ref="video" x-show="!captured" autoplay playsinline
+                class="rounded-md border w-full h-64 bg-black mx-auto"></video>
+            <canvas x-ref="canvas" x-show="captured"
+                width="480" height="360"
+                class="rounded-md border w-full h-64 bg-black mx-auto"></canvas>
+
+            {{-- Buttons --}}
+            <div class="flex justify-center gap-2 mt-4">
+                <x-button x-show="!captured"
+
+                    @click="capturePhoto()"
+
+
+                    >Capture</x-button>
+
+                <x-button x-show="captured"
+
+                    @click="retakePhoto()"
+
+
+                    >Retake</x-button>
+
+                <x-button x-show="captured"
+
+                    @click="savePhoto()"
+
+
+                    >Save</x-button>
+            </div>
+        </div>
+    </x-modal>
+
+@section('footer-applicant')
+<script>
+function cameraModalHandler() {
+    return {
+        stream: null,
+        video: null,
+        canvas: null,
+        captured: false,
+
+        init() {
+            document.addEventListener('modal-closed', () => this.stopCamera());
+        },
+
+        async startCamera() {
+            this.video = this.$refs.video;
+            this.canvas = this.$refs.canvas;
+
+            try {
+                this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+                this.video.srcObject = this.stream;
+            } catch (err) {
+                console.error("Camera access denied:", err);
+                this.toast('Camera Access Denied', 'Please allow camera access in your browser settings.', 'warning');
+            }
+        },
+
+        capturePhoto() {
+            this.canvas.width = this.video.videoWidth;
+            this.canvas.height = this.video.videoHeight;
+            this.canvas.getContext('2d').drawImage(this.video, 0, 0);
+            this.captured = true;
+            this.stopCamera();
+        },
+
+        retakePhoto() {
+            this.captured = false;
+            this.startCamera();
+        },
+
+        stopCamera() {
+            if (this.stream) {
+                this.stream.getTracks().forEach(track => track.stop());
+                this.stream = null;
+            }
+        },
+
+        async savePhoto() {
+            const dataUrl = this.canvas.toDataURL('image/jpeg');
+            const blob = this.dataURItoBlob(dataUrl);
+
+            try {
+                await $wire.upload('photo', blob, 'captured_photo.jpg',
+                    () => this.toast('Photo Captured!', 'Your photo has been uploaded successfully.', 'success'),
+                    (error) => this.toast('Upload Failed', error.message, 'error')
+                );
+            } catch (e) {
+                this.toast('Unexpected Error', e.message, 'error');
+            }
+        },
+
+        toast(title, description, type) {
+            // Graceful check if WireUI notify is available
+            if ($wire && $wire.notify) {
+                $wire.notify({
+                    title: title,
+                    description: description,
+                    icon: type
+                });
+            } else {
+                console.log(`[${type.toUpperCase()}] ${title}: ${description}`);
+                alert(`${title}\n${description}`);
+            }
+        },
+
+        dataURItoBlob(dataURI) {
+            const byteString = atob(dataURI.split(',')[1]);
+            const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ab], { type: mimeString });
+        }
+    }
+}
+</script>
+@endsection
+
 </div>

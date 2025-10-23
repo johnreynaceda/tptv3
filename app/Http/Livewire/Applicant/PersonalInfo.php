@@ -11,6 +11,7 @@ class PersonalInfo extends Component
     use Actions, WithFileUploads;
     public $type_id,$first_name, $middle_name,$last_name,$extension,$present_address,$permanent_address,$phone_number,$date_of_birth,$place_of_birth,$age,$tribe,$religion,$nationality,$citizenship,$photo,$sex;
     public $personal_information;
+    public $showCameraModal = false;
     protected $rules = [
         'type_id'=>'required|in:1,2',
         'first_name'=>'required',
