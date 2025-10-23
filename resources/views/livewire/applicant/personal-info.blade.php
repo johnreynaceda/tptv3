@@ -95,11 +95,24 @@
             </div>
 
             {{-- Video / Canvas --}}
-            <video x-ref="video" x-show="!captured && !cameraLoading" autoplay playsinline
-                class="rounded-md border w-full h-64 bg-black mx-auto"></video>
-            <canvas x-ref="canvas" x-show="captured"
-                width="640" height="480"
-                class="rounded-md border w-full h-64 bg-black mx-auto"></canvas>
+            <div class="relative">
+                <video x-ref="video" 
+                       x-show="!captured && !cameraLoading" 
+                       autoplay 
+                       playsinline
+                       class="rounded-md border w-full h-64 bg-black mx-auto object-cover"></video>
+                       
+                <canvas x-ref="canvas" 
+                        x-show="captured"
+                        width="640" 
+                        height="480"
+                        class="rounded-md border w-full h-64 bg-gray-900 mx-auto object-cover"></canvas>
+            </div>
+            
+            {{-- Debug info --}}
+            <div class="text-xs text-gray-500 mt-2" x-show="captured">
+                ✅ Photo captured! Preview above.
+            </div>
 
             {{-- Upload loading indicator --}}
             <div x-show="uploading" class="mt-2 text-gray-600">
@@ -216,10 +229,12 @@
             },
 
             capturePhoto() {
-                console.log('Capture button clicked');
+                console.log('=== CAPTURE PHOTO CLICKED ===');
                 console.log('Video element:', this.video);
+                console.log('Canvas element:', this.canvas);
                 console.log('Video dimensions:', this.video?.videoWidth, 'x', this.video?.videoHeight);
                 console.log('Video ready state:', this.video?.readyState);
+                console.log('Current captured state:', this.captured);
                 
                 if (!this.video) {
                     console.error('Video element is null');
@@ -234,13 +249,26 @@
                 }
 
                 try {
+                    console.log('Setting canvas dimensions...');
                     this.canvas.width = this.video.videoWidth;
                     this.canvas.height = this.video.videoHeight;
+                    console.log('Canvas size set to:', this.canvas.width, 'x', this.canvas.height);
+                    
                     const ctx = this.canvas.getContext('2d');
+                    console.log('Drawing image to canvas...');
                     ctx.drawImage(this.video, 0, 0);
+                    
+                    console.log('Setting captured = true');
                     this.captured = true;
+                    console.log('Captured state is now:', this.captured);
+                    
                     this.stopCamera();
-                    console.log('Photo captured successfully');
+                    console.log('✅ Photo captured successfully!');
+                    
+                    // Force Alpine to update the DOM
+                    this.$nextTick(() => {
+                        console.log('DOM updated, canvas should be visible');
+                    });
                 } catch (err) {
                     console.error('Capture error:', err);
                     alert('⚠️ Failed to capture photo: ' + err.message);
@@ -267,19 +295,25 @@
 
             async savePhoto() {
                 this.uploading = true;
-                const dataUrl = this.canvas.toDataURL('image/jpeg', 0.8);
-                const blob = this.dataURItoBlob(dataUrl);
-                const file = new File([blob], 'captured_photo.jpg', { type: 'image/jpeg' });
-
+                
                 try {
-                    console.log('Uploading photo...');
+                    // Convert canvas to image file
+                    const dataUrl = this.canvas.toDataURL('image/jpeg', 0.9);
+                    const blob = this.dataURItoBlob(dataUrl);
+                    const file = new File([blob], 'photo_' + Date.now() + '.jpg', { type: 'image/jpeg' });
+
+                    console.log('Uploading photo... Size:', (file.size / 1024).toFixed(2), 'KB');
+                    
+                    // Upload to Livewire
                     await this.$wire.upload('photo', file);
-                    console.log('Upload successful');
-                    alert('✅ Photo uploaded successfully!');
+                    
+                    console.log('✅ Upload successful!');
+                    
+                    // Close modal
                     this.closeModal();
                 } catch (error) {
                     console.error('Upload failed:', error);
-                    alert('❌ Failed to upload photo. Please try again.');
+                    alert('❌ Upload failed. Please try again.');
                 } finally {
                     this.uploading = false;
                 }

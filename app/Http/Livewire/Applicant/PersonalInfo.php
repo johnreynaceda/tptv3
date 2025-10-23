@@ -78,6 +78,7 @@ class PersonalInfo extends Component
             'photo' => $this->photo->store('photos','public'),
             'sex' => $this->sex,
         ]);
+        dd($this->photo);
         auth()->user()->update([
             'type_id'=>$this->type_id,
         ]);
