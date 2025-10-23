@@ -31,7 +31,7 @@ class ViewPayment extends Component
         }
 
         $this->user_id = $id;
-        
+
         // First check if payment exists for this user
         if (!Payment::where('user_id', $id)->exists()) {
             $this->payment = null;
@@ -319,11 +319,17 @@ public function approveConfirm()
         $lastPermit = Permit::orderBy('examinee_number', 'desc')->first();
 
 
-        $nextExamineeNumber = $lastPermit
-            ? max(intval($lastPermit->examinee_number) + 1, 411111)
-            : 411111;
+ $nextExamineeNumber = $lastPermit
+    ? max(intval($lastPermit->examinee_number) + 1, 500001)
+    : 500001;
 
-        $nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT);
+// Ensure uniqueness (skip existing numbers just in case)
+while (Permit::where('examinee_number', $nextExamineeNumber)->exists()) {
+    $nextExamineeNumber++;
+}
+
+$nextExamineeNumberFormatted = str_pad($nextExamineeNumber, 6, '0', STR_PAD_LEFT);
+
 
 
         $permit = Permit::create([

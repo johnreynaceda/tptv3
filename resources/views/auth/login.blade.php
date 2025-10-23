@@ -1,5 +1,66 @@
 <x-guest-layout>
     <x-jet-authentication-card>
+
+                @if (app()->environment('local'))
+                  <x-slot name="logo">
+                {{-- You can add a logo here if needed --}}
+            </x-slot>
+
+            <div class="flex items-center mb-5 space-x-3">
+                <img src="{{ asset('images/sksu1.png') }}" class="h-14" alt="Logo">
+                <div class="text-2xl font-bold text-center text-gray-600">
+                    Login to your account
+                </div>
+            </div>
+
+            <x-errors />
+
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- Email Address -->
+                <div>
+                    <x-jet-label for="email" value="{{ __('Email') }}" />
+                    <x-jet-input id="email" class="block w-full mt-1" type="email" name="email"
+                        :value="old('email')" required autofocus />
+                </div>
+
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-jet-label for="password" value="{{ __('Password') }}" />
+                    <x-jet-input id="password" class="block w-full mt-1" type="password" name="password" required
+                        autocomplete="current-password" />
+                </div>
+
+                <!-- Remember Me -->
+                <div class="block mt-4">
+                    <label for="remember_me" class="flex items-center">
+                        <x-jet-checkbox id="remember_me" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    </label>
+                </div>
+
+                <div class="flex items-center justify-between mt-4">
+                    @if (Route::has('password.request'))
+                        <a class="text-sm text-gray-600 underline hover:text-gray-900"
+                            href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+
+                    <x-jet-button class="ml-4">
+                        {{ __('Login') }}
+                    </x-jet-button>
+                </div>
+
+                <div class="flex items-center justify-center mt-6 text-sm text-gray-600">
+                    <span>Don't have an account?</span>
+                    <a href="#" class="ml-2 font-semibold text-primary-600 hover:text-primary-800">
+                        Register here
+                    </a>
+                </div>
+            </form>
+        @elseif (app()->environment('production'))
         <x-slot name="logo">
             <img src="{{ asset('images/sksu1.png') }}" alt="Logo" class="h-20 mx-auto mb-4">
             <div class="text-xl md:text-2xl font-extrabold text-gray-800 mb-4">
@@ -13,16 +74,18 @@
             <p class="text-sm md:text-base text-gray-600 mb-6">
                 Please ensure you use a valid Google account to log in and access the platform.
             </p>
-            
-            <a href="{{ route('auth.google.redirect') }}" 
+
+            <a href="{{ route('auth.google.redirect') }}"
                 class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 md:p-3 hover:bg-gray-100 transition duration-300 ease-in-out">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                     alt="Google Icon" class="h-5 md:h-6 w-5 md:w-6 mr-3">
                 <span class="font-medium text-gray-700 text-sm md:text-lg">
                     Continue with Google
                 </span>
             </a>
         </div>
+        @endif
+
     </x-jet-authentication-card>
 </x-guest-layout>
 
@@ -75,18 +138,18 @@
                     autocomplete="current-password" />
             </div>
             <div class="block mt-4">
-            
+
                 <label for="remember_me"
                     class="flex items-center">
                     <x-jet-checkbox id="remember_me"
                         name="remember" />
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
-              
 
-              
+
+
             </div>
-            
+
         </form>
         <div class="flex flex-col items-center justify-end mt-4 space-y-4">
             <x-button type="submit" class="w-full" positive>
@@ -97,12 +160,12 @@
                 <span class="px-3 text-sm text-gray-600">Or</span>
                 <div class="flex-grow border-t border-gray-400 h-2 w-full"></div>
             </div>
-           
-            
 
-            <a href="{{ route('auth.google.redirect') }}" 
+
+
+            <a href="{{ route('auth.google.redirect') }}"
             class="flex items-center justify-center w-full border border-gray-300 rounded-lg p-2 hover:bg-gray-100 mt-8">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                 alt="Google Icon" class="h-5 w-5 mr-2">
             <span class="font-medium text-gray-600 text-base sm:text-sm md:text-base lg:text-lg">
                 Continue With Google
@@ -111,7 +174,7 @@
                 (Recommended)
             </span>
         </a>
-        
+
         </div>
         <div class="text-center mt-6">
             <a href="{{ route('register') }}" class="text-sm text-gray-600 underline">
@@ -119,7 +182,7 @@
             </a>
         </div>
 
-        
+
     </x-jet-authentication-card>
 </x-guest-layout> --}}
 

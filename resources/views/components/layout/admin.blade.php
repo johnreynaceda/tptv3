@@ -17,13 +17,15 @@
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
   @livewireStyles
- 
+    @wireUiScripts
   <!-- Scripts -->
   <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 <body class="h-full bg-gray-100 font-poppins admin">
-
+ <div class="bg-red-500 text-white text-center py-3 font-semibold shadow-md animate-pulse rounded-md mx-4 mt-3">
+        🚧 Under Development
+    </div>
   <div>
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <div class="relative z-40 md:hidden" role="dialog" aria-modal="true">
@@ -218,7 +220,7 @@
               </svg>
               Examinations
             </a>
-          
+
             <a href="{{ route('admin.campuses') }}"
               class="{{ Request::routeIs(['admin.campuses']) ? 'bg-theme text-white' : 'hover:bg-gray-50 hover:text-gray-900 text-gray-600' }} flex items-center px-2 py-2 text-sm font-medium  rounded-md  group">
 
@@ -262,7 +264,7 @@
               </svg>
               Users
             </a>
-          
+
             {{-- <a href="#"
                             class="flex items-center px-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:bg-gray-50 hover:text-gray-900 group">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -389,7 +391,7 @@
    <x-notifications z-index="z-50" />
    <x-dialog z-index="z-50" blur="md" align="center" />
  {{-- WireUI Scripts (should be before @livewireScripts) --}}
- @wireUiScripts
+
 
  {{-- Livewire Scripts (should be the LAST scripts before </body>) --}}
  @livewireScripts
