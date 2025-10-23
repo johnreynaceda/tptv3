@@ -103,70 +103,69 @@
 
     {{-- Camera Modal --}}
 
-<div class="showCameraModal">
-    <x-modal wire:model="showCameraModal" align="start" class="bg-white">
-        <x-slot name="button"></x-slot>
-        <div x-data="cameraModalHandler()" x-init="console.log('Alpine component initialized');
-        setTimeout(() => {
-            if ($wire.showCameraModal) startCamera();
-        }, 500);
-        Livewire.on('start-camera', () => setTimeout(() => startCamera(), 300));" class="text-center p-4 sm:p-6 max-w-md mx-auto">
+    <div class="showCameraModal">
+        <x-modal wire:model="showCameraModal" align="start" class="bg-white">
+            <x-slot name="button"></x-slot>
+            <div x-data="cameraModalHandler()" x-init="console.log('Alpine component initialized');
+            setTimeout(() => {
+                if ($wire.showCameraModal) startCamera();
+            }, 500);
+            Livewire.on('start-camera', () => setTimeout(() => startCamera(), 300));" class="text-center p-4 sm:p-6 max-w-md mx-auto">
 
-            <h2 class="font-semibold text-lg sm:text-xl mb-4">📷 Capture Photo</h2>
+                <h2 class="font-semibold text-lg sm:text-xl mb-4">📷 Capture Photo</h2>
 
-            {{-- Camera status --}}
-            <div x-show="cameraLoading" class="mb-3 text-gray-600 text-sm">
-                <svg class="animate-spin h-5 w-5 inline-block mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                        stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0
+                {{-- Camera status --}}
+                <div x-show="cameraLoading" class="mb-3 text-gray-600 text-sm">
+                    <svg class="animate-spin h-5 w-5 inline-block mr-1" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                            stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0
                        c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Starting camera...
+                    </svg>
+                    Starting camera...
+                </div>
+
+                {{-- Video / Canvas --}}
+                <div class="relative w-full">
+                    <video x-ref="video" x-show="!captured && !cameraLoading" autoplay playsinline
+                        class="rounded-lg border w-full aspect-[4/3] bg-black object-cover"></video>
+
+                    <canvas x-ref="canvas" x-show="captured" width="640" height="480"
+                        class="rounded-lg border w-full aspect-[4/3] bg-gray-900 object-cover"></canvas>
+                </div>
+
+                {{-- Debug info --}}
+                <div class="text-xs sm:text-sm text-green-600 mt-2" x-show="captured">
+                    ✅ Photo captured! Preview above.
+                </div>
+
+                {{-- Buttons --}}
+                <div class="flex flex-wrap justify-center gap-2 mt-5">
+                    <x-button positive size="sm" x-show="!captured && !cameraLoading" @click="capturePhoto()"
+                        class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
+                        Capture Photo
+                    </x-button>
+
+                    <x-button dark size="sm" x-show="captured" @click="retakePhoto()"
+                        x-bind:disabled="uploading"
+                        class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base bg-yellow-500 text-white">
+                        Retake Photo
+                    </x-button>
+
+                    <x-button positive size="sm" x-show="captured" @click="savePhoto()"
+                        x-bind:disabled="uploading">
+                        Save Photo
+                    </x-button>
+
+                    <x-button dark size="sm" @click="closeModal()" x-bind:disabled="uploading"
+                        class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
+                        Cancel
+                    </x-button>
+                </div>
             </div>
-
-            {{-- Video / Canvas --}}
-            <div class="relative w-full">
-                <video x-ref="video" x-show="!captured && !cameraLoading" autoplay playsinline
-                    class="rounded-lg border w-full aspect-[4/3] bg-black object-cover"></video>
-
-                <canvas x-ref="canvas" x-show="captured" width="640" height="480"
-                    class="rounded-lg border w-full aspect-[4/3] bg-gray-900 object-cover"></canvas>
-            </div>
-
-            {{-- Debug info --}}
-            <div class="text-xs sm:text-sm text-green-600 mt-2" x-show="captured">
-                ✅ Photo captured! Preview above.
-            </div>
-
-            {{-- Buttons --}}
-            <div class="flex flex-wrap justify-center gap-2 mt-5">
-                <x-button positive size="sm" x-show="!captured && !cameraLoading" @click="capturePhoto()"
-                    class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
-                    Capture Photo
-                </x-button>
-
-                <x-button dark size="sm" x-show="captured" @click="retakePhoto()"
-                    x-bind:disabled="uploading"
-                    class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base bg-yellow-500 text-white">
-                    Retake Photo
-                </x-button>
-
-                <x-button positive size="sm" x-show="captured" @click="savePhoto()" x-bind:disabled="uploading"
-
-                >
-                  Save Photo
-                </x-button>
-
-                <x-button dark size="sm" @click="closeModal()" x-bind:disabled="uploading"
-                    class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
-                    Cancel
-                </x-button>
-            </div>
-        </div>
-    </x-modal>
-</div>
+        </x-modal>
+    </div>
 
 
     <script>
@@ -205,14 +204,17 @@
                             throw new Error('Camera API not supported in this browser');
                         }
 
+
+
+
                         this.stream = await navigator.mediaDevices.getUserMedia({
                             video: {
-                                facingMode: 'user',
+                                facingMode: 'environment', // 👈 Forces rear camera
                                 width: {
-                                    ideal: 640
+                                    ideal: 1280
                                 },
                                 height: {
-                                    ideal: 480
+                                    ideal: 720
                                 }
                             },
                             audio: false
@@ -276,7 +278,7 @@
                         console.error('Video not ready - no video dimensions');
                         alert(
                             '⚠️ Camera not ready. Please wait for the camera to fully load (you should see yourself on screen).'
-                            );
+                        );
                         return;
                     }
 
