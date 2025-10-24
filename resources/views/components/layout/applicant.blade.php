@@ -106,9 +106,9 @@
             </div>
         </div>
     </div>
-   <div class="bg-red-500 text-white text-center py-3 font-semibold shadow-md animate-pulse rounded-md mx-4 mt-3">
+   {{-- <div class="bg-red-500 text-white text-center py-3 font-semibold shadow-md animate-pulse rounded-md mx-4 mt-3">
         🚧 Under Development
-    </div>
+    </div> --}}
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="mx-auto sm:max-w-3xl">
             <div class="sticky top-0 z-40 flex w-full p-3 bg-white">
