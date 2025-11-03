@@ -164,9 +164,9 @@
                     </x-button>
 
                     <x-button dark size="sm" @click="switchCamera()" x-bind:disabled="uploading"
-    class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
-Switch Camera
-</x-button>
+                        class="px-4 py-2 sm:px-5 sm:py-2.5 text-sm sm:text-base">
+                        Switch Camera
+                    </x-button>
 
                 </div>
             </div>
@@ -218,7 +218,9 @@ Switch Camera
 
                         this.stream = await navigator.mediaDevices.getUserMedia({
                             video: {
-                              facingMode: { ideal: this.facingMode }, // dynam
+                                facingMode: {
+                                    ideal: this.facingMode
+                                }, // dynam
                                 width: {
                                     ideal: 1280
                                 },
@@ -336,18 +338,18 @@ Switch Camera
                     }
                 },
                 switchCamera() {
-    this.facingMode = this.facingMode === 'user' ? 'environment' : 'user';
-    console.log('🔁 Switching camera to:', this.facingMode);
-    this.stopCamera();
-    this.startCamera();
-},
+                    this.facingMode = this.facingMode === 'user' ? 'environment' : 'user';
+                    console.log('🔁 Switching camera to:', this.facingMode);
+                    this.stopCamera();
+                    this.startCamera();
+                },
 
                 async savePhoto() {
                     this.uploading = true;
 
                     try {
                         // Convert canvas to image file
-                        const dataUrl = this.canvas.toDataURL('image/jpeg', 0.9);
+                        const dataUrl = this.canvas.toDataURL('image/jpeg', 0.7);
                         const blob = this.dataURItoBlob(dataUrl);
                         const file = new File([blob], 'photo_' + Date.now() + '.jpg', {
                             type: 'image/jpeg'
