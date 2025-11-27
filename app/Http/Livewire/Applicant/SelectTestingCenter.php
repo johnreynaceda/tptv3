@@ -97,6 +97,7 @@ class SelectTestingCenter extends Component
                     $title = 'All Rooms are full for this schedule',
                     $description = 'Please select another date or time schedule or testing center'
                 );
+                return;
             }else{
                 if($total_seats_in_room < $number_of_seats)
                 {
@@ -113,6 +114,7 @@ class SelectTestingCenter extends Component
                 $title = 'Slot is full',
                 $description = 'Please select another date or time schedule'
             );
+            return;
         }
 
         //end mods
@@ -180,14 +182,6 @@ class SelectTestingCenter extends Component
         ]);
 
 
-        // if (StudentSlot::count() == 0) {
-        //     $latest_room_number = 1;
-        //     $latest_room_number_in_schedule = 1;
-        // } else {
-        //     $latest_room_number = StudentSlot::select('room_number')
-        //         ->latest()
-        //         ->first()->room_number;
-        //     }
 
         if (StudentSlot::count() == 0) {
             $latest_room_number_in_schedule = 1;
@@ -240,6 +234,7 @@ class SelectTestingCenter extends Component
                       $title = 'All Rooms are full for this schedule',
                       $description = 'Please select another date or time schedule or testing center'
                   );
+                  return;
               }else{
                   if($total_seats_in_room < $number_of_seats)
                   {
@@ -256,59 +251,10 @@ class SelectTestingCenter extends Component
                   $title = 'Slot is full',
                   $description = 'Please select another date or time schedule'
               );
+              return;
           }
 
-          //end mods
 
-
-        // $total_slot_per_room = StudentSlot::where(
-        //     'slot_id',
-        //     '=',
-        //     $this->center_id
-        // )
-        //     ->where('time', $this->time)
-        //     ->whereHas('slot', function ($query) {
-        //         $query->where('date_of_exam', $this->date);
-        //     })
-        //     // ->where('room_number', $latest_room_number)
-        //     ->orderBy('created_at', 'desc');
-        // $slot =
-        //     Slot::where('id', $this->center_id)
-        //         ->where('date_of_exam', $this->date)
-        //         ->first()->slots / 2;
-
-        // $total_slot = StudentSlot::where(
-        //     'slot_id',
-        //     '=',
-        //     $this->center_id
-        // )->where('time', $this->time);
-        // if ($total_slot->count() == $slot) {
-        //     $this->dialog()->error(
-        //         $title = 'Slot is full',
-        //         $description = 'Please select another date or time schedule'
-        //     );
-        // } else {
-        //     if ($total_slot_per_room->count() == $slot) {
-        //         $this->dialog()->error(
-        //             $title = 'Slot is full',
-        //             $description = 'Please select another testing center'
-        //         );
-        //     } else {
-        //         if ($total_slot_per_room->count() == 0) {
-        //             $this->room_number = 1;
-        //             $this->seat_number = 1;
-        //         } else {
-        //             if ($total_slot_per_room->first()->seat_number < 50) {
-        //                 $this->room_number = $total_slot_per_room->first()->room_number;
-        //                 $this->seat_number = $total_slot_per_room->first()->seat_number + 1;
-        //             } else {
-        //                 $this->room_number = $total_slot_per_room->first()->room_number + 1;
-        //                 $this->seat_number = 1;
-        //             }
-        //         }
-        //     }
-
-        // }
 
         try {
             DB::beginTransaction(); // <= Starting the transaction
