@@ -57,6 +57,7 @@ Route::get('/admin/login', function () {return view('auth.login-admin');})->name
 Route::get('/auth/google', [GoogleController::class, 'redirect'])->middleware('guest')->name('auth.google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'callBack'])->name('auth.google.callBack');
 
+Route::view('/privacy-policy', 'privacy-policy')->name('privacy.policy');
 
 Route::get('/forgot-password', function () {
     return view('auth.password-forgot');
