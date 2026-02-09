@@ -17,11 +17,9 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @livewireStyles
-    @wireUiScripts
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @wireUiStyles
 </head>
-//fix here
+
 <body class="h-full bg-gray-100 font-poppins admin">
     {{-- <div class="bg-red-500 text-white text-center py-3 font-semibold shadow-md animate-pulse rounded-md mx-4 mt-3">
         🚧 Under Development
@@ -423,7 +421,13 @@
     {{-- Livewire Scripts (should be the LAST scripts before </body>) --}}
     @yield('footer-admin')
     @livewireScripts
-
+    <script src="{{ mix('js/app.js') }}"></script>
+    @wireUiScripts
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.Alpine.start();
+        });
+    </script>
 </body>
 
 </html>

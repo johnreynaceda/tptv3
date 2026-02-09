@@ -25,10 +25,7 @@
         href="{{ mix('css/app.css') }}">
 
     @livewireStyles
-    @wireUiScripts
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"
-        defer></script>
+    @wireUiStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -55,6 +52,13 @@
     @stack('modals')
 
     @livewireScripts
+    <script src="{{ mix('js/app.js') }}"></script>
+    @wireUiScripts
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.Alpine.start();
+        });
+    </script>
 </body>
 
 </html>
