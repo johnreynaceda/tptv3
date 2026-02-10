@@ -6,7 +6,8 @@
       "Bash(php artisan cache:clear:*)",
       "Bash(npm run dev:*)",
       "Bash(npx mix:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }

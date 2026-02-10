@@ -24,7 +24,10 @@
     <link rel="stylesheet"
         href="{{ mix('css/app.css') }}">
         @livewireStyles
-        @wireUiStyles
+        @wireUiScripts
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}"
+        defer></script>
 </head>
 
 <body>
@@ -33,13 +36,6 @@
     </div>
     <x-dialog z-index="z-50" blur="md" align="center" />
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}"></script>
-    @wireUiScripts
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            window.Alpine.start();
-        });
-    </script>
 </body>
 
 </html>
