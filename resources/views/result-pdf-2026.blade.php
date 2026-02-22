@@ -37,8 +37,8 @@
         .print-table-compact {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
-            font-size: 11pt;
+            margin: 0.5rem 0;
+            font-size: 10pt;
         }
 
         .print-table-compact th,
@@ -228,8 +228,8 @@
         </div>
 
         <!-- Campus Cutoff Table (inline for Browsershot) -->
-        <div style="page-break-before: always">
-            <div class="bg-white py-4 print-section">
+        <div>
+            <div class="bg-white py-2 print-section">
                 <div class="text-center mb-2">
                     <h2 class="font-bold text-lg mb-0">
                         SKSU Tertiary Placement Test Cut-off Scores Per Program
@@ -454,7 +454,7 @@
         </div>
 
         <!-- Footer Signature (inline for Browsershot) -->
-        <div class="mt-4 pt-2 print:mt-2 print:pt-1 print-keep-together">
+        <div class="mt-2 pt-1 print:mt-1 print:pt-0 print-keep-together">
             <div class="flex flex-col sm:flex-row justify-between gap-4 print:gap-2">
                 <div class="flex-1 text-left">
                     <div class="text-xs text-gray-600 mb-1">Prepared by:</div>
