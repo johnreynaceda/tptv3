@@ -34,10 +34,11 @@
         <style>
             @media print {
               .no-print { display: none !important; }
+              .print-only { display: block !important; }
 
               @page {
                 size: A4;
-                margin: 5mm 8mm;
+                margin: 1cm;
               }
 
               *, *::before, *::after {
@@ -49,10 +50,14 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 background: white !important;
+                font-family: 'Times New Roman', serif !important;
+                font-size: 12pt;
+                line-height: 1.4;
+                color: #333;
               }
 
               #printable {
-                zoom: 0.7;
+                zoom: 0.65;
                 margin: 0 !important;
                 padding: 0 !important;
               }
@@ -64,12 +69,29 @@
               table { border-collapse: collapse !important; }
 
               img { max-width: 100% !important; }
+
+              /* Watermark */
+              .print-watermark {
+                display: block !important;
+                position: absolute;
+                top: 200px;
+                left: 50%;
+                transform: translateX(-50%);
+                pointer-events: none;
+                z-index: 0;
+              }
+              .print-watermark img {
+                width: 400px;
+                height: 400px;
+                opacity: 0.10;
+              }
             }
 
             @media screen {
               .max-w-3xl {
                 max-width: 48rem;
               }
+              .print-only { display: none; }
             }
             </style>
 </head>
@@ -104,8 +126,12 @@
     <div id="printable"
         class="px-3 sm:px-0 print:p-0 print:m-0 print:bg-white print:shadow-none print:max-w-full">
 
-        <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact relative">
-            <div class="relative">
+        <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact" style="position: relative;">
+            <!-- SKSU Logo Watermark (print only) -->
+            <div class="print-only print-watermark">
+                <img src="{{ asset('images/resultassets/sksu_logo.png') }}" alt="">
+            </div>
+            <div style="position: relative; z-index: 1;">
             <!-- OFFICIAL HEADER WITH LOGOS -->
              <div>
 

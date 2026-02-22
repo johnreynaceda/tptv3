@@ -13,6 +13,11 @@
             size: A4;
         }
 
+        *, *::before, *::after {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
         body {
             font-family: 'Times New Roman', serif;
             font-size: 12pt;
