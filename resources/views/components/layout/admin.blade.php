@@ -21,7 +21,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-//fix here
+
 <body class="h-full bg-gray-100 font-poppins admin">
     {{-- <div class="bg-red-500 text-white text-center py-3 font-semibold shadow-md animate-pulse rounded-md mx-4 mt-3">
         🚧 Under Development
@@ -419,6 +419,15 @@
     <x-dialog z-index="z-50" blur="md" align="center" />
     {{-- WireUI Scripts (should be before @livewireScripts) --}}
 
+
+    {{-- Start Alpine after WireUI has registered its components --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.Alpine.start();
+        });
+    </script>
+
+    @stack('modals')
 
     {{-- Livewire Scripts (should be the LAST scripts before </body>) --}}
     @yield('footer-admin')
