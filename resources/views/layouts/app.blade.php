@@ -52,6 +52,13 @@
         </main>
     </div>
 
+    {{-- Start Alpine after WireUI has registered its components --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.Alpine.start();
+        });
+    </script>
+
     @stack('modals')
 
     @livewireScripts

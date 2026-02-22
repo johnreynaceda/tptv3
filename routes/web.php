@@ -226,7 +226,7 @@ Route::prefix('/applicant')
         Route::get('/permit', [PrintPermitController::class, 'generate'])
             ->name('applicant.permit-generate')
             ->middleware('step_five');
-        Route::get('/result', [ResultController::class, 'result'])->name(
+        Route::get('/result', [ResultController::class, 'result2026'])->name(
             'print.result'
         )->middleware('survey.result');
 
@@ -298,6 +298,31 @@ Route::get('/test-email', function () {
 
 Route::get('/yow', function () {
   return 'yow';
+});
+
+// TEMPORARY TEST ROUTE — remove after testing
+Route::get('/test-result-2026/{examinee_number}', function ($examinee_number) {
+    $result = Result::where('examinee_number', $examinee_number)->firstOrFail();
+    $permit = Permit::where('examinee_number', $examinee_number)->with(['user.personal_information'])->first();
+
+    if (!$permit || !$permit->user) {
+        abort(404, 'Permit not found');
+    }
+
+    Auth::login($permit->user);
+
+    return view('applicant.result-2026', [
+        'user_application' => $permit->user->application,
+        'user_personal_information' => $permit->user->personal_information,
+        'user_school_information' => $permit->user->school_information ?? null,
+        'user_program_choices' => \App\Models\ProgramChoice::where('user_id', $permit->user->id)->get(),
+        'user_new_program_choices' => SelectedCourse::where('user_id', $permit->user->id)->get(),
+        'examinee_number' => $examinee_number,
+        'result' => $result,
+        'preferred_program' => $result->preferred_program ?? 'N/A',
+        'resultsVisible' => true,
+        'examination' => $result->examination,
+    ]);
 });
 
 
@@ -406,3 +431,60 @@ Route::get('/xss-test', function () {
         'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
     ]);
 })->name('generate-examination-result');
+
+   Route::get('/tpt-result-2026/{examinee_number}', function ($examinee_number) {
+    // Find the result by examinee number
+    $result = Result::where('examinee_number', $examinee_number)
+        ->with('examination')
+        ->firstOrFail();
+
+    // Get the related user data through permit
+    $permit = Permit::where('examinee_number', $examinee_number)
+        ->with(['user.personal_information'])
+        ->first();
+
+    if (!$permit || !$permit->user) {
+        abort(404, 'User or permit not found for this examinee number');
+    }
+
+    $photo = $permit->user && $permit->user->personal_information && $permit->user->personal_information->photo
+            ? public_path('storage/' . $permit->user->personal_information->photo)
+            : public_path('images/placeholder.png');
+
+    $htmlContent = View::make('result-pdf-2026', [
+        'result' => $result,
+        'user' => $permit->user,
+        'full_name' => $result->full_name,
+        'examination' => $result->examination,
+        'photo' => $photo
+    ])->render();
+
+    // Generate the PDF from the HTML content
+    $pdfContent = Browsershot::html($htmlContent)
+    ->setOption('args', ['--disable-web-security'])
+    ->pdf();
+
+    $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $permit->user->personal_information->fullName()) . '_RESULT_2026';
+
+    // Return the PDF content as a response
+    return response($pdfContent, 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="' . $safeFullName . '.pdf"',
+    ]);
+})->name('generate-examination-result-2026');
+
+// Developer mode - quick result lookup (no auth required)
+Route::get('/developer-mode', function () {
+    return view('developer-mode');
+})->name('developer-mode');
+
+Route::post('/developer-mode', function (\Illuminate\Http\Request $request) {
+    $examinee_number = $request->input('examinee_number');
+    $result = \App\Models\Result::where('examinee_number', $examinee_number)->first();
+
+    if (!$result) {
+        return back()->with('error', 'No result found for examinee number: ' . $examinee_number);
+    }
+
+    return redirect()->route('generate-examination-result-2026', $examinee_number);
+})->name('developer-mode.search');

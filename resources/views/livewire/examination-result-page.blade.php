@@ -71,7 +71,9 @@
 
                             <th class="border px-2 py-1">Examinee #</th>
                             <th class="border px-2 py-1">Full Name</th>
+                            <th class="border px-2 py-1">Preferred Program</th>
                             <th class="border px-2 py-1">Total Score</th>
+                            <th class="border px-2 py-1">ESM Score</th>
                             <th class="border px-2 py-1">Interpretation</th>
                             <th class="border px-2 py-1">Qualified For</th>
                              <th class="border px-2 py-1">Math</th>
@@ -88,7 +90,9 @@
 
                             <td class="border px-2 py-1">{{ $result->examinee_number }}</td>
                             <td class="border px-2 py-1">{{ $result->full_name }}</td>
+                            <td class="border px-2 py-1">{{ $result->preferred_program ?? 'N/A' }}</td>
                             <td class="border px-2 py-1 text-center font-bold {{ $result->total_standard_score < 400 ? 'text-red-600' : 'text-green-600' }}">{{ $result->total_standard_score }}</td>
+                            <td class="border px-2 py-1 text-center font-bold">{{ $result->esm_standard_score ?? '' }}</td>
                             <td class="border px-2 py-1 text-center">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
                             <td class="border px-2 py-1 text-center">{{ $this->qualifiedType($result->total_standard_score) }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->math_standard_score }}</td>
@@ -97,17 +101,17 @@
                             <td class="border px-2 py-1 text-center">{{ $result->science_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->social_studies_standard_score }}</td>
                             <td class="border px-2 py-2 text-center space-x-1">
-                                <a href="{{ route('admin.examinee-result-details', $result->id) }}" target="_blank" class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
+                                <a href="/test-result-2026/{{ $result->examinee_number }}" target="_blank" class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
                                     View Details
                                 </a>
-                                <a href="{{ route('admin.generate-examination-result', $result->examinee_number) }}" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
+                                <a href="{{ route('generate-examination-result-2026', $result->examinee_number) }}" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
                                     Generate PDF
                                 </a>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="10" class="border px-2 py-4 text-center text-gray-500">No results found.</td>
+                            <td colspan="13" class="border px-2 py-4 text-center text-gray-500">No results found.</td>
                         </tr>
                         @endforelse
                     </tbody>

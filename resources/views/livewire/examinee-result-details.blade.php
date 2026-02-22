@@ -257,7 +257,7 @@
             <!-- Header & Details -->
             <div class="w-3/4 pl-4">
                 <div class="text-sm font-medium">Guidance and Testing Center</div>
-                <div class="leading-[1.1rem] font-extrabold mt-1 mb-2 print-text-lg">SKSU TERTIARY PLACEMENT<br>TEST RESULT 2025</div>
+                <div class="leading-[1.1rem] font-extrabold mt-1 mb-2 print-text-lg">SKSU TERTIARY PLACEMENT<br>TEST RESULT 2026</div>
                 <div class="mt-2 text-sm">
                     <div class="mb-1">
                         <span class="font-semibold inline-block w-40 uppercase">NAME OF EXAMINEE</span>
@@ -268,8 +268,12 @@
                         <span>: {{ $result->examinee_number ?? 'N/A' }}</span>
                     </div>
                     <div class="mb-1">
+                        <span class="font-semibold inline-block w-40">PREFERRED PROGRAM</span>
+                        <span>: {{ $result->preferred_program ?? 'N/A' }}</span>
+                    </div>
+                    <div class="mb-1">
                         <span class="font-semibold inline-block w-40">DATE OF EXAMINATION</span>
-                        <span>: April 6, 2025</span>
+                        <span>: January 11, 2026</span>
                     </div>
                 </div>
             </div>
@@ -320,7 +324,13 @@
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->social_studies_raw_score) }}</td>
                         </tr>
                         <tr>
-                            <td class="border border-gray-300 px-2 py-1 font-bold text-xs sm:text-sm">OVERALL</td>
+                            <td class="border border-gray-300 px-2 py-1 font-bold text-xs sm:text-sm">ESM COMPETENCY SCORE</td>
+                            <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->esm_standard_score ?? '' }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->esm_raw_score ?? '' }}</td>
+                            <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->esm_raw_score) }}</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-300 px-2 py-1 font-bold text-xs sm:text-sm">OVERALL SCORE</td>
                             <td class="border border-gray-300 px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->total_standard_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
                             <td class="border border-gray-300 px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>

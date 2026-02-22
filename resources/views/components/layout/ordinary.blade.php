@@ -34,8 +34,17 @@
 <body class="relative font-poppins ">
     <!-- This example requires Tailwind CSS v2.0+ -->
     {{$slot}}
-</body>
+
+    {{-- Start Alpine after WireUI has registered its components --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.Alpine.start();
+        });
+    </script>
+
+    @stack('modals')
     @livewireScripts
+</body>
 </body>
 
 </html>

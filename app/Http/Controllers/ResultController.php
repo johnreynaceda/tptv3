@@ -43,6 +43,43 @@ class ResultController extends Controller
         ]);
     }
 
+    public function result2026()
+    {
+        $examinee_number = null;
+        $result = null;
+        $resultsVisible = false;
+        $currentExamination = null;
+
+        // Get the examinee number from permit if available
+        if(auth()->user()->permit != null) {
+            $examinee_number = auth()->user()->permit->examinee_number_updated;
+            $result = Result::where('examinee_number', $examinee_number)->first();
+
+            // Get the current examination associated with the user's application
+            if (auth()->user()->application) {
+                $currentExamination = auth()->user()->application->examination;
+
+                // Check if results should be shown based on the show_results flag
+                if ($currentExamination && $currentExamination->show_results) {
+                    $resultsVisible = true;
+                }
+            }
+        }
+
+        return view('applicant.result-2026', [
+            'user_application' => auth()->user()->application,
+            'user_personal_information' => auth()->user()->personal_information,
+            'user_school_information' => auth()->user()->school_information,
+            'user_program_choices' => ProgramChoice::where('user_id', auth()->user()->id)->get(),
+            'user_new_program_choices' => SelectedCourse::where('user_id', auth()->user()->id)->get(),
+            'examinee_number' => $examinee_number,
+            'result' => $result,
+            'preferred_program' => $result->preferred_program ?? 'N/A',
+            'resultsVisible' => $resultsVisible,
+            'examination' => $currentExamination,
+        ]);
+    }
+
     public function scoreInterpretation($score)
     {
         if ($score >= 200 && $score <= 324) {

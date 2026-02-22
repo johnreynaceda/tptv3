@@ -127,6 +127,15 @@
         blur="md"
         align="center" />
 
+    {{-- Start Alpine after WireUI has registered its components --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.Alpine.start();
+        });
+    </script>
+
+    @stack('modals')
+
         @yield('footer-applicant')
     @livewireScripts
 </body>

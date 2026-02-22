@@ -16,8 +16,14 @@ class ScoreResult extends Component
     }
     public function render()
     {
-        return view('livewire.result.score-result',[
-            'result'=>Result::where('examinee_number',$this->examinee_number)->first()
+        $result = Result::where('examinee_number', $this->examinee_number)->first();
+
+        $view = ($result && $result->esm_raw_score !== null)
+            ? 'livewire.result.score-result-2026'
+            : 'livewire.result.score-result';
+
+        return view($view, [
+            'result' => $result
         ]);
     }
 
