@@ -108,7 +108,7 @@
                             <td class="border px-2 py-1 text-center">{{ $result->science_standard_score }}</td>
                             <td class="border px-2 py-1 text-center">{{ $result->social_studies_standard_score }}</td>
                             <td class="border px-2 py-2 text-center space-x-1">
-                                <a href="{{ route('test-result-2026', $result->examinee_number) }}" target="_blank" class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
+                                <a href="{{ route('admin.examinee-result-details', $result->id) }}" target="_blank" class="inline-block bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">
                                     View Details
                                 </a>
                                 <a href="{{ route('generate-examination-result-2026', $result->examinee_number) }}" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded hover:text-gray-200 transition-all hover:scale-105 text-xs">

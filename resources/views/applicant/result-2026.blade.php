@@ -199,7 +199,7 @@
         <!-- Photo Placeholder - Standard Passport Size -->
         <div class="w-1/4 flex">
             <div class="border border-gray-400 w-[35mm] h-[45mm] print-photo flex items-center justify-center overflow-hidden bg-white">
-                <img src="{{Auth::user()->personal_information->photo ?? asset('images/placeholder.png') }}" alt="{{Auth::user()->personal_information->photo ?? 'images/sksu1.png' }}" class="object-cover w-full h-full">
+                <img src="{{ Auth::user()->personal_information->photo ? asset('storage/' . Auth::user()->personal_information->photo) : asset('images/placeholder.png') }}" alt="Photo" class="object-cover w-full h-full">
             </div>
         </div>
         <!-- Header & Details -->
