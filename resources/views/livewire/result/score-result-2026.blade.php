@@ -46,11 +46,11 @@
                     <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->esm_raw_score ?? '' }}</td>
                     <td class="border border-black px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->esm_raw_score) }}</td>
                 </tr>
-                <tr>
+                <tr class="{{ ($result->total_standard_score ?? 0) >= 400 ? 'bg-green-50' : 'bg-red-50' }}">
                     <td class="border border-black px-2 py-1 font-bold text-xs sm:text-sm">OVERALL SCORE</td>
-                    <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->total_standard_score ?? '' }}</td>
+                    <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm {{ ($result->total_standard_score ?? 0) >= 400 ? 'text-green-700' : 'text-red-600' }}">{{ $result->total_standard_score ?? '' }}</td>
                     <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
-                    <td class="border border-black px-2 py-1 text-xs sm:text-sm">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
+                    <td class="border border-black px-2 py-1 text-xs sm:text-sm font-bold {{ ($result->total_standard_score ?? 0) >= 400 ? 'text-green-700' : 'text-red-600' }}">{{ $this->stanineInterpretation($result->total_raw_score) }}</td>
                 </tr>
                 <!-- Score Definitions inside table -->
                 <tr>

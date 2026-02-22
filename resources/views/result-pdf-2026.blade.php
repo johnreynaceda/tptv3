@@ -208,11 +208,11 @@
                             <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->esm_raw_score ?? '' }}</td>
                             <td class="border border-black px-2 py-1 text-xs sm:text-sm">{{ $stanine($result->esm_raw_score) }}</td>
                         </tr>
-                        <tr>
+                        <tr style="background-color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#f0fdf4' : '#fef2f2' }};">
                             <td class="border border-black px-2 py-1 font-bold text-xs sm:text-sm">OVERALL SCORE</td>
-                            <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm">{{ $result->total_standard_score ?? '' }}</td>
+                            <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm" style="color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#15803d' : '#dc2626' }};">{{ $result->total_standard_score ?? '' }}</td>
                             <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
-                            <td class="border border-black px-2 py-1 text-xs sm:text-sm">{{ $stanine($result->total_raw_score) }}</td>
+                            <td class="border border-black px-2 py-1 text-xs sm:text-sm font-bold" style="color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#15803d' : '#dc2626' }};">{{ $stanine($result->total_raw_score) }}</td>
                         </tr>
                         <!-- Score Definitions inside table -->
                         <tr>
