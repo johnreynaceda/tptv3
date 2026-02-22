@@ -11,10 +11,14 @@
                 margin: 0 !important; padding: 0 !important; background: white !important;
                 font-family: 'Times New Roman', serif !important;
             }
+            .min-h-screen, .bg-gray-100, .bg-gray-50 {
+                background: white !important;
+            }
             #printable { zoom: 0.65; margin: 0 !important; padding: 0 !important; }
             #printable .p-6 { padding: 4px !important; }
             #printable p { margin-bottom: 0 !important; }
             table { border-collapse: collapse !important; }
+            .print-section table { font-size: 9pt !important; }
             img { max-width: 100% !important; }
         }
         @media screen {
@@ -22,7 +26,7 @@
         }
     </style>
 
-    <div class="max-w-3xl mx-auto mt-4 mb-2 print:hidden">
+    <div class="max-w-3xl mx-auto mt-4 mb-2 print:hidden flex gap-2">
         <button onclick="window.print()"
                 class="flex items-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm transition-colors duration-200">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,12 +36,25 @@
             </svg>
             Print Result
         </button>
+        <a href="{{ route('generate-examination-result-2026', $result->examinee_number) }}" target="_blank"
+           class="flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm transition-colors duration-200">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                </path>
+            </svg>
+            Download PDF
+        </a>
     </div>
 
 <div class="bg-white rounded-lg print:mt-4" id="printable">
 
     <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full" style="position: relative;">
-        <div>
+        <!-- SKSU Logo Watermark -->
+        <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 0;">
+            <img src="{{ asset('images/resultassets/sksu_logo.png') }}" style="width: 400px; height: 400px; opacity: 0.10;">
+        </div>
+        <div style="position: relative; z-index: 1;">
             <div class="flex">
                 <div class="flex mr-2">
                     <img src="{{ asset('images/resultassets/bagong_pilipinas.png') }}" class="w-16 mx-auto h-16" alt="Bagong Pilipinas Logo">
@@ -199,6 +216,7 @@
             <p class="text-center text-gray-500 mb-0 print:leading-tight" style="font-size: 8px;">| <span class="font-bold">CORE VALUES:</span> Patriotism, Respect, Integrity, Zeal, Excellence in Public Service.</p>
         </div>
 
+    </div> <!-- end z-index wrapper -->
     </div>
 </div>
 
