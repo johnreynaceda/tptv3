@@ -72,14 +72,14 @@
     </style>
     <div class="pt-2"></div>
 
-<div class="bg-white rounded-lg overflow-hidden print:mt-4 print-section print-keep-together" id="printable">
+<div class="bg-white rounded-lg print:mt-4 print-section print-keep-together" id="printable">
 
-    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block relative">
-        <!-- SKSU Logo Watermark -->
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none" style="z-index: 0;">
-            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 320px; height: 320px; opacity: 0.06;">
+    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative;">
+        <!-- SKSU Logo Watermark - centered behind score table -->
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;">
+            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 450px; height: 450px; opacity: 0.10;">
         </div>
-        <div class="relative" style="z-index: 1;">
+        <div style="position: relative; z-index: 1;">
         <div>
 
             <div class="flex">
