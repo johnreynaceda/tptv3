@@ -32,13 +32,6 @@ class ExaminationResultPage extends Component
     public function calculateStats()
 {
     $scores = $this->examination->results()
-        ->when($this->search, function($q) {
-            $searchTerm = strtolower($this->search);
-            $q->where(function($q) use ($searchTerm) {
-                $q->whereRaw('LOWER(full_name) LIKE ?', ["%{$searchTerm}%"])
-                  ->orWhereRaw('LOWER(examinee_number) LIKE ?', ["%{$searchTerm}%"]);
-            });
-        })
         ->pluck('total_standard_score')
         ->filter()
         ->map(fn($s) => intval($s));
@@ -86,9 +79,6 @@ public function qualifiedType($score)
             })
             ->orderBy('full_name')
             ->paginate(50); // Set your desired per-page count (e.g., 50)
-
-        // Update stats for current search
-        $this->calculateStats();
 
         return view('livewire.examination-result-page', [
             'results' => $results,

@@ -1,11 +1,18 @@
 <div>
     <x-layout.admin>
-    <div class="grid grid-cols-8 gap-4 p-6 ">
+    <div x-data="{ showPanel: false }" class="grid gap-4 p-6" :class="showPanel ? 'grid-cols-8' : 'grid-cols-1'">
 
 
-        <div class=" col-span-6 p-6 bg-white rounded-lg">
+        <div :class="showPanel ? 'col-span-6' : 'col-span-1'" class="p-6 bg-white rounded-lg">
 
-            <h1 class="text-xl font-bold mb-4">Results for: {{ $examination->title }}</h1>
+            <div class="flex items-center justify-between mb-4">
+                <h1 class="text-xl font-bold">Results for: {{ $examination->title }}</h1>
+                <button @click="showPanel = !showPanel" class="flex items-center gap-1 px-3 py-1.5 text-xs font-medium rounded-lg border border-gray-300 hover:bg-gray-100 transition-colors">
+                    <svg x-show="showPanel" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+                    <svg x-show="!showPanel" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                    <span x-text="showPanel ? 'Hide Cut-offs' : 'Show Cut-offs'"></span>
+                </button>
+            </div>
             <div class="mb-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-center">
                 <div class="relative w-full sm:w-80">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -125,7 +132,7 @@
 
                 </table>
             </div>
-            <div class="col-span-2">
+            <div x-show="showPanel" x-transition class="col-span-2">
                 <livewire:result.single-score-guide />
             </div>
         </div>

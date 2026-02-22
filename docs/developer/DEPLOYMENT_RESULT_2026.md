@@ -16,22 +16,65 @@ All existing 2025 pages are **preserved untouched**.
 
 ---
 
+## Branch Strategy
+
+- **Server branch (current/stable):** `sksu_tptp_october_2025`
+- **Update branch:** `oo1`
+
+The `oo1` branch contains all 2026 result changes. After testing locally, push `oo1` then switch to it on the server.
+
+---
+
 ## Pre-Deployment Checklist
 
 - [ ] Backup the production database
 - [ ] Ensure `docs/SKSU_TPT_RESULT_2026_CLEAN_V2.csv` is present in the repo
+- [ ] Ensure signature images are in `public/images/signature/`
+- [ ] Test locally: web view, print, PDF generation, admin panel
 
 ---
 
 ## Deployment Steps
 
-### 1. Pull Latest Code
+### 1. Push from Local
 
 ```bash
-git pull origin master
+# On your local machine (branch: oo1)
+git add .
+git commit -m "2026 TPT Result updates"
+git push origin oo1
 ```
 
-### 2. Run Database Migration
+### 2. Switch Branch on Server
+
+```bash
+# SSH into server
+ssh your-server
+
+# Navigate to project
+cd /var/www/tptv3
+
+# Enable maintenance mode
+php artisan down
+
+# Fetch latest and switch to oo1 branch
+git fetch origin
+git checkout oo1
+git pull origin oo1
+```
+
+### 3. Install Dependencies & Build
+
+```bash
+# Install PHP dependencies
+composer install --optimize-autoloader --no-dev
+
+# Install Node dependencies and build assets
+npm install
+npm run production
+```
+
+### 4. Run Database Migration
 
 > **IMPORTANT:** Do NOT run `php artisan migrate` bare — it may execute other pending migrations you don't want. Always target this specific migration file:
 
@@ -51,7 +94,7 @@ This adds 3 nullable columns to the `results` table:
 
 Existing rows get `NULL` for all 3 columns. No data loss.
 
-### 3. Import CSV Data
+### 5. Import CSV Data
 
 Import `docs/SKSU_TPT_RESULT_2026_CLEAN_V2.csv` into the `results` table using TablePlus (or any DB tool).
 
@@ -80,18 +123,48 @@ Import `docs/SKSU_TPT_RESULT_2026_CLEAN_V2.csv` into the `results` table using T
 
 **Important:** Set the `examination_id` column to the correct 2026 examination ID before importing.
 
-### 4. Enable Results Visibility
+### 6. Enable Results Visibility
 
 In the `examinations` table, set `show_results = 1` for the 2026 examination record.
 
----
-
-### 5. Ensure Signature Images Exist
+### 7. Ensure Signature Images Exist
 
 Verify these files exist in `public/images/signature/`:
 - `john-michael.png` (JAN MICHAEL B. SALDICAYA - Prepared by)
 - `mark.png` (MARK F. ONIA - Interpreted by)
 - `bacera.png` (JOSELYN H. BACERA - Noted)
+
+### 8. Clear Cache & Go Live
+
+```bash
+# Clear and rebuild caches
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Disable maintenance mode
+php artisan up
+```
+
+---
+
+## Quick Deploy Summary
+
+```bash
+# Local
+git push origin oo1
+
+# Server
+ssh your-server
+cd /var/www/tptv3
+php artisan down
+git fetch origin && git checkout oo1 && git pull origin oo1
+composer install --optimize-autoloader --no-dev
+npm install && npm run production
+php artisan migrate --path=database/migrations/2026_02_22_000000_add_esm_and_preferred_program_to_results_table.php
+php artisan config:cache && php artisan route:cache && php artisan view:cache
+php artisan up
+```
 
 ---
 
@@ -145,8 +218,15 @@ Verify these files exist in `public/images/signature/`:
 
 ## Rollback
 
-If rollback is needed:
+If you need to revert back to the stable branch:
 
-1. Revert the route in `routes/web.php` back to `ResultController::class, 'result'`
-2. Run `php artisan migrate:rollback` to drop the 3 new columns
-3. The 2025 views are untouched and will continue to work
+```bash
+# On server
+php artisan down
+git checkout sksu_tptp_october_2025
+php artisan migrate:rollback   # drops the 3 new columns
+php artisan config:cache && php artisan route:cache && php artisan view:cache
+php artisan up
+```
+
+The 2025 views are untouched and will continue to work.
