@@ -323,7 +323,7 @@ Route::get('/test-result-2026/{examinee_number}', function ($examinee_number) {
         'resultsVisible' => true,
         'examination' => $result->examination,
     ]);
-});
+})->name('test-result-2026');
 
 
 
