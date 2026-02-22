@@ -463,7 +463,7 @@ Route::get('/xss-test', function () {
     $pdfContent = Browsershot::html($htmlContent)
     ->setOption('args', ['--disable-web-security'])
     ->format('A4')
-    ->scale(0.58)
+    ->scale(0.65)
     ->pdf();
 
     $safeFullName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $permit->user->personal_information->fullName()) . '_RESULT_2026';
