@@ -308,9 +308,9 @@
 
             <style>
                 .cutoff-table { border-collapse: collapse; font-size: 7pt; width: 100%; line-height: 1.3; table-layout: fixed; }
-                .cutoff-table th { background-color: #e5e5e5; border: 1px solid #000; padding: 3px 4px; font-weight: bold; }
+                .cutoff-table th { background-color: #e5e5e5 !important; border: 1px solid #000; padding: 3px 4px; font-weight: bold; }
                 .cutoff-table td { border: 1px solid #000; padding: 2px 4px; background-color: transparent; overflow: hidden; text-overflow: ellipsis; }
-                .cutoff-table .campus-header { background-color: #808080; color: #fff; font-weight: bold; }
+                .cutoff-table .campus-header { background-color: #808080 !important; color: #fff; font-weight: bold; }
                 .cutoff-table .score { text-align: center; font-weight: bold; width: 60px; }
                 .cutoff-table .program-col { width: calc(50% - 60px); }
             </style>
