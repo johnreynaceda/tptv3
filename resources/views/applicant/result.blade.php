@@ -37,7 +37,7 @@
                 size: A4;
                 margin: 10mm 10mm 10mm 10mm;
               }
-              
+
               html, body, #printable {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -50,20 +50,20 @@
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
               }
-              
+
               /* Ensure content stays together */
               .print-keep-together {
                 page-break-inside: avoid;
                 break-inside: avoid;
               }
-              
+
               /* Prevent page breaks inside important sections */
               .print-section {
                 page-break-inside: avoid;
                 break-inside: avoid;
                 margin-bottom: 10px;
               }
-              
+
               /* Adjust spacing for print */
               .print-compact {
                 margin: 0 !important;
@@ -75,43 +75,43 @@
               .print-text-sm { font-size: 10px !important; }
               .print-text-base { font-size: 11px !important; }
               .print-text-lg { font-size: 12px !important; }
-              
+
               /* Ensure tables don't break across pages */
               table {
                 page-break-inside: auto;
               }
-              
+
               tr {
                 page-break-inside: avoid;
                 page-break-after: auto;
               }
-              
+
               /* Table styles */
               .print-table-compact {
                 width: 100% !important;
                 border-collapse: collapse;
               }
-              
-              .print-table-compact th, 
+
+              .print-table-compact th,
               .print-table-compact td {
                 padding: 3px 5px !important;
                 font-size: 10px !important;
                 border: 1px solid #000 !important;
               }
-              
+
               /* Make sure images print properly */
               img {
                 max-width: 100% !important;
                 height: auto !important;
               }
-              
+
               /* Force background colors */
-              .bg-white, .bg-gray-50, .bg-gray-100 { 
-                background-color: white !important; 
+              .bg-white, .bg-gray-50, .bg-gray-100 {
+                background-color: white !important;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
               }
-              
+
               /* Ensure text is readable */
               .text-black, .text-gray-800, .text-gray-900 {
                 color: black !important;
@@ -170,7 +170,7 @@
             </div>
         </div>
         <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-            <div class="flex flex-wrap justify-center gap-4">
+            <div class="flex flex-wrap justify-left gap-4">
                 <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
                     <i class="text-green-600 fas fa-globe mr-2"></i>
                     <span>https://www.sksu.edu.ph</span>
@@ -244,8 +244,8 @@
             </div>
         </div>
     </div>
-    
-        
+
+
     <livewire:result.score-result />
     <livewire:footer-signature/>
     <livewire:result.score-guide />

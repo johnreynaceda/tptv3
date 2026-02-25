@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-                <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex flex-wrap justify-left gap-4">
                     <span class="flex items-center text-xs">
                         <span>https://www.sksu.edu.ph</span>
                     </span>

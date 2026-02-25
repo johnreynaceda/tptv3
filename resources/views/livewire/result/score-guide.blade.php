@@ -1,4 +1,4 @@
-<div class="bg-white py-4 print:mt-2 print-section">
+<div class="bg-white py-2 print:mt-2 print-section">
     <!-- Title & Subtitle -->
     <div class="text-center mb-2">
         <h2 class="font-bold text-lg mb-0">
@@ -10,96 +10,212 @@
         </p>
     </div>
 
-    <!-- Two Column Layout - Separate Independent Tables -->
-    <div style="display: flex; gap: 8px; font-size: 8pt; align-items: flex-start;">
-        <!-- Left Column: ACCESS & ISULAN -->
-        <div style="width: 50%;">
-            <table class="w-full border border-gray-300" style="border-collapse: collapse;">
-                <thead>
-                    <tr class="bg-gray-50">
-                        <th class="border border-gray-300 px-1 py-0 text-left font-bold">PROGRAM</th>
-                        <th class="border border-gray-300 px-1 py-0 text-center font-bold whitespace-nowrap">STANDARD SCORE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">ACCESS CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Elementary Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Filipino</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Science</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Mathematics</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Social Studies</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: English</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Physical Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Nursing</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">650</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Midwifery</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">550</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Medical Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">650</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Criminal Justice Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Industrial Security Management</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">ISULAN CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Electronics Engineering</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Civil Engineering</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Computer Engineering</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">500</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Computer Science</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Information Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Information System</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Architectural Drafting Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Food Innovation and Culinary Tech.</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Automotive Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Electrical Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Electronics Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BIT major in: Civil Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Drafting Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Food Service Management</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Automotive Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Electrical Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Electronics Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTVTEd major in: Civil Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <style>
+        .cutoff-table { border-collapse: collapse; font-size: 8pt; width: 100%; }
+        .cutoff-table th { background-color: #d9d9d9; border: 1px solid #000; padding: 2px 4px; font-weight: bold; }
+        .cutoff-table td { border: 1px solid #000; padding: 1px 4px; }
+        .cutoff-table .campus-header { background-color: #808080; color: #fff; font-weight: bold; }
+        .cutoff-table .row-even { background-color: #fff; }
+        .cutoff-table .row-odd { background-color: #dbeafe; }
+        .cutoff-table .score { text-align: center; font-weight: bold; }
+    </style>
 
-        <!-- Right Column: TACURONG, KALAMANSIG, BAGUMBAYAN, PALIMBANG, LUTAYAN -->
-        <div style="width: 50%;">
-            <table class="w-full border border-gray-300" style="border-collapse: collapse;">
-                <thead>
-                    <tr class="bg-gray-50">
-                        <th class="border border-gray-300 px-1 py-0 text-left font-bold">PROGRAM</th>
-                        <th class="border border-gray-300 px-1 py-0 text-center font-bold whitespace-nowrap">STANDARD SCORE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">TACURONG CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Biology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Arts in Economics</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Arts in Political Science</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Hospitality Management</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Entrepreneurship</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Accountancy</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">600</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Accounting Information System</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Tourism Management</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Management Accounting</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Environmental Science</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">KALAMANSIG CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Fisheries</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: English</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Filipino</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Science</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Elementary Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Information Technology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">350</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Biology</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">350</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Criminal Justice Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Secondary Education major in: Mathematics</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">450</td></tr>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">BAGUMBAYAN CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Agribusiness</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">BTLEd major in Agri-fishery</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">PALIMBANG CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Elementary Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Agribusiness</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">300</td></tr>
-                    <tr><td colspan="2" class="border border-gray-300 px-1 py-0 font-bold" style="background-color: #808080; color: #FFFFFF;">LUTAYAN CAMPUS</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor in Elementary Education</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                    <tr><td class="border border-gray-300 px-1 py-0">Bachelor of Science in Agriculture</td><td class="border border-gray-300 px-1 py-0 text-center font-bold">400</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <!-- Single Table with 4 Columns -->
+    <table class="cutoff-table">
+        <thead>
+            <tr>
+                <th class="text-left">PROGRAM</th>
+                <th class="text-center">STANDARD SCORE</th>
+                <th class="text-left">PROGRAM</th>
+                <th class="text-center">STANDARD SCORE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2" class="campus-header">ACCESS CAMPUS</td>
+                <td colspan="2" class="campus-header">TACURONG CAMPUS</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor in Elementary Education</td>
+                <td class="score">500</td>
+                <td>Bachelor of Science in Biology</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor in Secondary Education major in: Filipino</td>
+                <td class="score">500</td>
+                <td>Bachelor of Arts in Economics</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor in Secondary Education major in: Science</td>
+                <td class="score">500</td>
+                <td>Bachelor of Arts in Political Science</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor in Secondary Education major in: Mathematics</td>
+                <td class="score">500</td>
+                <td>Bachelor of Science in Hospitality Management</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor in Secondary Education major in: Social Studies</td>
+                <td class="score">500</td>
+                <td>Bachelor of Science in Entrepreneurship</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor in Secondary Education major in: English</td>
+                <td class="score">500</td>
+                <td>Bachelor of Science in Accountancy</td>
+                <td class="score">600</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Physical Education</td>
+                <td class="score">500</td>
+                <td>Bachelor of Science in Accounting Information System</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Nursing</td>
+                <td class="score">650</td>
+                <td>Bachelor of Science in Tourism Management</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Science in Midwifery</td>
+                <td class="score">550</td>
+                <td>Bachelor of Science in Management Accounting</td>
+                <td class="score">450</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Medical Technology</td>
+                <td class="score">650</td>
+                <td>Bachelor of Science in Environmental Science</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Science in Criminal Justice Education</td>
+                <td class="score">450</td>
+                <td colspan="2" class="campus-header">KALAMANSIG CAMPUS</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Industrial Security Management</td>
+                <td class="score">300</td>
+                <td>Bachelor of Science in Fisheries</td>
+                <td class="score">425</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="campus-header">ISULAN CAMPUS</td>
+                <td class="row-odd">Bachelor in Secondary Education major in: English</td>
+                <td class="row-odd score">425</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Electronics Engineering</td>
+                <td class="score">500</td>
+                <td>Bachelor in Secondary Education major in: Filipino</td>
+                <td class="score">425</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Science in Civil Engineering</td>
+                <td class="score">500</td>
+                <td>Bachelor in Secondary Education major in: Science</td>
+                <td class="score">425</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Computer Engineering</td>
+                <td class="score">500</td>
+                <td>Bachelor in Elementary Education</td>
+                <td class="score">425</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Science in Computer Science</td>
+                <td class="score">400</td>
+                <td>Bachelor of Science in Information Technology</td>
+                <td class="score">350</td>
+            </tr>
+            <tr class="row-even">
+                <td>Bachelor of Science in Information Technology</td>
+                <td class="score">400</td>
+                <td>Bachelor of Science in Biology</td>
+                <td class="score">350</td>
+            </tr>
+            <tr class="row-odd">
+                <td>Bachelor of Science in Information System</td>
+                <td class="score">400</td>
+                <td>Bachelor of Science in Criminal Justice Education</td>
+                <td class="score">425</td>
+            </tr>
+            <tr class="row-even">
+                <td>BIT major in: Architectural Drafting Technology</td>
+                <td class="score">300</td>
+                <td>Bachelor in Secondary Education major in: Mathematics</td>
+                <td class="score">425</td>
+            </tr>
+            <tr class="row-odd">
+                <td>BIT major in: Food Innovation and Culinary Tech.</td>
+                <td class="score">300</td>
+                <td colspan="2" class="campus-header">BAGUMBAYAN CAMPUS</td>
+            </tr>
+            <tr class="row-even">
+                <td>BIT major in: Automotive Technology</td>
+                <td class="score">300</td>
+                <td>Bachelor of Science in Agribusiness</td>
+                <td class="score">300</td>
+            </tr>
+            <tr class="row-odd">
+                <td>BIT major in: Electrical Technology</td>
+                <td class="score">300</td>
+                <td>BTLEd major in Agri-fishery</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-even">
+                <td>BIT major in: Electronics Technology</td>
+                <td class="score">300</td>
+                <td colspan="2" class="campus-header">PALIMBANG CAMPUS</td>
+            </tr>
+            <tr class="row-odd">
+                <td>BIT major in: Civil Technology</td>
+                <td class="score">300</td>
+                <td>Bachelor in Elementary Education</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-even">
+                <td>BTVTEd major in: Drafting Technology</td>
+                <td class="score">450</td>
+                <td>Bachelor of Science in Agribusiness</td>
+                <td class="score">300</td>
+            </tr>
+            <tr class="row-odd">
+                <td>BTVTEd major in: Food Service Management</td>
+                <td class="score">450</td>
+                <td colspan="2" class="campus-header">LUTAYAN CAMPUS</td>
+            </tr>
+            <tr class="row-even">
+                <td>BTVTEd major in: Automotive Technology</td>
+                <td class="score">450</td>
+                <td>Bachelor in Elementary Education</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-odd">
+                <td>BTVTEd major in: Electrical Technology</td>
+                <td class="score">450</td>
+                <td>Bachelor of Science in Agriculture</td>
+                <td class="score">400</td>
+            </tr>
+            <tr class="row-even">
+                <td>BTVTEd major in: Electronics Technology</td>
+                <td class="score">450</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr class="row-odd">
+                <td>BTVTEd major in: Civil Technology</td>
+                <td class="score">450</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

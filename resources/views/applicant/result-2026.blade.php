@@ -44,14 +44,13 @@
                 top: 0;
                 left: 0;
                 bottom: 0;
-                height: 100%;
                 z-index: 0;
                 pointer-events: none;
             }
             .side-pattern img {
                 height: 100%;
                 width: auto;
-                object-fit: cover;
+
                 object-position: left top;
             }
 
@@ -196,7 +195,7 @@
             </div>
         </div>
         <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-            <div class="flex flex-wrap justify-center gap-4">
+            <div class="flex flex-wrap justify-left gap-4">
                 <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
                     <i class="text-green-600 fas fa-globe mr-2"></i>
                     <span>https://www.sksu.edu.ph</span>
