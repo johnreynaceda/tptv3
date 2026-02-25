@@ -89,9 +89,9 @@
 <div class="bg-white rounded-lg print:mt-4 print-section print-keep-together" id="printable" style="position: relative; z-index: 1;">
 
     <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative; margin-left: 50px;">
-        <!-- SKSU Logo Watermark - centered on first page -->
-        <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 0;">
-            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 400px; height: 400px; opacity: 0.10;">
+        <!-- SKSU Logo Watermark - centered -->
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;">
+            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 550px; height: auto; opacity: 0.05;">
         </div>
         <div style="position: relative; z-index: 1;">
         <div>
@@ -108,21 +108,13 @@
                     <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
                 </div>
             </div>
-            <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-                <div class="flex flex-wrap justify-left gap-4">
-                    <span class="flex items-center text-xs">
-                        <span>https://www.sksu.edu.ph</span>
-                    </span>
-                    <span class="flex items-center text-xs">
-                        <span>guidance@sksu.edu.ph</span>
-                    </span>
-                    <span class="flex items-center text-xs">
-                        <span>0965 917 4078</span>
-                    </span>
-                </div>
+            <!-- Contact Info -->
+            <div class="flex items-center gap-6 text-xs text-gray-700 mt-2 mb-4">
+                <span class="flex items-center">https://www.sksu.edu.ph</span>
+                <span class="flex items-center">guidance@sksu.edu.ph</span>
+                <span class="flex items-center">0965 917 4078</span>
             </div>
-
-        <div class="flex print-compact mt-4">
+            <div class="flex print-compact mt-4">
 
             <!-- Photo Placeholder -->
             <div class="w-1/4 flex">

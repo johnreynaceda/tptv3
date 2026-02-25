@@ -1,4 +1,4 @@
-<div class="bg-white py-2 print:mt-2 print-section">
+<div class="py-2 print:mt-2 print-section">
     <!-- Title & Subtitle -->
     <div class="text-center mb-2">
         <h2 class="font-bold text-lg mb-0">
@@ -13,7 +13,7 @@
     <style>
         .cutoff-table { border-collapse: collapse; font-size: 7pt; width: 100%; line-height: 1.1; table-layout: fixed; }
         .cutoff-table th { background-color: #e5e5e5; border: 1px solid #000; padding: 1px 2px; font-weight: bold; }
-        .cutoff-table td { border: 1px solid #000; padding: 0px 2px; background-color: #fff; overflow: hidden; text-overflow: ellipsis; }
+        .cutoff-table td { border: 1px solid #000; padding: 0px 2px; background-color: transparent; overflow: hidden; text-overflow: ellipsis; }
         .cutoff-table .campus-header { background-color: #808080; color: #fff; font-weight: bold; }
         .cutoff-table .score { text-align: center; font-weight: bold; width: 60px; }
         .cutoff-table .program-col { width: calc(50% - 60px); }
@@ -23,10 +23,10 @@
     <table class="cutoff-table">
         <thead>
             <tr>
-                <th class="text-left" style="width: 40%;">PROGRAM</th>
-                <th class="text-center" style="width: 10%;">STANDARD SCORE</th>
-                <th class="text-left" style="width: 40%;">PROGRAM</th>
-                <th class="text-center" style="width: 10%;">STANDARD SCORE</th>
+                <th class="text-left" style="width: 38%;">PROGRAM</th>
+                <th class="text-center" style="width: 12%; white-space: nowrap;">STANDARD SCORE</th>
+                <th class="text-left" style="width: 38%;">PROGRAM</th>
+                <th class="text-center" style="width: 12%; white-space: nowrap;">STANDARD SCORE</th>
             </tr>
         </thead>
         <tbody>

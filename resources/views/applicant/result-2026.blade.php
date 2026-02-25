@@ -194,27 +194,6 @@
                 <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
             </div>
         </div>
-        <div class="border-b-2 border-gray-600 pt-1 pb-3 text-gray-700 text-sm">
-            <div class="flex flex-wrap justify-left gap-4">
-                <a href="https://www.sksu.edu.ph" target="_blank" class="flex items-center text-xs hover:underline">
-                    <i class="text-green-600 fas fa-globe mr-2"></i>
-                    <span>https://www.sksu.edu.ph</span>
-                </a>
-
-                <a href="mailto:guidance@sksu.edu.ph" class="flex items-center text-xs hover:underline">
-                    <i class="text-green-600 fas fa-envelope mr-2"></i>
-                    <span>guidance@sksu.edu.ph</span>
-                </a>
-
-                <a href="tel:09659174078" class="flex items-center text-xs hover:underline">
-                    <i class="text-green-600 fas fa-phone-alt mr-2"></i>
-                    <span>0965 917 4078</span>
-                </a>
-        </div>
-
-    </div>
-
-
     @if(isset($resultsVisible) && !$resultsVisible)
     <!-- Results are not visible -->
     <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8">
