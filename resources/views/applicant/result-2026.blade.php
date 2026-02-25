@@ -32,13 +32,48 @@
         defer></script>
 
         <style>
+            /* Side pattern container - visible on screen and print */
+            .result-container {
+                position: relative;
+                min-height: 100vh;
+                background: white;
+            }
+
+            .side-pattern {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                height: 100%;
+                z-index: 0;
+                pointer-events: none;
+            }
+            .side-pattern img {
+                height: 100%;
+                width: auto;
+                object-fit: cover;
+                object-position: left top;
+            }
+
+            .result-content {
+                position: relative;
+                z-index: 1;
+                margin-left: 50px;
+            }
+
             @media print {
               .no-print { display: none !important; }
               .print-only { display: block !important; }
 
               @page {
                 size: A4;
-                margin: 1cm;
+                margin: 0;
+                margin-right: 1cm;
+                margin-bottom: 0.5cm;
+              }
+
+              .side-pattern {
+                position: fixed;
               }
 
               *, *::before, *::after {
@@ -60,6 +95,12 @@
                 zoom: 0.65;
                 margin: 0 !important;
                 padding: 0 !important;
+                position: relative;
+                z-index: 1;
+              }
+
+              .result-content {
+                margin-left: 50px !important;
               }
 
               #printable .p-6 { padding: 4px !important; }
@@ -101,7 +142,14 @@
         window.print();
     }
 }"
-    class="py-10 print:py-0 antialiased font-poppins ">
+    class="print:py-0 antialiased font-poppins">
+    <div class="result-container">
+        <!-- Side Pattern - visible on screen and print -->
+        <div class="side-pattern">
+            <img src="{{ asset('images/resultassets/side_pattern_header.png') }}" alt="">
+        </div>
+
+        <div class="result-content py-10 print:py-0">
     <div class="no-print flex justify-between items-center max-w-3xl px-3 mx-auto sm:px-0">
         <h1 class="text-xl sm:text-2xl font-bold">
             TPT RESULT
@@ -281,6 +329,8 @@
         </div>
     </div>
 
+        </div> <!-- end result-content -->
+    </div> <!-- end result-container -->
 
     <x-notifications z-index="z-50" />
     <x-dialog z-index="z-50"

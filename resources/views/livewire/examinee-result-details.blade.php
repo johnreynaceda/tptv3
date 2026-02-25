@@ -1,8 +1,28 @@
 <div class="bg-white print:p-0 print:m-0">
     <style>
+        .side-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .side-pattern img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+            object-position: left top;
+        }
         @media print {
             .no-print { display: none !important; }
-            @page { size: A4; margin: 1cm; }
+            @page {
+                size: A4;
+                margin: 0;
+                margin-right: 1cm;
+                margin-bottom: 0.5cm;
+            }
             *, *::before, *::after {
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
@@ -14,7 +34,13 @@
             .min-h-screen, .bg-gray-100, .bg-gray-50 {
                 background: white !important;
             }
-            #printable { zoom: 0.65; margin: 0 !important; padding: 0 !important; }
+            #printable {
+                zoom: 0.65;
+                margin: 0 !important;
+                padding: 0 !important;
+                position: relative;
+                z-index: 1;
+            }
             #printable .p-6 { padding: 4px !important; }
             #printable p { margin-bottom: 0 !important; }
             table { border-collapse: collapse !important; }
@@ -49,12 +75,16 @@
 
 <div class="bg-white rounded-lg print:mt-4" id="printable">
 
-    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full" style="position: relative;">
+    <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full" style="position: relative; overflow: hidden;">
+        <!-- Side Pattern - inside container -->
+        <div class="side-pattern">
+            <img src="{{ asset('images/resultassets/side_pattern_header.png') }}" alt="">
+        </div>
         <!-- SKSU Logo Watermark -->
         <div style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 0;">
             <img src="{{ asset('images/resultassets/sksu_logo.png') }}" style="width: 400px; height: 400px; opacity: 0.10;">
         </div>
-        <div style="position: relative; z-index: 1;">
+        <div style="position: relative; z-index: 1; margin-left: 45px;">
             <div class="flex">
                 <div class="flex mr-2">
                     <img src="{{ asset('images/resultassets/bagong_pilipinas.png') }}" class="w-16 mx-auto h-16" alt="Bagong Pilipinas Logo">
@@ -178,8 +208,6 @@
             </div>
         </div>
 
-        </div>
-
         <!-- Campus Cutoff Table -->
         <livewire:result.score-guide />
 
@@ -216,8 +244,7 @@
             <p class="text-center text-gray-500 mb-0 print:leading-tight" style="font-size: 8px;">| <span class="font-bold">CORE VALUES:</span> Patriotism, Respect, Integrity, Zeal, Excellence in Public Service.</p>
         </div>
 
-    </div> <!-- end z-index wrapper -->
+        </div> <!-- end z-index wrapper -->
     </div>
 </div>
-
 </div>
