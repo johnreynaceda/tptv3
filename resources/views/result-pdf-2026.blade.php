@@ -91,7 +91,7 @@
     <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative; margin-left: 50px;">
         <!-- SKSU Logo Watermark - centered -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;">
-            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 550px; height: auto; opacity: 0.05;">
+            <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 700px; height: auto; opacity: 0.05;">
         </div>
         <div style="position: relative; z-index: 1;">
         <div>

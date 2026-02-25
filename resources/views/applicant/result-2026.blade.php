@@ -41,16 +41,17 @@
 
             .side-pattern {
                 position: absolute;
-                top: 0;
+                top: -76px;
                 left: 0;
+                right: 0;
                 bottom: 0;
                 z-index: 0;
                 pointer-events: none;
             }
             .side-pattern img {
-                height: 100%;
-                width: auto;
-
+                height: calc(100% + 76px);
+                width: 100%;
+                object-fit: fill;
                 object-position: left top;
             }
 
@@ -113,18 +114,22 @@
               /* Watermark */
               .print-watermark {
                 display: block !important;
+              }
+            }
+
+            /* Watermark - visible on both screen and print */
+            .watermark {
                 position: absolute;
-                top: 200px;
+                top: 50%;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translate(-50%, -50%);
                 pointer-events: none;
                 z-index: 0;
-              }
-              .print-watermark img {
-                width: 400px;
-                height: 400px;
-                opacity: 0.10;
-              }
+            }
+            .watermark img {
+                width: 700px;
+                height: auto;
+                opacity: 0.05;
             }
 
             @media screen {
@@ -165,7 +170,7 @@
             <x-button onclick="window.print()"
                 icon="printer"
                 positive
-                class="text-xs sm:text-sm">
+                class="text-xs sm:text-sm hidden sm:inline-flex">
                 Print Result
             </x-button>
         </div>
@@ -173,12 +178,12 @@
     <div id="printable"
         class="px-3 sm:px-0 print:p-0 print:m-0 print:bg-white print:shadow-none print:max-w-full">
 
-        <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact" style="position: relative;">
-            <!-- SKSU Logo Watermark (print only) -->
-            <div class="print-only print-watermark">
+        <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-8 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact" style="position: relative; overflow: hidden;">
+            <!-- SKSU Logo Watermark - centered -->
+            <div class="watermark">
                 <img src="{{ asset('images/resultassets/sksu_logo.png') }}" alt="">
             </div>
-            <div style="position: relative; z-index: 1;">
+            <div style="position: relative; z-index: 1; margin-left: 45px;">
             <!-- OFFICIAL HEADER WITH LOGOS -->
              <div>
 
@@ -191,8 +196,36 @@
                 <p class="leading-[1.1rem] text-gray-600 text-sm font-bold uppercase">Republic of the Philippines</p>
                 <p class="leading-[1.1rem] text-lg text-green-800 font-bold">SULTAN KUDARAT STATE UNIVERSITY</p>
                 <p class="leading-[1.1rem] text-gray-600 text-sm">EJC Montilla, City of Tacurong, 9800</p>
-                <p class="leading-[1.1rem] text-gray-600 text-sm mb-4">Province of Sultan Kudarat</p>
+                <p class="leading-[1.1rem] text-gray-600 text-sm">Province of Sultan Kudarat</p>
             </div>
+        </div>
+        <!-- Contact Info -->
+        <div class="flex items-center gap-4 text-xs text-gray-700 mt-2 mb-4">
+            <span class="flex items-center">
+                <span class="w-4 h-4 rounded-full bg-green-600 flex items-center justify-center mr-1">
+                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                https://www.sksu.edu.ph
+            </span>
+            <span class="flex items-center">
+                <span class="w-4 h-4 rounded-full bg-green-600 flex items-center justify-center mr-1">
+                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                </span>
+                guidance@sksu.edu.ph
+            </span>
+            <span class="flex items-center">
+                <span class="w-4 h-4 rounded-full bg-green-600 flex items-center justify-center mr-1">
+                    <svg class="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                </span>
+                0965 917 4078
+            </span>
         </div>
     @if(isset($resultsVisible) && !$resultsVisible)
     <!-- Results are not visible -->
@@ -220,7 +253,7 @@
     </div>
     @else
     <!-- Results are visible -->
-    <div class="flex print-compact  mt-4 mb-2">
+    <div class="flex print-compact mt-10 mb-2">
 
         <!-- Photo Placeholder - Standard Passport Size -->
         <div class="w-1/4 flex">

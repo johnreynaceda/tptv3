@@ -54,7 +54,7 @@
                 </tr>
                 <!-- Score Definitions inside table -->
                 <tr>
-                    <td colspan="4" class="border border-black px-2 py-2 text-xs text-justify print-score-definitions" style="line-height: 1.4;">
+                    <td colspan="4" class="border border-black px-2 py-2 text-xs text-justify print-score-definitions" style="line-height: 1.4; background-color: transparent;">
                         <p class="mb-2">
                             <span class="font-bold italic">OVERALL SCORE</span> – The composite score based on all subjects taken in the SKSU TPT. This score is used for admission to all other college programs not included under the EMS Score.
                         </p>
