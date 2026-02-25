@@ -91,12 +91,40 @@
                 width: 100%;
                 object-fit: fill;
             }
+
+            /* Ensure flex layout works in print */
+            .print-compact {
+                display: flex !important;
+                flex-direction: row !important;
+            }
+
+            .print-compact > .w-1\/4 {
+                width: 25% !important;
+                flex-shrink: 0 !important;
+                margin-left: 5rem !important;
+                margin-top: 2rem !important;
+            }
+
+            .print-compact > .w-3\/4 {
+                width: 75% !important;
+            }
+
+            /* Photo box print styling */
+            .print-compact .w-\[35mm\] {
+                width: 35mm !important;
+                height: 45mm !important;
+            }
         }
 
         @media screen {
             .max-w-3xl {
                 max-width: 48rem;
             }
+        }
+
+        /* Consistent font for printable area */
+        #printable {
+            font-family: 'Times New Roman', serif;
         }
     </style>
 
@@ -185,7 +213,7 @@
                 </div>
                 <div class="flex print-compact mt-10 mb-2">
                     <!-- Photo -->
-                    <div class="w-1/4 flex">
+                    <div class="w-1/4 flex ml-14 mt-6">
                         <div
                             class="border border-gray-400 w-[35mm] h-[45mm] flex items-center justify-center overflow-hidden bg-white">
                             <img src="{{ $photo }}" alt="Photo" class="object-cover w-full h-full">
@@ -332,7 +360,7 @@
                     <div class="flex flex-col sm:flex-row justify-between gap-4 print:gap-1">
                         <div class="flex-1 text-left">
                             <div class="text-xs text-gray-600 mb-1 print:mb-0">Prepared by:</div>
-                            <img src="{{ asset('images/signature/john-michael.png') }}" class="h-8 print:h-5"
+                            <img src="{{ asset('images/signature/john-michael.png') }}" class="h-12 print:h-10 -mb-4"
                                 alt="Signature">
                             <div class="text-xs font-bold">JAN MICHAEL B. SALDICAYA, LPT</div>
                             <div class="text-xs text-gray-700">PRC License No.: 1443740</div>
@@ -340,7 +368,7 @@
                         </div>
                         <div class="flex-1 text-left">
                             <div class="text-xs text-gray-600 mb-1 print:mb-0">Interpreted by:</div>
-                            <img src="{{ asset('images/signature/mark.png') }}" class="h-8 print:h-5"
+                            <img src="{{ asset('images/signature/mark.png') }}" class="h-12 print:h-10 -mb-4"
                                 alt="Signature">
                             <div class="text-xs font-bold">MARK F. ONIA, RPm, RPsy</div>
                             <div class="text-xs text-gray-700">PRC License No.: 0004578 / 0001990</div>
@@ -348,7 +376,7 @@
                         </div>
                         <div class="flex-1 text-left">
                             <div class="text-xs text-gray-600 mb-1 print:mb-0">Noted:</div>
-                            <img src="{{ asset('images/signature/bacera.png') }}" class="h-8 print:h-5"
+                            <img src="{{ asset('images/signature/bacera.png') }}" class="h-12 print:h-10 -mb-4"
                                 alt="Signature">
                             <div class="text-xs font-bold">JOSELYN H. BACERA, RGC</div>
                             <div class="text-xs text-gray-700">PRC License No.: 0002274</div>

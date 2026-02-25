@@ -105,7 +105,29 @@
 
               #printable .p-6 { padding: 4px !important; }
               #printable p { margin-bottom: 0 !important; }
-              .print-compact { margin: 0 !important; padding: 2px !important; }
+              .print-compact {
+                margin: 0 !important;
+                padding: 2px !important;
+                display: flex !important;
+                flex-direction: row !important;
+              }
+
+              .print-compact > .w-1\/4 {
+                width: 25% !important;
+                flex-shrink: 0 !important;
+                margin-left: 5rem !important;
+                margin-top: 2rem !important;
+              }
+
+              .print-compact > .w-3\/4 {
+                width: 75% !important;
+              }
+
+              /* Photo box print styling */
+              .print-compact .w-\[35mm\] {
+                width: 35mm !important;
+                height: 45mm !important;
+              }
 
               table { border-collapse: collapse !important; }
 
@@ -137,6 +159,11 @@
                 max-width: 48rem;
               }
               .print-only { display: none; }
+            }
+
+            /* Consistent font for printable area */
+            #printable {
+                font-family: 'Times New Roman', serif;
             }
             </style>
 </head>
@@ -256,7 +283,7 @@
     <div class="flex print-compact mt-10 mb-2">
 
         <!-- Photo Placeholder - Standard Passport Size -->
-        <div class="w-1/4 flex">
+        <div class="w-1/4 flex ml-14 mt-6">
             <div class="border border-gray-400 w-[35mm] h-[45mm] print-photo flex items-center justify-center overflow-hidden bg-white">
                 <img src="{{ Auth::user()->personal_information->photo ? asset('storage/' . Auth::user()->personal_information->photo) : asset('images/placeholder.png') }}" alt="Photo" class="object-cover w-full h-full">
             </div>
@@ -296,21 +323,21 @@
         <div class="flex flex-col sm:flex-row justify-between gap-4 print:gap-1">
             <div class="flex-1 text-left">
                 <div class="text-xs text-gray-600 mb-1 print:mb-0">Prepared by:</div>
-                <img src="{{ asset('images/signature/john-michael.png') }}" class="h-8 print:h-5" alt="Signature">
+                <img src="{{ asset('images/signature/john-michael.png') }}" class="h-12 print:h-10 -mb-4" alt="Signature">
                 <div class="text-xs font-bold print:text-[9px]">JAN MICHAEL B. SALDICAYA, LPT</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 1443740</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">Personnel, Guidance and Testing Center</div>
             </div>
             <div class="flex-1 text-left">
                 <div class="text-xs text-gray-600 mb-1 print:mb-0">Interpreted by:</div>
-                <img src="{{ asset('images/signature/mark.png') }}" class="h-8 print:h-5" alt="Signature">
+                <img src="{{ asset('images/signature/mark.png') }}" class="h-12 print:h-10 -mb-4" alt="Signature">
                 <div class="text-xs font-bold print:text-[9px]">MARK F. ONIA, RPm, RPsy</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 0004578 / 0001990</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">University Psychometrician</div>
             </div>
             <div class="flex-1 text-left">
                 <div class="text-xs text-gray-600 mb-1 print:mb-0">Noted:</div>
-                <img src="{{ asset('images/signature/bacera.png') }}" class="h-8 print:h-5" alt="Signature">
+                <img src="{{ asset('images/signature/bacera.png') }}" class="h-12 print:h-10 -mb-4" alt="Signature">
                 <div class="text-xs font-bold print:text-[9px]">JOSELYN H. BACERA, RGC</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 0002274</div>
                 <div class="text-xs text-gray-700 print:text-[8px]">Director, Guidance and Testing Center</div>

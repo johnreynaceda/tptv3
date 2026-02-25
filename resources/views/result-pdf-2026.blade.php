@@ -6,11 +6,11 @@
             <title>Document</title>
             <script src="https://cdn.tailwindcss.com"></script>
         </head>
-<div class="bg-white print:p-0 print:m-0" style="position: relative; min-height: 100vh;">
-    <!-- Side Pattern - positioned absolute left -->
-    <div style="position: absolute; top: 0; left: 0; bottom: 0; z-index: 0; pointer-events: none; height: 100%;">
+<div class="bg-white print:p-0 print:m-0" style="position: relative; min-height: 100vh; overflow: hidden;">
+    <!-- Side Pattern - positioned absolute, matching preview -->
+    <div style="position: absolute; top: -76px; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none;">
         <img src="{{ public_path('images/resultassets/side_pattern_header.png') }}"
-             style="height: 100%; width: auto; object-fit: cover; object-position: left top;">
+             style="height: calc(100% + 76px); width: 100%; object-fit: fill; object-position: left top;">
     </div>
     <style>
         @page {
@@ -86,7 +86,7 @@
     </style>
     <div class="pt-2"></div>
 
-<div class="bg-white rounded-lg print:mt-4 print-section print-keep-together" id="printable" style="position: relative; z-index: 1;">
+<div class="bg-white rounded-lg print:mt-4 print-section print-keep-together" id="printable" style="position: relative; z-index: 1; font-family: 'Times New Roman', serif;">
 
     <div class="max-w-3xl mx-auto border border-gray-300 bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative; margin-left: 50px;">
         <!-- SKSU Logo Watermark - centered -->
@@ -109,15 +109,37 @@
                 </div>
             </div>
             <!-- Contact Info -->
-            <div class="flex items-center gap-6 text-xs text-gray-700 mt-2 mb-4">
-                <span class="flex items-center">https://www.sksu.edu.ph</span>
-                <span class="flex items-center">guidance@sksu.edu.ph</span>
-                <span class="flex items-center">0965 917 4078</span>
+            <div class="flex items-center gap-4 text-xs text-gray-700 mt-2 mb-4">
+                <span class="flex items-center">
+                    <span style="width: 16px; height: 16px; border-radius: 50%; background-color: #16a34a; display: flex; align-items: center; justify-content: center; margin-right: 4px;">
+                        <svg style="width: 10px; height: 10px; color: white;" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path>
+                        </svg>
+                    </span>
+                    https://www.sksu.edu.ph
+                </span>
+                <span class="flex items-center">
+                    <span style="width: 16px; height: 16px; border-radius: 50%; background-color: #16a34a; display: flex; align-items: center; justify-content: center; margin-right: 4px;">
+                        <svg style="width: 10px; height: 10px; color: white;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </span>
+                    guidance@sksu.edu.ph
+                </span>
+                <span class="flex items-center">
+                    <span style="width: 16px; height: 16px; border-radius: 50%; background-color: #16a34a; display: flex; align-items: center; justify-content: center; margin-right: 4px;">
+                        <svg style="width: 10px; height: 10px; color: white;" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
+                    </span>
+                    0965 917 4078
+                </span>
             </div>
-            <div class="flex print-compact mt-4">
+            <div class="flex print-compact mt-10 mb-2">
 
             <!-- Photo Placeholder -->
-            <div class="w-1/4 flex">
+            <div class="w-1/4 flex" style="margin-left: 5rem; margin-top: 2rem;">
                 <div class="border border-gray-400 w-[35mm] h-[45mm] flex items-center justify-center overflow-hidden bg-white">
                     <img src="{{ $photo }}" alt="Photo" class="object-cover w-full h-full">
                 </div>
@@ -165,11 +187,11 @@
             <div class="inline-block min-w-full sm:px-0 px-2">
                 <table class="w-full text-sm border border-black" style="border-collapse: collapse;">
                     <thead>
-                        <tr class="bg-gray-50 text-center">
-                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">SUBJECT</th>
-                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANDARD SCORE</th>
-                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANINE</th>
-                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">QUALITATIVE INTERPRETATION</th>
+                        <tr class="text-center">
+                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm" style="background-color: transparent;">SUBJECT</th>
+                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm" style="background-color: transparent;">STANDARD SCORE</th>
+                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm" style="background-color: transparent;">STANINE</th>
+                            <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm" style="background-color: transparent;">QUALITATIVE INTERPRETATION</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -209,15 +231,15 @@
                             <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->esm_raw_score ?? '' }}</td>
                             <td class="border border-black px-2 py-1 text-xs sm:text-sm">{{ $stanine($result->esm_raw_score) }}</td>
                         </tr>
-                        <tr style="background-color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#f0fdf4' : '#fef2f2' }};">
-                            <td class="border border-black px-2 py-1 font-bold text-xs sm:text-sm">OVERALL SCORE</td>
-                            <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm" style="color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#15803d' : '#dc2626' }};">{{ $result->total_standard_score ?? '' }}</td>
-                            <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm">{{ $result->total_raw_score ?? '' }}</td>
-                            <td class="border border-black px-2 py-1 text-xs sm:text-sm font-bold" style="color: {{ ($result->total_standard_score ?? 0) >= 400 ? '#15803d' : '#dc2626' }};">{{ $stanine($result->total_raw_score) }}</td>
+                        <tr>
+                            <td class="border border-black px-2 py-1 font-bold text-xs sm:text-sm" style="background-color: transparent;">OVERALL SCORE</td>
+                            <td class="border border-black px-2 py-1 text-center font-bold text-xs sm:text-sm" style="background-color: transparent;">{{ $result->total_standard_score ?? '' }}</td>
+                            <td class="border border-black px-2 py-1 text-center text-xs sm:text-sm" style="background-color: transparent;">{{ $result->total_raw_score ?? '' }}</td>
+                            <td class="border border-black px-2 py-1 text-xs sm:text-sm font-bold" style="background-color: transparent;">{{ $stanine($result->total_raw_score) }}</td>
                         </tr>
                         <!-- Score Definitions inside table -->
                         <tr>
-                            <td colspan="4" class="border border-black px-2 py-2 text-xs text-justify" style="line-height: 1.4;">
+                            <td colspan="4" class="border border-black px-2 py-2 text-xs text-justify" style="line-height: 1.4; background-color: transparent;">
                                 <p class="mb-2">
                                     <span class="font-bold italic">OVERALL SCORE</span> – The composite score based on all subjects taken in the SKSU TPT. This score is used for admission to all other college programs not included under the EMS Score.
                                 </p>
@@ -353,7 +375,7 @@
             <div class="flex flex-col sm:flex-row justify-between gap-4 print:gap-2">
                 <div class="flex-1 text-left">
                     <div class="text-xs text-gray-600 mb-1">Prepared by:</div>
-                    <img src="{{ public_path('images/signature/john-michael.png') }}" style="height: 2rem;" alt="Signature">
+                    <img src="{{ public_path('images/signature/john-michael.png') }}" style="height: 3rem; margin-bottom: -1rem;" alt="Signature">
                     <div class="text-xs font-bold print:text-[9px]">JAN MICHAEL B. SALDICAYA, LPT</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 1443740</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">Personnel, Guidance and Testing Center</div>
@@ -361,7 +383,7 @@
 
                 <div class="flex-1 text-left">
                     <div class="text-xs text-gray-600 mb-1">Interpreted by:</div>
-                    <img src="{{ public_path('images/signature/mark.png') }}" style="height: 2rem;" alt="Signature">
+                    <img src="{{ public_path('images/signature/mark.png') }}" style="height: 3rem; margin-bottom: -1rem;" alt="Signature">
                     <div class="text-xs font-bold print:text-[9px]">MARK F. ONIA, RPm, RPsy</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 0004578 / 0001990</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">University Psychometrician</div>
@@ -369,7 +391,7 @@
 
                 <div class="flex-1 text-left">
                     <div class="text-xs text-gray-600 mb-1">Noted:</div>
-                    <img src="{{ public_path('images/signature/bacera.png') }}" style="height: 2rem;" alt="Signature">
+                    <img src="{{ public_path('images/signature/bacera.png') }}" style="height: 3rem; margin-bottom: -1rem;" alt="Signature">
                     <div class="text-xs font-bold print:text-[9px]">JOSELYN H. BACERA, RGC</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">PRC License No.: 0002274</div>
                     <div class="text-xs text-gray-700 print:text-[8px]">Director, Guidance and Testing Center</div>
