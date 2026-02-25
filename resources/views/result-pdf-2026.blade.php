@@ -6,13 +6,24 @@
             <title>Document</title>
             <script src="https://cdn.tailwindcss.com"></script>
         </head>
-<div class="bg-white print:p-0 print:m-0" style="position: relative; min-height: 100vh; overflow: visible;">
-    <!-- Side Pattern - positioned absolute for Browsershot -->
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
-        <img src="{{ public_path('images/resultassets/side_pattern_header.png') }}"
-             style="width: 100%; height: 100%; object-fit: fill;">
-    </div>
+<div class="print:p-0 print:m-0" style="position: relative; min-height: 100vh; overflow: hidden; background-color: white;">
     <style>
+        /* Side pattern styling for PDF - matching preview */
+        .side-pattern-pdf {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .side-pattern-pdf img {
+            height: 100%;
+            width: 100%;
+            object-fit: fill;
+            object-position: left top;
+        }
         @page {
             margin: 0;
             margin-right: 1cm;
@@ -73,9 +84,27 @@
             background-color: transparent;
         }
 
-        /* Cutoff table transparent backgrounds - except campus headers */
+        /* All backgrounds transparent - except campus headers */
         table td:not([style*="background-color"]) {
-            background-color: transparent;
+            background-color: transparent !important;
+        }
+
+        table th {
+            background-color: #e5e5e5 !important;
+        }
+
+        /* Main container transparent */
+        .bg-white {
+            background-color: transparent !important;
+        }
+
+        /* Keep only specific elements white */
+        #printable {
+            background-color: transparent !important;
+        }
+
+        .max-w-3xl {
+            background-color: transparent !important;
         }
 
         @media print {
@@ -89,11 +118,15 @@
             img { max-width: 100%; height: auto; page-break-inside: avoid; }
         }
     </style>
-    <div class="pt-2"></div>
 
-<div class="bg-white rounded-lg print:mt-4 print-section print-keep-together" id="printable" style="position: relative; z-index: 1; font-family: 'Times New Roman', serif;">
+    <!-- Side Pattern - at page level -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
+        <img src="{{ public_path('images/resultassets/side_pattern_header.png') }}" style="width: 100%; height: 100%; object-fit: fill;" alt="">
+    </div>
 
-    <div class="max-w-3xl mx-auto border border-black bg-white p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative; margin-left: 50px;">
+<div class="rounded-lg print:mt-4 print-section print-keep-together" id="printable" style="position: relative; z-index: 1; font-family: 'Times New Roman', serif; background-color: transparent;">
+
+    <div class="max-w-3xl mx-auto p-6 rounded mt-2 print:p-2 print:border-0 print:rounded-none print:mt-0 print:max-w-full print-compact print:block" style="position: relative; margin-left: 50px; overflow: visible; background-color: transparent;">
         <!-- SKSU Logo Watermark - centered -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;">
             <img src="{{ public_path('images/resultassets/sksu_logo.png') }}" style="width: 700px; height: auto; opacity: 0.05;">
