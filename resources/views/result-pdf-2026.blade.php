@@ -307,12 +307,12 @@
             </div>
 
             <style>
-                .cutoff-table { border-collapse: collapse; font-size: 10pt; width: 100%; line-height: 1.5; table-layout: fixed; }
-                .cutoff-table th { background-color: #e5e5e5 !important; border: 1px solid #000; padding: 5px 6px; font-weight: bold; }
-                .cutoff-table td { border: 1px solid #000; padding: 4px 6px; background-color: transparent; overflow: hidden; text-overflow: ellipsis; }
+                .cutoff-table { border-collapse: collapse; font-size: 8pt; width: 100%; line-height: 1.35; table-layout: fixed; }
+                .cutoff-table th { background-color: #e5e5e5 !important; border: 1px solid #000; padding: 3px 4px; font-weight: bold; }
+                .cutoff-table td { border: 1px solid #000; padding: 2px 4px; background-color: transparent; overflow: hidden; text-overflow: ellipsis; }
                 .cutoff-table .campus-header { background-color: #808080 !important; color: #fff; font-weight: bold; }
-                .cutoff-table .score { text-align: center; font-weight: bold; width: 70px; }
-                .cutoff-table .program-col { width: calc(50% - 70px); }
+                .cutoff-table .score { text-align: center; font-weight: bold; width: 60px; }
+                .cutoff-table .program-col { width: calc(50% - 60px); }
             </style>
 
             <!-- Single Table with 4 Columns -->
