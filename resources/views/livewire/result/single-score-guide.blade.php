@@ -174,7 +174,7 @@
                 </tr>
                 <tr>
                     <td class="border border-gray-400 px-2 py-1">Bachelor of Science in Criminology</td>
-                    <td class="border border-gray-400 px-2 py-1 text-center font-bold">450</td>
+                    <td class="border border-gray-400 px-2 py-1 text-center font-bold">425</td>
                 </tr>
                 <tr>
                     <td class="border border-gray-400 px-2 py-1">Bachelor in Secondary Education major in: Mathematics
