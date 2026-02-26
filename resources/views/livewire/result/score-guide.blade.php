@@ -96,7 +96,7 @@
                 <td class="score">400</td>
             </tr>
             <tr class="row-odd">
-                <td>BS in Criminology</td>
+                <td>Bachelor of Science in Criminology</td>
                 <td class="score">450</td>
                 <td colspan="2" class="campus-header">KALAMANSIG CAMPUS</td>
             </tr>
@@ -144,7 +144,7 @@
             <tr class="row-odd">
                 <td>Bachelor of Science in Information System</td>
                 <td class="score">400</td>
-                <td>BS in Criminology</td>
+                <td>Bachelor of Science in Criminology</td>
                 <td class="score">425</td>
             </tr>
             <tr class="row-even">
