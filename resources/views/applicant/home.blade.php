@@ -58,7 +58,7 @@
                                     class="font-medium text-blue-700 whitespace-nowrap hover:text-blue-600">View <span
                                         aria-hidden="true">&rarr;</span></a>
                                 @if(auth()->user()->permit && auth()->user()->permit->examinee_number)
-                                <a href="{{ route('generate-examination-result', ['examinee_number' => auth()->user()->permit->examinee_number]) }}"
+                                <a href="{{ route('generate-examination-result-2026', auth()->user()->permit->examinee_number) }}"
                                     target="_blank"
                                     class="font-medium text-green-700 whitespace-nowrap hover:text-green-600">
                                     Generate PDF <span aria-hidden="true">↓</span>
