@@ -1,8 +1,8 @@
-<div class="overflow-x-auto -mx-2 sm:mx-0">
+<div class="overflow-x-auto -mx-2 sm:mx-0 mt-2">
     <div class="inline-block min-w-full sm:px-0 px-2">
-        <table class="min-w-full border border-black print-table-compact" style="page-break-inside: avoid; border-collapse: collapse;">
+        <table class="w-full text-sm border border-black" style="border-collapse: collapse;">
             <thead>
-                <tr class="text-center" style="background-color: transparent;">
+                <tr class="text-center">
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">SUBJECT</th>
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANDARD SCORE</th>
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANINE</th>
