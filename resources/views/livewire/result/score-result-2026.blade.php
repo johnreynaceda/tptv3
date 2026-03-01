@@ -2,7 +2,7 @@
     <div class="inline-block min-w-full sm:px-0 px-2">
         <table class="w-full text-sm border border-black" style="border-collapse: collapse;">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center" style="background-color: transparent;">
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">SUBJECT</th>
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANDARD SCORE</th>
                     <th class="border border-black px-2 py-2 font-bold text-xs sm:text-sm">STANINE</th>
